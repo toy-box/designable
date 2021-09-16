@@ -6,7 +6,8 @@
   },
   "workspaces": [
     "packages/*",
-    "formily/*"
+    "formily/*",
+    "toybox/*"
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
