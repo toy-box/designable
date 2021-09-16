@@ -17,7 +17,7 @@
     "start": "webpack-dev-server --config playground/webpack.dev.ts"
   },
   "devDependencies": {
-    "@designable/react-settings-form": "0.5.27",
+    "@toy-box/react-settings-form": "0.5.27",
     "autoprefixer": "^9.0",
     "file-loader": "^5.0.2",
     "fs-extra": "^8.1.0",

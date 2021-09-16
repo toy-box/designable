@@ -18,7 +18,7 @@ import {
   SettingsPanel,
   ComponentTreeWidget,
 } from '@designable/react'
-import { SettingsForm } from '@designable/react-settings-form'
+import { SettingsForm } from '@toy-box/react-settings-form'
 import {
   createDesigner,
   GlobalRegistry,
@@ -33,7 +33,7 @@ import {
   MarkupSchemaWidget,
 } from './widgets'
 import { saveSchema } from './service'
-import { Form, Field, Input, NumberPicker, Space } from '../src'
+import { Form, FormCollapse, Field, Input, NumberPicker, Space } from '../src'
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -82,7 +82,10 @@ const App = () => {
               title="sources.Inputs"
               sources={[Input, NumberPicker]}
             />
-            <ResourceWidget title="sources.Layouts" sources={[Space]} />
+            <ResourceWidget
+              title="sources.Layouts"
+              sources={[Space, FormCollapse]}
+            />
             <ResourceWidget title="sources.Displays" sources={[Text]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -106,6 +109,7 @@ const App = () => {
                   <ComponentTreeWidget
                     components={{
                       Form,
+                      FormCollapse,
                       Field,
                       Input,
                       NumberPicker,

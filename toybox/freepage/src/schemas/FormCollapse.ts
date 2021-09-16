@@ -31,6 +31,12 @@ export const FormCollapse: ISchema & { CollapsePanel?: ISchema } = {
         defaultChecked: true,
       },
     },
+    add: {
+      type: 'void',
+      title: 'Add',
+      'x-decorator': 'FormItem',
+      'x-component': 'CollapseAdder',
+    },
   },
 }
 
