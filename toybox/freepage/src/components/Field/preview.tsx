@@ -20,7 +20,7 @@ import {
 } from '@designable/react'
 import { isArr, isStr } from '@designable/shared'
 import { Container } from '../../common/Container'
-import { AllLocales } from '../../locales'
+import * as AllLocales from '../../locales'
 
 Schema.silent(true)
 
