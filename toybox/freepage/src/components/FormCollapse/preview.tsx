@@ -111,33 +111,7 @@ export const FormCollapse: DnFC<CollapseProps> & {
       </Collapse>
     )
   }
-  return (
-    <div {...nodeId}>
-      {renderCollapse()}
-      <LoadTemplate
-        actions={[
-          {
-            title: node.getMessage('addCollapsePanel'),
-            onClick: () => {
-              const tabPane = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'FormCollapse.CollapsePanel',
-                  'x-component-props': {
-                    header: `Unnamed Title`,
-                  },
-                },
-              })
-              node.append(tabPane)
-              const keys = toArr(activeKey)
-              setActiveKey(keys.concat(tabPane.id))
-            },
-          },
-        ]}
-      />
-    </div>
-  )
+  return <div {...nodeId}>{renderCollapse()}</div>
 })
 
 FormCollapse.CollapsePanel = (props) => {

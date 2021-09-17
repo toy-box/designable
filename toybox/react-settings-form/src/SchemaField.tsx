@@ -37,6 +37,7 @@ import {
   DrawerSetter,
   CollapseItem,
   CollapseAdder,
+  TabsPaneSetter,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -44,6 +45,7 @@ export const SchemaField = createSchemaField({
     FormItem,
     CollapseAdder,
     CollapseItem,
+    TabsPaneSetter,
     Input,
     ValueInput,
     SizeInput,

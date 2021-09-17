@@ -33,7 +33,15 @@ import {
   MarkupSchemaWidget,
 } from './widgets'
 import { saveSchema } from './service'
-import { Form, FormCollapse, Field, Input, NumberPicker, Space } from '../src'
+import {
+  Form,
+  FormCollapse,
+  Field,
+  Input,
+  NumberPicker,
+  Space,
+  Tabs,
+} from '../src'
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -84,7 +92,7 @@ const App = () => {
             />
             <ResourceWidget
               title="sources.Layouts"
-              sources={[Space, FormCollapse]}
+              sources={[Space, FormCollapse, Tabs]}
             />
             <ResourceWidget title="sources.Displays" sources={[Text]} />
           </CompositePanel.Item>
@@ -114,6 +122,7 @@ const App = () => {
                       Input,
                       NumberPicker,
                       Space,
+                      Tabs,
                     }}
                   />
                 )}

@@ -1,36 +1,34 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import { Button } from 'antd'
-import { toArr } from '@formily/shared'
 import { observer, SchemaExpressionScopeContext } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import { usePrefix, TextWidget } from '@designable/react'
 import cls from 'classnames'
 
-export interface ICollapseAdder {
+export interface ITabsPaneSetter {
   className?: string
   style?: React.CSSProperties
-  defaultExpand?: boolean
 }
 
-export const CollapseAdder: React.FC<ICollapseAdder> = observer((props) => {
-  const prefix = usePrefix('collapse-adder')
+export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
+  const prefix = usePrefix('tabs-pane-setter')
   const { node } = useContext(SchemaExpressionScopeContext)
-  const panels = useMemo(
+  const tabPanes = useMemo(
     () =>
-      node.children.map((panel) => ({
-        id: panel.id,
-        header: panel.props['x-component-props'].header,
+      node.children.map((tabPane) => ({
+        id: tabPane.id,
+        tab: tabPane.props['x-component-props'].tab,
       })),
     [node.children]
   )
-  const addPanel = useCallback(() => {
+  const addTabPane = useCallback(() => {
     const tabPane = new TreeNode({
-      componentName: 'CollapsePanel',
+      componentName: 'TabPane',
       props: {
         type: 'void',
-        'x-component': 'FormCollapse.CollapsePanel',
+        'x-component': 'Tabs.TabPane',
         'x-component-props': {
-          header: `Unnamed Title`,
+          tab: `Tab ${node.children.length + 1}`,
         },
       },
     })
@@ -43,14 +41,14 @@ export const CollapseAdder: React.FC<ICollapseAdder> = observer((props) => {
       style={{ width: '100%', ...props.style }}
     >
       <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-        {panels.map((panel) => (
-          <li key={panel.id} style={{ border: '1px solid lightgray' }}>
-            {panel.header}
+        {tabPanes.map((tabPane) => (
+          <li key={tabPane.id} style={{ border: '1px solid lightgray' }}>
+            {tabPane.tab}
           </li>
         ))}
       </ul>
-      <Button type="dashed" onClick={addPanel} block>
-        <TextWidget>Add Panel</TextWidget>
+      <Button type="dashed" onClick={addTabPane} block>
+        <TextWidget>Add Tab</TextWidget>
       </Button>
     </div>
   )
