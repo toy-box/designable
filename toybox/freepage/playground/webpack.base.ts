@@ -52,7 +52,18 @@ export default {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.js$|jsx/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [['@babel/preset-env', { targets: 'defaults' }]],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.tsx$|ts/,
         use: [
           {
             loader: require.resolve('ts-loader'),

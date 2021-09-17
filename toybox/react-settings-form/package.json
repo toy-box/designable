@@ -15,9 +15,15 @@
     "build:umd": "rollup --config"
   },
   "peerDependencies": {
+    "@airclass/icons": "^4.3.4",
+    "@toy-box/toybox-shared": "^2.0.0",
+    "@toy-box/toybox-ui": "^2.0.0",
     "antd": "^4.0.0"
   },
   "devDependencies": {
+    "@airclass/icons": "^4.3.4",
+    "@toy-box/toybox-shared": "^2.0.0",
+    "@toy-box/toybox-ui": "^2.0.0",
     "antd": "^4.15.5"
   },
   "dependencies": {
@@ -32,6 +38,7 @@
     "@formily/reactive-react": "^2.0.0-rc.5",
     "@formily/shared": "^2.0.0-rc.5",
     "@monaco-editor/react": "^4.2.1",
+    "ahooks": "^2.10.9",
     "monaco-editor": "^0.25.2",
     "prettier": "^2.3.2",
     "react-color": "^2.19.3",

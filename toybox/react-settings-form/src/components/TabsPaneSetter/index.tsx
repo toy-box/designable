@@ -1,9 +1,13 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import { Button } from 'antd'
+import { SortableList } from '@toy-box/toybox-ui'
 import { observer, SchemaExpressionScopeContext } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import { usePrefix, TextWidget } from '@designable/react'
 import cls from 'classnames'
+import { HandleIcon } from './HandleIcon'
+
+import './styles.less'
 
 export interface ITabsPaneSetter {
   className?: string
@@ -21,6 +25,17 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
       })),
     [node.children]
   )
+  const paneItem = ({ item, dragHandleProps }) => {
+    return (
+      <div className={`${prefix}__item`}>
+        <span {...dragHandleProps} className={`${prefix}__item--handle`}>
+          <HandleIcon />
+        </span>
+        <span>{item.tab}</span>
+      </div>
+    )
+  }
+
   const addTabPane = useCallback(() => {
     const tabPane = new TreeNode({
       componentName: 'TabPane',
@@ -33,20 +48,15 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
       },
     })
     node.append(tabPane)
-  }, [])
+  }, [node])
 
   return (
     <div
       className={cls(prefix, props.className)}
       style={{ width: '100%', ...props.style }}
     >
-      <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-        {tabPanes.map((tabPane) => (
-          <li key={tabPane.id} style={{ border: '1px solid lightgray' }}>
-            {tabPane.tab}
-          </li>
-        ))}
-      </ul>
+      {JSON.stringify(tabPanes)}
+      <SortableList dataSource={tabPanes} itemRender={paneItem} idKey="id" />
       <Button type="dashed" onClick={addTabPane} block>
         <TextWidget>Add Tab</TextWidget>
       </Button>
