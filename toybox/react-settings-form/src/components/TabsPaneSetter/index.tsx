@@ -5,7 +5,7 @@ import { observer, SchemaExpressionScopeContext } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import { usePrefix, TextWidget } from '@designable/react'
 import cls from 'classnames'
-import { HandleIcon } from './HandleIcon'
+import { HandleIcon } from '../HandleIcon'
 
 import './styles.less'
 
@@ -36,6 +36,15 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
     )
   }
 
+  const sortPanes = useCallback(
+    (tabPanes) => {
+      node.children = tabPanes.map((pane) =>
+        node.children.find((child) => child.id === pane.id)
+      )
+    },
+    [node]
+  )
+
   const addTabPane = useCallback(() => {
     const tabPane = new TreeNode({
       componentName: 'TabPane',
@@ -51,12 +60,13 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
   }, [node])
 
   return (
-    <div
-      className={cls(prefix, props.className)}
-      style={{ width: '100%', ...props.style }}
-    >
-      {JSON.stringify(tabPanes)}
-      <SortableList dataSource={tabPanes} itemRender={paneItem} idKey="id" />
+    <div className={cls(prefix, props.className)} style={props.style}>
+      <SortableList
+        onChange={sortPanes}
+        dataSource={tabPanes}
+        itemRender={paneItem}
+        idKey="id"
+      />
       <Button type="dashed" onClick={addTabPane} block>
         <TextWidget>Add Tab</TextWidget>
       </Button>

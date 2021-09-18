@@ -33,9 +33,8 @@ export const FormCollapse: ISchema & { CollapsePanel?: ISchema } = {
     },
     panels: {
       type: 'void',
-      title: 'Panels',
       'x-decorator': 'FormItem',
-      'x-component': 'CollapseAdder',
+      'x-component': 'CollapsePanelSetter',
       'x-decorator-props': {
         layout: 'vertical',
         wrapperAlign: 'left',

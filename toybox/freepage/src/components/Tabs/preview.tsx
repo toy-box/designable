@@ -115,7 +115,7 @@ export const Tabs: DnFC<TabsProps> & {
                   type: 'void',
                   'x-component': 'Tabs.TabPane',
                   'x-component-props': {
-                    tab: `Unnamed Title`,
+                    tab: `Tab ${node.children.length + 1}`,
                   },
                 },
               })
