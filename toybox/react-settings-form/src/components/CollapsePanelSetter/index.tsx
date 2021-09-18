@@ -49,7 +49,7 @@ export const CollapsePanelSetter: React.FC<ICollapsePanelSetter> = observer(
 
     const addPanel = useCallback(() => {
       const tabPane = new TreeNode({
-        componentName: 'CollapsePanel',
+        componentName: 'Field',
         props: {
           type: 'void',
           'x-component': 'FormCollapse.CollapsePanel',

@@ -19,10 +19,12 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
   const { node } = useContext(SchemaExpressionScopeContext)
   const tabPanes = useMemo(
     () =>
-      node.children.map((tabPane) => ({
-        id: tabPane.id,
-        tab: tabPane.props['x-component-props'].tab,
-      })),
+      node.children.map((tabPane) => {
+        return {
+          id: tabPane.id,
+          tab: tabPane.props['x-component-props'].tab,
+        }
+      }),
     [node.children]
   )
   const paneItem = ({ item, dragHandleProps }) => {
@@ -47,7 +49,7 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
 
   const addTabPane = useCallback(() => {
     const tabPane = new TreeNode({
-      componentName: 'TabPane',
+      componentName: 'Field',
       props: {
         type: 'void',
         'x-component': 'Tabs.TabPane',

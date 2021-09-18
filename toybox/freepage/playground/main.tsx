@@ -128,9 +128,9 @@ const App = () => {
                 )}
               </ViewPanel>
               <ViewPanel type="JSONTREE" scrollable={false}>
-                {(tree, onChange) => (
-                  <SchemaEditorWidget tree={tree} onChange={onChange} />
-                )}
+                {(tree, onChange) => {
+                  return <SchemaEditorWidget tree={tree} onChange={onChange} />
+                }}
               </ViewPanel>
               <ViewPanel type="MARKUP" scrollable={false}>
                 {(tree) => <MarkupSchemaWidget tree={tree} />}

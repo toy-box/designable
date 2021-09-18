@@ -39,7 +39,7 @@ export const Tabs: DnFC<TabsProps> & {
   const [activeKey, setActiveKey] = useState<string>()
   const nodeId = useNodeIdProps()
   const node = useTreeNode()
-  const designer = useDropTemplate('FormTab', (source) => {
+  const designer = useDropTemplate('Tabs', (source) => {
     return [
       new TreeNode({
         componentName: 'Field',
@@ -47,7 +47,7 @@ export const Tabs: DnFC<TabsProps> & {
           type: 'void',
           'x-component': 'Tabs.TabPane',
           'x-component-props': {
-            tab: `Unnamed Title`,
+            tab: `Tab ${node.children.length + 1}`,
           },
         },
         children: source,
