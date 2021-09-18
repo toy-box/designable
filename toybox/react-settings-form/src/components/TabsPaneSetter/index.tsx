@@ -14,29 +14,21 @@ export interface ITabsPaneSetter {
   style?: React.CSSProperties
 }
 
+const tabPaneItem = observer((props: any) => {
+  const prefix = usePrefix('tabs-pane-setter')
+  return (
+    <div className={`${prefix}__item`}>
+      <span {...props.dragHandleProps} className={`${prefix}__item--handle`}>
+        <HandleIcon />
+      </span>
+      <span>{props.item.props['x-component-props'].tab}</span>
+    </div>
+  )
+})
+
 export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
   const prefix = usePrefix('tabs-pane-setter')
   const { node } = useContext(SchemaExpressionScopeContext)
-  const tabPanes = useMemo(
-    () =>
-      node.children.map((tabPane) => {
-        return {
-          id: tabPane.id,
-          tab: tabPane.props['x-component-props'].tab,
-        }
-      }),
-    [node.children]
-  )
-  const paneItem = ({ item, dragHandleProps }) => {
-    return (
-      <div className={`${prefix}__item`}>
-        <span {...dragHandleProps} className={`${prefix}__item--handle`}>
-          <HandleIcon />
-        </span>
-        <span>{item.tab}</span>
-      </div>
-    )
-  }
 
   const sortPanes = useCallback(
     (tabPanes) => {
@@ -65,8 +57,8 @@ export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
     <div className={cls(prefix, props.className)} style={props.style}>
       <SortableList
         onChange={sortPanes}
-        dataSource={tabPanes}
-        itemRender={paneItem}
+        dataSource={node.children}
+        itemRender={tabPaneItem}
         idKey="id"
       />
       <Button type="dashed" onClick={addTabPane} block>

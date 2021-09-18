@@ -14,29 +14,22 @@ export interface ICollapsePanelSetter {
   defaultExpand?: boolean
 }
 
+const panelItem = observer((props: any) => {
+  const prefix = usePrefix('collapse-panel-setter')
+  return (
+    <div className={`${prefix}__item`}>
+      <span {...props.dragHandleProps} className={`${prefix}__item--handle`}>
+        <HandleIcon />
+      </span>
+      <span>{props.item.props['x-component-props'].header}</span>
+    </div>
+  )
+})
+
 export const CollapsePanelSetter: React.FC<ICollapsePanelSetter> = observer(
   (props) => {
     const prefix = usePrefix('collapse-panel-setter')
     const { node } = useContext(SchemaExpressionScopeContext)
-    const panels = useMemo(
-      () =>
-        node.children.map((panel) => ({
-          id: panel.id,
-          header: panel.props['x-component-props'].header,
-        })),
-      [node.children]
-    )
-
-    const panelItem = ({ item, dragHandleProps }) => {
-      return (
-        <div className={`${prefix}__item`}>
-          <span {...dragHandleProps} className={`${prefix}__item--handle`}>
-            <HandleIcon />
-          </span>
-          <span>{item.header}</span>
-        </div>
-      )
-    }
 
     const sortPanels = useCallback(
       (panels) => {
@@ -48,7 +41,7 @@ export const CollapsePanelSetter: React.FC<ICollapsePanelSetter> = observer(
     )
 
     const addPanel = useCallback(() => {
-      const tabPane = new TreeNode({
+      const panel = new TreeNode({
         componentName: 'Field',
         props: {
           type: 'void',
@@ -58,14 +51,14 @@ export const CollapsePanelSetter: React.FC<ICollapsePanelSetter> = observer(
           },
         },
       })
-      node.append(tabPane)
+      node.append(panel)
     }, [node])
 
     return (
       <div className={cls(prefix, props.className)} style={props.style}>
         <SortableList
           onChange={sortPanels}
-          dataSource={panels}
+          dataSource={node.children}
           itemRender={panelItem}
           idKey="id"
         />
