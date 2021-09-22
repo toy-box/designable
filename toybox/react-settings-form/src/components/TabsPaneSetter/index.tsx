@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { Button } from 'antd'
 import { SortableList } from '@toy-box/toybox-ui'
 import { observer, SchemaExpressionScopeContext } from '@formily/react'

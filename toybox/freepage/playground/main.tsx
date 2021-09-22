@@ -34,6 +34,7 @@ import {
 } from './widgets'
 import { saveSchema } from './service'
 import {
+  DataView,
   Form,
   FormCollapse,
   Field,
@@ -50,6 +51,7 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: '布局组件',
       Arrays: '自增组件',
       Displays: '展示组件',
+      DataContainers: '数据容器',
     },
   },
   'en-US': {
@@ -58,6 +60,7 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: 'Layouts',
       Arrays: 'Arrays',
       Displays: 'Displays',
+      DataContainers: 'Data Containers',
     },
   },
 })
@@ -94,6 +97,10 @@ const App = () => {
               title="sources.Layouts"
               sources={[Space, FormCollapse, Tabs]}
             />
+            <ResourceWidget
+              title="sources.DataContainers"
+              sources={[DataView]}
+            />
             <ResourceWidget title="sources.Displays" sources={[Text]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -116,6 +123,7 @@ const App = () => {
                 {() => (
                   <ComponentTreeWidget
                     components={{
+                      DataView,
                       Form,
                       FormCollapse,
                       Field,

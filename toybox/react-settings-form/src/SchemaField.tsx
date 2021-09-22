@@ -38,6 +38,7 @@ import {
   CollapseItem,
   CollapsePanelSetter,
   TabsPaneSetter,
+  VisibilitySetter,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -78,5 +79,6 @@ export const SchemaField = createSchemaField({
     FormGrid,
     FormLayout,
     FormTab,
+    VisibilitySetter,
   },
 })

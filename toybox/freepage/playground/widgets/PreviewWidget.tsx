@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { createForm } from '@formily/core'
-import { createSchemaField } from '@formily/react'
+import { createSchemaField, Schema } from '@formily/react'
 import {
   Form,
   FormItem,
@@ -32,6 +32,7 @@ import {
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
 import { transformToSchema } from '@designable/formily-transformer'
+import { reactionPatches } from '../../src'
 
 const Text: React.FC<{
   value?: string
@@ -82,6 +83,8 @@ export interface IPreviewWidgetProps {
 
 export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const form = useMemo(() => createForm(), [])
+  Schema.registerPatches(reactionPatches)
+
   const { form: formProps, schema } = transformToSchema(props.tree)
   return (
     <Form {...formProps} form={form}>

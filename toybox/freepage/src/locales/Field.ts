@@ -7,6 +7,7 @@ export const Field = {
       description: '描述',
       default: '默认值',
       enum: '数据源',
+      visibility: '可见性',
       'x-display': {
         title: '展示状态',
         tooltip: '半隐藏只会隐藏UI，全隐藏会删除数据',
@@ -105,6 +106,7 @@ export const Field = {
       description: 'Description',
       default: 'Default',
       enum: 'DataSource',
+      visibility: 'Visibility',
       'x-display': {
         title: 'Display State',
         tooltip:

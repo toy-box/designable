@@ -100,6 +100,9 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input.TextArea',
           },
+          visibility: {
+            'x-component': 'VisibilitySetter',
+          },
           'x-display': {
             type: 'string',
             enum: ['visible', 'hidden', 'none', ''],

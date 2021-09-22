@@ -11,7 +11,6 @@ import {
 } from '@designable/react'
 import { toArr } from '@formily/shared'
 import { Droppable } from '../../common/Droppable'
-import { LoadTemplate } from '../../common/LoadTemplate'
 import { useDropTemplate } from '../../hooks'
 import { createVoidFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'

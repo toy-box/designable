@@ -51,6 +51,8 @@
     "@formily/core": "^2.0.0-rc.5",
     "@formily/react": "^2.0.0-rc.5",
     "@formily/shared": "^2.0.0-rc.5",
+    "@toy-box/formula": "^1.0.12",
+    "@toy-box/meta-schema": "^2.0.3",
     "babel-loader": "^8.2.2",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6"

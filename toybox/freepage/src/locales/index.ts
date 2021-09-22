@@ -1,4 +1,5 @@
 export * from './Component'
+export * from './DataView'
 export * from './Field'
 export * from './Form'
 export * from './FormCollapse'
