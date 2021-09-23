@@ -34,6 +34,7 @@ import {
 } from './widgets'
 import { saveSchema } from './service'
 import {
+  Card,
   DataView,
   Form,
   FormCollapse,
@@ -42,6 +43,7 @@ import {
   NumberPicker,
   Grid,
   Space,
+  Switch,
   Tabs,
 } from '../src'
 
@@ -92,11 +94,11 @@ const App = () => {
           <CompositePanel.Item title="panels.Component" icon="Component">
             <ResourceWidget
               title="sources.Inputs"
-              sources={[Input, NumberPicker]}
+              sources={[Input, NumberPicker, Switch]}
             />
             <ResourceWidget
               title="sources.Layouts"
-              sources={[Space, FormCollapse, Tabs, Grid]}
+              sources={[Space, FormCollapse, Tabs, Grid, Card]}
             />
             <ResourceWidget
               title="sources.DataContainers"
@@ -124,6 +126,7 @@ const App = () => {
                 {() => (
                   <ComponentTreeWidget
                     components={{
+                      Card,
                       DataView,
                       Form,
                       FormCollapse,
@@ -132,6 +135,7 @@ const App = () => {
                       NumberPicker,
                       Grid,
                       Space,
+                      Switch,
                       Tabs,
                     }}
                   />

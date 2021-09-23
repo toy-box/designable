@@ -8,7 +8,6 @@ import {
   Checkbox,
   Cascader,
   Editable,
-  Input,
   NumberPicker,
   Switch,
   Password,
@@ -29,6 +28,15 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd'
+import {
+  FieldString as Input,
+  FieldText,
+  FieldNumber,
+  FieldDate,
+  FieldBoolean,
+  FieldPercent,
+  FieldSelect,
+} from '@toy-box/meta-components'
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
 import { transformToSchema } from '@designable/formily-transformer'

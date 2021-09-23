@@ -94,6 +94,17 @@ export const transformToSchema = (
           }
         }
       })
+      // TODO:
+      const dataView = node
+        .getParents()
+        .find((node) => node.props['x-component'] === 'DataView')
+
+      schema['x-component-props'] = schema['x-component-props'] || {}
+      schema['x-component-props'].field = {
+        key: schema.name,
+        name: 'string',
+        type: 'string',
+      }
     }
     return schema
   }

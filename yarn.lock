@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@ahooksjs/antd-table@^0.2.3":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@ahooksjs/antd-table/-/antd-table-0.2.8.tgz#d146d7bb5cfa89bc9304094252cb0145c2374e9a"
+  integrity sha512-c88/A4+vz9SqJWFN6CERBMLE9YK9c8obFcmP8Lx4BmPCT4xxPcZ8XE0JhfnGPJVnpfc+mzX5Bt6J9ny3K0F/cQ==
+  dependencies:
+    "@ahooksjs/use-table" "^0.0.1"
+
+"@ahooksjs/use-query-display@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ahooksjs/use-query-display/-/use-query-display-0.0.1.tgz#754884c1aac60db926436d856ec62807bb2c71e5"
+  integrity sha512-IwvrwwI13MbPTt3RSZgvuY76oqlfelKq4IC49JmY5yvdWR/c81/XGq3Ni2pmsv/Q8cIvjyyHnvqQ0yqZGNPRxg==
+
 "@ahooksjs/use-request@^2.8.10":
   version "2.8.10"
   resolved "https://registry.yarnpkg.com/@ahooksjs/use-request/-/use-request-2.8.10.tgz#643ea1a3c025fc7d0ff6a41621f11c03eed9ac22"
@@ -9,6 +21,13 @@
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
+
+"@ahooksjs/use-table@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ahooksjs/use-table/-/use-table-0.0.1.tgz#a35977d5f6033aae7571dfd53f839298e0412160"
+  integrity sha512-o4moijcffl+45etJ9mf5A1jmv2PfJIFN6mlJIOx/4LnixjwLsX70o8LoibQ85pbJpO6qe3KWrtima1ny2Sp3nw==
+  dependencies:
+    "@ahooksjs/use-query-display" "^0.0.1"
 
 "@airclass/icons-svg@^4.1.2":
   version "4.1.2"
@@ -2899,17 +2918,36 @@
     antlr4ts "^0.5.0-alpha.4"
     lodash.uniq "^4.5.0"
 
+"@toy-box/meta-components@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.4.tgz#83fd51217f409bf7bf5ab10f713ea3e598156733"
+  integrity sha512-RDHB9sTmRfMCOJlcQgUIHOGSZXW1b0UvN0/vFIqZzmtWs6ojqNSlMEcf0WuDhX/1ciTmthxEA7bXw3nGr2t5yA==
+  dependencies:
+    "@ahooksjs/antd-table" "^0.2.3"
+    "@airclass/icons" "^4.3.4"
+    "@toy-box/meta-schema" "^2.0.3"
+    "@toy-box/toybox-shared" "^2.0.3"
+    "@toy-box/toybox-ui" "^2.0.4"
+    ahooks "^2.10.6"
+    hoist-non-react-statics "^3.3.1"
+    immutability-helper "^3.1.1"
+    lodash.debounce "^4.0.8"
+    lodash.get "^4.4.2"
+    lodash.intersection "^4.4.0"
+    qs "^6.10.1"
+    react-resizable "^3.0.4"
+
 "@toy-box/meta-schema@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.3.tgz#a6e1f2a501ce69e3444ffeb40b4ebb87702be053"
   integrity sha512-luQAI8BhiD6nISeaIq/fDEU+JEB8Az6YR2Rkc86QBxuiWub8GaBzhntz3MfkuPsa3ydfbrbPjYwtoqJSzvi8gw==
 
-"@toy-box/toybox-shared@^2.0.0":
+"@toy-box/toybox-shared@^2.0.0", "@toy-box/toybox-shared@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.3.tgz#26a3fe80966280bdfdd5a7a948c8fa1bd00c251b"
   integrity sha512-gueVS50djgxd9PomomN1mMpvnp+5AUlnG3mYKlg/AV1yYwXNbstlmT0hV47nqXlQf5UNtxI9z3CnyOJkRXZtMQ==
 
-"@toy-box/toybox-ui@^2.0.0":
+"@toy-box/toybox-ui@^2.0.0", "@toy-box/toybox-ui@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.4.tgz#3f483e6eff1a20f7d79e256560f01a67e3b5fde1"
   integrity sha512-fnzR0uH27ckoSwPcg2UYGxFWYc33ab/I2zev5HDPr19GsFBzAoo/+cgtaoU4poVoHzrSpgR2XBIVAGYCGv15zg==
@@ -3840,7 +3878,7 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ahooks@^2.10.9:
+ahooks@^2.10.6, ahooks@^2.10.9:
   version "2.10.9"
   resolved "https://registry.yarnpkg.com/ahooks/-/ahooks-2.10.9.tgz#531fa1c11bfa1a2aa2697a051ac499147a3a7e0a"
   integrity sha512-TS6IQ5dfnOj6N5JktB5P2NTtPYA+IAsOP6AvfYMuD/HcgaNGI/5H5DXDQ1F6ev4/gx9kSrUEE3P9g8W75zftXQ==
@@ -8670,7 +8708,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
+hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -8970,6 +9008,11 @@ image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
+
+immutability-helper@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-3.1.1.tgz#2b86b2286ed3b1241c9e23b7b21e0444f52f77b7"
+  integrity sha512-Q0QaXjPjwIju/28TsugCHNEASwoCcJSyJV3uO1sOIQGI0jKgm9f41Lvz0DZj3n46cNCyAZTsEYoY4C2bVRUzyQ==
 
 immutable@^4.0.0-rc.12:
   version "4.0.0-rc.14"
@@ -11130,6 +11173,11 @@ lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
 
 lodash.intersection@^4.4.0:
   version "4.4.0"
@@ -14368,7 +14416,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.9.4:
+qs@^6.10.1, qs@^6.9.4:
   version "6.10.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
   integrity sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==
