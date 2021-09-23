@@ -8,6 +8,8 @@ export const Field = {
       default: '默认值',
       enum: '数据源',
       visibility: '可见性',
+      editability: '可编辑性',
+      fieldBind: '绑定字段',
       'x-display': {
         title: '展示状态',
         tooltip: '半隐藏只会隐藏UI，全隐藏会删除数据',
@@ -107,6 +109,8 @@ export const Field = {
       default: 'Default',
       enum: 'DataSource',
       visibility: 'Visibility',
+      editability: 'Editability',
+      fieldBind: 'Field Bind',
       'x-display': {
         title: 'Display State',
         tooltip:

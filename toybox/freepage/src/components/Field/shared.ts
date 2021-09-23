@@ -100,6 +100,11 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input.TextArea',
           },
+          fieldBind: {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'FieldBindSetter',
+          },
           visibility: {
             'x-component': 'VisibilitySetter',
           },

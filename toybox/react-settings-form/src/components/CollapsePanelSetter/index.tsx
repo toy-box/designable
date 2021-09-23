@@ -1,11 +1,12 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import { Button } from 'antd'
 import { SortableList } from '@toy-box/toybox-ui'
-import { observer, SchemaExpressionScopeContext } from '@formily/react'
+import { observer } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import { usePrefix, TextWidget } from '@designable/react'
 import cls from 'classnames'
 import { HandleIcon } from '../HandleIcon'
+import { useScope } from '../../hooks'
 import './styles.less'
 
 export interface ICollapsePanelSetter {
@@ -29,7 +30,7 @@ const panelItem = observer((props: any) => {
 export const CollapsePanelSetter: React.FC<ICollapsePanelSetter> = observer(
   (props) => {
     const prefix = usePrefix('collapse-panel-setter')
-    const { node } = useContext(SchemaExpressionScopeContext)
+    const { node } = useScope()
 
     const sortPanels = useCallback(
       (panels) => {

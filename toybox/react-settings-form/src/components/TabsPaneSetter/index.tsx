@@ -8,6 +8,7 @@ import cls from 'classnames'
 import { HandleIcon } from '../HandleIcon'
 
 import './styles.less'
+import { useScope } from '../../hooks'
 
 export interface ITabsPaneSetter {
   className?: string
@@ -28,7 +29,7 @@ const tabPaneItem = observer((props: any) => {
 
 export const TabsPaneSetter: React.FC<ITabsPaneSetter> = observer((props) => {
   const prefix = usePrefix('tabs-pane-setter')
-  const { node } = useContext(SchemaExpressionScopeContext)
+  const { node } = useScope()
 
   const sortPanes = useCallback(
     (tabPanes) => {
