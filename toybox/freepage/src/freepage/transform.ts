@@ -1,6 +1,7 @@
 import { ISchema, Schema } from '@formily/json-schema'
 import { ITreeNode, TreeNode } from '@designable/core'
 import { clone, uid, omit } from '@toy-box/toybox-shared'
+import { IFieldMeta } from '@toy-box/meta-schema'
 import { ItemEditability, ItemVisibility } from './types'
 
 export interface ITransformerOptions {
@@ -94,21 +95,53 @@ export const transformToSchema = (
           }
         }
       })
-      // TODO:
       const dataView = node
         .getParents()
         .find((node) => node.props['x-component'] === 'DataView')
+      if (dataView) {
+        const path = node
+          .getParents()
+          .filter(
+            (node) => node.depth > dataView.depth && node.props.type !== 'void'
+          )
+          .map((node) => node.props.name)
+        path.push(node.props.name)
+        // TODO: 修改 objectMeta获取的方式
 
-      schema['x-component-props'] = schema['x-component-props'] || {}
-      schema['x-component-props'].field = {
-        key: schema.name,
-        name: 'string',
-        type: 'string',
+        const objectMeta: IFieldMeta = {
+          key: 'user',
+          name: 'user',
+          type: 'object',
+          properties: {
+            name: {
+              key: 'name',
+              name: 'Name',
+              type: 'string',
+              format: 'date',
+            },
+          },
+        }
+        schema['x-component-props'] = schema['x-component-props'] || {}
+        schema['x-component-props'].field = fetchMeta(path, objectMeta) || {}
       }
     }
     return schema
   }
   return { form: clone(root.props), schema: createSchema(root, schema) }
+}
+
+export const fetchMeta = (path: string[], meta: IFieldMeta) => {
+  if (path == null || path.length === 0 || meta == null) {
+    return meta
+  }
+  const currentMeta =
+    meta.type === 'object'
+      ? meta.properties[path[0]]
+      : meta.type === 'array'
+      ? meta.items.properties[path[0]]
+      : null
+
+  return fetchMeta(path.slice(1), currentMeta)
 }
 
 export const transformToTreeNode = (
