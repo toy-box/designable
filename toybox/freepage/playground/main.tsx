@@ -40,6 +40,7 @@ import {
   Field,
   Input,
   NumberPicker,
+  Grid,
   Space,
   Tabs,
 } from '../src'
@@ -95,7 +96,7 @@ const App = () => {
             />
             <ResourceWidget
               title="sources.Layouts"
-              sources={[Space, FormCollapse, Tabs]}
+              sources={[Space, FormCollapse, Tabs, Grid]}
             />
             <ResourceWidget
               title="sources.DataContainers"
@@ -129,6 +130,7 @@ const App = () => {
                       Field,
                       Input,
                       NumberPicker,
+                      Grid,
                       Space,
                       Tabs,
                     }}
