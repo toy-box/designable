@@ -128,6 +128,21 @@ export const transformToSchema = (
               name: '出生日期',
               type: 'date',
             },
+            gender: {
+              key: 'gender',
+              name: '性别',
+              type: 'singleOption',
+              options: [
+                {
+                  label: '男',
+                  value: 'male',
+                },
+                {
+                  label: '女',
+                  value: 'female',
+                },
+              ],
+            },
           },
         }
         schema['x-component-props'] = schema['x-component-props'] || {}

@@ -48,6 +48,7 @@ import {
   Switch,
   Tabs,
   TextArea,
+  ObjectContainer,
 } from '../src'
 
 GlobalRegistry.registerDesignerLocales({
@@ -86,6 +87,7 @@ const designeComponents = {
   Space,
   Switch,
   Tabs,
+  ObjectContainer,
   Text,
 }
 
@@ -122,6 +124,7 @@ const App = () => {
                 Switch,
                 DatePicker,
                 Select,
+                ObjectContainer,
               ]}
             />
             <ResourceWidget

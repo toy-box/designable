@@ -5,7 +5,7 @@ import { usePrefix, DnFC } from '@designable/react'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
-
+import './styles.less'
 export interface DataViewProps {
   metaSchema: IFieldMeta
   style: React.CSSProperties
@@ -23,7 +23,8 @@ export const DataView: DnFC<React.FC<DataViewProps>> = observer((props) => {
 
 DataView.Behavior = createBehavior({
   name: 'DataView',
-  selector: (node) => node.props['x-component'] === 'DataView',
+  selector: (node) =>
+    node.props.type === 'object' && node.props['x-component'] === 'DataView',
   designerProps(node) {
     return {
       draggable: !node.isRoot,
