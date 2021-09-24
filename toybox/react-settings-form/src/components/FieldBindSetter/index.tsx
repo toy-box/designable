@@ -89,7 +89,7 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
         return []
       }
       if (dataParent == null || dataParent === dataView) {
-        return Object.keys(metaSchema.properties)
+        return Object.keys(metaSchema.properties || {})
           .map((key) => metaSchema.properties[key])
           .filter((field) => fitField(field, node))
           .map((field) => ({
@@ -104,7 +104,7 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
         )
         .map((node) => node.props.name)
       const meta = fetchMeta(path, metaSchema) || {}
-      return Object.keys(meta.properties)
+      return Object.keys(meta.properties || {})
         .map((key) => meta.properties[key])
         .filter((field) => fitField(field, node))
         .map((field) => ({
