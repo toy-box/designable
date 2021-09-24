@@ -37,8 +37,7 @@ import {
 } from '@toy-box/meta-components'
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
-import { transformToSchema } from '@designable/formily-transformer'
-import { reactionPatches } from '../../src'
+import { transformToSchema, reactionPatches } from '../../src'
 
 const Text: React.FC<{
   value?: string
