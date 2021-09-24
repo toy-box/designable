@@ -3,9 +3,9 @@ import { GlobalRegistry } from '@designable/core'
 import { isStr, isFn, isPlainObj } from '@designable/shared'
 import { observer } from '@formily/reactive-react'
 import { Tooltip } from 'antd'
-import { usePrefix, useRegistry, useTheme } from '../../hooks'
 import cls from 'classnames'
 import * as icons from '../../icons'
+import { usePrefix, useRegistry, useTheme } from '../../hooks'
 import './styles.less'
 
 GlobalRegistry.registerDesignerIcons(icons)
