@@ -41,10 +41,13 @@ import {
   Field,
   Input,
   NumberPicker,
+  DatePicker,
   Grid,
+  Select,
   Space,
   Switch,
   Tabs,
+  TextArea,
 } from '../src'
 
 GlobalRegistry.registerDesignerLocales({
@@ -67,6 +70,24 @@ GlobalRegistry.registerDesignerLocales({
     },
   },
 })
+
+const designeComponents = {
+  Card,
+  DataView,
+  DatePicker,
+  Form,
+  FormCollapse,
+  Field,
+  Input,
+  TextArea: Input.TextArea,
+  NumberPicker,
+  Grid,
+  Select,
+  Space,
+  Switch,
+  Tabs,
+  Text,
+}
 
 const App = () => {
   const engine = useMemo(
@@ -94,7 +115,14 @@ const App = () => {
           <CompositePanel.Item title="panels.Component" icon="Component">
             <ResourceWidget
               title="sources.Inputs"
-              sources={[Input, NumberPicker, Switch]}
+              sources={[
+                Input,
+                TextArea,
+                NumberPicker,
+                Switch,
+                DatePicker,
+                Select,
+              ]}
             />
             <ResourceWidget
               title="sources.Layouts"
@@ -123,23 +151,7 @@ const App = () => {
             </ToolbarPanel>
             <ViewportPanel>
               <ViewPanel type="DESIGNABLE">
-                {() => (
-                  <ComponentTreeWidget
-                    components={{
-                      Card,
-                      DataView,
-                      Form,
-                      FormCollapse,
-                      Field,
-                      Input,
-                      NumberPicker,
-                      Grid,
-                      Space,
-                      Switch,
-                      Tabs,
-                    }}
-                  />
-                )}
+                {() => <ComponentTreeWidget components={designeComponents} />}
               </ViewPanel>
               <ViewPanel type="JSONTREE" scrollable={false}>
                 {(tree, onChange) => {

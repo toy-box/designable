@@ -36,24 +36,10 @@ export const Input: ISchema & { TextArea?: ISchema } = {
         defaultChecked: true,
       },
     },
-    maxLength: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-    },
     placeholder: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
-    },
-    size: {
-      type: 'string',
-      enum: ['large', 'small', 'middle', null],
-      'x-decorator': 'FormItem',
-      'x-component': 'Select',
-      'x-component-props': {
-        defaultValue: 'middle',
-      },
     },
   },
 }
@@ -68,11 +54,6 @@ Input.TextArea = {
       'x-component-props': {
         defaultChecked: true,
       },
-    },
-    maxLength: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
     },
     placeholder: {
       type: 'string',

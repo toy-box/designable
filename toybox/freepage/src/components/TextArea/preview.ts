@@ -6,29 +6,30 @@ import { createFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
-export const Input: DnFC<React.ComponentProps<typeof FormilyInput>> =
-  FormilyInput
+export const TextArea: DnFC<
+  React.ComponentProps<typeof FormilyInput.TextArea>
+> = FormilyInput.TextArea
 
-Input.Behavior = createBehavior({
-  name: 'Input',
+TextArea.Behavior = createBehavior({
+  name: 'TextArea',
   extends: ['Field'],
-  selector: (node) => node.props['x-component'] === 'Input',
+  selector: (node) => node.props['x-component'] === 'TextArea',
   designerProps: {
-    propsSchema: createFieldSchema(AllSchemas.Input),
+    propsSchema: createFieldSchema(AllSchemas.TextArea),
   },
-  designerLocales: AllLocales.Input,
+  designerLocales: AllLocales.TextArea,
 })
 
-Input.Resource = createResource({
-  icon: 'InputSource',
+TextArea.Resource = createResource({
+  icon: 'TextAreaSource',
   elements: [
     {
       componentName: 'Field',
       props: {
         type: 'string',
-        title: 'Input',
+        title: 'TextArea',
         'x-decorator': 'FormItem',
-        'x-component': 'Input',
+        'x-component': 'TextArea',
       },
     },
   ],

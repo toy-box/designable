@@ -108,21 +108,33 @@ export const transformToSchema = (
         path.push(node.props.name)
         // TODO: 修改 objectMeta获取的方式
 
-        const objectMeta: IFieldMeta = {
+        const objectMeta: IFieldMeta = dataView.props.objectMeta || {
           key: 'user',
           name: 'user',
           type: 'object',
           properties: {
             name: {
               key: 'name',
-              name: 'Name',
+              name: '姓名',
               type: 'string',
-              format: 'date',
+            },
+            email: {
+              key: 'email',
+              name: '邮件',
+              type: 'string',
+            },
+            birthday: {
+              key: 'birthday',
+              name: '出生日期',
+              type: 'date',
             },
           },
         }
         schema['x-component-props'] = schema['x-component-props'] || {}
         schema['x-component-props'].field = fetchMeta(path, objectMeta) || {}
+      } else {
+        schema['x-component-props'] = schema['x-component-props'] || {}
+        schema['x-component-props'].field = {}
       }
     }
     return schema

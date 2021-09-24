@@ -4,7 +4,6 @@ import { createSchemaField, Schema } from '@formily/react'
 import {
   Form,
   FormItem,
-  DatePicker,
   Checkbox,
   Cascader,
   Editable,
@@ -14,7 +13,6 @@ import {
   PreviewText,
   Radio,
   Reset,
-  Select,
   Space,
   Submit,
   TimePicker,
@@ -30,12 +28,12 @@ import {
 } from '@formily/antd'
 import {
   FieldString as Input,
-  FieldText,
+  FieldText as TextArea,
   FieldNumber,
-  FieldDate,
+  FieldDate as DatePicker,
   FieldBoolean,
-  FieldPercent,
-  FieldSelect,
+  FieldPercent as Percent,
+  FieldSelect as Select,
 } from '@toy-box/meta-components'
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
@@ -67,6 +65,7 @@ const SchemaField = createSchemaField({
     Editable,
     Input,
     Text,
+    TextArea,
     NumberPicker,
     Switch,
     Password,
