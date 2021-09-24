@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormGrid as FormilyGird } from '@formily/antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
-import { DnFC, useTreeNode, useNodeIdProps } from '@designable/react'
+import { DnFC, useTreeNode, useNodeIdProps } from '@toy-box/designable-react'
 import { observer } from '@formily/reactive-react'
 import { Droppable } from '../../common/Droppable'
 import { LoadTemplate } from '../../common/LoadTemplate'

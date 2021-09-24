@@ -8,7 +8,7 @@ import {
   useTreeNode,
   TreeNodeWidget,
   DnFC,
-} from '@designable/react'
+} from '@toy-box/designable-react'
 import { Droppable } from '../../common/Droppable'
 import { LoadTemplate } from '../../common/LoadTemplate'
 import { useDropTemplate } from '../../hooks'

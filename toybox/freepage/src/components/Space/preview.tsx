@@ -1,7 +1,7 @@
 import React from 'react'
 import { Space as FormilySpace } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
-import { DnFC } from '@designable/react'
+import { DnFC } from '@toy-box/designable-react'
 import { createVoidFieldSchema } from '../Field'
 import { withContainer } from '../../common/Container'
 import * as AllSchemas from '../../schemas'

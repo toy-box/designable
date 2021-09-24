@@ -17,7 +17,7 @@
     "start": "webpack-dev-server --config playground/webpack.dev.ts"
   },
   "devDependencies": {
-    "@toy-box/react-settings-form": "0.5.27",
+    "@toy-box/designable-react-settings-form": "0.5.27",
     "autoprefixer": "^9.0",
     "file-loader": "^5.0.2",
     "fs-extra": "^8.1.0",
@@ -46,7 +46,7 @@
     "@designable/core": "0.5.27",
     "@designable/formily-setters": "0.5.27",
     "@designable/formily-transformer": "0.5.27",
-    "@designable/react": "0.5.27",
+    "@toy-box/designable-react": "0.5.27",
     "@formily/antd": "^2.0.0-rc.5",
     "@formily/core": "^2.0.0-rc.5",
     "@formily/react": "^2.0.0-rc.5",

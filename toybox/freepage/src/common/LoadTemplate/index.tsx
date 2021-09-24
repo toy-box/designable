@@ -1,6 +1,6 @@
 import React from 'react'
 import { Space, Typography, Divider } from 'antd'
-import { usePrefix, TextWidget } from '@designable/react'
+import { usePrefix, TextWidget } from '@toy-box/designable-react'
 import cls from 'classnames'
 import './styles.less'
 

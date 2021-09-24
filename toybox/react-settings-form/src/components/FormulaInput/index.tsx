@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputProps } from 'antd/lib/input'
 import { Input } from 'antd'
-import { usePrefix } from '@designable/react'
+import { usePrefix } from '@toy-box/designable-react'
 import cls from 'classnames'
 
 export interface FormulaInputProps extends Omit<InputProps, 'onChange'> {

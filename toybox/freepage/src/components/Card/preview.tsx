@@ -2,7 +2,7 @@ import React from 'react'
 import { Card as AntdCard } from 'antd'
 
 import { createBehavior, createResource } from '@designable/core'
-import { DnFC } from '@designable/react'
+import { DnFC } from '@toy-box/designable-react'
 import { createVoidFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'

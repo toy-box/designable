@@ -17,7 +17,7 @@ import {
   useTreeNode,
   useComponents,
   DnFC,
-} from '@designable/react'
+} from '@toy-box/designable-react'
 import { isArr, isStr } from '@designable/shared'
 import { Container } from '../../common/Container'
 import * as AllLocales from '../../locales'

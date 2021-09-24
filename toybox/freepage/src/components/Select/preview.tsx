@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select as FormilySelect } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
-import { DnFC } from '@designable/react'
+import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'

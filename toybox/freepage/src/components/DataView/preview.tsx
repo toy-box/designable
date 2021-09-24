@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBehavior, createResource } from '@designable/core'
 import { observer } from '@formily/react'
-import { usePrefix, DnFC } from '@designable/react'
+import { usePrefix, DnFC } from '@toy-box/designable-react'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'

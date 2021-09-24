@@ -1,6 +1,10 @@
 import React from 'react'
 import { observer } from '@formily/reactive-react'
-import { useNodeIdProps, useTreeNode, useDesigner } from '@designable/react'
+import {
+  useNodeIdProps,
+  useTreeNode,
+  useDesigner,
+} from '@toy-box/designable-react'
 import { Droppable } from '../Droppable'
 import './styles.less'
 

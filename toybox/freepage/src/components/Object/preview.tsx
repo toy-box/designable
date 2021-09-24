@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBehavior, createResource } from '@designable/core'
-import { DnFC } from '@designable/react'
+import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'
 import { Container } from '../../common/Container'
 import * as AllLocales from '../../locales'
