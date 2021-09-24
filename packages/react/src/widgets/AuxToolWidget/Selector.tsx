@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { TreeNode } from '@designable/core'
+import { observer } from '@formily/reactive-react'
 import { useHover, useSelection, usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
-import { TextWidget } from '../TextWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import { Button } from 'antd'
-import { observer } from '@formily/reactive-react'
 
 const useMouseHover = <T extends { current: HTMLElement }>(
   ref: T,

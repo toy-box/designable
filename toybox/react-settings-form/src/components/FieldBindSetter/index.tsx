@@ -47,6 +47,11 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
             },
           ],
         },
+        percent: {
+          key: 'percent',
+          name: '完成度',
+          type: 'percent',
+        },
         info: {
           key: 'info',
           name: '相关信息',
@@ -154,7 +159,7 @@ const fitField = (field: IFieldMeta, node) => {
   if (node.props.type === 'object') {
     return field.type === MetaValueType.OBJECT
   }
-  return ComponentFit[node.props['x-component']].some(
+  return (ComponentFit[node.props['x-component']] || []).some(
     (type) => type === field.type
   )
 }
@@ -163,6 +168,7 @@ const ComponentFit: Record<string, MetaValueType[]> = {
   Input: [MetaValueType.STRING],
   TextArea: [MetaValueType.STRING, MetaValueType.TEXT],
   NumberPicker: [MetaValueType.INTEGER, MetaValueType.NUMBER],
+  Percent: [MetaValueType.PERCENT],
   Switch: [MetaValueType.BOOLEAN],
   Select: [MetaValueType.SINGLE_OPTION],
   ObjectContainer: [MetaValueType.OBJECT],

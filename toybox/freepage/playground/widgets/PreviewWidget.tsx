@@ -68,6 +68,7 @@ const SchemaField = createSchemaField({
     NumberPicker,
     Switch,
     Password,
+    Percent,
     PreviewText,
     Radio,
     Reset,

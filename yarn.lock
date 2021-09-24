@@ -2918,10 +2918,10 @@
     antlr4ts "^0.5.0-alpha.4"
     lodash.uniq "^4.5.0"
 
-"@toy-box/meta-components@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.4.tgz#83fd51217f409bf7bf5ab10f713ea3e598156733"
-  integrity sha512-RDHB9sTmRfMCOJlcQgUIHOGSZXW1b0UvN0/vFIqZzmtWs6ojqNSlMEcf0WuDhX/1ciTmthxEA7bXw3nGr2t5yA==
+"@toy-box/meta-components@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.5.tgz#cf2e860e6df21434ac5ee0a45f70f6fbd2e14ca3"
+  integrity sha512-jUUuBgsaaI5Te4FQNMyTVEKPJsPoBf7QmbFy9teGkVk+Vw8f+6QfM/PoY8u9dw6ebutUplbGsxF4fr9GmwCTJg==
   dependencies:
     "@ahooksjs/antd-table" "^0.2.3"
     "@airclass/icons" "^4.3.4"
