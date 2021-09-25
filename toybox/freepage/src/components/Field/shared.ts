@@ -1,9 +1,4 @@
 import { ISchema } from '@formily/json-schema'
-import {
-  ReactionsSetter,
-  DataSourceSetter,
-  ValidatorSetter,
-} from '@designable/formily-setters'
 import { FormItemSwitcher } from '../../common/FormItemSwitcher'
 import * as AllSchemas from '../../schemas'
 
@@ -130,18 +125,6 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'ValueInput',
           },
-          enum: {
-            'x-decorator': 'FormItem',
-            'x-component': DataSourceSetter,
-          },
-          'x-reactions': {
-            'x-decorator': 'FormItem',
-            'x-component': ReactionsSetter,
-          },
-          'x-validator': {
-            type: 'array',
-            'x-component': ValidatorSetter,
-          },
           required: {
             type: 'boolean',
             'x-decorator': 'FormItem',
@@ -211,10 +194,6 @@ export const createVoidFieldSchema = (
             'x-component-props': {
               defaultValue: 'editable',
             },
-          },
-          'x-reactions': {
-            'x-decorator': 'FormItem',
-            'x-component': ReactionsSetter,
           },
           'x-decorator': {
             type: 'string',

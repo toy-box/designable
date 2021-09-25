@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "@designable/core": "0.5.27",
-    "@designable/formily-setters": "0.5.27",
     "@designable/formily-transformer": "0.5.27",
     "@toy-box/designable-react": "0.5.27",
     "@formily/antd": "^2.0.0-rc.5",
