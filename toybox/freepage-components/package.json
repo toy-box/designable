@@ -1,0 +1,47 @@
+{
+  "name": "@toy-box/freepage-components",
+  "version": "0.5.27",
+  "license": "MIT",
+  "main": "lib",
+  "module": "esm",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "scripts": {
+    "build": "rimraf -rf lib esm dist && npm run build:cjs && npm run build:esm && npm run build:umd && ts-node copy",
+    "build:cjs": "tsc --project tsconfig.build.json",
+    "build:esm": "tsc --project tsconfig.build.json --module es2015 --outDir esm",
+    "build:umd": "rollup --config",
+    "start": "webpack-dev-server --config playground/webpack.dev.ts"
+  },
+  "devDependencies": {
+    "@toy-box/meta-components": "^2.0.6",
+    "@toy-box/toybox-ui": "^2.0.6",
+    "antd": "^4.0.0"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0 || >=17.0.0",
+    "@types/react-dom": ">=16.8.0 || >=17.0.0",
+    "@toy-box/meta-schema": "^2.0.3",
+    "@toy-box/meta-components": "^2.0.6",
+    "@toy-box/toybox-ui": "^2.0.6",
+    "antd": "^4.0.0",
+    "react": ">=16.8.0 || >=17.0.0",
+    "react-dom": ">=16.8.0 || >=17.0.0",
+    "react-is": ">=16.8.0 || >=17.0.0"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.0.0",
+    "@airclass/icons": "^4.0.0",
+    "@formily/core": "2.0.0-rc.10",
+    "@formily/json-schema": "2.0.0-rc.10",
+    "@formily/react": "2.0.0-rc.10",
+    "@formily/reactive": "2.0.0-rc.10",
+    "@formily/reactive-react": "2.0.0-rc.10",
+    "@formily/shared": "2.0.0-rc.10",
+    "classnames": "^2.2.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
