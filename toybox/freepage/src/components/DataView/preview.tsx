@@ -6,6 +6,7 @@ import { IFieldMeta } from '@toy-box/meta-schema'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 import './styles.less'
+
 export interface DataViewProps {
   metaSchema: IFieldMeta
   style: React.CSSProperties

@@ -1,13 +1,12 @@
 import React from 'react'
-import { Input as FormilyInput } from '@formily/antd'
+import { FieldString } from '@toy-box/freepage-components'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
-export const Input: DnFC<React.ComponentProps<typeof FormilyInput>> =
-  FormilyInput
+export const Input: DnFC<React.ComponentProps<typeof FieldString>> = FieldString
 
 Input.Behavior = createBehavior({
   name: 'Input',

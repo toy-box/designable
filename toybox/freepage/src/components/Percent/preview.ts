@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldPercent } from '@toy-box/meta-components'
+import { FieldPercent } from '@toy-box/freepage-components'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'

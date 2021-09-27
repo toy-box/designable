@@ -1,14 +1,12 @@
 import React from 'react'
-import { Input as FormilyInput } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
+import { FieldText } from '@toy-box/freepage-components'
 import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
-export const TextArea: DnFC<
-  React.ComponentProps<typeof FormilyInput.TextArea>
-> = FormilyInput.TextArea
+export const TextArea: DnFC<React.ComponentProps<typeof FieldText>> = FieldText
 
 TextArea.Behavior = createBehavior({
   name: 'TextArea',

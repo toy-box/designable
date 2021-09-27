@@ -1,14 +1,13 @@
 import React from 'react'
-import { NumberPicker as FormilyNumberPicker } from '@formily/antd'
+import { FieldNumber } from '@toy-box/freepage-components'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
-export const NumberPicker: DnFC<
-  React.ComponentProps<typeof FormilyNumberPicker>
-> = FormilyNumberPicker
+export const NumberPicker: DnFC<React.ComponentProps<typeof FieldNumber>> =
+  FieldNumber
 
 NumberPicker.Behavior = createBehavior({
   name: 'NumberPicker',

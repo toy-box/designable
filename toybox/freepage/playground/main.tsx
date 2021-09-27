@@ -48,6 +48,7 @@ import {
   Space,
   Switch,
   Tabs,
+  Text,
   TextArea,
   ObjectContainer,
 } from '../src'
@@ -81,7 +82,7 @@ const designeComponents = {
   FormCollapse,
   Field,
   Input,
-  TextArea: Input.TextArea,
+  TextArea,
   NumberPicker,
   Percent,
   Grid,
@@ -118,6 +119,10 @@ const App = () => {
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
             <ResourceWidget
+              title="sources.DataContainers"
+              sources={[DataView]}
+            />
+            <ResourceWidget
               title="sources.Inputs"
               sources={[
                 Input,
@@ -130,15 +135,11 @@ const App = () => {
                 ObjectContainer,
               ]}
             />
+            <ResourceWidget title="sources.Displays" sources={[Text]} />
             <ResourceWidget
               title="sources.Layouts"
               sources={[Space, FormCollapse, Tabs, Grid, Card]}
             />
-            <ResourceWidget
-              title="sources.DataContainers"
-              sources={[DataView]}
-            />
-            <ResourceWidget title="sources.Displays" sources={[Text]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />

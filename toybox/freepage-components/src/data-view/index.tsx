@@ -35,7 +35,7 @@ export const DataView: React.FC<DataViewProps> = observer(
 
     useEffect(() => {
       if (schemaOption.type === 'objectMeta' && loadMeta) {
-        loadMeta(schemaOption.objectMetaId).then((metaSchema) => {
+        loadMeta(schemaOption?.objectMetaId).then((metaSchema) => {
           setSchema(metaSchema)
         })
       } else if (schemaOption.type === 'schema') {
@@ -52,7 +52,10 @@ export const DataView: React.FC<DataViewProps> = observer(
     }, [primaryValue])
 
     const dataValue = useMemo(() => {
-      pick(field.form.getValuesIn(field.path), Object.keys(schema.properties))
+      pick(
+        field.form.getValuesIn(field.path),
+        Object.keys(schema?.properties || {})
+      )
     }, [field, schema])
 
     return (
