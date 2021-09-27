@@ -1,0 +1,25 @@
+@import '../../variables.less';
+
+.@{prefix-cls}-topbar-panel {
+  display: flex;
+  height: 48px;
+  width: 100%;
+  flex-basis: auto;
+  background-color: var(--dn-panel-bg-color);
+  border-bottom: 1px solid var(--dn-panel-border-color);
+  button {
+    font-size: 16px;
+    + button {
+      margin-left: 8px;
+    }
+  }
+  .@{prefix-cls}-panel-box {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+    + .@{prefix-cls}-panel-box {
+      border-left: 1px solid var(--dn-panel-border-color);
+    }
+  }
+}
