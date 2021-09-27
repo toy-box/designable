@@ -20,7 +20,7 @@ export const Text = {
         delete: '删除线',
         mark: '标记',
         underline: '下划线',
-        italics: '斜体',
+        italic: '斜体',
         color: {
           title: '颜色',
           dataSource: [
@@ -57,7 +57,7 @@ export const Text = {
         delete: 'Delete Style',
         mark: 'Mark Style',
         underline: 'Underline Style',
-        italics: 'Italics Style',
+        italic: 'Italic Style',
         color: {
           title: 'Color',
           dataSource: [

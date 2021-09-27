@@ -36,7 +36,7 @@ export const Text: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    italics: {
+    italic: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',

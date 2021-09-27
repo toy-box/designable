@@ -2,7 +2,7 @@ import React from 'react'
 import { Text as OrgText } from '@toy-box/freepage-components'
 import { DnFC } from '@toy-box/designable-react'
 import { createBehavior, createResource } from '@designable/core'
-import { createFieldSchema } from '../Field'
+import { createVoidFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
@@ -15,7 +15,7 @@ Text.Behavior = createBehavior({
   selector: (node) => node.props['x-component'] === 'Text',
   designerProps: {
     droppable: false,
-    propsSchema: createFieldSchema(AllSchemas.Text),
+    propsSchema: createVoidFieldSchema(AllSchemas.Text),
   },
   designerLocales: AllLocales.Text,
 })
