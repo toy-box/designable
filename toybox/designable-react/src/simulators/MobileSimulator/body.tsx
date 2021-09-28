@@ -34,7 +34,7 @@ export const MobileBody: React.FC<IMobileBodyProps> = observer((props) => {
       position: 'absolute',
       width: 414,
       height: 736,
-      top: 126.667,
+      top: 80,
       left: 23.3333,
       overflow: 'hidden',
     }
@@ -55,18 +55,6 @@ export const MobileBody: React.FC<IMobileBodyProps> = observer((props) => {
           minHeight: screen.flip ? 0 : 1000,
         }}
       >
-        <img
-          src={screen.flip ? MockupImages[theme][0] : MockupImages[theme][1]}
-          style={{
-            display: 'block',
-            margin: '20px 0',
-            width: screen.flip ? 946.667 : 460,
-            height: screen.flip ? 460 : 946.667,
-            boxShadow: '0 0 20px #0000004d',
-            borderRadius: 60,
-            backfaceVisibility: 'hidden',
-          }}
-        ></img>
         <div className={prefix + '-content'} style={getContentStyles()}>
           {props.children}
         </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { IObjectMeta } from '@toy-box/meta-schema'
 import { observer, useField } from '@formily/react'
-import { isStr, pick } from '@toy-box/toybox-shared'
+import { pick } from '@toy-box/toybox-shared'
+import { usePage, usePageParams } from '../page/hooks'
 
 export type SchemaType = 'schema' | 'objectMeta'
 
@@ -16,20 +17,12 @@ export type DataViewProps = {
   style?: React.CSSProperties
   primaryValue?: string
   schemaOption?: SchemaOption
-  loadData?: (id: string) => Promise<any>
-  loadMeta?: (metaId: string) => Promise<IObjectMeta>
 }
 
 export const DataView: React.FC<DataViewProps> = observer(
-  ({
-    className,
-    style,
-    primaryValue,
-    schemaOption,
-    loadData,
-    loadMeta,
-    children,
-  }) => {
+  ({ className, style, schemaOption, children }) => {
+    const { loadData, loadMeta, params } = usePage()
+    const { metaParams } = usePageParams()
     const field = useField()
     const [schema, setSchema] = useState<IObjectMeta>()
 
@@ -41,15 +34,17 @@ export const DataView: React.FC<DataViewProps> = observer(
       } else if (schemaOption.type === 'schema') {
         setSchema(schemaOption.schemaValue)
       }
-    }, [])
+    }, [schemaOption, loadMeta])
 
     useEffect(() => {
-      if (primaryValue && loadData) {
-        loadData(primaryValue).then((data) => {
+      if (metaParams.metaObject) {
+        field.form.setValuesIn(field.path, metaParams.metaObject)
+      } else if ((schema.key, metaParams.primaryId && loadData)) {
+        loadData(schema.key, metaParams.primaryId).then((data) => {
           field.form.setValuesIn(field.path, data)
         })
       }
-    }, [primaryValue])
+    }, [schema, metaParams, loadData])
 
     const dataValue = useMemo(() => {
       pick(

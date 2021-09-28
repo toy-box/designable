@@ -40,7 +40,7 @@ export const TopCompositePanel: React.FC<TopCompositePanelProps> & {
   Item?: React.FC<TopCompositePanelItemProps>
 } = (props) => {
   const prefix = usePrefix('top-composite-panel')
-  const [activeKey, setActiveKey] = useState(props.defaultActiveKey ?? 0)
+  const [activeKey, setActiveKey] = useState(props.defaultActiveKey ?? -1)
   const [visible, setVisible] = useState(props.defaultOpen ?? true)
   const items = parseItems(props.children)
   const currentItem = items?.[activeKey]
@@ -94,7 +94,6 @@ export const TopCompositePanel: React.FC<TopCompositePanelProps> & {
             }
             return (
               <Button.Icon
-                type="primary"
                 tooltip={item.title.toString()}
                 icon={<IconWidget infer={item.icon} />}
               />
@@ -105,7 +104,7 @@ export const TopCompositePanel: React.FC<TopCompositePanelProps> & {
           return (
             <Comp
               className={cls(prefix + '-tabs-pane', {
-                active: activeKey === index,
+                active: activeKey === index && visible,
               })}
               key={index}
               href={item.href}

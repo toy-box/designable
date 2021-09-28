@@ -128,36 +128,50 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
       if (!props.use.includes('SCREEN_TYPE')) return null
       return (
         <div className={cls(panelBoxCls, props.className)}>
-          <Button.Icon
-            disabled={screen.type === ScreenType.PC}
-            onClick={() => {
-              screen.setType(ScreenType.PC)
-            }}
-            icon={<IconWidget infer="PC" />}
-          />
-          <Button.Icon
-            disabled={screen.type === ScreenType.Mobile}
-            onClick={() => {
-              screen.setType(ScreenType.Mobile)
-            }}
-            icon={<IconWidget infer="Mobile" />}
-          />
-          <Button.Icon
-            disabled={screen.type === ScreenType.Responsive}
-            onClick={() => {
-              screen.setType(ScreenType.Responsive)
-            }}
-            icon={<IconWidget infer="Responsive" />}
-          />
+          <div
+            className={cls(`${panelBoxCls}-item`, {
+              active: screen.type === ScreenType.PC,
+            })}
+          >
+            <Button.Icon
+              onClick={() => {
+                screen.setType(ScreenType.PC)
+              }}
+              pure
+              icon={<IconWidget infer="PC" />}
+            />
+          </div>
+          <div
+            className={cls(`${panelBoxCls}-item`, {
+              active: screen.type === ScreenType.Mobile,
+            })}
+          >
+            <Button.Icon
+              onClick={() => {
+                screen.setType(ScreenType.Mobile)
+              }}
+              pure
+              icon={<IconWidget infer="Mobile" />}
+            />
+          </div>
+          {/* <div className={cls(`${panelBoxCls}-item`, { active: screen.type === ScreenType.Responsive })}>
+            <Button.Icon
+              onClick={() => {
+                screen.setType(ScreenType.Responsive)
+              }}
+              pure
+              icon={<IconWidget infer="Responsive" />}
+            />
+          </div> */}
         </div>
       )
     }
 
     return (
       <React.Fragment>
-        {renderCursorController()}
         {renderScreenTypeController()}
         {renderResponsiveController()}
+        {renderCursorController()}
         {renderHistoryController()}
       </React.Fragment>
     )
