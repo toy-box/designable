@@ -1,8 +1,9 @@
 import React from 'react'
 import { createBehavior, createResource } from '@designable/core'
 import { observer } from '@formily/react'
-import { usePrefix, DnFC } from '@toy-box/designable-react'
+import { DnFC } from '@toy-box/designable-react'
 import { IFieldMeta } from '@toy-box/meta-schema'
+import { withContainer } from '../../common/Container'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 import './styles.less'
@@ -12,15 +13,12 @@ export interface DataViewProps {
   style: React.CSSProperties
 }
 
-export const DataView: DnFC<React.FC<DataViewProps>> = observer((props) => {
-  const prefix = usePrefix('data-view')
-
-  return (
-    <div {...props} className={prefix}>
-      {props.children}
-    </div>
-  )
+export const OrgDataView: DnFC<React.FC<DataViewProps>> = observer((props) => {
+  return <>{props.children}</>
 })
+
+export const DataView: DnFC<React.ComponentProps<typeof OrgDataView>> =
+  withContainer(OrgDataView)
 
 DataView.Behavior = createBehavior({
   name: 'DataView',

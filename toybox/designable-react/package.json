@@ -1,6 +1,6 @@
 {
   "name": "@toy-box/designable-react",
-  "version": "0.5.27",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -14,20 +14,23 @@
     "build:esm": "tsc --project tsconfig.build.json --module es2015 --outDir esm",
     "build:umd": "rollup --config"
   },
+  "devDependencies": {
+    "@formily/reactive": "^2.0.0-rc.12",
+    "@formily/reactive-react": "^2.0.0-rc.12"
+  },
   "peerDependencies": {
+    "@formily/reactive": "^2.0.0-rc.12",
+    "@formily/reactive-react": "^2.0.0-rc.12",
     "antd": "^4.15.4",
     "react": "16.x || 17.x"
   },
   "dependencies": {
-    "@designable/core": "0.5.27",
-    "@designable/shared": "0.5.27",
-    "@formily/reactive": "^2.0.0-rc.5",
-    "@formily/reactive-react": "^2.0.0-rc.5",
+    "@designable/core": "1.0.0-beta.11",
+    "@designable/shared": "1.0.0-beta.11",
     "@juggle/resize-observer": "^3.3.1",
     "dateformat": "^4.5.1"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "bda070c137ba0003cc4451b2208e089d2e326b23"
+  }
 }

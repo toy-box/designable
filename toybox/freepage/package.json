@@ -18,6 +18,11 @@
   },
   "devDependencies": {
     "@toy-box/designable-react-settings-form": "0.5.27",
+    "@formily/antd": "^2.0.0-rc.12",
+    "@formily/core": "^2.0.0-rc.12",
+    "@formily/react": "^2.0.0-rc.12",
+    "@formily/reactive": "^2.0.0-rc.12",
+    "@formily/shared": "^2.0.0-rc.12",
     "autoprefixer": "^9.0",
     "file-loader": "^5.0.2",
     "fs-extra": "^8.1.0",
@@ -43,16 +48,12 @@
     "react-is": ">=16.8.0 || >=17.0.0"
   },
   "dependencies": {
-    "@designable/core": "0.5.27",
-    "@designable/formily-transformer": "0.5.27",
-    "@toy-box/designable-react": "0.5.27",
-    "@formily/antd": "^2.0.0-rc.5",
-    "@formily/core": "^2.0.0-rc.5",
-    "@formily/react": "^2.0.0-rc.5",
-    "@formily/shared": "^2.0.0-rc.5",
+    "@designable/core": "1.0.0-beta.11",
+    "@designable/formily-transformer": "1.0.0-beta.11",
+    "@toy-box/designable-react": "^1.0.0",
     "@toy-box/formula": "^1.0.12",
     "@toy-box/meta-schema": "^2.0.3",
-    "@toy-box/freepage-components": "^0.5.27",
+    "@toy-box/freepage-components": "^1.0.0",
     "babel-loader": "^8.2.2",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6"
