@@ -10,7 +10,6 @@ const getWorkspaceAlias = () => {
   const pkg = fs.readJSONSync(path.resolve(basePath, 'package.json')) || {}
   const results = {}
   const workspaces = pkg.workspaces
-
   if (Array.isArray(workspaces)) {
     workspaces.forEach((pattern) => {
       const { found } = new GlobSync(pattern, { cwd: basePath })

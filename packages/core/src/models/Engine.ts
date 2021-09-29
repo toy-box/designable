@@ -84,14 +84,13 @@ export class Engine extends Event {
   }
 
   unmount() {
-    this.destroy()
+    this.detachEvents()
   }
 
   static defaultProps: IEngineProps<Engine> = {
     shortcuts: [],
     effects: [],
     drivers: [],
-    defaultComponentTree: [],
     rootComponentName: 'Root',
     sourceIdAttrName: 'data-designer-source-id',
     nodeIdAttrName: 'data-designer-node-id',
