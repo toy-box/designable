@@ -1,0 +1,118 @@
+@import '../../variables.less';
+
+.@{prefix-cls}-composite-panel-content {
+  &-item {
+    background-color: var(--dn-composite-panel-tabs-bg-color);
+    z-index: 101;
+    position: relative;
+    width: 300px;
+
+    &-pane {
+      height: 48px;
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      font-size: 20px;
+      &.active {
+        > button {
+          color: #1890ff;
+          background: #e6f7ff;
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      box-sizing: content-box;
+      flex-direction: column;
+      position: absolute;
+      z-index: 100;
+      left: 0;
+      top: calc(100% + 1px);
+      height: calc(100vh - 99px);
+      width: 300px;
+      background: var(--dn-composite-panel-tabs-content-bg-color);
+      border-right: 1px solid var(--dn-panel-border-color);
+    }
+
+    &-header {
+      padding: 12px 8px;
+      color: var(--dn-composite-panel-tabs-header-color);
+      line-height: 16px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--dn-panel-border-color);
+      display: flex;
+      justify-content: space-between;
+
+      &-actions {
+        display: flex;
+        align-items: center;
+
+        & > * {
+          margin-right: 8px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      &-pin {
+        transition: all 0.15s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      &-title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      &-close {
+        transition: all 0.15s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    &-body {
+      flex-grow: 2;
+      flex-shrink: 2;
+      overflow: overlay;
+      overflow-x: hidden;
+      height: 100%;
+    }
+  }
+
+  &.direction-right {
+    flex-direction: column-reverse;
+    flex-grow: 0;
+    border-left: 1px solid var(--dn-panel-border-color);
+    border-right: none;
+
+    .@{prefix-cls}-top-composite-panel-tabs-content {
+      left: auto;
+      right: 0;
+      border-right: none;
+      border-left: 1px solid var(--dn-panel-border-color);
+    }
+
+    .@{prefix-cls}-top-composite-panel-tabs-pane.active:after {
+      left: auto;
+      right: -1px;
+    }
+
+    .@{prefix-cls}-top-composite-panel-tabs-content.pinning {
+      left: auto;
+      right: 100%;
+      top: 0;
+    }
+  }
+}

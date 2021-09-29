@@ -9,13 +9,14 @@ import {
   OutlineTreeWidget,
   ResourceWidget,
   HistoryWidget,
-  MainPanel,
+  StudioPanel,
   WorkspacePanel,
   ViewportPanel,
   ViewPanel,
   ComponentTreeWidget,
   TopbarPanel,
-  TopCompositePanel,
+  CompositePanel,
+  CompositePanelContent,
 } from '@toy-box/designable-react'
 import { SettingsForm } from '@toy-box/designable-react-settings-form'
 import {
@@ -96,6 +97,11 @@ const designeComponents = {
 }
 
 const App = () => {
+  const [leftVisible, setLeftVisible] = React.useState(false)
+  const [leftActiveKey, setLeftActiveKey] = React.useState()
+  const [rightVisible, setRightVisible] = React.useState(false)
+  const [rightActiveKey, setRightActiveKey] = React.useState()
+
   const engine = useMemo(
     () =>
       createDesigner({
@@ -116,10 +122,39 @@ const App = () => {
   )
   return (
     <Designer engine={engine}>
-      <MainPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
+      <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
         <TopbarPanel>
-          <TopCompositePanel>
-            <TopCompositePanel.Item title="panels.Component" icon="Add">
+          <CompositePanel
+            visible={leftVisible}
+            setVisible={setLeftVisible}
+            activeKey={leftActiveKey}
+            setActiveKey={setLeftActiveKey}
+          >
+            <CompositePanel.Item title="panels.Component" icon="Add" />
+            <CompositePanel.Item title="panels.OutlinedTree" icon="Layer" />
+            <CompositePanel.Item title="panels.History" icon="History" />
+          </CompositePanel>
+          <DesignerWidget />
+          <ViewWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
+          <CompositePanel
+            direction="right"
+            visible={rightVisible}
+            setVisible={setRightVisible}
+            activeKey={rightActiveKey}
+            setActiveKey={setRightActiveKey}
+          >
+            <CompositePanel.Item title="panels.PropertySettings" icon="Setting">
+              <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+            </CompositePanel.Item>
+          </CompositePanel>
+        </TopbarPanel>
+        <div style={{ display: 'flex', height: '100%' }}>
+          <CompositePanelContent
+            activeKey={leftActiveKey}
+            visible={leftVisible}
+            onClose={() => setLeftVisible(false)}
+          >
+            <CompositePanelContent.Item title="panels.Component" icon="Add">
               <ResourceWidget
                 title="sources.DataContainers"
                 sources={[DataView]}
@@ -145,46 +180,54 @@ const App = () => {
                 title="sources.Layouts"
                 sources={[Space, FormCollapse, Tabs, Grid, Card]}
               />
-            </TopCompositePanel.Item>
-            <TopCompositePanel.Item title="panels.OutlinedTree" icon="Layer">
+            </CompositePanelContent.Item>
+            <CompositePanelContent.Item
+              title="panels.OutlinedTree"
+              icon="Layer"
+            >
               <OutlineTreeWidget />
-            </TopCompositePanel.Item>
-            <TopCompositePanel.Item title="panels.History" icon="History">
+            </CompositePanelContent.Item>
+            <CompositePanelContent.Item title="panels.History" icon="History">
               <HistoryWidget />
-            </TopCompositePanel.Item>
-          </TopCompositePanel>
-          <DesignerWidget />
-          <ViewWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
-          <TopCompositePanel direction="right">
-            <TopCompositePanel.Item
+            </CompositePanelContent.Item>
+          </CompositePanelContent>
+          <Workspace id="form">
+            <WorkspacePanel>
+              <ViewportPanel>
+                <ViewPanel type="DESIGNABLE">
+                  {() => <ComponentTreeWidget components={designeComponents} />}
+                </ViewPanel>
+                <ViewPanel type="JSONTREE" scrollable={false}>
+                  {(tree, onChange) => {
+                    return (
+                      <SchemaEditorWidget tree={tree} onChange={onChange} />
+                    )
+                  }}
+                </ViewPanel>
+                <ViewPanel type="MARKUP" scrollable={false}>
+                  {(tree) => <MarkupSchemaWidget tree={tree} />}
+                </ViewPanel>
+                <ViewPanel type="PREVIEW">
+                  {(tree) => <PreviewWidget tree={tree} />}
+                </ViewPanel>
+              </ViewportPanel>
+            </WorkspacePanel>
+          </Workspace>
+          <CompositePanelContent
+            direction="right"
+            visible={rightVisible}
+            activeKey={rightActiveKey}
+            onClose={() => setRightVisible(false)}
+          >
+            <CompositePanelContent.Item
               title="panels.PropertySettings"
               icon="Setting"
             >
               <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-            </TopCompositePanel.Item>
-          </TopCompositePanel>
-        </TopbarPanel>
-        <Workspace id="form">
-          <WorkspacePanel>
-            <ViewportPanel>
-              <ViewPanel type="DESIGNABLE">
-                {() => <ComponentTreeWidget components={designeComponents} />}
-              </ViewPanel>
-              <ViewPanel type="JSONTREE" scrollable={false}>
-                {(tree, onChange) => {
-                  return <SchemaEditorWidget tree={tree} onChange={onChange} />
-                }}
-              </ViewPanel>
-              <ViewPanel type="MARKUP" scrollable={false}>
-                {(tree) => <MarkupSchemaWidget tree={tree} />}
-              </ViewPanel>
-              <ViewPanel type="PREVIEW">
-                {(tree) => <PreviewWidget tree={tree} />}
-              </ViewPanel>
-            </ViewportPanel>
-          </WorkspacePanel>
-        </Workspace>
-      </MainPanel>
+            </CompositePanelContent.Item>
+          </CompositePanelContent>
+        </div>
+      </StudioPanel>
     </Designer>
   )
 }

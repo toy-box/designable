@@ -9,6 +9,21 @@ export const Image: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },
+    src: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
+      'x-reactions': [
+        {
+          dependencies: ['type'],
+          fulfill: {
+            state: {
+              visible: '{{$deps[0] === "static"}}',
+            },
+          },
+        },
+      ],
+    },
     preview: {
       type: 'boolean',
       'x-decorator': 'FormItem',

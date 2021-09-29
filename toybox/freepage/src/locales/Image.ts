@@ -6,10 +6,11 @@ export const Image = {
         type: {
           title: '类型',
           dataSource: [
-            { label: 'static', value: '固定图片' },
-            { label: 'dynamic', value: '动态图片' },
+            { label: '固定图片', value: 'static' },
+            { label: '动态图片', value: 'dynamic' },
           ],
         },
+        src: '图片源',
         preview: '预览',
       },
     },
@@ -21,10 +22,11 @@ export const Image = {
         type: {
           title: 'Type',
           dataSource: [
-            { label: 'static', value: 'Static' },
-            { label: 'dynamic', value: 'Dynamic' },
+            { label: 'Static', value: 'static' },
+            { label: 'Dynamic', value: 'dynamic' },
           ],
         },
+        src: 'Image Source',
         preview: 'Preview',
       },
     },

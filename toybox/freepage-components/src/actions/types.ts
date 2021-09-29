@@ -14,18 +14,18 @@ export type MetaParams = {
   primaryId?: string
 }
 
-export type PageAction = {
+export interface PageAction extends IAction {
   pageId: string
   metaParams?: MetaParams
 }
 
 export type LinkType = '_blank' | '_self'
 
-export type LinkAction = {
+export interface LinkAction extends IAction {
   url: string
   target: LinkType
 }
 
-export type AutoflowAction = {
+export interface AutoflowAction extends IAction {
   autoflowId: string
 }
