@@ -1,10 +1,6 @@
 import { IObjectMeta } from '@toy-box/meta-schema'
 import React from 'react'
-
-export type MetaParams = {
-  metaObject?: any
-  primaryId?: string
-}
+import { MetaParams } from '../actions/types'
 
 export type PageParams = {
   metaParams: MetaParams

@@ -38,6 +38,7 @@ import {
   Form,
   FormCollapse,
   Field,
+  Image,
   Input,
   NumberPicker,
   Percent,
@@ -80,6 +81,7 @@ const designeComponents = {
   Form,
   FormCollapse,
   Field,
+  Image,
   Input,
   TextArea,
   NumberPicker,
@@ -135,7 +137,10 @@ const App = () => {
                   ObjectContainer,
                 ]}
               />
-              <ResourceWidget title="sources.Displays" sources={[Text]} />
+              <ResourceWidget
+                title="sources.Displays"
+                sources={[Text, Image]}
+              />
               <ResourceWidget
                 title="sources.Layouts"
                 sources={[Space, FormCollapse, Tabs, Grid, Card]}

@@ -26,6 +26,7 @@ import {
 } from '@formily/antd'
 import {
   Text,
+  Image,
   DataView,
   FieldString as Input,
   FieldText as TextArea,
@@ -65,6 +66,7 @@ const SchemaField = createSchemaField({
     Slider,
     Rate,
     Text,
+    Image,
     DataView,
     Input,
     TextArea,
