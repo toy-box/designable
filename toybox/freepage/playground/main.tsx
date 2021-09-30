@@ -53,6 +53,7 @@ import {
   TextArea,
   ObjectContainer,
 } from '../src'
+import { CalculatorFilled } from '@ant-design/icons'
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -148,7 +149,9 @@ const App = () => {
             </CompositePanel.Item>
           </CompositePanel>
         </TopbarPanel>
-        <div style={{ display: 'flex', height: '100%' }}>
+        <div
+          style={{ display: 'flex', flexGrow: 1, height: 'calc(100% - 48px)' }}
+        >
           <CompositePanelContent
             activeKey={leftActiveKey}
             visible={leftVisible}

@@ -9,7 +9,7 @@ export const Image: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },
-    src: {
+    staticSrc: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
