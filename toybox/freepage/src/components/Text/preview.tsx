@@ -7,7 +7,7 @@ import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
 export const Text: DnFC<React.ComponentProps<typeof OrgText>> = (props) => {
-  return <OrgText {...props} freeArr="free-arr" />
+  return <OrgText {...props} />
 }
 
 Text.Behavior = createBehavior({

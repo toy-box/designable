@@ -25,6 +25,7 @@ import {
   Upload,
 } from '@formily/antd'
 import {
+  Button,
   Text,
   Image,
   DataView,
@@ -65,6 +66,7 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
+    Button,
     Text,
     Image,
     DataView,

@@ -34,6 +34,7 @@ import {
 } from './widgets'
 import { saveSchema } from './service'
 import {
+  Button,
   Card,
   DataView,
   Form,
@@ -53,7 +54,6 @@ import {
   TextArea,
   ObjectContainer,
 } from '../src'
-import { CalculatorFilled } from '@ant-design/icons'
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -77,6 +77,7 @@ GlobalRegistry.registerDesignerLocales({
 })
 
 const designeComponents = {
+  Button,
   Card,
   DataView,
   DatePicker,
@@ -177,7 +178,7 @@ const App = () => {
               />
               <ResourceWidget
                 title="sources.Displays"
-                sources={[Text, Image]}
+                sources={[Text, Image, Button]}
               />
               <ResourceWidget
                 title="sources.Layouts"

@@ -29,3 +29,10 @@ export interface LinkAction extends IAction {
 export interface AutoflowAction extends IAction {
   autoflowId: string
 }
+
+export interface IActionContext {
+  linkHandle: (linkAction: LinkAction) => void
+  pageHandle: (pageAction: PageAction) => void
+  autoflowHandle: (autoflowAction: AutoflowAction) => Promise<any>
+  saveHandle: (refObjectKey: string, data: any) => Promise<any>
+}
