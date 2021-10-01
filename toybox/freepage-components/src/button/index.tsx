@@ -6,8 +6,8 @@ import {
   IAction,
   LinkAction,
   PageAction,
-} from '../actions/types'
-import { useActions } from '../actions'
+} from '../context/actions/types'
+import { useActions } from '../hooks'
 
 export type ButtonType = Pick<IButtonProps, 'onClick'> & {
   caption: React.ReactNode
