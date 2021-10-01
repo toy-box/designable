@@ -1,6 +1,6 @@
 import React from 'react'
-import { FieldString } from '@toy-box/freepage-components'
 import { createBehavior, createResource } from '@designable/core'
+import { FieldString } from '@toy-box/freepage-components'
 import { DnFC } from '@toy-box/designable-react'
 import { createFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
