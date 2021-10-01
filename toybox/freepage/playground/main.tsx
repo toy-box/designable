@@ -37,6 +37,7 @@ import {
   Button,
   Card,
   DataView,
+  Divider,
   Form,
   FormCollapse,
   Field,
@@ -81,6 +82,7 @@ const designeComponents = {
   Card,
   DataView,
   DatePicker,
+  Divider,
   Form,
   FormCollapse,
   Field,
@@ -178,7 +180,7 @@ const App = () => {
               />
               <ResourceWidget
                 title="sources.Displays"
-                sources={[Text, Image, Button]}
+                sources={[Text, Image, Button, Divider]}
               />
               <ResourceWidget
                 title="sources.Layouts"

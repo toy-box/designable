@@ -29,6 +29,7 @@ import {
   Text,
   Image,
   DataView,
+  Divider,
   FieldString as Input,
   FieldText as TextArea,
   FieldNumber as NumberPicker,
@@ -77,6 +78,7 @@ const SchemaField = createSchemaField({
     Switch,
     Percent,
     Select,
+    Divider,
   },
 })
 

@@ -1,13 +1,28 @@
 import React from 'react'
 import { Button as OrgButton } from '@toy-box/freepage-components'
-import { DnFC } from '@toy-box/designable-react'
+import { DnFC, useTreeNode } from '@toy-box/designable-react'
 import { createBehavior, createResource } from '@designable/core'
 import { createVoidFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
 export const Button: DnFC<React.ComponentProps<typeof OrgButton>> = (props) => {
-  return <OrgButton {...props} />
+  const { caption, ...otherProps } = props
+  const node = useTreeNode()
+
+  return (
+    <OrgButton
+      caption={
+        <span
+          data-content-editable="x-component-props.caption"
+          data-content-editable-node-id={node.id}
+        >
+          {caption}
+        </span>
+      }
+      {...otherProps}
+    />
+  )
 }
 
 Button.Behavior = createBehavior({
@@ -29,7 +44,7 @@ Button.Resource = createResource({
         type: 'void',
         'x-component': 'Button',
         'x-component-props': {
-          content: 'Button',
+          caption: 'Button',
           type: 'default',
         },
       },

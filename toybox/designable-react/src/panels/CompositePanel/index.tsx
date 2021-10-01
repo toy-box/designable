@@ -1,7 +1,7 @@
 import React from 'react'
 import cls from 'classnames'
 import { Button } from '@toy-box/toybox-ui'
-import { IconWidget } from '../../widgets'
+import { IconWidget, TextWidget } from '../../widgets'
 import { usePrefix } from '../../hooks'
 import './styles.less'
 
@@ -18,7 +18,7 @@ export type CompositePanelProps = {
 
 export type CompositePanelItemProps = {
   shape?: 'tab' | 'button' | 'link'
-  title?: React.ReactNode
+  title?: string
   icon?: React.ReactNode
   href?: string
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
@@ -57,7 +57,8 @@ export const CompositePanel: React.FC<CompositePanelProps> & {
             }
             return (
               <Button.Icon
-                tooltip={item.title.toString()}
+                tooltip={<TextWidget token={item.title} />}
+                placement="bottom"
                 icon={<IconWidget infer={item.icon} />}
               />
             )

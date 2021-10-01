@@ -9,10 +9,13 @@ import {
 } from '../actions/types'
 import { useActions } from '../actions'
 
-export type ButtonType = Pick<IButtonProps, 'onClick'> & { action: IAction }
+export type ButtonType = Pick<IButtonProps, 'onClick'> & {
+  caption: React.ReactNode
+  action: IAction
+}
 
 export const Button: React.FC<ButtonType> = ({
-  children,
+  caption,
   action,
   ...otherProps
 }) => {
@@ -36,7 +39,7 @@ export const Button: React.FC<ButtonType> = ({
 
   return (
     <OrgButton onClick={handleClick} {...otherProps}>
-      {children}
+      {caption}
     </OrgButton>
   )
 }

@@ -1,6 +1,7 @@
 export * from './actions'
 export * from './button'
 export * from './data-view'
+export * from './divider'
 export * from './field-boolean'
 export * from './field-date'
 export * from './field-number'

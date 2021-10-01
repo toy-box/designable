@@ -17,20 +17,20 @@
   "peerDependencies": {
     "@airclass/icons": "^4.3.4",
     "@toy-box/toybox-shared": "^2.0.0",
-    "@toy-box/toybox-ui": "^2.0.0",
+    "@toy-box/toybox-ui": "^2.0.8",
     "antd": "^4.0.0"
   },
   "devDependencies": {
     "@airclass/icons": "^4.3.4",
     "@toy-box/toybox-shared": "^2.0.0",
-    "@toy-box/toybox-ui": "^2.0.0",
+    "@toy-box/toybox-ui": "^2.0.8",
     "antd": "^4.15.5"
   },
   "dependencies": {
     "@babel/parser": "^7.14.7",
-    "@designable/core": "0.5.27",
-    "@toy-box/designable-react": "0.5.27",
-    "@designable/shared": "0.5.27",
+    "@designable/core": "1.0.0-beta.11",
+    "@designable/shared": "1.0.0-beta.11",
+    "@toy-box/designable-react": "1.0.0",
     "@formily/antd": "^2.0.0-rc.5",
     "@formily/core": "^2.0.0-rc.5",
     "@formily/react": "^2.0.0-rc.5",
