@@ -9,18 +9,18 @@ import * as AllLocales from '../../locales'
 export const Divider: DnFC<React.ComponentProps<typeof OrgDivider>> = (
   props
 ) => {
-  const { content, ...otherProps } = props
+  const { caption, ...otherProps } = props
   const node = useTreeNode()
 
   return (
     <OrgDivider
       content={
-        content && (
+        caption && (
           <span
             data-content-editable="x-component-props.caption"
             data-content-editable-node-id={node.id}
           >
-            {content}
+            {caption}
           </span>
         )
       }

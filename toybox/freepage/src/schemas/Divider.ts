@@ -3,7 +3,7 @@ import { ISchema } from '@formily/react'
 export const Divider: ISchema = {
   type: 'object',
   properties: {
-    content: {
+    caption: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
