@@ -1,8 +1,14 @@
 import { IObjectMeta, ILogicFilter } from '@toy-box/meta-schema'
 
+export interface MetaRepo {
+  id: string
+  name: string
+}
+
 // TODO: 修正类型
 export interface IMetaContext {
-  loadMeta: (objectKey: string) => IObjectMeta
-  loadData: (objectKey: string, id: string) => any
-  loadDataList: (objectKey: string, filter: ILogicFilter) => any
+  loadMetaRepoList: (domain: string) => Promise<MetaRepo[]>
+  loadMetaSchema: (objectKey: string) => Promise<IObjectMeta>
+  loadMataData: (objectKey: string, id: string) => Promise<any>
+  loadMetaDataList: (objectKey: string, filter: ILogicFilter) => Promise<any>
 }

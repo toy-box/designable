@@ -17,6 +17,7 @@ import {
   FormTab,
 } from '@formily/antd'
 import { Slider } from 'antd'
+import { Select as SelectPro } from '@toy-box/toybox-ui'
 import {
   SizeInput,
   ColorInput,
@@ -82,5 +83,6 @@ export const SchemaField = createSchemaField({
     FormTab,
     VisibilitySetter,
     FieldBindSetter,
+    SelectPro,
   },
 })

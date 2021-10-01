@@ -32,9 +32,8 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
     const renderHistoryController = () => {
       if (!props.use.includes('HISTORY')) return null
       return (
-        <Button.Group size="small" style={{ marginRight: 20 }}>
+        <Button.Group style={{ marginRight: 20 }}>
           <Button
-            size="small"
             disabled={!history?.allowUndo}
             onClick={() => {
               history.undo()
@@ -43,7 +42,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
             <IconWidget infer="Undo" />
           </Button>
           <Button
-            size="small"
             disabled={!history?.allowRedo}
             onClick={() => {
               history.redo()
@@ -59,9 +57,8 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
       if (workbench.type !== 'DESIGNABLE') return null
       if (!props.use.includes('CURSOR')) return null
       return (
-        <Button.Group size="small" style={{ marginRight: 20 }}>
+        <Button.Group style={{ marginRight: 20 }}>
           <Button
-            size="small"
             disabled={cursor.type === CursorType.Move}
             onClick={() => {
               cursor.setType(CursorType.Move)
@@ -70,7 +67,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
             <IconWidget infer="Move" />
           </Button>
           <Button
-            size="small"
             disabled={cursor.type === CursorType.Selection}
             onClick={() => {
               cursor.setType(CursorType.Selection)
@@ -136,9 +132,8 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
     const renderScreenTypeController = () => {
       if (!props.use.includes('SCREEN_TYPE')) return null
       return (
-        <Button.Group size="small" style={{ marginRight: 20 }}>
+        <Button.Group style={{ marginRight: 20 }}>
           <Button
-            size="small"
             disabled={screen.type === ScreenType.PC}
             onClick={() => {
               screen.setType(ScreenType.PC)
@@ -147,7 +142,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
             <IconWidget infer="PC" />
           </Button>
           <Button
-            size="small"
             disabled={screen.type === ScreenType.Mobile}
             onClick={() => {
               screen.setType(ScreenType.Mobile)
@@ -156,7 +150,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
             <IconWidget infer="Mobile" />
           </Button>
           <Button
-            size="small"
             disabled={screen.type === ScreenType.Responsive}
             onClick={() => {
               screen.setType(ScreenType.Responsive)

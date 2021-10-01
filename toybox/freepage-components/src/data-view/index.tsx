@@ -2,14 +2,14 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { IObjectMeta } from '@toy-box/meta-schema'
 import { observer, useField } from '@formily/react'
 import { pick } from '@toy-box/toybox-shared'
-import { usePage, usePageParams } from '../page/hooks'
+import { useMeta, usePageParams } from '../hooks'
 
-export type SchemaType = 'schema' | 'objectMeta'
+export type SchemaType = 'raw' | 'repository'
 
 export type SchemaOption = {
   type: SchemaType
   schemaValue?: IObjectMeta
-  objectMetaId?: string
+  repositoryId?: string
 }
 
 export type DataViewProps = {
@@ -21,30 +21,30 @@ export type DataViewProps = {
 
 export const DataView: React.FC<DataViewProps> = observer(
   ({ className, style, schemaOption, children }) => {
-    const { loadData, loadMeta, params } = usePage()
+    const { loadMataData, loadMetaSchema } = useMeta()
     const { metaParams } = usePageParams()
     const field = useField()
     const [schema, setSchema] = useState<IObjectMeta>()
 
     useEffect(() => {
-      if (schemaOption.type === 'objectMeta' && loadMeta) {
-        loadMeta(schemaOption?.objectMetaId).then((metaSchema) => {
+      if (schemaOption.type === 'repository' && loadMetaSchema) {
+        loadMetaSchema(schemaOption?.repositoryId).then((metaSchema) => {
           setSchema(metaSchema)
         })
-      } else if (schemaOption.type === 'schema') {
+      } else if (schemaOption.type === 'raw') {
         setSchema(schemaOption.schemaValue)
       }
-    }, [schemaOption, loadMeta])
+    }, [schemaOption, loadMetaSchema])
 
     useEffect(() => {
       if (metaParams.metaObject) {
         field.form.setValuesIn(field.path, metaParams.metaObject)
-      } else if ((schema.key, metaParams.primaryId && loadData)) {
-        loadData(schema.key, metaParams.primaryId).then((data) => {
+      } else if ((schema.key, metaParams.primaryId && loadMataData)) {
+        loadMataData(schema.key, metaParams.primaryId).then((data) => {
           field.form.setValuesIn(field.path, data)
         })
       }
-    }, [schema, metaParams, loadData])
+    }, [schema, metaParams, loadMataData])
 
     const dataValue = useMemo(() => {
       pick(

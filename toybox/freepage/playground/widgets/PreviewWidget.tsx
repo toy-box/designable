@@ -25,6 +25,7 @@ import {
   Upload,
 } from '@formily/antd'
 import {
+  MetaContext,
   Button,
   Text,
   Image,
@@ -93,7 +94,9 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const { form: formProps, schema } = transformToSchema(props.tree)
   return (
     <Form {...formProps} form={form}>
-      <SchemaField schema={schema} />
+      <MetaContext.Provider value={}>
+        <SchemaField schema={schema} />
+      </MetaContext.Provider>
     </Form>
   )
 }

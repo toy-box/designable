@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useField, observer, Field } from '@formily/react'
+import { useField, observer, Field as FieldWrap } from '@formily/react'
+import { Field } from '@formily/core'
 import { FormItem } from '@formily/antd'
 import { Switch } from 'antd'
 import { usePrefix } from '@toy-box/designable-react'
@@ -50,12 +51,12 @@ export const EditabilitySetter: React.FC<IEditablilitySetterProps> = observer(
         >
           <Switch checked={active} onChange={handleActive} />
         </FormItem.BaseItem>
-        <Field
+        <FieldWrap
           name="formula"
           basePath={field.address}
           visible={active}
           reactions={(field) => {
-            field.visible = field.parent.value?.type === 'formula'
+            field.visible = (field.parent as Field).value?.type === 'formula'
           }}
           component={[FormulaInput]}
         />
