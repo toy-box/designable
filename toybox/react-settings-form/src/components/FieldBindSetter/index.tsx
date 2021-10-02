@@ -85,7 +85,7 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
         )
         field.form.setValuesIn('name', value)
       },
-      [onChange, field]
+      [onChange, field, attributes]
     )
 
     return (
