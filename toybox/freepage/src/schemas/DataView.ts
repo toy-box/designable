@@ -6,55 +6,61 @@ export const DataView: ISchema = {
     type: {
       type: 'string',
       enum: ['repository', 'raw'],
-      default: 'raw',
+      default: 'repository',
       'x-decorator': 'FormItem',
       'x-component': 'Radio.Group',
+      'x-component-props': {
+        optionType: 'button',
+        buttonStyle: 'solid',
+      },
     },
     scheam: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input.TextArea',
+      'x-reactions': [
+        {
+          dependencies: ['.type'],
+          fulfill: {
+            state: {
+              visible: '{{$deps[0] === "raw"}}',
+            },
+          },
+        },
+        {
+          dependencies: ['.type'],
+          when: '{{$deps[0] !== "raw"}}',
+          fulfill: {
+            state: {
+              value: null,
+            },
+          },
+        },
+      ],
     },
-    repositoryId: {
+    repository: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'SelectPro',
-      'x-component-props': {
-        remote: () => {
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve([
-                {
-                  label: '用户',
-                  value: 'user',
-                },
-                {
-                  label: '部门',
-                  value: 'department',
-                },
-              ])
-            }, 1000)
-          })
+      'x-component': 'RepositoryInput',
+      'x-reactions': [
+        {
+          dependencies: ['.type'],
+          fulfill: {
+            state: {
+              visible: '{{$deps[0] === "repository"}}',
+            },
+          },
         },
-        remoteByValue: (ids: string[]) => {
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(
-                [
-                  {
-                    label: '用户',
-                    value: 'user',
-                  },
-                  {
-                    label: '部门',
-                    value: 'department',
-                  },
-                ].filter((repo) => ids.some((id) => id === repo.value))
-              )
-            }, 1000)
-          })
+        {
+          dependencies: ['.type'],
+          when: '{{$deps[0] !== "repository"}}',
+          fulfill: {
+            state: {
+              value: null,
+            },
+          },
         },
-      },
+      ],
     },
   },
 }

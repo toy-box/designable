@@ -7,8 +7,9 @@ export interface MetaRepo {
 
 // TODO: 修正类型
 export interface IMetaContext {
-  loadMetaRepoList: (domain: string) => Promise<MetaRepo[]>
+  loadMetaRepoList: (name?: string) => Promise<MetaRepo[]>
   loadMetaSchema: (objectKey: string) => Promise<IObjectMeta>
+  loadMetaRepoListByValue: (ids: string[]) => Promise<MetaRepo[]>
   loadMataData: (objectKey: string, id: string) => Promise<any>
   loadMetaDataList: (objectKey: string, filter: ILogicFilter) => Promise<any>
 }

@@ -32,7 +32,13 @@ import {
   SchemaEditorWidget,
   MarkupSchemaWidget,
 } from './widgets'
-import { saveSchema } from './service'
+import { MetaContext } from '@toy-box/freepage-components'
+import {
+  saveSchema,
+  loadMetaRepoList,
+  loadMetaRepoListByValue,
+  loadMetaSchema,
+} from './service'
 import {
   Button,
   Card,
@@ -229,7 +235,15 @@ const App = () => {
               title="panels.PropertySettings"
               icon="Setting"
             >
-              <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+              <MetaContext.Provider
+                value={{
+                  loadMetaRepoList,
+                  loadMetaRepoListByValue,
+                  loadMetaSchema,
+                }}
+              >
+                <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+              </MetaContext.Provider>
             </CompositePanelContent.Item>
           </CompositePanelContent>
         </div>

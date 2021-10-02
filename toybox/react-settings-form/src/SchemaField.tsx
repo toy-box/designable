@@ -41,6 +41,7 @@ import {
   TabsPaneSetter,
   VisibilitySetter,
   FieldBindSetter,
+  RepositoryInput,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -83,6 +84,7 @@ export const SchemaField = createSchemaField({
     FormTab,
     VisibilitySetter,
     FieldBindSetter,
+    RepositoryInput,
     SelectPro,
   },
 })

@@ -1,7 +1,8 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Select } from 'antd'
 import { observer, useField } from '@formily/react'
 import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
+import { useMeta } from '@toy-box/freepage-components'
 import { useScope } from '../../hooks'
 
 export interface IFieldBindSetterProps {
@@ -12,66 +13,9 @@ export interface IFieldBindSetterProps {
 export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
   ({ value, onChange }) => {
     const field = useField()
-    const [metaSchema, setMetaSchema] = useState<IFieldMeta>({
-      type: 'object',
-      key: 'user',
-      name: '用户',
-      properties: {
-        name: {
-          key: 'name',
-          name: '姓名',
-          type: 'string',
-        },
-        email: {
-          key: 'email',
-          name: '邮件',
-          type: 'string',
-        },
-        birthday: {
-          key: 'birthday',
-          name: '出生日期',
-          type: 'date',
-        },
-        gender: {
-          key: 'gender',
-          name: '性别',
-          type: 'singleOption',
-          options: [
-            {
-              label: '男',
-              value: 'male',
-            },
-            {
-              label: '女',
-              value: 'female',
-            },
-          ],
-        },
-        percent: {
-          key: 'percent',
-          name: '完成度',
-          type: 'percent',
-        },
-        info: {
-          key: 'info',
-          name: '相关信息',
-          type: 'object',
-          properties: {
-            father: {
-              key: 'fater',
-              type: 'string',
-              name: '父亲',
-            },
-            mother: {
-              key: 'mother',
-              type: 'string',
-              name: '母亲',
-            },
-          },
-        },
-      },
-    })
     const { node } = useScope()
+    const meta = useMeta()
+    const [schema, setSchema] = useState<IFieldMeta>()
     const dataView = useMemo(
       () =>
         node
@@ -89,13 +33,27 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
           ),
       []
     )
+
+    useEffect(() => {
+      if (dataView.props['x-component-props'].type === 'raw') {
+        setSchema(dataView.props['x-component-props'].schema)
+      }
+      if (dataView.props['x-component-props'].type === 'repository') {
+        meta
+          .loadMetaSchema(dataView.props['x-component-props'].repository)
+          .then((objectMeta) => {
+            setSchema(objectMeta)
+          })
+      }
+    }, [dataView, meta])
+
     const attributes = useMemo(() => {
-      if (dataView == null) {
+      if (dataView == null || schema == null) {
         return []
       }
       if (dataParent == null || dataParent === dataView) {
-        return Object.keys(metaSchema.properties || {})
-          .map((key) => metaSchema.properties[key])
+        return Object.keys(schema.properties || {})
+          .map((key) => schema.properties[key])
           .filter((field) => fitField(field, node))
           .map((field) => ({
             value: field.key,
@@ -108,7 +66,7 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
           (node) => node.depth > dataView.depth && node.props.type !== 'void'
         )
         .map((node) => node.props.name)
-      const meta = fetchMeta(path, metaSchema) || {}
+      const meta = fetchMeta(path, schema) || {}
       return Object.keys(meta.properties || {})
         .map((key) => meta.properties[key])
         .filter((field) => fitField(field, node))
@@ -116,7 +74,7 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
           value: field.key,
           label: field.name,
         }))
-    }, [dataView, dataParent, metaSchema])
+    }, [dataView, dataParent, schema])
 
     const handleChange = useCallback(
       (value) => {

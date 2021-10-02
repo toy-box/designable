@@ -8,17 +8,17 @@ export const DataView = {
           title: '数据源类型',
           dataSource: [
             {
-              label: '原始数据',
-              value: 'raw',
-            },
-            {
               label: '业务对象',
               value: 'repository',
+            },
+            {
+              label: '原始数据',
+              value: 'raw',
             },
           ],
         },
         scheam: 'Schema',
-        repositoryId: '业务对象',
+        repository: '业务对象',
       },
     },
   },
@@ -31,17 +31,17 @@ export const DataView = {
           title: 'DataSource Type',
           dataSource: [
             {
-              label: 'Raw Schema',
-              value: 'raw',
-            },
-            {
               label: 'Repository',
               value: 'repository',
+            },
+            {
+              label: 'Raw Schema',
+              value: 'raw',
             },
           ],
         },
         scheam: 'Schema',
-        repositoryId: 'Repository Object',
+        repository: 'Repository Object',
       },
     },
   },
