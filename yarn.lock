@@ -2609,25 +2609,6 @@
     antlr4ts "^0.5.0-alpha.4"
     lodash.uniq "^4.5.0"
 
-"@toy-box/meta-components@^2.0.6":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.8.tgz#1ee4bd688bb55ec847a5402d4b0615ba49e9e270"
-  integrity sha512-KGKOYAGBcDmbrtX33QIA3GM/PBk5dQhCfQItCTsffmkgqD5HfyhWrBazxH9bAGcqQtD1U/Rc50niDmY8z/uq3g==
-  dependencies:
-    "@ahooksjs/antd-table" "^0.2.3"
-    "@airclass/icons" "^4.3.4"
-    "@toy-box/meta-schema" "^2.0.3"
-    "@toy-box/toybox-shared" "^2.0.3"
-    "@toy-box/toybox-ui" "^2.0.8"
-    ahooks "^2.10.6"
-    hoist-non-react-statics "^3.3.1"
-    immutability-helper "^3.1.1"
-    lodash.debounce "^4.0.8"
-    lodash.get "^4.4.2"
-    lodash.intersection "^4.4.0"
-    qs "^6.10.1"
-    react-resizable "^3.0.4"
-
 "@toy-box/meta-components@^2.0.9":
   version "2.0.9"
   resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.9.tgz#298a33e363fd873826b5be4146db64b5c78d0598"
@@ -2656,17 +2637,6 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.3.tgz#26a3fe80966280bdfdd5a7a948c8fa1bd00c251b"
   integrity sha512-gueVS50djgxd9PomomN1mMpvnp+5AUlnG3mYKlg/AV1yYwXNbstlmT0hV47nqXlQf5UNtxI9z3CnyOJkRXZtMQ==
-
-"@toy-box/toybox-ui@^2.0.6", "@toy-box/toybox-ui@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.8.tgz#173532a75e2d2ff8f07bad0bf6793f09a368cbff"
-  integrity sha512-iaFiaORINGkKDRMUy2Rhll55tBN7xft1rAun/UfYHfeSkv9GO8X5tmc8pe9dYL/iouOgdIAjaayMNRV7Gccinw==
-  dependencies:
-    "@types/react-beautiful-dnd" "^13.0.0"
-    lodash.debounce "^4.0.8"
-    lodash.intersection "^4.4.0"
-    react-beautiful-dnd "^13.1.0"
-    react-grid-layout "^1.2.5"
 
 "@toy-box/toybox-ui@^2.0.9":
   version "2.0.9"
