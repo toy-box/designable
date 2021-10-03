@@ -13,6 +13,9 @@ export const DataView: ISchema = {
         optionType: 'button',
         buttonStyle: 'solid',
       },
+      'x-decorator-props': {
+        layout: 'vertical',
+      },
     },
     scheam: {
       type: 'string',

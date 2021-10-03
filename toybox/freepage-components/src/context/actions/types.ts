@@ -2,7 +2,7 @@ export enum ActionType {
   Page = 'page',
   Link = 'link',
   Autoflow = 'autoflow',
-  Save = 'save',
+  Standard = 'standard',
 }
 
 export interface IAction {

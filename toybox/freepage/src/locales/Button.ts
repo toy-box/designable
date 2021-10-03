@@ -4,6 +4,18 @@ export const Button = {
     settings: {
       'x-component-props': {
         caption: '标题',
+        action: {
+          type: {
+            title: '点击操作',
+            dataSource: [
+              { label: '无', value: '' },
+              { label: '页面', value: 'page' },
+              { label: '自动流', value: 'autoflow' },
+              { label: '链接', value: 'link' },
+              { label: '其他', value: 'others' },
+            ],
+          },
+        },
         type: {
           title: '按钮类型',
           dataSource: [
@@ -29,6 +41,18 @@ export const Button = {
     settings: {
       'x-component-props': {
         caption: 'Caption',
+        action: {
+          type: {
+            title: 'Click Action',
+            dataSource: [
+              { label: 'Nothing', value: '' },
+              { label: 'Page', value: 'page' },
+              { label: 'Autoflow', value: 'autoflow' },
+              { label: 'Link', value: 'link' },
+              { label: 'Others', value: 'others' },
+            ],
+          },
+        },
         type: {
           title: 'Type',
           dataSource: [

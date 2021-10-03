@@ -3,6 +3,24 @@ import { ISchema } from '@formily/react'
 export const Button: ISchema = {
   type: 'object',
   properties: {
+    action: {
+      type: 'object',
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['', 'page', 'autoflow', 'link', 'others'],
+          'x-decorator': 'FormItem',
+          'x-component': 'Radio.Group',
+          'x-component-props': {
+            optionType: 'button',
+            buttonStyle: 'solid',
+          },
+          'x-decorator-props': {
+            layout: 'vertical',
+          },
+        },
+      },
+    },
     caption: {
       type: 'string',
       'x-decorator': 'FormItem',
