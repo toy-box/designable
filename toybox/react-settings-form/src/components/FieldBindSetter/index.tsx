@@ -35,10 +35,13 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
     )
 
     useEffect(() => {
-      if (dataView.props['x-component-props'].type === 'raw') {
+      if (dataView.props['x-component-props']?.type === 'raw') {
         setSchema(dataView.props['x-component-props'].schema)
       }
-      if (dataView.props['x-component-props'].type === 'repository') {
+      if (
+        dataView.props['x-component-props']?.type === 'repository' &&
+        dataView.props['x-component-props'].repository
+      ) {
         meta
           .loadMetaSchema(dataView.props['x-component-props'].repository)
           .then((objectMeta) => {
