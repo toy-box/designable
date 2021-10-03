@@ -8,7 +8,8 @@ export const Button: ISchema = {
       properties: {
         type: {
           type: 'string',
-          enum: ['', 'page', 'autoflow', 'link', 'others'],
+          enum: ['', 'page', 'autoflow', 'others'],
+          default: '',
           'x-decorator': 'FormItem',
           'x-component': 'Radio.Group',
           'x-component-props': {
