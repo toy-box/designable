@@ -15,8 +15,8 @@
     "start": "webpack-dev-server --config playground/webpack.dev.ts"
   },
   "devDependencies": {
-    "@toy-box/meta-components": "^2.0.6",
-    "@toy-box/toybox-ui": "^2.0.6",
+    "@toy-box/meta-components": "^2.0.9",
+    "@toy-box/toybox-ui": "^2.0.9",
     "antd": "^4.0.0"
   },
   "peerDependencies": {
