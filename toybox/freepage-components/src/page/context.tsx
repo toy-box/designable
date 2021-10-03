@@ -12,11 +12,6 @@ export type PageContextProp = {
   allowRoles?: string[]
   layout?: string
   params?: PageParams
-} & IMetaContext
-
-export interface IMetaContext {
-  loadMeta: (id: string) => Promise<IObjectMeta>
-  loadData: (metaKey: string, id: string) => Promise<any>
 }
 
 export const PageContext = React.createContext<PageContextProp>(null)

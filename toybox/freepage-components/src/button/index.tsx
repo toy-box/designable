@@ -11,7 +11,7 @@ import { useActions } from '../hooks'
 
 export type ButtonType = Pick<IButtonProps, 'onClick'> & {
   caption: React.ReactNode
-  action: IAction
+  action?: IAction
 }
 
 export const Button: React.FC<ButtonType> = ({
@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonType> = ({
 }) => {
   const actions = useActions()
   const handleClick = () => {
-    switch (action.type) {
+    switch (action?.type) {
       case ActionType.Link:
         actions?.linkHandle(action as LinkAction)
         break
@@ -30,8 +30,9 @@ export const Button: React.FC<ButtonType> = ({
         break
       case ActionType.Autoflow:
         actions?.autoflowHandle(action as AutoflowAction)
-      case ActionType.Save:
-        actions?.saveHandle('refObjectKey', {})
+        break
+      case ActionType.Others:
+        break
       default:
         break
     }

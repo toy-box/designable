@@ -2,7 +2,7 @@ export enum ActionType {
   Page = 'page',
   Link = 'link',
   Autoflow = 'autoflow',
-  Standard = 'standard',
+  Others = 'others',
 }
 
 export interface IAction {
@@ -11,7 +11,7 @@ export interface IAction {
 
 export type MetaParams = {
   metaObject?: any
-  primaryId?: string
+  primaryValue?: string
 }
 
 export interface PageAction extends IAction {

@@ -39,8 +39,8 @@ export const DataView: React.FC<DataViewProps> = observer(
     useEffect(() => {
       if (metaParams.metaObject) {
         field.form.setValuesIn(field.path, metaParams.metaObject)
-      } else if ((schema.key, metaParams.primaryId && loadMataData)) {
-        loadMataData(schema.key, metaParams.primaryId).then((data) => {
+      } else if ((schema.key, metaParams.primaryValue && loadMataData)) {
+        loadMataData(schema.key, metaParams.primaryValue).then((data) => {
           field.form.setValuesIn(field.path, data)
         })
       }
