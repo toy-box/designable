@@ -60,6 +60,7 @@ import {
   Text,
   TextArea,
   ObjectContainer,
+  DataGrid,
 } from '../src'
 
 GlobalRegistry.registerDesignerLocales({
@@ -104,6 +105,7 @@ const designeComponents = {
   Tabs,
   ObjectContainer,
   Text,
+  DataGrid,
 }
 
 const App = () => {
@@ -169,7 +171,7 @@ const App = () => {
             <CompositePanelContent.Item title="panels.Component" icon="Add">
               <ResourceWidget
                 title="sources.DataContainers"
-                sources={[DataView]}
+                sources={[DataView, DataGrid]}
               />
               <ResourceWidget
                 title="sources.Inputs"

@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import { Button } from 'antd'
 import { SortableList } from '@toy-box/toybox-ui'
-import { observer, SchemaExpressionScopeContext } from '@formily/react'
+import { observer } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import { usePrefix, TextWidget } from '@toy-box/designable-react'
 import cls from 'classnames'
