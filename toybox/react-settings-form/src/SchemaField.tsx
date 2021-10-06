@@ -42,6 +42,7 @@ import {
   VisibilitySetter,
   FieldBindSetter,
   RepositoryInput,
+  TableColumnSetter,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -86,5 +87,6 @@ export const SchemaField = createSchemaField({
     FieldBindSetter,
     RepositoryInput,
     SelectPro,
+    TableColumnSetter,
   },
 })

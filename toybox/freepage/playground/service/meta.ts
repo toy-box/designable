@@ -74,10 +74,14 @@ export const loadMetaRepoList = () => {
   })
 }
 
-export const loadMetaRepoListByValue = (ids: string[] = []) => {
+export const loadMetaRepoListByValue = (ids: string[] | string = []) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(repolist.filter((repo) => ids.some((id) => id === repo.value)))
+      if (Array.isArray(ids)) {
+        resolve(repolist.filter((repo) => ids.some((id) => id === repo.value)))
+      } else {
+        resolve(repolist.find((repo) => repo.value === ids))
+      }
     }, 1000)
   })
 }

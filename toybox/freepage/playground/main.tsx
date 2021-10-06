@@ -61,6 +61,7 @@ import {
   TextArea,
   ObjectContainer,
   DataGrid,
+  MetaTable,
 } from '../src'
 
 GlobalRegistry.registerDesignerLocales({
@@ -106,6 +107,7 @@ const designeComponents = {
   ObjectContainer,
   Text,
   DataGrid,
+  MetaTable,
 }
 
 const App = () => {

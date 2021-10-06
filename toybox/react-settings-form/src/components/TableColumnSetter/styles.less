@@ -1,0 +1,31 @@
+@import '~antd/lib/style/themes/default.less';
+
+.dn-table-column-setter {
+  width: 100%;
+  margin-top: 8px;
+  &__item {
+    border: 1px solid @border-color-base;
+    border-radius: @border-radius-base;
+    background-color: @white;
+    &--handle {
+      > svg {
+        opacity: 0;
+      }
+      padding: 0 8px;
+    }
+    &:hover {
+      .dn-table-column-setter__item--handle {
+        > svg {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .draging {
+    .dn-table-column-setter__item--handle {
+      > svg {
+        opacity: 1;
+      }
+    }
+  }
+}
