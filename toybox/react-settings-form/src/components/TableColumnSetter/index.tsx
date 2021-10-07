@@ -14,13 +14,15 @@ const columnItem = observer((props: any) => {
   const prefix = usePrefix('table-column-setter')
   return (
     <div className={`${prefix}__item`}>
-      <span {...props.dragHandleProps} className={`${prefix}__item--handle`}>
-        <HandleIcon />
-      </span>
-      <span>{props.item.props['x-component-props']?.title}</span>
-      <span>
-        <IconWidget infer="setting" />
-      </span>
+      <div className={`${prefix}__item--left`}>
+        <span {...props.dragHandleProps} className={`${prefix}__item--handle`}>
+          <HandleIcon />
+        </span>
+        <span>{props.item.props['x-component-props']?.title}</span>
+      </div>
+      <div className={`${prefix}__item--right`}>
+        <IconWidget infer="Setting" />
+      </div>
     </div>
   )
 })

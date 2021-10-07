@@ -23,7 +23,12 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
     const nodeId = useNodeIdProps()
 
     React.useEffect(() => {
-      if (node.props['x-component-props']?.repository != null) {
+      if (
+        node.props['x-component-props']?.repository != null &&
+        !node.children.some(
+          (child) => child.props['x-component'] === 'MetaTable'
+        )
+      ) {
         node.append(
           new TreeNode({
             componentName: 'Field',

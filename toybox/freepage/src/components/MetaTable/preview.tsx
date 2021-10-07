@@ -29,12 +29,10 @@ export const MetaTable: DnFC = ({ children, ...props }) => {
   return (
     <Table
       {...nodeId}
-      size="small"
       bordered
       scroll={{ x: '100%' }}
       style={{ marginBottom: 16 }}
       rowKey={'id'}
-      dataSource={[{ id: '1' }]}
       pagination={false}
       components={{
         header: {
