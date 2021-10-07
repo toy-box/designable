@@ -96,7 +96,6 @@ MetaTable.Behavior = createBehavior(
     designerProps(node) {
       return {
         draggable: false,
-        deletable: false,
         propsSchema: createVoidFieldSchema(AllSchemas.MetaTable.Column),
       }
     },
