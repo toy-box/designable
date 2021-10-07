@@ -1,25 +1,15 @@
 import React from 'react'
 import { createBehavior, createResource } from '@designable/core'
-import { Table, TableProps } from 'antd'
-import {
-  useTreeNode,
-  useNodeIdProps,
-  useDesigner,
-  DnFC,
-} from '@toy-box/designable-react'
+import { Table } from 'antd'
+import { useTreeNode, useNodeIdProps, DnFC } from '@toy-box/designable-react'
+import { observer } from '@formily/reactive-react'
 import { createVoidFieldSchema } from '../Field'
-import {
-  createEnsureTypeItemsNode,
-  createNodeId,
-  queryNodesByComponentPath,
-} from '../../shared'
+import { queryNodesByComponentPath } from '../../shared'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 import './styles.less'
 
-const ensureVoidItemsNode = createEnsureTypeItemsNode('void')
-
-export const MetaTable: DnFC = ({ children, ...props }) => {
+export const MetaTable: DnFC = observer((props) => {
   const node = useTreeNode()
   const nodeId = useNodeIdProps()
   const columns = queryNodesByComponentPath(node, [
@@ -70,17 +60,21 @@ export const MetaTable: DnFC = ({ children, ...props }) => {
           <Table.Column
             key={key}
             dataIndex={node.id}
-            title={node.props['x-component-props']?.title}
+            title={
+              <span
+                data-content-editable="x-component-props.title"
+                data-content-editable-node-id={node.id}
+              >
+                {node.props['x-component-props']?.title}
+              </span>
+            }
             className={`data-id:${node.id}`}
-            render={() => {
-              return <div style={{ height: '80px' }}></div>
-            }}
           />
         )
       })}
     </Table>
   )
-}
+})
 
 MetaTable.Behavior = createBehavior(
   {
