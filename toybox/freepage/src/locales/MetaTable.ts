@@ -23,6 +23,7 @@ export const MetaTableColumn = {
     settings: {
       'x-component-props': {
         title: '列名',
+        field: '字段绑定',
       },
     },
   },
@@ -31,6 +32,7 @@ export const MetaTableColumn = {
     settings: {
       'x-component-props': {
         title: 'Title',
+        field: 'Field Bind',
       },
     },
   },

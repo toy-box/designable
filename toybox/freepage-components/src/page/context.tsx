@@ -1,4 +1,3 @@
-import { IObjectMeta } from '@toy-box/meta-schema'
 import React from 'react'
 import { MetaParams } from '../context/actions/types'
 

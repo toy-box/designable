@@ -1,4 +1,5 @@
 import React from 'react'
-import { IMetaContext } from './types'
+import { MetaContextProps } from './types'
 
-export const MetaContext = React.createContext<IMetaContext>(null)
+export * from './types'
+export const MetaContext = React.createContext<MetaContextProps>(null)

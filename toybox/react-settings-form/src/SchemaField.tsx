@@ -43,6 +43,7 @@ import {
   FieldBindSetter,
   RepositoryInput,
   TableColumnSetter,
+  DataGridFieldBindSetter,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -88,5 +89,6 @@ export const SchemaField = createSchemaField({
     RepositoryInput,
     SelectPro,
     TableColumnSetter,
+    DataGridFieldBindSetter,
   },
 })

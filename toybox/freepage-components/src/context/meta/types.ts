@@ -6,10 +6,15 @@ export interface MetaRepo {
 }
 
 // TODO: 修正类型
-export interface IMetaContext {
+export type MetaContextProps = IMetaSchemaOption & IMetaDataOption
+
+export interface IMetaSchemaOption {
   loadMetaRepoList: (name?: string) => Promise<MetaRepo[]>
   loadMetaSchema: (objectKey: string) => Promise<IObjectMeta>
   loadMetaRepoListByValue: (ids: string[]) => Promise<MetaRepo[]>
+}
+
+export interface IMetaDataOption {
   loadMataData: (objectKey: string, id: string) => Promise<any>
   loadMetaDataList: (objectKey: string, filter: ILogicFilter) => Promise<any>
 }

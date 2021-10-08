@@ -38,15 +38,15 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
       if (dataView == null) {
         setSchema(null)
       } else {
-        if (dataView.props['x-component-props']?.type === 'raw') {
-          setSchema(dataView.props['x-component-props'].schema)
+        if (dataView.props?.dataSource?.type === 'raw') {
+          setSchema(dataView.props.dataSource.schema)
         }
         if (
-          dataView.props['x-component-props']?.type === 'repository' &&
-          dataView.props['x-component-props'].repository
+          dataView.props?.dataSource?.type === 'repository' &&
+          dataView.props?.dataSource.repository
         ) {
           meta
-            .loadMetaSchema(dataView.props['x-component-props'].repository)
+            .loadMetaSchema(dataView.props.dataSource.repository)
             .then((objectMeta) => {
               setSchema(objectMeta)
             })

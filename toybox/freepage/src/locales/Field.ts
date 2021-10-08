@@ -9,7 +9,7 @@ export const Field = {
       enum: '数据源',
       visibility: '可见性',
       editability: '可编辑性',
-      fieldBind: '绑定字段',
+      field: '绑定字段',
       'x-display': {
         title: '展示状态',
         tooltip: '半隐藏只会隐藏UI，全隐藏会删除数据',
@@ -98,6 +98,23 @@ export const Field = {
           opacity: '透明度',
         },
       },
+      dataSource: {
+        type: {
+          title: '数据源类型',
+          dataSource: [
+            {
+              label: '业务对象',
+              value: 'repository',
+            },
+            {
+              label: '原始数据',
+              value: 'raw',
+            },
+          ],
+        },
+        scheam: 'Schema',
+        repository: '业务对象',
+      },
     },
   },
   'en-US': {
@@ -110,7 +127,7 @@ export const Field = {
       enum: 'DataSource',
       visibility: 'Visibility',
       editability: 'Editability',
-      fieldBind: 'Field Bind',
+      field: 'Field Bind',
       'x-display': {
         title: 'Display State',
         tooltip:
@@ -214,6 +231,23 @@ export const Field = {
           border: 'Border',
           opacity: 'Opacity',
         },
+      },
+      dataSource: {
+        type: {
+          title: 'DataSource Type',
+          dataSource: [
+            {
+              label: 'Repository',
+              value: 'repository',
+            },
+            {
+              label: 'Raw Schema',
+              value: 'raw',
+            },
+          ],
+        },
+        scheam: 'Schema',
+        repository: 'Repository Object',
       },
     },
   },

@@ -42,6 +42,12 @@ import {
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
 import { transformToSchema, reactionPatches } from '../../src'
+import {
+  saveSchema,
+  loadMetaRepoList,
+  loadMetaRepoListByValue,
+  loadMetaSchema,
+} from '../service'
 
 const SchemaField = createSchemaField({
   components: {
@@ -89,12 +95,21 @@ export interface IPreviewWidgetProps {
 
 export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const form = useMemo(() => createForm(), [])
+  const [formProps, setFormProps] = React.useState<any>()
+  const [schema, setSchema] = React.useState<any>()
   Schema.registerPatches(reactionPatches)
-
-  const { form: formProps, schema } = transformToSchema(props.tree)
+  React.useEffect(() => {
+    transformToSchema(props.tree, {}, { loadMetaSchema }).then(
+      ({ form: formProps, schema }) => {
+        setFormProps(formProps)
+        setSchema(schema)
+      }
+    )
+  }, [props.tree])
+  // const { form: formProps, schema } = await transformToSchema(props.tree)
   return (
     <Form {...formProps} form={form}>
-      <MetaContext.Provider value={}>
+      <MetaContext.Provider value={{}}>
         <SchemaField schema={schema} />
       </MetaContext.Provider>
     </Form>

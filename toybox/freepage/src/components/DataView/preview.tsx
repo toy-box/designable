@@ -3,7 +3,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { observer } from '@formily/react'
 import { DnFC } from '@toy-box/designable-react'
 import { IFieldMeta } from '@toy-box/meta-schema'
-import { createVoidFieldSchema } from '../Field'
+import { createDataShourceSchema } from '../Field'
 import { withContainer } from '../../common/Container'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
@@ -31,7 +31,7 @@ DataView.Behavior = createBehavior({
       cloneable: !node.isRoot,
       deletable: !node.isRoot,
       droppable: true,
-      propsSchema: createVoidFieldSchema(AllSchemas.DataView),
+      propsSchema: createDataShourceSchema(AllSchemas.DataView),
     }
   },
 

@@ -2,6 +2,7 @@ import { ISchema, Schema } from '@formily/json-schema'
 import { ITreeNode, TreeNode } from '@designable/core'
 import { clone, uid, omit } from '@toy-box/toybox-shared'
 import { IFieldMeta } from '@toy-box/meta-schema'
+import { IMetaSchemaOption } from '@toy-box/freepage-components'
 import { ItemEditability, ItemVisibility } from './types'
 
 export interface ITransformerOptions {
@@ -22,10 +23,12 @@ const createOptions = (options: ITransformerOptions): ITransformerOptions => {
   }
 }
 
-export const transformToSchema = (
+export const transformToSchema = async (
   node: TreeNode,
-  options?: ITransformerOptions
-): IFormilySchema => {
+  options?: ITransformerOptions,
+  metaSchemaOption?: IMetaSchemaOption
+): Promise<IFormilySchema> => {
+  const { loadMetaSchema } = metaSchemaOption
   const realOptions = createOptions(options)
   const root = node.find((child) => {
     return child.componentName === realOptions.designableFormName
@@ -35,11 +38,12 @@ export const transformToSchema = (
     properties: {},
   }
   if (!root) return { schema }
-  const createSchema = (node: TreeNode, schema: ISchema = {}) => {
+  const createSchema = async (node: TreeNode, schema: ISchema = {}) => {
+    const field = node.props.field
     if (node !== root) {
       Object.assign(
         schema,
-        clone(omit(node.props, ['visibility', 'editability']))
+        clone(omit(node.props, ['visibility', 'editability', 'field']))
       )
     }
     schema['x-designable-id'] = node.id
@@ -48,7 +52,7 @@ export const transformToSchema = (
         if (
           node.children[0].componentName === realOptions.designableFieldName
         ) {
-          schema.items = createSchema(node.children[0])
+          schema.items = await createSchema(node.children[0])
           schema['x-index'] = 0
         }
       }
@@ -59,12 +63,13 @@ export const transformToSchema = (
         schema.properties[key] = createSchema(child)
         schema.properties[key]['x-index'] = index
       })
-    } else {
-      node.children.forEach((child, index) => {
+    } else if (node.children && node.children.length > 0) {
+      for (let index = 0; index < node.children.length; index++) {
+        const child = node.children[index]
         if (child.componentName !== realOptions.designableFieldName) return
         const key = child.props.name || child.id
         schema.properties = schema.properties || {}
-        schema.properties[key] = createSchema(child)
+        schema.properties[key] = await createSchema(child)
         schema.properties[key]['x-index'] = index
         if (child.props.visibility) {
           const visibilityReaction = transformVisibility(child.props.visibility)
@@ -94,67 +99,37 @@ export const transformToSchema = (
             }
           }
         }
-      })
-      const dataView = node
-        .getParents()
-        .find((node) => node.props['x-component'] === 'DataView')
-      if (dataView) {
-        const path = node
-          .getParents()
-          .filter(
-            (node) => node.depth > dataView.depth && node.props.type !== 'void'
-          )
-          .map((node) => node.props.name)
-        path.push(node.props.name)
-        // TODO: 修改 objectMeta获取的方式
-
-        const objectMeta: IFieldMeta = dataView.props.objectMeta || {
-          key: 'user',
-          name: 'user',
-          type: 'object',
-          properties: {
-            name: {
-              key: 'name',
-              name: '姓名',
-              type: 'string',
-            },
-            email: {
-              key: 'email',
-              name: '邮件',
-              type: 'string',
-            },
-            birthday: {
-              key: 'birthday',
-              name: '出生日期',
-              type: 'date',
-            },
-            gender: {
-              key: 'gender',
-              name: '性别',
-              type: 'singleOption',
-              options: [
-                {
-                  label: '男',
-                  value: 'male',
-                },
-                {
-                  label: '女',
-                  value: 'female',
-                },
-              ],
-            },
-          },
-        }
-        schema['x-component-props'] = schema['x-component-props'] || {}
-        schema['x-component-props'].field = fetchMeta(path, objectMeta) || {}
-      } else {
-        schema['x-component-props'] = schema['x-component-props'] || {}
-        schema['x-component-props'].field = {}
       }
+    }
+    const dataView = node
+      .getParents()
+      .find((node) => node.props['x-component'] === 'DataView')
+
+    if (dataView) {
+      const path = node
+        .getParents()
+        .filter(
+          (node) => node.depth > dataView.depth && node.props.type !== 'void'
+        )
+        .map((node) => node.props.name)
+      path.push(field)
+      // TODO: 修改 objectMeta获取的方式
+      const schemaType = dataView.props?.dataSource?.type
+      let metaSchema: IFieldMeta
+      if (schemaType === 'repository' && loadMetaSchema) {
+        metaSchema = await loadMetaSchema(dataView.props.dataSource.repository)
+      } else if (schemaType === 'raw') {
+        metaSchema = dataView.props.dataSource.schema
+      }
+      schema['x-component-props'] = schema['x-component-props'] || {}
+      schema['x-component-props'].field = fetchMeta(path, metaSchema) || {}
+    } else {
+      schema['x-component-props'] = schema['x-component-props'] || {}
+      schema['x-component-props'].field = {}
     }
     return schema
   }
-  return { form: clone(root.props), schema: createSchema(root, schema) }
+  return { form: clone(root.props), schema: await createSchema(root, schema) }
 }
 
 export const fetchMeta = (path: string[], meta: IFieldMeta) => {

@@ -25,6 +25,11 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
+    field: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'DataGridFieldBindSetter',
+    },
   },
 }
 

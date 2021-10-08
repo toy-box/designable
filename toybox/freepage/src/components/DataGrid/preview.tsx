@@ -1,19 +1,15 @@
 import React from 'react'
 import { Table, TableProps } from 'antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
-import {
-  useTreeNode,
-  useNodeIdProps,
-  DropWidget,
-  DnFC,
-} from '@toy-box/designable-react'
+import { useTreeNode, useNodeIdProps, DnFC } from '@toy-box/designable-react'
 import { observer } from '@formily/react'
+import { ToolBar } from '@toy-box/toybox-ui'
 import {
   FilterDisplay,
   FilterPanel,
   TableStatusBar,
 } from '@toy-box/meta-components'
-import { createVoidFieldSchema } from '../Field'
+import { createDataShourceSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
@@ -24,7 +20,7 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
 
     React.useEffect(() => {
       if (
-        node.props['x-component-props']?.repository != null &&
+        node.props?.dataSource?.repository != null &&
         !node.children.some(
           (child) => child.props['x-component'] === 'MetaTable'
         )
@@ -39,9 +35,18 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
           })
         )
       }
-    }, [node.props['x-component-props']?.repository])
+    }, [node.props?.dataSource?.repository])
 
-    return <div {...nodeId}>{props.children || <Table />}</div>
+    return (
+      <div {...nodeId}>
+        <ToolBar>
+          <FilterPanel />
+        </ToolBar>
+        <FilterDisplay />
+        <TableStatusBar />
+        {props.children || <Table />}
+      </div>
+    )
   }
 )
 
@@ -52,7 +57,7 @@ DataGrid.Behavior = createBehavior({
   designerProps: {
     droppable: true,
     inlineChildrenLayout: true,
-    propsSchema: createVoidFieldSchema(AllSchemas.DataGrid),
+    propsSchema: createDataShourceSchema(AllSchemas.DataGrid),
   },
   designerLocales: AllLocales.DataGrid,
 })
