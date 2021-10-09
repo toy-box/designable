@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { createForm } from '@formily/core'
 import { Form } from '@formily/antd'
-import { observer } from '@formily/react'
+import { observer } from '@formily/reactive-react'
 import { requestIdle, cancelIdle } from '@designable/shared'
 import {
   usePrefix,
@@ -89,7 +89,6 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
     return (
       <IconWidget.Provider tooltip>
         <div className={prefix + '-wrapper'}>
-          {JSON.stringify(node.props)}
           {!isEmpty && <NodePathWidget workspaceId={currentWorkspaceId} />}
           <div className={prefix + '-content'}>{render()}</div>
         </div>
