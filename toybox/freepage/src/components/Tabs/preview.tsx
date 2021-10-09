@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { observer } from '@formily/react'
+import { observer } from '@formily/reactive-react'
 import { Tabs as AntdTabs } from 'antd'
 import { TabsProps, TabPaneProps } from 'antd/lib/tabs'
 import { TreeNode, createBehavior, createResource } from '@designable/core'

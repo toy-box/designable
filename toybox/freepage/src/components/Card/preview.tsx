@@ -1,26 +1,28 @@
 import React from 'react'
 import { Card as AntdCard } from 'antd'
-
+import { observer } from '@formily/reactive-react'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@toy-box/designable-react'
 import { createVoidFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
-export const Card: DnFC<React.ComponentProps<typeof AntdCard>> = (props) => {
-  return (
-    <AntdCard
-      {...props}
-      title={
-        <span data-content-editable="x-component-props.title">
-          {props.title}
-        </span>
-      }
-    >
-      {props.children}
-    </AntdCard>
-  )
-}
+export const Card: DnFC<React.ComponentProps<typeof AntdCard>> = observer(
+  (props) => {
+    return (
+      <AntdCard
+        {...props}
+        title={
+          <span data-content-editable="x-component-props.title">
+            {props.title}
+          </span>
+        }
+      >
+        {props.children}
+      </AntdCard>
+    )
+  }
+)
 
 Card.Behavior = createBehavior({
   name: 'Card',

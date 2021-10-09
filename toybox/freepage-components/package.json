@@ -15,11 +15,23 @@
     "start": "webpack-dev-server --config playground/webpack.dev.ts"
   },
   "devDependencies": {
+    "@formily/core": "2.0.0-rc.12",
+    "@formily/json-schema": "2.0.0-rc.12",
+    "@formily/react": "2.0.0-rc.12",
+    "@formily/reactive": "2.0.0-rc.12",
+    "@formily/reactive-react": "2.0.0-rc.12",
+    "@formily/shared": "2.0.0-rc.12",
     "@toy-box/meta-components": "^2.0.9",
     "@toy-box/toybox-ui": "^2.0.9",
     "antd": "^4.0.0"
   },
   "peerDependencies": {
+    "@formily/core": "2.0.0-rc.12",
+    "@formily/json-schema": "2.0.0-rc.12",
+    "@formily/react": "2.0.0-rc.12",
+    "@formily/reactive": "2.0.0-rc.12",
+    "@formily/reactive-react": "2.0.0-rc.12",
+    "@formily/shared": "2.0.0-rc.12",
     "@types/react": ">=16.8.0 || >=17.0.0",
     "@types/react-dom": ">=16.8.0 || >=17.0.0",
     "@toy-box/meta-schema": "^2.0.3",
@@ -33,12 +45,6 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
     "@airclass/icons": "^4.0.0",
-    "@formily/core": "2.0.0-rc.10",
-    "@formily/json-schema": "2.0.0-rc.10",
-    "@formily/react": "2.0.0-rc.10",
-    "@formily/reactive": "2.0.0-rc.10",
-    "@formily/reactive-react": "2.0.0-rc.10",
-    "@formily/shared": "2.0.0-rc.10",
     "classnames": "^2.2.6"
   },
   "publishConfig": {

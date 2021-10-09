@@ -80,11 +80,11 @@ export const createFieldSchema = (
         type: 'void',
         'x-component': 'CollapseItem',
         properties: {
-          name: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
+          // name: {
+          //   type: 'string',
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Input',
+          // },
           title: {
             type: 'string',
             'x-decorator': 'FormItem',
@@ -148,11 +148,11 @@ export const createVoidFieldSchema = (
         type: 'void',
         'x-component': 'CollapseItem',
         properties: {
-          name: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
+          // name: {
+          //   type: 'string',
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Input',
+          // },
           title: {
             type: 'string',
             'x-decorator': 'FormItem',
@@ -165,18 +165,18 @@ export const createVoidFieldSchema = (
               },
             },
           },
-          description: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input.TextArea',
-            'x-reactions': {
-              fulfill: {
-                state: {
-                  visible: '{{$form.values["x-decorator"] === "FormItem"}}',
-                },
-              },
-            },
-          },
+          // description: {
+          //   type: 'string',
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Input.TextArea',
+          //   'x-reactions': {
+          //     fulfill: {
+          //       state: {
+          //         visible: '{{$form.values["x-decorator"] === "FormItem"}}',
+          //       },
+          //     },
+          //   },
+          // },
           'x-display': {
             type: 'string',
             enum: ['visible', 'hidden', 'none', ''],
@@ -186,20 +186,20 @@ export const createVoidFieldSchema = (
               defaultValue: 'visible',
             },
           },
-          'x-pattern': {
-            type: 'string',
-            enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
-            'x-decorator': 'FormItem',
-            'x-component': 'Select',
-            'x-component-props': {
-              defaultValue: 'editable',
-            },
-          },
-          'x-decorator': {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': FormItemSwitcher,
-          },
+          // 'x-pattern': {
+          //   type: 'string',
+          //   enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Select',
+          //   'x-component-props': {
+          //     defaultValue: 'editable',
+          //   },
+          // },
+          // 'x-decorator': {
+          //   type: 'string',
+          //   'x-decorator': 'FormItem',
+          //   'x-component': FormItemSwitcher,
+          // },
         },
       },
       ...createComponentSchema(component, decorator),
@@ -218,11 +218,11 @@ export const createDataShourceSchema = (
         type: 'void',
         'x-component': 'CollapseItem',
         properties: {
-          name: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
+          // name: {
+          //   type: 'string',
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Input',
+          // },
           field: {
             type: 'string',
             'x-decorator': 'FormItem',

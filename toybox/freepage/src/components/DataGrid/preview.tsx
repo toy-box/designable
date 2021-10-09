@@ -1,7 +1,13 @@
 import React from 'react'
 import { Table, TableProps } from 'antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
-import { useTreeNode, useNodeIdProps, DnFC } from '@toy-box/designable-react'
+import {
+  useTreeNode,
+  useNodeIdProps,
+  useDesigner,
+  DnFC,
+  TreeNodeWidget,
+} from '@toy-box/designable-react'
 import { observer } from '@formily/react'
 import { ToolBar } from '@toy-box/toybox-ui'
 import {
@@ -12,12 +18,35 @@ import {
 import { createDataShourceSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
+import { matchComponent } from '../../shared'
 
 export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
   (props) => {
+    const designer = useDesigner()
     const node: TreeNode = useTreeNode()
     const nodeId = useNodeIdProps()
-
+    React.useEffect(() => {
+      const tableNode = node.children.find((child) =>
+        matchComponent(child, 'MetaTable')
+      )
+      const toolBarNode = node.children.find((child) =>
+        matchComponent(child, 'MetaTable')
+      )
+      if (tableNode == null) {
+        node.append(
+          new TreeNode({
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'MetaTable',
+            },
+          })
+        )
+      }
+    }, [])
+    const tableNode = node.children.find((child) =>
+      matchComponent(child, 'MetaTable')
+    )
     React.useEffect(() => {
       if (
         node.props?.dataSource?.repository != null &&
@@ -44,7 +73,17 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
         </ToolBar>
         <FilterDisplay />
         <TableStatusBar />
-        {props.children || <Table />}
+        {tableNode &&
+          React.createElement(
+            'div',
+            {
+              [designer.props.nodeIdAttrName]: tableNode.id,
+              style: {
+                padding: '20px 0',
+              },
+            },
+            <TreeNodeWidget node={tableNode} />
+          )}
       </div>
     )
   }

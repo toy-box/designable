@@ -3,7 +3,14 @@ import { Button } from 'antd'
 import { SortableList } from '@toy-box/toybox-ui'
 import { observer } from '@formily/react'
 import { TreeNode } from '@designable/core'
-import { usePrefix, TextWidget } from '@toy-box/designable-react'
+import {
+  usePrefix,
+  useSelection,
+  useCurrentNode,
+  useWorkbench,
+  TextWidget,
+  IconWidget,
+} from '@toy-box/designable-react'
 import cls from 'classnames'
 import { HandleIcon } from '../HandleIcon'
 
@@ -16,13 +23,32 @@ export interface ITabsPaneSetter {
 }
 
 const tabPaneItem = observer((props: any) => {
+  const workbench = useWorkbench()
+  const currentWorkspace =
+    workbench?.activeWorkspace || workbench?.currentWorkspace
+  const currentWorkspaceId = currentWorkspace?.id
+  const selection = useSelection(props.workspaceId)
+  const node: TreeNode = useCurrentNode(currentWorkspaceId)
+  const itemNode = node.children.find((child) => child.id === props.item.id)
   const prefix = usePrefix('tabs-pane-setter')
   return (
     <div className={`${prefix}__item`}>
-      <span {...props.dragHandleProps} className={`${prefix}__item--handle`}>
-        <HandleIcon />
-      </span>
-      <span>{props.item.props['x-component-props'].tab}</span>
+      <div className={`${prefix}__item--left`}>
+        <span {...props.dragHandleProps} className={`${prefix}__item--handle`}>
+          <HandleIcon />
+        </span>
+        <span>{props.item.props['x-component-props'].tab}</span>
+      </div>
+      <div
+        className={`${prefix}__item--right`}
+        onClick={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          selection.select(itemNode)
+        }}
+      >
+        <IconWidget infer="Setting" />
+      </div>
     </div>
   )
 })

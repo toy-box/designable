@@ -89,6 +89,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
     return (
       <IconWidget.Provider tooltip>
         <div className={prefix + '-wrapper'}>
+          {JSON.stringify(node.props)}
           {!isEmpty && <NodePathWidget workspaceId={currentWorkspaceId} />}
           <div className={prefix + '-content'}>{render()}</div>
         </div>

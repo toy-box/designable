@@ -29,11 +29,11 @@ export const Tabs: ISchema & { TabPane?: ISchema } = {
       'x-component-props': {
         defaultValue: 'line',
         optionType: 'button',
+        buttonStyle: 'solid',
       },
     },
     panes: {
       type: 'void',
-      title: 'Tabs',
       'x-decorator': 'FormItem',
       'x-component': 'TabsPaneSetter',
       'x-decorator-props': {

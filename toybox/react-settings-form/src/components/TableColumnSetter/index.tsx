@@ -1,11 +1,10 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { Button } from 'antd'
 import { SortableList } from '@toy-box/toybox-ui'
 import { observer } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import {
   usePrefix,
-  useSelected,
   useSelection,
   useCurrentNode,
   useWorkbench,
