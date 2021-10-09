@@ -29,8 +29,8 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
       const tableNode = node.children.find((child) =>
         matchComponent(child, 'MetaTable')
       )
-      const toolBarNode = node.children.find((child) =>
-        matchComponent(child, 'MetaTable')
+      const spaceNode = node.children.find((child) =>
+        matchComponent(child, 'Space')
       )
       if (tableNode == null) {
         node.append(
@@ -43,9 +43,23 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
           })
         )
       }
+      if (spaceNode == null) {
+        node.append(
+          new TreeNode({
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'Space',
+            },
+          })
+        )
+      }
     }, [])
     const tableNode = node.children.find((child) =>
       matchComponent(child, 'MetaTable')
+    )
+    const spaceNode = node.children.find((child) =>
+      matchComponent(child, 'Space')
     )
     React.useEffect(() => {
       if (
@@ -70,6 +84,14 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
       <div {...nodeId}>
         <ToolBar>
           <FilterPanel />
+          {spaceNode &&
+            React.createElement(
+              'div',
+              {
+                [designer.props.nodeIdAttrName]: spaceNode.id,
+              },
+              <TreeNodeWidget node={spaceNode} />
+            )}
         </ToolBar>
         <FilterDisplay />
         <TableStatusBar />
@@ -78,9 +100,6 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
             'div',
             {
               [designer.props.nodeIdAttrName]: tableNode.id,
-              style: {
-                padding: '20px 0',
-              },
             },
             <TreeNodeWidget node={tableNode} />
           )}
