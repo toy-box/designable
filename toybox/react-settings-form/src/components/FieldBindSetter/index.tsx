@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Select } from 'antd'
 import { observer, useField } from '@formily/react'
 import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
-import { useMeta } from '@toy-box/freepage-components'
-import { useScope } from '../../hooks'
+import { useDataView } from '../../hooks'
 
 export interface IFieldBindSetterProps {
   value?: any
@@ -13,76 +12,7 @@ export interface IFieldBindSetterProps {
 export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
   ({ value, onChange }) => {
     const field = useField()
-    const { node } = useScope()
-    const meta = useMeta()
-    const [schema, setSchema] = useState<IFieldMeta>()
-    const dataView = useMemo(
-      () =>
-        node
-          .getParents()
-          .find((node) => node.props['x-component'] === 'DataView'),
-      [node]
-    )
-    const dataParent = useMemo(
-      () =>
-        node
-          .getParents()
-          .find(
-            (node) =>
-              node.props.type === 'array' || node.props.type === 'object'
-          ),
-      []
-    )
-
-    useEffect(() => {
-      if (dataView == null) {
-        setSchema(null)
-      } else {
-        if (dataView.props?.dataSource?.type === 'raw') {
-          setSchema(dataView.props.dataSource.schema)
-        }
-        if (
-          dataView.props?.dataSource?.type === 'repository' &&
-          dataView.props?.dataSource.repository
-        ) {
-          meta
-            .loadMetaSchema(dataView.props.dataSource.repository)
-            .then((objectMeta) => {
-              setSchema(objectMeta)
-            })
-        }
-      }
-    }, [dataView, meta])
-
-    const attributes = useMemo(() => {
-      if (dataView == null || schema == null) {
-        return []
-      }
-      if (dataParent == null || dataParent === dataView) {
-        return Object.keys(schema.properties || {})
-          .map((key) => schema.properties[key])
-          .filter((field) => fitField(field, node))
-          .map((field) => ({
-            value: field.key,
-            label: field.name,
-          }))
-      }
-      const path = node
-        .getParents()
-        .filter(
-          (node) => node.depth > dataView.depth && node.props.type !== 'void'
-        )
-        .map((node) => node.props.name)
-      const meta = fetchMeta(path, schema) || {}
-      return Object.keys(meta.properties || {})
-        .map((key) => meta.properties[key])
-        .filter((field) => fitField(field, node))
-        .map((field) => ({
-          value: field.key,
-          label: field.name,
-        }))
-    }, [dataView, dataParent, schema])
-
+    const { attributes, dataView } = useDataView()
     const handleChange = useCallback(
       (value) => {
         onChange && onChange(value)
