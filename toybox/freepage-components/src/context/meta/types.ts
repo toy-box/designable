@@ -16,5 +16,9 @@ export interface IMetaSchemaOption {
 
 export interface IMetaDataOption {
   loadMataData: (objectKey: string, id: string) => Promise<any>
-  loadMetaDataList: (objectKey: string, filter: ILogicFilter) => Promise<any>
+  loadMetaDataList: (
+    objectKey: string,
+    pageable: any,
+    filter: any
+  ) => Promise<any>
 }

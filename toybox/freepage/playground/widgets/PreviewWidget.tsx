@@ -30,6 +30,7 @@ import {
   Text,
   Image,
   DataView,
+  DataGrid,
   Divider,
   FieldString as Input,
   FieldText as TextArea,
@@ -78,6 +79,7 @@ const SchemaField = createSchemaField({
     Text,
     Image,
     DataView,
+    DataGrid,
     Input,
     TextArea,
     NumberPicker,
@@ -86,6 +88,7 @@ const SchemaField = createSchemaField({
     Percent,
     Select,
     Divider,
+    MetaTable: DataGrid.MetaTable,
   },
 })
 
@@ -109,7 +112,13 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   // const { form: formProps, schema } = await transformToSchema(props.tree)
   return (
     <Form {...formProps} form={form}>
-      <MetaContext.Provider value={{}}>
+      <MetaContext.Provider
+        value={{
+          loadMetaRepoList,
+          loadMetaRepoListByValue,
+          loadMetaSchema,
+        }}
+      >
         <SchemaField schema={schema} />
       </MetaContext.Provider>
     </Form>

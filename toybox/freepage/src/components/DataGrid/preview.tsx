@@ -127,6 +127,7 @@ DataGrid.Resource = createResource({
       componentName: 'Field',
       props: {
         type: 'void',
+        dataSource: {},
         'x-component': 'DataGrid',
       },
     },

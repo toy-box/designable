@@ -16,10 +16,10 @@ export const DataGridFieldBindSetter: React.FC<IDataGridFieldBindSetterProps> =
     const handleChange = useCallback(
       (value) => {
         onChange && onChange(value)
-        field.form.setValuesIn(
-          'x-component-props.title',
-          attributes.find((attr) => attr.value === value)?.label
-        )
+        field.form.setValuesIn('x-component-props.{title, fieldKey}', {
+          title: attributes.find((attr) => attr.value === value)?.label,
+          fieldKey: attributes.find((attr) => attr.value === value)?.value,
+        })
       },
       [onChange, field, attributes]
     )

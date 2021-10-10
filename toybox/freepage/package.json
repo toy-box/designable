@@ -61,8 +61,9 @@
     "@toy-box/formula": "^1.0.12",
     "@toy-box/meta-schema": "^2.0.0",
     "@toy-box/toybox-ui": "^2.0.9",
-    "@toy-box/meta-components": "^2.0.9",
+    "@toy-box/meta-components": "^2.0.10",
     "@toy-box/freepage-components": "^1.0.0",
+    "react-router-dom": "^5.3.0",
     "babel-loader": "^8.2.2",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6"

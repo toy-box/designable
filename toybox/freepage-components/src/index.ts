@@ -1,5 +1,6 @@
 export * from './button'
 export * from './context'
+export * from './data-grid'
 export * from './data-view'
 export * from './divider'
 export * from './field-boolean'

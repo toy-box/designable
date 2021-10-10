@@ -1,6 +1,7 @@
 import 'antd/dist/antd.less'
 import React, { useMemo } from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import {
   Designer,
   DesignerWidget,
@@ -135,124 +136,135 @@ const App = () => {
     []
   )
   return (
-    <Designer engine={engine}>
-      <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
-        <TopbarPanel>
-          <CompositePanel
-            visible={leftVisible}
-            setVisible={setLeftVisible}
-            activeKey={leftActiveKey}
-            setActiveKey={setLeftActiveKey}
-          >
-            <CompositePanel.Item title="panels.Component" icon="Add" />
-            <CompositePanel.Item title="panels.OutlinedTree" icon="Layer" />
-            <CompositePanel.Item title="panels.History" icon="History" />
-          </CompositePanel>
-          <DesignerWidget />
-          <ViewWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
-          <CompositePanel
-            direction="right"
-            visible={rightVisible}
-            setVisible={setRightVisible}
-            activeKey={rightActiveKey}
-            setActiveKey={setRightActiveKey}
-          >
-            <CompositePanel.Item title="panels.PropertySettings" icon="Setting">
-              <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-            </CompositePanel.Item>
-          </CompositePanel>
-        </TopbarPanel>
-        <div
-          style={{ display: 'flex', flexGrow: 1, height: 'calc(100% - 48px)' }}
-        >
-          <CompositePanelContent
-            activeKey={leftActiveKey}
-            visible={leftVisible}
-            onClose={() => setLeftVisible(false)}
-          >
-            <CompositePanelContent.Item title="panels.Component" icon="Add">
-              <ResourceWidget
-                title="sources.DataContainers"
-                sources={[DataView, DataGrid]}
-              />
-              <ResourceWidget
-                title="sources.Inputs"
-                sources={[
-                  Input,
-                  TextArea,
-                  NumberPicker,
-                  Percent,
-                  Switch,
-                  DatePicker,
-                  Select,
-                  ObjectContainer,
-                ]}
-              />
-              <ResourceWidget
-                title="sources.Displays"
-                sources={[Text, Image, Button, Divider]}
-              />
-              <ResourceWidget
-                title="sources.Layouts"
-                sources={[Space, FormCollapse, Tabs, Grid, Card]}
-              />
-            </CompositePanelContent.Item>
-            <CompositePanelContent.Item
-              title="panels.OutlinedTree"
-              icon="Layer"
+    <Router>
+      <Designer engine={engine}>
+        <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
+          <TopbarPanel>
+            <CompositePanel
+              visible={leftVisible}
+              setVisible={setLeftVisible}
+              activeKey={leftActiveKey}
+              setActiveKey={setLeftActiveKey}
             >
-              <OutlineTreeWidget />
-            </CompositePanelContent.Item>
-            <CompositePanelContent.Item title="panels.History" icon="History">
-              <HistoryWidget />
-            </CompositePanelContent.Item>
-          </CompositePanelContent>
-          <Workspace id="form">
-            <WorkspacePanel>
-              <ViewportPanel>
-                <ViewPanel type="DESIGNABLE">
-                  {() => <ComponentTreeWidget components={designeComponents} />}
-                </ViewPanel>
-                <ViewPanel type="JSONTREE" scrollable={false}>
-                  {(tree, onChange) => {
-                    return (
-                      <SchemaEditorWidget tree={tree} onChange={onChange} />
-                    )
-                  }}
-                </ViewPanel>
-                <ViewPanel type="MARKUP" scrollable={false}>
-                  {(tree) => <MarkupSchemaWidget tree={tree} />}
-                </ViewPanel>
-                <ViewPanel type="PREVIEW">
-                  {(tree) => <PreviewWidget tree={tree} />}
-                </ViewPanel>
-              </ViewportPanel>
-            </WorkspacePanel>
-          </Workspace>
-          <CompositePanelContent
-            direction="right"
-            visible={rightVisible}
-            activeKey={rightActiveKey}
-            onClose={() => setRightVisible(false)}
-          >
-            <CompositePanelContent.Item
-              title="panels.PropertySettings"
-              icon="Setting"
+              <CompositePanel.Item title="panels.Component" icon="Add" />
+              <CompositePanel.Item title="panels.OutlinedTree" icon="Layer" />
+              <CompositePanel.Item title="panels.History" icon="History" />
+            </CompositePanel>
+            <DesignerWidget />
+            <ViewWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
+            <CompositePanel
+              direction="right"
+              visible={rightVisible}
+              setVisible={setRightVisible}
+              activeKey={rightActiveKey}
+              setActiveKey={setRightActiveKey}
             >
-              <MetaContext.Provider
-                value={{
-                  loadMetaRepoList,
-                  loadMetaRepoListByValue,
-                  loadMetaSchema,
-                }}
+              <CompositePanel.Item
+                title="panels.PropertySettings"
+                icon="Setting"
               >
                 <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-              </MetaContext.Provider>
-            </CompositePanelContent.Item>
-          </CompositePanelContent>
-        </div>
-      </StudioPanel>
-    </Designer>
+              </CompositePanel.Item>
+            </CompositePanel>
+          </TopbarPanel>
+          <div
+            style={{
+              display: 'flex',
+              flexGrow: 1,
+              height: 'calc(100% - 48px)',
+            }}
+          >
+            <CompositePanelContent
+              activeKey={leftActiveKey}
+              visible={leftVisible}
+              onClose={() => setLeftVisible(false)}
+            >
+              <CompositePanelContent.Item title="panels.Component" icon="Add">
+                <ResourceWidget
+                  title="sources.DataContainers"
+                  sources={[DataView, DataGrid]}
+                />
+                <ResourceWidget
+                  title="sources.Inputs"
+                  sources={[
+                    Input,
+                    TextArea,
+                    NumberPicker,
+                    Percent,
+                    Switch,
+                    DatePicker,
+                    Select,
+                    ObjectContainer,
+                  ]}
+                />
+                <ResourceWidget
+                  title="sources.Displays"
+                  sources={[Text, Image, Button, Divider]}
+                />
+                <ResourceWidget
+                  title="sources.Layouts"
+                  sources={[Space, FormCollapse, Tabs, Grid, Card]}
+                />
+              </CompositePanelContent.Item>
+              <CompositePanelContent.Item
+                title="panels.OutlinedTree"
+                icon="Layer"
+              >
+                <OutlineTreeWidget />
+              </CompositePanelContent.Item>
+              <CompositePanelContent.Item title="panels.History" icon="History">
+                <HistoryWidget />
+              </CompositePanelContent.Item>
+            </CompositePanelContent>
+            <Workspace id="form">
+              <WorkspacePanel>
+                <ViewportPanel>
+                  <ViewPanel type="DESIGNABLE">
+                    {() => (
+                      <ComponentTreeWidget components={designeComponents} />
+                    )}
+                  </ViewPanel>
+                  <ViewPanel type="JSONTREE" scrollable={false}>
+                    {(tree, onChange) => {
+                      return (
+                        <SchemaEditorWidget tree={tree} onChange={onChange} />
+                      )
+                    }}
+                  </ViewPanel>
+                  <ViewPanel type="MARKUP" scrollable={false}>
+                    {(tree) => <MarkupSchemaWidget tree={tree} />}
+                  </ViewPanel>
+                  <ViewPanel type="PREVIEW">
+                    {(tree) => <PreviewWidget tree={tree} />}
+                  </ViewPanel>
+                </ViewportPanel>
+              </WorkspacePanel>
+            </Workspace>
+            <CompositePanelContent
+              direction="right"
+              visible={rightVisible}
+              activeKey={rightActiveKey}
+              onClose={() => setRightVisible(false)}
+            >
+              <CompositePanelContent.Item
+                title="panels.PropertySettings"
+                icon="Setting"
+              >
+                <MetaContext.Provider
+                  value={{
+                    loadMetaRepoList,
+                    loadMetaRepoListByValue,
+                    loadMetaSchema,
+                  }}
+                >
+                  <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+                </MetaContext.Provider>
+              </CompositePanelContent.Item>
+            </CompositePanelContent>
+          </div>
+        </StudioPanel>
+      </Designer>
+    </Router>
   )
 }
 

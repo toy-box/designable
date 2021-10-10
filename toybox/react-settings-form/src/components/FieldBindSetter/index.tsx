@@ -35,37 +35,3 @@ export const FieldBindSetter: React.FC<IFieldBindSetterProps> = observer(
     )
   }
 )
-
-export const fetchMeta = (path: string[], meta: IFieldMeta) => {
-  if (path == null || path.length === 0 || meta == null) {
-    return meta
-  }
-  const currentMeta =
-    meta.type === 'object'
-      ? meta.properties[path[0]]
-      : meta.type === 'array'
-      ? meta.items.properties[path[0]]
-      : null
-
-  return fetchMeta(path.slice(1), currentMeta)
-}
-
-const fitField = (field: IFieldMeta, node) => {
-  if (node.props.type === 'object') {
-    return field.type === MetaValueType.OBJECT
-  }
-  return (ComponentFit[node.props['x-component']] || []).some(
-    (type) => type === field.type
-  )
-}
-
-const ComponentFit: Record<string, MetaValueType[]> = {
-  Input: [MetaValueType.STRING],
-  TextArea: [MetaValueType.STRING, MetaValueType.TEXT],
-  NumberPicker: [MetaValueType.INTEGER, MetaValueType.NUMBER],
-  Percent: [MetaValueType.PERCENT],
-  Switch: [MetaValueType.BOOLEAN],
-  Select: [MetaValueType.SINGLE_OPTION],
-  ObjectContainer: [MetaValueType.OBJECT],
-  DatePicker: [MetaValueType.DATE, MetaValueType.DATETIME],
-}

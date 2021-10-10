@@ -39,7 +39,12 @@ export const useDataView = () => {
           })
       }
     }
-  }, [dataView, meta])
+  }, [
+    dataView,
+    dataView?.props?.dataSource?.type,
+    dataView?.props?.dataSource?.repository,
+    meta,
+  ])
 
   const attributes = useMemo(() => {
     if (dataView == null || schema == null) {

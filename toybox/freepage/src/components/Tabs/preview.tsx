@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { observer } from '@formily/reactive-react'
-import { Tabs as AntdTabs } from 'antd'
+import { Tabs as AntdTabs, Select } from 'antd'
 import { TabsProps, TabPaneProps } from 'antd/lib/tabs'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {

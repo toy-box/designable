@@ -127,6 +127,9 @@ export const transformToSchema = async (
       schema['x-component-props'] = schema['x-component-props'] || {}
       schema['x-component-props'].field = {}
     }
+    if (node.props.dataSource) {
+      schema['x-component-props'].dataSource = node.props.dataSource
+    }
     return schema
   }
   return { form: clone(root.props), schema: await createSchema(root, schema) }
