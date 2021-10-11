@@ -48,6 +48,8 @@ import {
   loadMetaRepoList,
   loadMetaRepoListByValue,
   loadMetaSchema,
+  loadMetaData,
+  loadMetaDataList,
 } from '../service'
 
 const SchemaField = createSchemaField({
@@ -117,6 +119,8 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
           loadMetaRepoList,
           loadMetaRepoListByValue,
           loadMetaSchema,
+          loadMetaData,
+          loadMetaDataList,
         }}
       >
         <SchemaField schema={schema} />

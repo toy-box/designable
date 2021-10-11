@@ -61,6 +61,42 @@ const departmentSchema = {
   },
 }
 
+const userData = [
+  {
+    id: 'user-1',
+    name: '李强',
+    department: '综合部',
+  },
+  {
+    id: 'user-2',
+    name: '罗远明',
+    department: '综合部',
+  },
+  {
+    id: 'user-3',
+    name: '廖琴',
+    department: '开发部',
+  },
+  {
+    id: 'user-4',
+    name: '黄轩',
+    department: '开发部',
+  },
+]
+
+const departmentData = [
+  {
+    id: 'dep-1',
+    name: '综合部',
+    manager: '李强',
+  },
+  {
+    id: 'dep-2',
+    name: '开发部',
+    department: '黄轩',
+  },
+]
+
 const schemas = {
   user: userSchema,
   department: departmentSchema,
@@ -82,7 +118,7 @@ export const loadMetaRepoListByValue = (ids: string[] | string = []) => {
       } else {
         resolve(repolist.find((repo) => repo.value === ids))
       }
-    }, 1000)
+    }, 300)
   })
 }
 
@@ -90,6 +126,40 @@ export const loadMetaSchema = (key: string) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(schemas[key])
-    }, 500)
+    }, 300)
+  })
+}
+
+export const loadMetaData = (objectKey: string, id: string) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      switch (objectKey) {
+        case 'user':
+          resolve(userData.find((user) => user.id === id))
+        case 'department':
+          resolve(departmentData.find((department) => department.id === id))
+        default:
+          reject('404')
+      }
+    }, 300)
+  })
+}
+
+export const loadMetaDataList = (
+  objectKey: string,
+  pageable: any,
+  filter: any
+) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      switch (objectKey) {
+        case 'user':
+          resolve(userData)
+        case 'department':
+          resolve(departmentData)
+        default:
+          reject('404')
+      }
+    }, 300)
   })
 }
