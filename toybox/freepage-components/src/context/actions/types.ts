@@ -2,11 +2,24 @@ export enum ActionType {
   Page = 'page',
   Link = 'link',
   Autoflow = 'autoflow',
-  Others = 'others',
+  MetaRepository = 'metaRepository',
+}
+
+export interface Confirm {
+  title: string
+  message: string
+  submit: string
+  cancel: string
+  danger?: boolean
 }
 
 export interface IAction {
   type: ActionType
+  confirm?: Confirm
+  pageAction?: PageAction
+  linkAction?: LinkAction
+  autoflowAction?: AutoflowAction
+  metaRepositoryAction?: MetaRepositoryAction
 }
 
 export type MetaParams = {
@@ -14,21 +27,27 @@ export type MetaParams = {
   primaryValue?: string
 }
 
-export interface PageAction extends IAction {
+export interface PageAction {
   pageId: string
   metaParams?: MetaParams
 }
 
 export type LinkType = '_blank' | '_self'
 
-export interface LinkAction extends IAction {
+export interface LinkAction {
   url: string
   target: LinkType
 }
 
-export interface AutoflowAction extends IAction {
+export interface AutoflowAction {
   autoflowId: string
 }
+
+export interface MetaRepositoryAction {
+  type: MetaRepositoryType
+}
+
+export type MetaRepositoryType = 'save' | 'delete'
 
 export interface IActionContext {
   linkHandle: (linkAction: LinkAction) => void
