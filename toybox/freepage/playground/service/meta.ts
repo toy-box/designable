@@ -3,6 +3,7 @@
 // loadMetaRepoListByValue: (ids: string[]) => Promise<MetaRepo[]>
 // loadMataData: (objectKey: string, id: string) => Promise<any>
 // loadMetaDataList: (objectKey: string, filter: ILogicFilter) => Promise<any>
+import { IPageResult } from '@toy-box/meta-components/es/components/index-view/types'
 
 const repolist = [
   {
@@ -157,6 +158,35 @@ export const loadMetaDataList = (
           resolve(userData)
         case 'department':
           resolve(departmentData)
+        default:
+          reject('404')
+      }
+    }, 300)
+  })
+}
+
+export const loadMetaDataPageable = (
+  objectKey: string,
+  pageable: any,
+  filter: any
+): Promise<IPageResult> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      switch (objectKey) {
+        case 'user':
+          resolve({
+            list: userData,
+            current: 1,
+            pageSize: 10,
+            total: userData.length,
+          })
+        case 'department':
+          resolve({
+            list: departmentData,
+            current: 1,
+            pageSize: 10,
+            total: departmentData.length,
+          })
         default:
           reject('404')
       }

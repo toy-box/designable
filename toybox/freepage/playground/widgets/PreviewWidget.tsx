@@ -50,6 +50,7 @@ import {
   loadMetaSchema,
   loadMetaData,
   loadMetaDataList,
+  loadMetaDataPageable,
 } from '../service'
 
 const SchemaField = createSchemaField({
@@ -121,6 +122,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
           loadMetaSchema,
           loadMetaData,
           loadMetaDataList,
+          loadMetaDataPageable,
         }}
       >
         <SchemaField schema={schema} />

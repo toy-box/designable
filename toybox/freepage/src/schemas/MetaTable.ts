@@ -25,10 +25,15 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
-    field: {
+    key: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'DataGridFieldBindSetter',
+    },
+    width: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'SizeInput',
     },
   },
 }

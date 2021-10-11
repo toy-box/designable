@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spin } from 'antd'
-import { useField, useFieldSchema, observer } from '@formily/react'
+import { useFieldSchema, observer } from '@formily/react'
 import { Schema } from '@formily/json-schema'
 import {
   DataGrid as ToyboxDataGrid,
@@ -10,7 +10,6 @@ import {
 } from '@toy-box/meta-components'
 import { IObjectMeta } from '@toy-box/meta-schema'
 import { ToolBar } from '@toy-box/toybox-ui'
-import { convertChildrenToData, toArray } from './convert'
 import { useMeta } from '../hooks'
 import { IColumnVisible } from '@toy-box/meta-components/es/components/meta-table/interface'
 
@@ -37,7 +36,7 @@ const useDataGridColumnSource = () => {
     if (isMetaTableComponent(schema)) {
       return schema.reduceProperties((buf: IColumnVisible[], schema) => {
         if (isMetaTableColumnComponent(schema)) {
-          const { fieldKey: key, ...others } = schema['x-component-props']
+          const { key, ...others } = schema['x-component-props']
           return buf.concat({
             key,
             visiable: true,
@@ -57,7 +56,7 @@ const useDataGridColumnSource = () => {
 
 export const DataGrid: ComposedDataGrid = observer(
   ({ className, style, dataSource, filterFields }) => {
-    const { loadMetaDataList, loadMetaSchema } = useMeta()
+    const { loadMetaDataPageable, loadMetaSchema } = useMeta()
     const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>(undefined)
     const visibleColumns = useDataGridColumnSource()
 
@@ -69,8 +68,13 @@ export const DataGrid: ComposedDataGrid = observer(
     }, [dataSource])
 
     const loadData = React.useCallback(
-      (pageable, filter) => {
-        return loadMetaDataList(objectMeta?.key, pageable, filter)
+      async (pageable, filter) => {
+        const data = await loadMetaDataPageable(
+          objectMeta?.key,
+          pageable,
+          filter
+        )
+        return data
       },
       [objectMeta?.key]
     )

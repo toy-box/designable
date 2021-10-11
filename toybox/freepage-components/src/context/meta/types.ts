@@ -1,4 +1,14 @@
-import { IObjectMeta, ILogicFilter } from '@toy-box/meta-schema'
+import {
+  IObjectMeta,
+  ILogicFilter,
+  IMetaPageableResult,
+  IMetaListResult,
+  IMetaObjectResult,
+} from '@toy-box/meta-schema'
+import {
+  IPageResult,
+  IPageable,
+} from '@toy-box/meta-components/es/components/index-view/types'
 
 export interface MetaRepo {
   id: string
@@ -15,10 +25,14 @@ export interface IMetaSchemaOption {
 }
 
 export interface IMetaDataOption {
-  loadMataData: (objectKey: string, id: string) => Promise<any>
+  loadMataData: (objectKey: string, id: string) => Promise<IMetaObjectResult>
   loadMetaDataList: (
     objectKey: string,
-    pageable: any,
-    filter: any
-  ) => Promise<any>
+    filter: ILogicFilter
+  ) => Promise<IMetaListResult>
+  loadMetaDataPageable: (
+    objectKey: string,
+    pageable: IPageable,
+    filter: ILogicFilter
+  ) => Promise<IPageResult>
 }
