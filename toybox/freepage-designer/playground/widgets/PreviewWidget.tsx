@@ -112,7 +112,6 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
       }
     )
   }, [props.tree])
-  // const { form: formProps, schema } = await transformToSchema(props.tree)
   return (
     <Form {...formProps} form={form}>
       <MetaContext.Provider

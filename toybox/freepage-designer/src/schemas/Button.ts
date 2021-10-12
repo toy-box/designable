@@ -1,4 +1,5 @@
 import { ISchema } from '@formily/react'
+import { ActionType } from '@toy-box/freepage-components'
 
 export const Button: ISchema = {
   type: 'object',
@@ -8,7 +9,12 @@ export const Button: ISchema = {
       properties: {
         type: {
           type: 'string',
-          enum: ['', 'page', 'autoflow', 'others'],
+          enum: [
+            ActionType.Nothing,
+            ActionType.Page,
+            ActionType.Autoflow,
+            ActionType.MetaRepository,
+          ],
           default: '',
           'x-decorator': 'FormItem',
           'x-component': 'Radio.Group',
@@ -18,6 +24,21 @@ export const Button: ISchema = {
           },
           'x-decorator-props': {
             layout: 'vertical',
+          },
+        },
+        pageAction: {
+          type: 'object',
+          properties: {
+            page: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'PageInput',
+            },
+            params: {
+              type: 'array',
+              'x-decorator': 'FormItem',
+              'x-component': 'PageParamsSetter',
+            },
           },
         },
       },

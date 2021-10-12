@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spin } from 'antd'
-import { useFieldSchema, observer } from '@formily/react'
+import { useFieldSchema, observer, RecursionField } from '@formily/react'
 import { Schema } from '@formily/json-schema'
 import {
   DataGrid as ToyboxDataGrid,
@@ -28,6 +28,17 @@ const isMetaTableComponent = (schema: Schema) => {
 
 const isMetaTableColumnComponent = (schema: Schema) => {
   return schema['x-component']?.indexOf('MetaTable.Column') > -1
+}
+
+const isToobarComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('Space') > -1
+}
+
+const useLeftToolbarSource = () => {
+  const schema = useFieldSchema()
+  return schema
+    .mapProperties((itemSchema) => itemSchema)
+    .find((itemSchema) => isToobarComponent(itemSchema))
 }
 
 const useDataGridColumnSource = () => {
@@ -59,6 +70,7 @@ export const DataGrid: ComposedDataGrid = observer(
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
     const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>(undefined)
     const visibleColumns = useDataGridColumnSource()
+    const leftToolbarSchema = useLeftToolbarSource()
 
     React.useEffect(() => {
       loadMetaSchema &&
@@ -95,6 +107,7 @@ export const DataGrid: ComposedDataGrid = observer(
       >
         <ToolBar>
           <FilterPanel fieldMetas={fieldMetas} />
+          {leftToolbarSchema && <RecursionField schema={leftToolbarSchema} />}
         </ToolBar>
         <FilterDisplay />
         <TableStatusBar />

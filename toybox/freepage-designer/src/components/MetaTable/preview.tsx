@@ -69,6 +69,7 @@ export const MetaTable: DnFC = observer((props) => {
               </span>
             }
             className={`data-id:${node.id}`}
+            width={node.props['x-component-props']?.width}
           />
         )
       })}

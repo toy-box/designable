@@ -1,4 +1,5 @@
 export enum ActionType {
+  Nothing = '',
   Page = 'page',
   Link = 'link',
   Autoflow = 'autoflow',
@@ -22,14 +23,14 @@ export interface IAction {
   metaRepositoryAction?: MetaRepositoryAction
 }
 
-export type MetaParams = {
-  metaObject?: any
-  primaryValue?: string
+export type PageParameter = {
+  parameterkey: string
+  value?: any
 }
 
 export interface PageAction {
-  pageId: string
-  metaParams?: MetaParams
+  page: string
+  params: PageParameter[]
 }
 
 export type LinkType = '_blank' | '_self'

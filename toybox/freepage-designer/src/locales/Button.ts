@@ -1,3 +1,5 @@
+import { ActionType } from '@toy-box/freepage-components'
+
 export const Button = {
   'zh-CN': {
     title: '按钮',
@@ -8,11 +10,16 @@ export const Button = {
           type: {
             title: '点击操作',
             dataSource: [
-              { label: '无', value: '' },
-              { label: '页面', value: 'page' },
-              { label: '自动流', value: 'autoflow' },
-              { label: '其他', value: 'others' },
+              { label: '无', value: ActionType.Nothing },
+              { label: '页面', value: ActionType.Page },
+              { label: '链接', value: ActionType.Link },
+              { label: '自动流', value: ActionType.Autoflow },
+              { label: '数据操作', value: ActionType.MetaRepository },
             ],
+          },
+          pageAction: {
+            page: '页面',
+            params: '页面参数',
           },
         },
         type: {
@@ -44,11 +51,16 @@ export const Button = {
           type: {
             title: 'Click Action',
             dataSource: [
-              { label: 'Nothing', value: '' },
-              { label: 'Page', value: 'page' },
-              { label: 'Autoflow', value: 'autoflow' },
-              { label: 'Others', value: 'others' },
+              { label: 'Nothing', value: ActionType.Nothing },
+              { label: 'Page', value: ActionType.Page },
+              { label: 'Link', value: ActionType.Link },
+              { label: 'Autoflow', value: ActionType.Autoflow },
+              { label: 'Meta Data', value: ActionType.MetaRepository },
             ],
+          },
+          pageAction: {
+            page: 'Page',
+            params: 'Page Parameters',
           },
         },
         type: {
