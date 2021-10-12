@@ -1,8 +1,13 @@
-import { LinkAction, PageAction, AutoflowAction } from '../../types'
+import {
+  LinkAction,
+  PageAction,
+  AutoflowAction,
+  MetaRepositoryAction,
+} from '../../types'
 
 export interface IActionContext {
-  linkHandle: (linkAction: LinkAction) => void
-  pageHandle: (pageAction: PageAction) => void
-  autoflowHandle: (autoflowAction: AutoflowAction) => Promise<any>
-  saveHandle: (refObjectKey: string, data: any) => Promise<any>
+  haneleLinkAction: (linkAction: LinkAction) => void
+  handlePageAction: (pageAction: PageAction) => void
+  handleAutoflowAction: (autoflowAction: AutoflowAction) => Promise<any>
+  handleMetaRepositoryAction: (metaAction: MetaRepositoryAction) => Promise<any>
 }

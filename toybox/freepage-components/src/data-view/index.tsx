@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { IObjectMeta } from '@toy-box/meta-schema'
+import { Field } from '@formily/core'
+import { IFieldMeta, IObjectMeta } from '@toy-box/meta-schema'
 import { observer, useField } from '@formily/react'
 import { pick } from '@toy-box/toybox-shared'
 import { useMeta, usePageParams } from '../hooks'
@@ -19,44 +20,60 @@ export type DataViewProps = {
   schemaOption?: SchemaOption
 }
 
+export type DataViewContextProps = {
+  dataValue: any
+  field: Field
+  metaSchema: IFieldMeta
+}
+
+export const DataViewContext = React.createContext(null)
+
 export const DataView: React.FC<DataViewProps> = observer(
   ({ className, style, schemaOption, children }) => {
     const { loadMataData, loadMetaSchema } = useMeta()
     const { metaParams } = usePageParams()
     const field = useField()
-    const [schema, setSchema] = useState<IObjectMeta>()
+    const [metaSchema, setMetaSchema] = useState<IObjectMeta>()
 
     useEffect(() => {
       if (schemaOption.type === 'repository' && loadMetaSchema) {
         loadMetaSchema(schemaOption?.repositoryId).then((metaSchema) => {
-          setSchema(metaSchema)
+          setMetaSchema(metaSchema)
         })
       } else if (schemaOption.type === 'raw') {
-        setSchema(schemaOption.schemaValue)
+        setMetaSchema(schemaOption.schemaValue)
       }
     }, [schemaOption, loadMetaSchema])
 
     useEffect(() => {
       if (metaParams.metaObject) {
         field.form.setValuesIn(field.path, metaParams.metaObject)
-      } else if ((schema.key, metaParams.primaryValue && loadMataData)) {
-        loadMataData(schema.key, metaParams.primaryValue).then((data) => {
+      } else if ((metaSchema.key, metaParams.primaryValue && loadMataData)) {
+        loadMataData(metaSchema.key, metaParams.primaryValue).then((data) => {
           field.form.setValuesIn(field.path, data)
         })
       }
-    }, [schema, metaParams, loadMataData])
+    }, [metaSchema, metaParams, loadMataData])
 
     const dataValue = useMemo(() => {
       pick(
         field.form.getValuesIn(field.path),
-        Object.keys(schema?.properties || {})
+        Object.keys(metaSchema?.properties || {})
       )
-    }, [field, schema])
+    }, [field, metaSchema])
 
     return (
-      <div className={className} style={style}>
-        {children}
-      </div>
+      <DataViewContext.Provider
+        value={{
+          dataValue,
+          field,
+          metaSchema,
+        }}
+      >
+        <div className={className} style={style}>
+          {children}
+        </div>
+      </DataViewContext.Provider>
     )
   }
 )

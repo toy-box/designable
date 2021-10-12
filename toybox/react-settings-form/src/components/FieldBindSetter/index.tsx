@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { Select } from 'antd'
 import { observer, useField } from '@formily/react'
-import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
 import { useDataView } from '../../hooks'
 
 export interface IFieldBindSetterProps {
