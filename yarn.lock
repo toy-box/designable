@@ -2540,16 +2540,16 @@
     antlr4ts "^0.5.0-alpha.4"
     lodash.uniq "^4.5.0"
 
-"@toy-box/meta-components@^2.0.10":
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.10.tgz#b9689a99944268df5212a585cb618adcd44ef90f"
-  integrity sha512-juAIx8fKaQnJIDaL/FeNpyhCfKFvmgal9GadI+/2giQcuvQR0GR2tNfP1kWq9PTAfXG55ZL+pUZA3tmy0LryRQ==
+"@toy-box/meta-components@^2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.12.tgz#052068d9ccb28001dc2dbe2f71e4b3d19c56908d"
+  integrity sha512-uV8kvMZg7tQinXqKWn8cYkW2EAkjm8z35IefolJraZv6I6mJhrXi4iV31TOKFykBIrJNHchxO30VGb+a/XAl3Q==
   dependencies:
     "@ahooksjs/antd-table" "^0.2.3"
     "@airclass/icons" "^4.3.4"
     "@toy-box/meta-schema" "^2.0.3"
     "@toy-box/toybox-shared" "^2.0.3"
-    "@toy-box/toybox-ui" "^2.0.9"
+    "@toy-box/toybox-ui" "^2.0.12"
     ahooks "^2.10.6"
     hoist-non-react-statics "^3.3.1"
     immutability-helper "^3.1.1"
@@ -2569,10 +2569,10 @@
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.3.tgz#26a3fe80966280bdfdd5a7a948c8fa1bd00c251b"
   integrity sha512-gueVS50djgxd9PomomN1mMpvnp+5AUlnG3mYKlg/AV1yYwXNbstlmT0hV47nqXlQf5UNtxI9z3CnyOJkRXZtMQ==
 
-"@toy-box/toybox-ui@^2.0.9":
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.9.tgz#2b44cbd06a8bb8d63ecb2641f9e402f850cf0fb6"
-  integrity sha512-hHDaqsGu2u68xEk9evrSU1f1+gTZWV8ArpSyRYm0/bPLU74VlPnslYf70MiyLJ7wOmdq5gqYugZbh2RPsoYBkQ==
+"@toy-box/toybox-ui@^2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.12.tgz#c4d04aec41f19b9dc042c0b7f6615e6fcbe3ef5b"
+  integrity sha512-iyiguJGcMChWVWzipknTgqu1+2suosrOjAnBSd0rwYYUJ73jIchWi3uvo4vddnUmIKXbcIfMhcOKH9J2YP335Q==
   dependencies:
     "@types/react-beautiful-dnd" "^13.0.0"
     lodash.debounce "^4.0.8"

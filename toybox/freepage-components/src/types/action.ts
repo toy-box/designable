@@ -25,9 +25,20 @@ export interface Action {
   metaRepositoryAction?: MetaRepositoryAction
 }
 
+export enum ParameterValuePattern {
+  Value = 'value',
+  DataView = 'dataView',
+}
+
+export interface ParameterValue {
+  paramKey: string
+  valuePattern: string
+  target: string
+}
+
 export interface PageAction {
   page: string
-  params: PageParameter[]
+  params: ParameterValue[]
 }
 
 export type LinkType = '_blank' | '_self'

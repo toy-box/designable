@@ -26,7 +26,7 @@ export type DataViewContextProps = {
   metaSchema: IFieldMeta
 }
 
-export const DataViewContext = React.createContext(null)
+export const DataViewContext = React.createContext<DataViewContextProps>(null)
 
 export const DataView: React.FC<DataViewProps> = observer(
   ({ className, style, schemaOption, children }) => {
