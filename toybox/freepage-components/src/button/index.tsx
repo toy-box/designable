@@ -20,7 +20,7 @@ export const Button: React.FC<ButtonType> = ({
       case ActionType.Link:
         break
       case ActionType.Page:
-        // console.log('params', getParams(action))
+        console.warn('params', getParams(action))
         break
       case ActionType.Autoflow:
         break

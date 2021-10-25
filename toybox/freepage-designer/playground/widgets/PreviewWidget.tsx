@@ -2,7 +2,6 @@ import React, { useMemo } from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField, Schema } from '@formily/react'
 import {
-  Form,
   Space,
   FormGrid,
   FormLayout,
@@ -26,6 +25,7 @@ import {
 } from '@formily/antd'
 import {
   MetaContext,
+  Page,
   Button,
   Text,
   Image,
@@ -44,7 +44,6 @@ import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
 import { transformToSchema, reactionPatches } from '../../src'
 import {
-  saveSchema,
   loadMetaRepoList,
   loadMetaRepoListByValue,
   loadMetaSchema,
@@ -113,7 +112,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     )
   }, [props.tree])
   return (
-    <Form {...formProps} form={form}>
+    <Page {...formProps} form={form}>
       <MetaContext.Provider
         value={{
           loadMetaRepoList,
@@ -126,6 +125,6 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
       >
         <SchemaField schema={schema} />
       </MetaContext.Provider>
-    </Form>
+    </Page>
   )
 }

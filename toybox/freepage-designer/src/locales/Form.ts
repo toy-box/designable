@@ -3,7 +3,7 @@ import { Component } from './Component'
 
 export const Form = createLocales(Component, {
   'zh-CN': {
-    title: '表单',
+    title: '页面',
     settings: {
       labelCol: '标签网格宽度',
       wrapperCol: '组件网格宽度',
@@ -37,7 +37,7 @@ export const Form = createLocales(Component, {
     },
   },
   'en-US': {
-    title: 'Form',
+    title: 'Page',
     settings: {
       labelCol: 'Label Col',
       wrapperCol: 'Wrapper Col',

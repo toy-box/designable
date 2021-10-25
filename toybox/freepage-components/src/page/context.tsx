@@ -1,16 +1,11 @@
 import React from 'react'
-import { MetaParams } from '../context/actions/types'
-
-export type PageParams = {
-  metaParams: MetaParams
-}
 
 export type PageContextProp = {
   title: string
   name: string
   allowRoles?: string[]
   layout?: string
-  params?: PageParams
+  params?: Record<string, any>
 }
 
 export const PageContext = React.createContext<PageContextProp>(null)
