@@ -1,4 +1,5 @@
 export * from './useActions'
 export * from './useMeta'
 export * from './usePage'
+export * from './usePageParams'
 export * from './useDataView'

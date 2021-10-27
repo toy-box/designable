@@ -11,6 +11,13 @@ export const useDataView = () => {
     .getParents()
     .find((node) => node.props['x-component'] === 'DataView')
 
+  const metaOption = useMemo(
+    () =>
+      dataView?.props?.metaOption ||
+      dataView?.props?.['x-component-props']?.metaOption,
+    [dataView]
+  )
+
   const dataParent = useMemo(
     () =>
       node
@@ -25,26 +32,17 @@ export const useDataView = () => {
     if (dataView == null) {
       setSchema(null)
     } else {
-      if (dataView.props?.dataSource?.type === 'raw') {
-        setSchema(dataView.props.dataSource.schema)
-      }
-      if (
-        dataView.props?.dataSource?.type === 'repository' &&
-        dataView.props?.dataSource.repository
-      ) {
-        meta
-          .loadMetaSchema(dataView.props.dataSource.repository)
-          .then((objectMeta) => {
-            setSchema(objectMeta)
-          })
+      if (metaOption?.type === 'schema') {
+        setSchema(metaOption.schema)
+      } else if (metaOption?.type === 'entity' && metaOption?.entityId) {
+        meta.loadMetaSchema(metaOption.entityId).then((objectMeta) => {
+          setSchema(objectMeta)
+        })
+      } else {
+        setSchema(undefined)
       }
     }
-  }, [
-    dataView,
-    dataView?.props?.dataSource?.type,
-    dataView?.props?.dataSource?.repository,
-    meta,
-  ])
+  }, [dataView, metaOption, meta])
 
   const attributes = useMemo(() => {
     if (dataView == null || schema == null) {

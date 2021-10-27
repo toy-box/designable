@@ -43,7 +43,7 @@ Form.Behavior = createBehavior({
       propsSchema: {
         type: 'object',
         properties: {
-          ...(AllSchemas.FormLayout.properties as any),
+          ...(AllSchemas.Page.properties as any),
           style: AllSchemas.CSSStyle,
         },
       },

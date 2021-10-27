@@ -4,21 +4,33 @@ export const DataView = {
     settings: {
       'x-component-props': {
         name: '名称',
-        type: {
-          title: '数据源类型',
-          dataSource: [
-            {
-              label: '业务对象',
-              value: 'repository',
-            },
-            {
-              label: '原始数据',
-              value: 'raw',
-            },
-          ],
+        metaOption: {
+          type: {
+            title: '数据模型',
+            dataSource: [
+              {
+                label: '业务对象',
+                value: 'repository',
+              },
+              {
+                label: '原始数据',
+                value: 'raw',
+              },
+            ],
+          },
+          scheam: 'Schema',
+          repository: '业务对象',
         },
-        scheam: 'Schema',
-        repository: '业务对象',
+        dataValueSource: {
+          type: {
+            title: '数据来源类型',
+            dataSource: [
+              { label: '页面参数ID', value: 'paramId' },
+              { label: '页面参数值', value: 'paramValue' },
+            ],
+          },
+          path: '数据来源',
+        },
       },
     },
   },
@@ -26,22 +38,34 @@ export const DataView = {
     title: 'DataView',
     settings: {
       'x-component-props': {
-        name: '名称',
-        type: {
-          title: 'DataSource Type',
-          dataSource: [
-            {
-              label: 'Repository',
-              value: 'repository',
-            },
-            {
-              label: 'Raw Schema',
-              value: 'raw',
-            },
-          ],
+        name: 'Title',
+        metaOption: {
+          type: {
+            title: 'Meta',
+            dataSource: [
+              {
+                label: 'Meta Repository',
+                value: 'repository',
+              },
+              {
+                label: 'Meta Schema',
+                value: 'schema',
+              },
+            ],
+          },
+          scheam: 'Schema',
+          repository: 'Repository',
         },
-        scheam: 'Schema',
-        repository: 'Repository Object',
+        dataValueSource: {
+          type: {
+            title: 'DataSource Type',
+            dataSource: [
+              { label: 'Page Param ID', value: 'paramId' },
+              { label: 'Page Param Value', value: 'paramValue' },
+            ],
+          },
+          path: 'DataSource',
+        },
       },
     },
   },

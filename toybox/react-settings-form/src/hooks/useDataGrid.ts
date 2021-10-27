@@ -12,20 +12,27 @@ export const useDataGrid = (dataGridNode?: TreeNode) => {
     dataGridNode ||
     node.getParents().find((node) => node.props['x-component'] === 'DataGrid')
 
+  const metaOption = useMemo(
+    () =>
+      dataGrid?.props?.metaOption ||
+      dataGrid?.props?.['x-component-props']?.metaOption,
+    [dataGrid]
+  )
+
   useEffect(() => {
     if (dataGrid == null) {
       setSchema(null)
     }
-    if (dataGrid.props?.dataSource?.repository == null) {
-      setSchema(null)
+    if (metaOption?.type == 'schema') {
+      setSchema(metaOption.schema)
+    } else if (metaOption?.type == 'entity') {
+      meta.loadMetaSchema(metaOption.entityId).then((objectMeta) => {
+        setSchema(objectMeta)
+      })
     } else {
-      meta
-        .loadMetaSchema(dataGrid.props.dataSource.repository)
-        .then((objectMeta) => {
-          setSchema(objectMeta)
-        })
+      setSchema(undefined)
     }
-  }, [dataGrid, dataGrid?.props?.dataSource?.repository, meta])
+  }, [dataGrid, metaOption, meta])
 
   const attributes = useMemo(() => {
     if (schema == null) {

@@ -4,7 +4,3 @@ import { PageContext } from '../page/context'
 export const usePage = () => {
   return React.useContext(PageContext)
 }
-
-export const usePageParams = () => {
-  return usePage().params
-}

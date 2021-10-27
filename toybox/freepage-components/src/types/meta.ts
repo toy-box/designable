@@ -22,7 +22,7 @@ export interface IMetaSchemaOption {
 }
 
 export interface IMetaDataOption {
-  loadMataData: (objectKey: string, id: string) => Promise<IMetaObjectResult>
+  loadMetaData: (objectKey: string, id: string) => Promise<IMetaObjectResult>
   loadMetaDataList: (
     objectKey: string,
     filter: ILogicFilter
