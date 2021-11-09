@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import { useMeta } from '@toy-box/freepage-components'
-import { useScope } from './useScope'
 import { TreeNode } from '@designable/core/src'
+import { useNode } from './useNode'
 
 export const useDataGrid = (dataGridNode?: TreeNode) => {
-  const { node } = useScope()
+  const node = useNode()
   const meta = useMeta()
   const [schema, setSchema] = useState<IFieldMeta>()
   const dataGrid =

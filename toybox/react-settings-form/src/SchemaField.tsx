@@ -46,6 +46,8 @@ import {
   DataGridFieldBindSetter,
   FieldPickSetter,
   ParamsSetter,
+  ParamsBindSetter,
+  PageInput,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -94,5 +96,7 @@ export const SchemaField = createSchemaField({
     DataGridFieldBindSetter,
     FieldPickSetter,
     ParamsSetter,
+    ParamsBindSetter,
+    PageInput,
   },
 })

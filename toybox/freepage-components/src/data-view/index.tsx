@@ -80,9 +80,7 @@ export const DataView: React.FC<DataViewProps> = observer(
     }, [dataValueSource, pageParams, field])
 
     useEffect(() => {
-      console.warn('effect', metaSchema, objectId)
       if (metaSchema?.key && objectId && loadMetaData) {
-        console.warn('loadMetaData', metaSchema.key, objectId)
         loadMetaData(metaSchema.key, objectId).then((data) => {
           field.setValue(data)
         })

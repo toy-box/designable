@@ -1,12 +1,13 @@
 import { useEffect, useState, useMemo } from 'react'
 import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
 import { useMeta } from '@toy-box/freepage-components'
-import { useScope } from './useScope'
+import { useNode } from './useNode'
 
 export const useDataView = () => {
-  const { node } = useScope()
+  const node = useNode()
   const meta = useMeta()
   const [schema, setSchema] = useState<IFieldMeta>()
+
   const dataView = node
     .getParents()
     .find((node) => node.props['x-component'] === 'DataView')
@@ -91,6 +92,9 @@ const fetchMeta = (path: string[], meta: IFieldMeta) => {
 }
 
 const fitField = (field: IFieldMeta, node) => {
+  if (node.props.type === 'void') {
+    return true
+  }
   if (node.props.type === 'object') {
     return field.type === MetaValueType.OBJECT
   }

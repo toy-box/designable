@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button as OrgButton, IButtonProps } from '@toy-box/toybox-ui'
-import { Action, ActionType, ParameterValue } from '../types'
+import { Action, ActionType, ParamBind } from '../types'
 import { useActions, useDataView } from '../hooks'
 
 export type ButtonType = Pick<IButtonProps, 'onClick'> & {
@@ -20,7 +20,7 @@ export const Button: React.FC<ButtonType> = ({
       case ActionType.Link:
         break
       case ActionType.Page:
-        console.warn('params', getParams(action))
+        actions.handlePageAction(action.pageAction)
         break
       case ActionType.Autoflow:
         break
@@ -30,9 +30,9 @@ export const Button: React.FC<ButtonType> = ({
   }
 
   const getParams = (action: Action) => {
-    const params = [] as ParameterValue[]
+    const params = [] as ParamBind[]
     ;(action.pageAction.params || []).forEach((param) => {
-      params.push(dataView.dataValue[param.target])
+      params.push(dataView.dataValue[param.path])
     })
     return params
   }

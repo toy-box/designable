@@ -1,3 +1,3 @@
-import { IMetaSchemaOption, IMetaDataOption } from '../../types'
+import { IMetaSchemaOption, IMetaDataOption, IPageOption } from '../../types'
 
-export type MetaContextProps = IMetaSchemaOption & IMetaDataOption
+export type MetaContextProps = IMetaSchemaOption & IMetaDataOption & IPageOption

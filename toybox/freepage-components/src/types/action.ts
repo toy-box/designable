@@ -1,4 +1,4 @@
-import { PageParameter } from './page'
+import { MetaValueType } from '@toy-box/meta-schema'
 
 export enum ActionType {
   Nothing = '',
@@ -25,20 +25,16 @@ export interface Action {
   metaRepositoryAction?: MetaRepositoryAction
 }
 
-export enum ParameterValuePattern {
-  Value = 'value',
-  DataView = 'dataView',
-}
+export type ParamValueType = MetaValueType
 
-export interface ParameterValue {
-  paramKey: string
-  valuePattern: string
-  target: string
+export type ParamBind = {
+  key?: string
+  path?: string
 }
 
 export interface PageAction {
-  page: string
-  params: ParameterValue[]
+  pageId: string
+  params: ParamBind[]
 }
 
 export type LinkType = '_blank' | '_self'

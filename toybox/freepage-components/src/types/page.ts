@@ -14,3 +14,14 @@ export interface PageParameter {
   metaSchema?: IFieldMeta
   metaObject?: string
 }
+
+export interface Page {
+  id: string
+  name: string
+  params: PageParameter[]
+}
+export interface IPageOption {
+  loadPageList: (name?: string) => Promise<Page[]>
+  loadPage: (pageId: string) => Promise<Page>
+  loadPageByValue: (ids: string[]) => Promise<Page[]>
+}

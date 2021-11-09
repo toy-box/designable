@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react'
 import { Input, Select } from 'antd'
-import { CloseLine } from '@airclass/icons'
 import { MetaValueType } from '@toy-box/meta-schema'
-import { usePrefix } from '@toy-box/designable-react'
+import { usePrefix, IconWidget } from '@toy-box/designable-react'
 import cls from 'classnames'
 import './styles.less'
 
@@ -71,7 +70,11 @@ export const ParamInput: React.FC<ParamInputProps> = ({
           style={{ width: '40%' }}
         />
       </Input.Group>
-      <CloseLine className={`${prefix}__remove`} onClick={remove} />
+      <IconWidget
+        className={`${prefix}__remove`}
+        infer="Close"
+        onClick={remove}
+      />
     </div>
   )
 }

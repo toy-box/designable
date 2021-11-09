@@ -37,7 +37,10 @@ export const Button: ISchema = {
             params: {
               type: 'array',
               'x-decorator': 'FormItem',
-              'x-component': 'PageParamsValueSetter',
+              'x-component': 'ParamsBindSetter',
+              'x-decorator-props': {
+                layout: 'vertical',
+              },
             },
           },
         },

@@ -64,17 +64,17 @@ const departmentSchema = {
 
 const userData = [
   {
-    id: 'user-1',
+    id: 'user1',
     name: '李强',
     department: '综合部',
   },
   {
-    id: 'user-2',
+    id: 'user2',
     name: '罗远明',
     department: '综合部',
   },
   {
-    id: 'user-3',
+    id: 'user3',
     name: '廖琴',
     department: '开发部',
   },

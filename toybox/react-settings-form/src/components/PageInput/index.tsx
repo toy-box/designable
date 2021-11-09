@@ -3,12 +3,8 @@ import { Select } from '@toy-box/toybox-ui'
 import { useMeta } from '@toy-box/freepage-components'
 
 export const PageInput = (props) => {
-  const { loadMetaRepoList, loadMetaRepoListByValue } = useMeta()
+  const { loadPageList, loadPageByValue } = useMeta()
   return (
-    <Select
-      {...props}
-      remote={loadMetaRepoList}
-      remoteByValue={loadMetaRepoListByValue}
-    />
+    <Select {...props} remote={loadPageList} remoteByValue={loadPageByValue} />
   )
 }

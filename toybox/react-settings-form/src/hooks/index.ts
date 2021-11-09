@@ -1,3 +1,7 @@
 export * from './useScope'
+export * from './useNode'
 export * from './useDataGrid'
 export * from './useDataView'
+export * from './useRoot'
+export * from './useDataNodes'
+export * from './useAttributes'

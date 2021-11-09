@@ -5,7 +5,6 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
   properties: {
     columns: {
       type: 'void',
-      title: 'Columns',
       'x-decorator': 'FormItem',
       'x-component': 'TableColumnSetter',
       'x-decorator-props': {
@@ -13,6 +12,11 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
         wrapperAlign: 'left',
         wrapperWidth: '100%',
       },
+    },
+    isOperation: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
     },
   },
 }

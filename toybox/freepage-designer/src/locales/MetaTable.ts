@@ -4,6 +4,7 @@ export const MetaTable = {
     settings: {
       'x-component-props': {
         columns: '表格列',
+        isOperation: 'Row Operation',
       },
     },
   },
@@ -12,6 +13,7 @@ export const MetaTable = {
     settings: {
       'x-component-props': {
         columns: 'Columns',
+        isOperation: '行操作',
       },
     },
   },
