@@ -1,8 +1,3 @@
-// loadMetaRepoList: (name?: string) => Promise<MetaRepo[]>
-// loadMetaSchema: (objectKey: string) => Promise<IObjectMeta>
-// loadMetaRepoListByValue: (ids: string[]) => Promise<MetaRepo[]>
-// loadMataData: (objectKey: string, id: string) => Promise<any>
-// loadMetaDataList: (objectKey: string, filter: ILogicFilter) => Promise<any>
 import { IPageResult } from '@toy-box/meta-components/es/components/index-view/types'
 
 const repolist = [

@@ -43,6 +43,14 @@ export const Button: ISchema = {
               },
             },
           },
+          'x-reactions': {
+            dependencies: ['.type'],
+            fulfill: {
+              state: {
+                visible: '{{$deps[0] === "page"}}',
+              },
+            },
+          },
         },
       },
     },
