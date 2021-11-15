@@ -1,6 +1,6 @@
 import React from 'react'
 import { TreeNode } from '@designable/core'
-import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
+import { IFieldMeta } from '@toy-box/meta-schema'
 import { useMeta } from '@toy-box/freepage-components'
 import { useNode } from './useNode'
 import { useRoot } from './useRoot'
@@ -33,8 +33,8 @@ export const useDataNodes = () => {
           name: node.props.name,
           schema: metaOption.schema,
         })
-      } else if (metaOption?.type === 'entity' && metaOption?.entityId) {
-        const schema = await meta.loadMetaSchema(metaOption.entityId)
+      } else if (metaOption?.type === 'repository' && metaOption?.repository) {
+        const schema = await meta.loadMetaSchema(metaOption.repository)
         dataSchemas.push({
           name: node.props.name,
           schema,

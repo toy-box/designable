@@ -35,8 +35,8 @@ export const useDataView = () => {
     } else {
       if (metaOption?.type === 'schema') {
         setSchema(metaOption.schema)
-      } else if (metaOption?.type === 'entity' && metaOption?.entityId) {
-        meta.loadMetaSchema(metaOption.entityId).then((objectMeta) => {
+      } else if (metaOption?.type === 'repository' && metaOption?.repository) {
+        meta.loadMetaSchema(metaOption.repository).then((objectMeta) => {
           setSchema(objectMeta)
         })
       } else {

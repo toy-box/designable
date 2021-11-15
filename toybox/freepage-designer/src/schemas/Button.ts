@@ -1,5 +1,5 @@
 import { ISchema } from '@formily/react'
-import { ActionType } from '@toy-box/freepage-components'
+import { ActionType, LinkTarget } from '@toy-box/freepage-components'
 
 export const Button: ISchema = {
   type: 'object',
@@ -12,8 +12,8 @@ export const Button: ISchema = {
           enum: [
             ActionType.Nothing,
             ActionType.Page,
+            ActionType.Link,
             ActionType.Autoflow,
-            ActionType.MetaRepository,
           ],
           default: '',
           'x-decorator': 'FormItem',
@@ -43,14 +43,97 @@ export const Button: ISchema = {
               },
             },
           },
-          'x-reactions': {
-            dependencies: ['.type'],
-            fulfill: {
-              state: {
-                visible: '{{$deps[0] === "page"}}',
+          'x-reactions': [
+            {
+              dependencies: ['.type'],
+              fulfill: {
+                state: {
+                  visible: '{{$deps[0] === "page"}}',
+                },
               },
             },
+            {
+              dependencies: ['.type'],
+              when: '{{$deps[0] !== "page"}}',
+              fulfill: {
+                state: {
+                  value: undefined,
+                },
+              },
+            },
+          ],
+        },
+        linkAction: {
+          type: 'object',
+          properties: {
+            target: {
+              type: 'string',
+              enum: [LinkTarget.Blank, LinkTarget.Self],
+              default: LinkTarget.Blank,
+              'x-decorator': 'FormItem',
+              'x-component': 'Radio.Group',
+              'x-component-props': {
+                optionType: 'button',
+                buttonStyle: 'solid',
+              },
+              'x-decorator-props': {
+                layout: 'vertical',
+              },
+            },
+            url: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+            },
           },
+          'x-reactions': [
+            {
+              dependencies: ['.type'],
+              fulfill: {
+                state: {
+                  visible: '{{$deps[0] === "link"}}',
+                },
+              },
+            },
+            {
+              dependencies: ['.type'],
+              when: '{{$deps[0] !== "link"}}',
+              fulfill: {
+                state: {
+                  value: undefined,
+                },
+              },
+            },
+          ],
+        },
+        flowAction: {
+          type: 'object',
+          properties: {
+            autoflowId: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+            },
+          },
+          'x-reactions': [
+            {
+              dependencies: ['.type'],
+              fulfill: {
+                state: {
+                  visible: '{{$deps[0] === "flow"}}',
+                },
+              },
+            },
+            {
+              dependencies: ['.type'],
+              when: '{{$deps[0] !== "flow"}}',
+              fulfill: {
+                state: {
+                  value: undefined,
+                },
+              },
+            },
+          ],
         },
       },
     },

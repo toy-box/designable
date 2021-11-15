@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import { useMeta } from '@toy-box/freepage-components'
-import { TreeNode } from '@designable/core/src'
+import { TreeNode } from '@designable/core'
 import { useNode } from './useNode'
 
 export const useDataGrid = (dataGridNode?: TreeNode) => {
@@ -25,8 +25,8 @@ export const useDataGrid = (dataGridNode?: TreeNode) => {
     }
     if (metaOption?.type == 'schema') {
       setSchema(metaOption.schema)
-    } else if (metaOption?.type == 'entity') {
-      meta.loadMetaSchema(metaOption.entityId).then((objectMeta) => {
+    } else if (metaOption?.type == 'repository') {
+      meta.loadMetaSchema(metaOption.repository).then((objectMeta) => {
         setSchema(objectMeta)
       })
     } else {

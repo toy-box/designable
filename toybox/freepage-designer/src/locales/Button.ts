@@ -1,4 +1,4 @@
-import { ActionType } from '@toy-box/freepage-components'
+import { ActionType, LinkTarget } from '@toy-box/freepage-components'
 
 export const Button = {
   'zh-CN': {
@@ -14,12 +14,29 @@ export const Button = {
               { label: '页面', value: ActionType.Page },
               { label: '链接', value: ActionType.Link },
               { label: '自动流', value: ActionType.Autoflow },
-              { label: '数据操作', value: ActionType.MetaRepository },
             ],
           },
           pageAction: {
             page: '页面',
             params: '页面参数',
+          },
+          linkAction: {
+            target: {
+              title: '链接打开目标',
+              dataSource: [
+                {
+                  label: '新窗口',
+                  value: LinkTarget.Blank,
+                },
+                {
+                  label: '当前窗口',
+                  value: LinkTarget.Self,
+                },
+              ],
+            },
+            url: {
+              title: '链接地址',
+            },
           },
         },
         type: {
@@ -55,12 +72,29 @@ export const Button = {
               { label: 'Page', value: ActionType.Page },
               { label: 'Link', value: ActionType.Link },
               { label: 'Autoflow', value: ActionType.Autoflow },
-              { label: 'Meta Data', value: ActionType.MetaRepository },
             ],
           },
           pageAction: {
             page: 'Page',
             params: 'Page Parameters',
+          },
+          linkAction: {
+            target: {
+              title: 'Target',
+              dataSource: [
+                {
+                  label: 'Blank',
+                  value: LinkTarget.Blank,
+                },
+                {
+                  label: 'Self',
+                  value: LinkTarget.Self,
+                },
+              ],
+            },
+            url: {
+              title: 'URL',
+            },
           },
         },
         type: {

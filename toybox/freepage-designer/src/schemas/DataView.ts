@@ -8,8 +8,8 @@ export const DataView: ISchema = {
       properties: {
         type: {
           type: 'string',
-          enum: ['entity', 'schema'],
-          default: 'entity',
+          enum: ['repository', 'schema'],
+          default: 'repository',
           'x-decorator': 'FormItem',
           'x-component': 'Radio.Group',
           'x-component-props': {
@@ -44,7 +44,7 @@ export const DataView: ISchema = {
             },
           ],
         },
-        entityId: {
+        repository: {
           type: 'string',
           'x-decorator': 'FormItem',
           'x-component': 'RepositoryInput',
@@ -53,13 +53,13 @@ export const DataView: ISchema = {
               dependencies: ['.type'],
               fulfill: {
                 state: {
-                  visible: '{{$deps[0] === "entity"}}',
+                  visible: '{{$deps[0] === "repository"}}',
                 },
               },
             },
             {
               dependencies: ['.type'],
-              when: '{{$deps[0] !== "entity"}}',
+              when: '{{$deps[0] !== "repository"}}',
               fulfill: {
                 state: {
                   value: null,

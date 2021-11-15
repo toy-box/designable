@@ -8,6 +8,11 @@ export enum ActionType {
   MetaRepository = 'metaRepository',
 }
 
+export enum LinkTarget {
+  Blank = '_blank',
+  Self = '_self',
+}
+
 export interface Confirm {
   title: string
   message: string
@@ -37,11 +42,9 @@ export interface PageAction {
   params: ParamBind[]
 }
 
-export type LinkType = '_blank' | '_self'
-
 export interface LinkAction {
   url: string
-  target: LinkType
+  target: LinkTarget
 }
 
 export interface AutoflowAction {

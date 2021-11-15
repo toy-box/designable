@@ -5,19 +5,20 @@ import { observer, useField } from '@formily/react'
 import { pick } from '@toy-box/toybox-shared'
 import { useMeta, usePageParams } from '../hooks'
 
-export type SchemaType = 'schema' | 'entity'
+export type SchemaType = 'schema' | 'repository'
 
 export type SchemaOption = {
   type: SchemaType
   schema?: IFieldMeta
-  entityId?: string
+  repository?: string
 }
 
-export type DataValueSourceType =
-  | 'paramId'
-  | 'paramValue'
-  | 'formId'
-  | 'formValue'
+export enum DataValueSourceType {
+  ParamId = 'paramId', // Get Record ID from param
+  ParamValue = 'paramValue', // Get Record data from param
+  FormId = 'formId', // Get Recrod ID from form
+  FormValue = 'formValue', // Get Recrod data from form
+}
 
 export type DataValueSource = {
   type: DataValueSourceType
@@ -49,8 +50,8 @@ export const DataView: React.FC<DataViewProps> = observer(
     const [objectId, setObjectId] = useState<string>()
 
     useEffect(() => {
-      if (metaOption.type === 'entity' && loadMetaSchema) {
-        loadMetaSchema(metaOption?.entityId).then((metaSchema) => {
+      if (metaOption.type === 'repository' && loadMetaSchema) {
+        loadMetaSchema(metaOption?.repository).then((metaSchema) => {
           setMetaSchema(metaSchema)
         })
       } else if (metaOption.type === 'schema') {
@@ -60,17 +61,17 @@ export const DataView: React.FC<DataViewProps> = observer(
 
     useEffect(() => {
       switch (dataValueSource.type) {
-        case 'paramId':
+        case DataValueSourceType.ParamId:
           setObjectId(pageParams[dataValueSource.path])
           break
-        case 'paramValue':
+        case DataValueSourceType.ParamValue:
           field.setValue(pageParams[dataValueSource.path])
           setObjectId(undefined)
           break
-        case 'formId':
+        case DataValueSourceType.FormId:
           setObjectId(field.form.getValuesIn(dataValueSource.path))
           break
-        case 'formValue':
+        case DataValueSourceType.FormValue:
           field.setValue(field.form.getValuesIn(dataValueSource.path))
           setObjectId(undefined)
           break
