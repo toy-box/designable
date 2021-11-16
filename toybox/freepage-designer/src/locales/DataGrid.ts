@@ -4,21 +4,23 @@ export const DataGrid = {
     settings: {
       'x-component-props': {
         name: '名称',
-        type: {
-          title: '数据源类型',
-          dataSource: [
-            {
-              label: '业务对象',
-              value: 'repository',
-            },
-            {
-              label: '原始数据',
-              value: 'raw',
-            },
-          ],
+        metaOption: {
+          type: {
+            title: '数据模型',
+            dataSource: [
+              {
+                label: '业务对象',
+                value: 'repository',
+              },
+              {
+                label: '原始数据',
+                value: 'raw',
+              },
+            ],
+          },
+          scheam: 'Schema',
+          repository: '业务对象',
         },
-        scheam: 'Schema',
-        repository: '业务对象',
         columns: '表格列',
         filterFields: '筛选字段',
       },
@@ -28,22 +30,24 @@ export const DataGrid = {
     title: 'DataGrid',
     settings: {
       'x-component-props': {
-        name: '名称',
-        type: {
-          title: 'DataSource Type',
-          dataSource: [
-            {
-              label: 'Repository',
-              value: 'repository',
-            },
-            {
-              label: 'Raw Schema',
-              value: 'raw',
-            },
-          ],
+        name: 'Name',
+        metaOption: {
+          type: {
+            title: 'Meta',
+            dataSource: [
+              {
+                label: 'Meta Repository',
+                value: 'repository',
+              },
+              {
+                label: 'Meta Schema',
+                value: 'schema',
+              },
+            ],
+          },
+          scheam: 'Schema',
+          repository: 'Repository',
         },
-        scheam: 'Schema',
-        repository: 'Repository Object',
         columns: 'Columns',
         filterFields: 'Filter Fields',
       },

@@ -114,21 +114,18 @@ export const transformToSchema = async (
         .map((node) => node.props.name)
       path.push(field)
       // TODO: 修改 objectMeta获取的方式
-      const schemaType = dataView.props?.dataSource?.type
+      const metaOption = dataView.props?.['x-component-props']?.metaOption
       let metaSchema: IFieldMeta
-      if (schemaType === 'repository' && loadMetaSchema) {
-        metaSchema = await loadMetaSchema(dataView.props.dataSource.repository)
-      } else if (schemaType === 'raw') {
-        metaSchema = dataView.props.dataSource.schema
+      if (metaOption?.type === 'repository' && loadMetaSchema) {
+        metaSchema = await loadMetaSchema(metaOption.repository)
+      } else if (metaOption?.type === 'raw') {
+        metaSchema = metaOption.schema
       }
       schema['x-component-props'] = schema['x-component-props'] || {}
       schema['x-component-props'].field = fetchMeta(path, metaSchema) || {}
     } else {
       schema['x-component-props'] = schema['x-component-props'] || {}
       schema['x-component-props'].field = {}
-    }
-    if (node.props.dataSource) {
-      schema['x-component-props'].dataSource = node.props.dataSource
     }
     return schema
   }

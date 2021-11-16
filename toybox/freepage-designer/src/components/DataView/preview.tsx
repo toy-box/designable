@@ -46,7 +46,6 @@ DataView.Resource = createResource({
       componentName: 'Field',
       props: {
         type: 'object',
-        dataSource: {},
         'x-component': 'DataView',
       },
     },

@@ -9,6 +9,7 @@ import {
   IPageResult,
   IPageable,
 } from '@toy-box/meta-components/es/components/index-view/types'
+import { IFieldMeta } from '@toy-box/meta-schema'
 
 export interface MetaRepository {
   id: string
@@ -32,4 +33,12 @@ export interface IMetaDataOption {
     pageable: IPageable,
     filter: ILogicFilter
   ) => Promise<IPageResult>
+}
+
+export type SchemaType = 'schema' | 'repository'
+
+export type SchemaOption = {
+  type: SchemaType
+  schema?: IFieldMeta
+  repository?: string
 }

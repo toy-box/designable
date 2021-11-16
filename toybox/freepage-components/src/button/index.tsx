@@ -15,9 +15,11 @@ export const Button: React.FC<ButtonType> = ({
 }) => {
   const dataView = useDataView()
   const actions = useActions()
+
   const handleClick = () => {
     switch (action?.type) {
       case ActionType.Link:
+        actions.haneleLinkAction(action.linkAction)
         break
       case ActionType.Page:
         actions.handlePageAction(action.pageAction)

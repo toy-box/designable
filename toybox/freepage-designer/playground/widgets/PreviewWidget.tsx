@@ -24,6 +24,7 @@ import {
   Upload,
 } from '@formily/antd'
 import {
+  ActionContext,
   MetaContext,
   Page,
   Button,
@@ -50,6 +51,7 @@ import {
   loadMetaData,
   loadMetaDataList,
   loadMetaDataPageable,
+  haneleLinkAction,
 } from '../service'
 
 const SchemaField = createSchemaField({
@@ -113,18 +115,24 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   }, [props.tree])
   return (
     <Page {...formProps} form={form}>
-      <MetaContext.Provider
+      <ActionContext.Provider
         value={{
-          loadMetaRepoList,
-          loadMetaRepoListByValue,
-          loadMetaSchema,
-          loadMetaData,
-          loadMetaDataList,
-          loadMetaDataPageable,
+          haneleLinkAction,
         }}
       >
-        <SchemaField schema={schema} />
-      </MetaContext.Provider>
+        <MetaContext.Provider
+          value={{
+            loadMetaRepoList,
+            loadMetaRepoListByValue,
+            loadMetaSchema,
+            loadMetaData,
+            loadMetaDataList,
+            loadMetaDataPageable,
+          }}
+        >
+          <SchemaField schema={schema} />
+        </MetaContext.Provider>
+      </ActionContext.Provider>
     </Page>
   )
 }

@@ -3,15 +3,8 @@ import { Field } from '@formily/core'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import { observer, useField } from '@formily/react'
 import { pick } from '@toy-box/toybox-shared'
+import { SchemaOption } from '../types'
 import { useMeta, usePageParams } from '../hooks'
-
-export type SchemaType = 'schema' | 'repository'
-
-export type SchemaOption = {
-  type: SchemaType
-  schema?: IFieldMeta
-  repository?: string
-}
 
 export enum DataValueSourceType {
   ParamId = 'paramId', // Get Record ID from param

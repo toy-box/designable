@@ -10,13 +10,14 @@ import {
 } from '@toy-box/meta-components'
 import { IObjectMeta } from '@toy-box/meta-schema'
 import { ToolBar } from '@toy-box/toybox-ui'
-import { useMeta } from '../hooks'
 import { IColumnVisible } from '@toy-box/meta-components/es/components/meta-table/interface'
+import { SchemaOption } from '../types'
+import { useMeta } from '../hooks'
 
 export type DataGridProps = {
   className?: string
   style?: React.CSSProperties
-  dataSource?: any
+  metaOption?: SchemaOption
   filterFields?: string[]
 }
 
@@ -37,8 +38,8 @@ const isToobarComponent = (schema: Schema) => {
 const useLeftToolbarSource = () => {
   const schema = useFieldSchema()
   return schema
-    .mapProperties((itemSchema) => itemSchema)
-    .find((itemSchema) => isToobarComponent(itemSchema))
+    .mapProperties((schema, name) => ({ schema, name }))
+    .find((item) => isToobarComponent(item.schema))
 }
 
 const useDataGridColumnSource = () => {
@@ -66,7 +67,7 @@ const useDataGridColumnSource = () => {
 }
 
 export const DataGrid: ComposedDataGrid = observer(
-  ({ className, style, dataSource, filterFields }) => {
+  ({ className, style, metaOption, filterFields }) => {
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
     const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>(undefined)
     const visibleColumns = useDataGridColumnSource()
@@ -74,10 +75,10 @@ export const DataGrid: ComposedDataGrid = observer(
 
     React.useEffect(() => {
       loadMetaSchema &&
-        loadMetaSchema(dataSource.repository).then((data) => {
+        loadMetaSchema(metaOption.repository).then((data) => {
           setObjectMeta(data)
         })
-    }, [dataSource])
+    }, [metaOption])
 
     const loadData = React.useCallback(
       async (pageable, filter) => {
@@ -107,7 +108,12 @@ export const DataGrid: ComposedDataGrid = observer(
       >
         <ToolBar>
           <FilterPanel fieldMetas={fieldMetas} />
-          {leftToolbarSchema && <RecursionField schema={leftToolbarSchema} />}
+          {leftToolbarSchema && (
+            <RecursionField
+              schema={leftToolbarSchema.schema}
+              name={leftToolbarSchema.name}
+            />
+          )}
         </ToolBar>
         <FilterDisplay />
         <TableStatusBar />

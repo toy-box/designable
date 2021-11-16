@@ -213,6 +213,11 @@ export const createDataShourceSchema = (
         type: 'void',
         'x-component': 'CollapseItem',
         properties: {
+          name: {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'Input',
+          },
           visibility: {
             'x-component': 'VisibilitySetter',
           },
