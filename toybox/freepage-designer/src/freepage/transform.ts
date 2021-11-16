@@ -118,7 +118,7 @@ export const transformToSchema = async (
       let metaSchema: IFieldMeta
       if (metaOption?.type === 'repository' && loadMetaSchema) {
         metaSchema = await loadMetaSchema(metaOption.repository)
-      } else if (metaOption?.type === 'raw') {
+      } else if (metaOption?.type === 'schema') {
         metaSchema = metaOption.schema
       }
       schema['x-component-props'] = schema['x-component-props'] || {}

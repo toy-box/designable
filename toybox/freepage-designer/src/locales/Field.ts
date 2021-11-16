@@ -108,7 +108,7 @@ export const Field = {
             },
             {
               label: '原始数据',
-              value: 'raw',
+              value: 'schema',
             },
           ],
         },
@@ -241,8 +241,8 @@ export const Field = {
               value: 'repository',
             },
             {
-              label: 'Raw Schema',
-              value: 'raw',
+              label: 'Schema',
+              value: 'schema',
             },
           ],
         },

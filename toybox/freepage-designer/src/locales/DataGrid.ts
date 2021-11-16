@@ -14,7 +14,7 @@ export const DataGrid = {
               },
               {
                 label: '原始数据',
-                value: 'raw',
+                value: 'schema',
               },
             ],
           },

@@ -14,7 +14,7 @@ export const DataView = {
               },
               {
                 label: '原始数据',
-                value: 'raw',
+                value: 'schema',
               },
             ],
           },
