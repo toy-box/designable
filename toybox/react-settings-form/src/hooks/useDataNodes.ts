@@ -1,9 +1,11 @@
 import React from 'react'
 import { TreeNode } from '@designable/core'
-import { IFieldMeta } from '@toy-box/meta-schema'
+import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
 import { useMeta } from '@toy-box/freepage-components'
 import { useNode } from './useNode'
 import { useRoot } from './useRoot'
+import { useDataGrid } from './useDataGrid'
+import { useDataView } from './useDataView'
 
 const fetchDataNodes = (
   node: TreeNode,
@@ -19,32 +21,33 @@ const fetchDataNodes = (
   }, [])
 }
 
-const makeDataGridSelectedRowsMeta = (recordMeta: IFieldMeta) => {
+const makeDataGridSelectedRowsMeta = (recordMeta: IFieldMeta): IFieldMeta => {
   return {
     key: '$SelectedRows',
     type: 'array',
+    name: '$SelectedRows',
     items: {
       type: 'object',
-      properties: recordMeta,
+      properties: recordMeta.properties,
     },
   }
 }
 
-const makeDataGridSelectedKeysMeta = (recordMeta: IFieldMeta) => {
+const makeDataGridSelectedKeysMeta = (): IFieldMeta => {
   return {
     key: '$SelectedRowKeys',
-    type: 'array',
+    name: '$SelectedRowKeys',
+    type: MetaValueType.ARRAY,
     items: {
-      type: 'string',
+      type: MetaValueType.STRING,
     },
   }
 }
 
-const makeRowMeta = (recordMeta: IFieldMeta) => {
+const makeRowMeta = (recordMeta: IFieldMeta): IFieldMeta => {
   return {
+    ...recordMeta,
     key: '$Record',
-    type: 'object',
-    properties: recordMeta,
   }
 }
 
@@ -52,35 +55,51 @@ export const useDataNodes = () => {
   const meta = useMeta()
   const root = useRoot()
   const node = useNode()
-  const dataViews = fetchDataNodes(root, 'DataView')
-  const dataGrids = fetchDataNodes(root, 'DataGrid')
+  const { dataGrid } = useDataGrid()
+  const { dataView } = useDataView()
+  const isMetaTable = node.props['x-component'] === 'MetaTable'
 
   const [metas, setMetas] = React.useState<IFieldMeta[]>()
-  const fetchMeta = async (nodes: TreeNode[]) => {
-    const dataMetas = []
-    for (let i = 0; i < nodes.length; i += 1) {
-      const theNode = nodes[i]
+  const generateMeta = async (
+    dataGrid: TreeNode,
+    dataView: TreeNode,
+    isMetaTable: boolean
+  ) => {
+    const nodeMetas = []
+    if (dataView) {
       const metaOption =
-        theNode.props?.metaOption ||
-        theNode.props?.['x-component-props']?.metaOption
+        dataGrid.props?.metaOption ||
+        dataGrid.props?.['x-component-props']?.metaOption
       if (metaOption.type === 'schema') {
-        dataMetas.push({
-          name: theNode.props.name,
-          schema: metaOption.schema,
-        })
+        metas.push(metaOption.schema)
       } else if (metaOption?.type === 'repository' && metaOption?.repository) {
         const schema = await meta.loadMetaSchema(metaOption.repository)
-        dataMetas.push({
-          name: theNode.props.name,
-          schema,
-        })
+        metas.push(schema)
       }
     }
-    setMetas(dataMetas)
+    if (dataGrid) {
+      const metaOption =
+        dataGrid.props?.metaOption ||
+        dataGrid.props?.['x-component-props']?.metaOption
+      if (metaOption.type === 'schema') {
+        metas.push(makeDataGridSelectedRowsMeta(metaOption.schema))
+        if (isMetaTable) {
+          metas.push(makeRowMeta(metaOption.schema))
+        }
+      } else if (metaOption?.type === 'repository' && metaOption?.repository) {
+        const schema = await meta.loadMetaSchema(metaOption.repository)
+        metas.push(makeDataGridSelectedRowsMeta(schema))
+        if (isMetaTable) {
+          metas.push(makeRowMeta(schema))
+        }
+      }
+      metas.push(makeDataGridSelectedKeysMeta())
+    }
+    setMetas(metas)
   }
   React.useEffect(() => {
-    fetchMeta(dataViews)
-  }, [dataViews])
+    generateMeta(dataGrid, dataView, isMetaTable)
+  }, [dataGrid, dataView, isMetaTable])
 
   return fetchDataNodes(root, 'DataView')
 }
