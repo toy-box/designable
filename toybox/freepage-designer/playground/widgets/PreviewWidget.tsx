@@ -25,9 +25,10 @@ import {
 } from '@formily/antd'
 import {
   ActionContext,
+  Button,
+  Container,
   MetaContext,
   Page,
-  Button,
   Text,
   Image,
   DataView,
@@ -51,7 +52,7 @@ import {
   loadMetaData,
   loadMetaDataList,
   loadMetaDataPageable,
-  haneleLinkAction,
+  handleLinkAction,
 } from '../service'
 
 const SchemaField = createSchemaField({
@@ -92,6 +93,7 @@ const SchemaField = createSchemaField({
     Percent,
     Select,
     Divider,
+    Container,
     MetaTable: DataGrid.MetaTable,
   },
 })
@@ -117,7 +119,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     <Page {...formProps} form={form}>
       <ActionContext.Provider
         value={{
-          haneleLinkAction,
+          handleLinkAction,
         }}
       >
         <MetaContext.Provider

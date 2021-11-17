@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './Card'
+export * from './Container'
 export * from './Component'
 export * from './DataView'
 export * from './DatePicker'

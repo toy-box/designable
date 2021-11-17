@@ -21,6 +21,7 @@ import { Slider } from 'antd'
 import { Select as SelectPro } from '@toy-box/toybox-ui'
 import {
   SizeInput,
+  Container,
   ColorInput,
   ImageInput,
   BackgroundImageInput,
@@ -53,6 +54,7 @@ import {
 
 export const SchemaField = createSchemaField({
   components: {
+    Container,
     FormItem,
     CollapsePanelSetter,
     CollapseItem,

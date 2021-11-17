@@ -6,7 +6,7 @@ import {
 } from '../../types'
 
 export interface IActionContext {
-  haneleLinkAction: (linkAction: LinkAction) => void
+  handleLinkAction: (linkAction: LinkAction) => void
   handlePageAction: (pageAction: PageAction) => void
   handleAutoflowAction: (autoflowAction: AutoflowAction) => Promise<any>
   handleMetaRepositoryAction: (metaAction: MetaRepositoryAction) => Promise<any>

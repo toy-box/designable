@@ -19,12 +19,13 @@ export const Button: React.FC<ButtonType> = ({
   const handleClick = () => {
     switch (action?.type) {
       case ActionType.Link:
-        actions.haneleLinkAction(action.linkAction)
+        actions.handleLinkAction(action.linkAction)
         break
       case ActionType.Page:
         actions.handlePageAction(action.pageAction)
         break
       case ActionType.Autoflow:
+        actions.handleAutoflowAction(action.autoflowAction)
         break
       default:
         break

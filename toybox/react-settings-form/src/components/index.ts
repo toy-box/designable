@@ -1,5 +1,6 @@
 export * from './ColorInput'
 export * from './CornerInput'
+export * from './Container'
 export * from './ImageInput'
 export * from './PositionInput'
 export * from './SizeInput'

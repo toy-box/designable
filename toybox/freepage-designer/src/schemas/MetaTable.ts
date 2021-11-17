@@ -56,6 +56,13 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
           'x-decorator': 'FormItem',
         },
       },
+      'x-component': 'Container',
+      'x-decorator': 'FormItem',
+      'x-decorator-props': {
+        layout: 'vertical',
+        wrapperAlign: 'left',
+        wrapperWidth: '100%',
+      },
     },
   },
 }

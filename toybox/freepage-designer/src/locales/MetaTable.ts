@@ -1,3 +1,5 @@
+import { Button } from './Button'
+
 export const MetaTable = {
   'zh-CN': {
     title: '元数据表格',
@@ -5,7 +7,6 @@ export const MetaTable = {
       'x-component-props': {
         columns: '表格列',
         isOperation: '行操作',
-        buttons: '操作菜单',
       },
     },
   },
@@ -15,7 +16,6 @@ export const MetaTable = {
       'x-component-props': {
         columns: 'Columns',
         isOperation: 'Row Operation',
-        buttons: 'Operate Menu',
       },
     },
   },

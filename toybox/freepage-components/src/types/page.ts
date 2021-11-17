@@ -15,13 +15,13 @@ export interface PageParameter {
   metaObject?: string
 }
 
-export interface Page {
+export interface IPage {
   id: string
   name: string
   params: PageParameter[]
 }
 export interface IPageOption {
-  loadPageList: (name?: string) => Promise<Page[]>
-  loadPage: (pageId: string) => Promise<Page>
-  loadPageByValue: (ids: string[]) => Promise<Page[]>
+  loadPageList: (name?: string) => Promise<IPage[]>
+  loadPage: (pageId: string) => Promise<IPage>
+  loadPageByValue: (ids: string[]) => Promise<IPage[]>
 }

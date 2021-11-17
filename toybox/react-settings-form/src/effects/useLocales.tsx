@@ -37,6 +37,7 @@ export const useLocales = (node: TreeNode) => {
     const tooltip = takeMessage('tooltip')
     const dataSource = takeMessage('dataSource')
     const placeholder = takeMessage('placeholder')
+
     if (title) {
       field.title = title
     }
