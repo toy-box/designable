@@ -2,6 +2,7 @@ import React from 'react'
 import { Button as OrgButton, IButtonProps } from '@toy-box/toybox-ui'
 import { Action, ActionType, ParamBind } from '../types'
 import { useActions, useDataView } from '../hooks'
+import { useField } from '@formily/react'
 
 export type ButtonType = Pick<IButtonProps, 'onClick'> & {
   caption: React.ReactNode
@@ -15,7 +16,7 @@ export const Button: React.FC<ButtonType> = ({
 }) => {
   const dataView = useDataView()
   const actions = useActions()
-
+  const buttonField = useField()
   const handleClick = () => {
     switch (action?.type) {
       case ActionType.Link:
