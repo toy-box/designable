@@ -6,14 +6,16 @@ import cls from 'classnames'
 import './styles.less'
 
 const typeOptions = () => {
-  const opts: { label: string; value: string }[] = []
-  for (const type in MetaValueType) {
-    opts.push({
-      label: type,
-      value: type,
-    })
-  }
-  return opts
+  const baseTypes = [
+    MetaValueType.NUMBER,
+    MetaValueType.STRING,
+    MetaValueType.BOOLEAN,
+    MetaValueType.DATETIME,
+  ]
+  return baseTypes.map((type) => ({
+    label: type,
+    value: type,
+  }))
 }
 
 export type ParamValueType = MetaValueType
@@ -40,17 +42,17 @@ export const ParamInput: React.FC<ParamInputProps> = ({
   remove,
 }) => {
   const prefix = usePrefix('param-input')
-  const types = typeOptions()
+  const metaTypes = typeOptions()
 
   const handleKeyChange = useCallback(
     (key: string) => {
-      onChange && onChange(Object.assign(value, { key }))
+      onChange && onChange({ ...value, key })
     },
     [onChange, value]
   )
   const handleTypeChange = useCallback(
     (type: MetaValueType) => {
-      onChange && onChange(Object.assign(value, { type }))
+      onChange && onChange({ ...value, type })
     },
     [onChange, value]
   )
@@ -65,7 +67,7 @@ export const ParamInput: React.FC<ParamInputProps> = ({
         />
         <Select
           value={value.type}
-          options={types}
+          options={metaTypes}
           onChange={handleTypeChange}
           style={{ width: '40%' }}
         />

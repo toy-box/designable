@@ -51,7 +51,7 @@ const makeRowMeta = (recordMeta: IFieldMeta): IFieldMeta => {
   }
 }
 
-export const useDataNodes = () => {
+export const useNodeDataMeta = () => {
   const meta = useMeta()
   const root = useRoot()
   const node = useNode()
@@ -61,20 +61,38 @@ export const useDataNodes = () => {
 
   const [metas, setMetas] = React.useState<IFieldMeta[]>()
   const generateMeta = async (
+    root: TreeNode,
     dataGrid: TreeNode,
     dataView: TreeNode,
     isMetaTable: boolean
   ) => {
     const nodeMetas = []
+    if (root) {
+      const pageParams: IFieldMeta = {
+        key: '$PageParams',
+        name: '$PageParams',
+        type: MetaValueType.OBJECT,
+        properties: {},
+      }
+      const params = root.props?.params || []
+      params.forEach((param) => {
+        pageParams.properties[param.key] = {
+          key: param.key,
+          name: param.key,
+          type: param.type,
+        }
+      })
+      nodeMetas.push(pageParams)
+    }
     if (dataView) {
       const metaOption =
         dataGrid.props?.metaOption ||
         dataGrid.props?.['x-component-props']?.metaOption
       if (metaOption.type === 'schema') {
-        metas.push(metaOption.schema)
+        nodeMetas.push(metaOption.schema)
       } else if (metaOption?.type === 'repository' && metaOption?.repository) {
         const schema = await meta.loadMetaSchema(metaOption.repository)
-        metas.push(schema)
+        nodeMetas.push(schema)
       }
     }
     if (dataGrid) {
@@ -82,24 +100,25 @@ export const useDataNodes = () => {
         dataGrid.props?.metaOption ||
         dataGrid.props?.['x-component-props']?.metaOption
       if (metaOption.type === 'schema') {
-        metas.push(makeDataGridSelectedRowsMeta(metaOption.schema))
+        nodeMetas.push(makeDataGridSelectedRowsMeta(metaOption.schema))
         if (isMetaTable) {
-          metas.push(makeRowMeta(metaOption.schema))
+          nodeMetas.push(makeRowMeta(metaOption.schema))
         }
       } else if (metaOption?.type === 'repository' && metaOption?.repository) {
         const schema = await meta.loadMetaSchema(metaOption.repository)
-        metas.push(makeDataGridSelectedRowsMeta(schema))
+        nodeMetas.push(makeDataGridSelectedRowsMeta(schema))
         if (isMetaTable) {
-          metas.push(makeRowMeta(schema))
+          nodeMetas.push(makeRowMeta(schema))
         }
       }
-      metas.push(makeDataGridSelectedKeysMeta())
+      nodeMetas.push(makeDataGridSelectedKeysMeta())
     }
-    setMetas(metas)
+    nodeMetas.push()
+    setMetas(nodeMetas)
   }
   React.useEffect(() => {
-    generateMeta(dataGrid, dataView, isMetaTable)
-  }, [dataGrid, dataView, isMetaTable])
+    generateMeta(root, dataGrid, dataView, isMetaTable)
+  }, [root, dataGrid, dataView, isMetaTable])
 
-  return fetchDataNodes(root, 'DataView')
+  return metas
 }

@@ -27,8 +27,16 @@ export const ParamsSetter: React.FC<ParamsSetterProps> = observer(
 
     const addParam = React.useCallback(() => {
       value.push({})
-      onChange(value)
+      onChange && onChange(value)
     }, [value])
+
+    const handleRemove = React.useCallback(
+      (index: number) => {
+        value.splice(index, 1)
+        onChange && onChange(value)
+      },
+      [value, onChange]
+    )
 
     return (
       <div className={cls(prefix, className)} style={style}>
@@ -37,6 +45,7 @@ export const ParamsSetter: React.FC<ParamsSetterProps> = observer(
             key={index}
             value={param}
             onChange={(param) => handleParamChange(param, index)}
+            remove={() => handleRemove(index)}
           />
         ))}
         <Button type="dashed" onClick={addParam} block>
