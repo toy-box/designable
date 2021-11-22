@@ -1,12 +1,16 @@
 import React from 'react'
 import { Spin } from 'antd'
-import { useFieldSchema, observer, RecursionField } from '@formily/react'
+import {
+  useFieldSchema,
+  observer,
+  RecursionField,
+  useField,
+  useForm,
+} from '@formily/react'
 import { Schema } from '@formily/json-schema'
 import {
   DataGrid as ToyboxDataGrid,
-  FilterPanel,
-  FilterDisplay,
-  TableStatusBar,
+  DataGridRefType,
 } from '@toy-box/meta-components'
 import { IObjectMeta } from '@toy-box/meta-schema'
 import { ToolBar } from '@toy-box/toybox-ui'
@@ -68,10 +72,15 @@ const useDataGridColumnSource = () => {
 
 export const DataGrid: ComposedDataGrid = observer(
   ({ className, style, metaOption, filterFields }) => {
+    const field = useField()
+    const form = useForm()
+    const ref = React.useRef<DataGridRefType>()
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
     const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>(undefined)
     const visibleColumns = useDataGridColumnSource()
     const leftToolbarSchema = useLeftToolbarSource()
+    const [selectedRows, setSelectedRows] = React.useState([])
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState([])
 
     React.useEffect(() => {
       loadMetaSchema &&
@@ -100,14 +109,19 @@ export const DataGrid: ComposedDataGrid = observer(
 
     return objectMeta ? (
       <ToyboxDataGrid
+        ref={ref}
         objectMeta={objectMeta}
         visibleColumns={visibleColumns}
         style={style}
         className={className}
         loadData={loadData}
+        selectedRows={selectedRows}
+        setSelectedRows={setSelectedRows}
+        selectedRowKeys={selectedRowKeys}
+        setSelectedRowKeys={setSelectedRowKeys}
       >
         <ToolBar>
-          <FilterPanel fieldMetas={fieldMetas} />
+          <ToyboxDataGrid.FilterPanel fieldMetas={fieldMetas} />
           {leftToolbarSchema && (
             <RecursionField
               schema={leftToolbarSchema.schema}
@@ -115,8 +129,8 @@ export const DataGrid: ComposedDataGrid = observer(
             />
           )}
         </ToolBar>
-        <FilterDisplay />
-        <TableStatusBar />
+        <ToyboxDataGrid.FilterDisplay />
+        <ToyboxDataGrid.TableStatusBar />
       </ToyboxDataGrid>
     ) : (
       <Spin />

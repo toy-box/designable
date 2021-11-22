@@ -10,11 +10,7 @@ import {
 } from '@toy-box/designable-react'
 import { observer } from '@formily/react'
 import { ToolBar } from '@toy-box/toybox-ui'
-import {
-  FilterDisplay,
-  FilterPanel,
-  TableStatusBar,
-} from '@toy-box/meta-components'
+import { DataGrid as ToyboxDataGrid } from '@toy-box/meta-components'
 import { createDataShourceSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
@@ -83,7 +79,7 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
     return (
       <div {...nodeId}>
         <ToolBar>
-          <FilterPanel />
+          <ToyboxDataGrid.FilterPanel />
           {spaceNode &&
             React.createElement(
               'div',
@@ -93,8 +89,8 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
               <TreeNodeWidget node={spaceNode} />
             )}
         </ToolBar>
-        <FilterDisplay />
-        <TableStatusBar />
+        <ToyboxDataGrid.FilterDisplay />
+        <ToyboxDataGrid.TableStatusBar />
         {tableNode &&
           React.createElement(
             'div',
