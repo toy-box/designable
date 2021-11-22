@@ -43,7 +43,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
     const form = useMemo(() => {
       return createForm({
         initialValues: node?.designerProps?.defaultProps,
-        values: node.props,
+        values: node?.props,
         effects(form) {
           useLocales(node)
           useSnapshot(operation)
@@ -73,7 +73,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
                 <SchemaField
                   schema={schema}
                   components={props.components}
-                  scope={props.scope}
+                  scope={{ $node: node, ...props.scope }}
                 />
               </Form>
             </SettingsFormContext.Provider>

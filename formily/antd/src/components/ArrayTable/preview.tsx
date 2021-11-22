@@ -210,7 +210,7 @@ export const ArrayTable: DnFC<TableProps<any>> = observer((props) => {
                 key={node.id}
                 render={(value, record, key) => {
                   return (
-                    <ArrayBase.Item key={key} index={key}>
+                    <ArrayBase.Item key={key} index={key} record={null}>
                       {children.length > 0 ? children : 'Droppable'}
                     </ArrayBase.Item>
                   )
@@ -243,6 +243,7 @@ export const ArrayTable: DnFC<TableProps<any>> = observer((props) => {
         actions={[
           {
             title: node.getMessage('addSortHandle'),
+            icon: 'AddSort',
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
@@ -277,6 +278,7 @@ export const ArrayTable: DnFC<TableProps<any>> = observer((props) => {
           },
           {
             title: node.getMessage('addIndex'),
+            icon: 'AddIndex',
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
@@ -321,6 +323,7 @@ export const ArrayTable: DnFC<TableProps<any>> = observer((props) => {
           },
           {
             title: node.getMessage('addColumn'),
+            icon: 'AddColumn',
             onClick: () => {
               const operationNode = findNodeByComponentPath(node, [
                 'ArrayTable',
@@ -353,6 +356,7 @@ export const ArrayTable: DnFC<TableProps<any>> = observer((props) => {
           },
           {
             title: node.getMessage('addOperation'),
+            icon: 'AddOperation',
             onClick: () => {
               const oldOperationNode = findNodeByComponentPath(node, [
                 'ArrayTable',
