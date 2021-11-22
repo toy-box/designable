@@ -12,9 +12,12 @@ import {
   DataGrid as ToyboxDataGrid,
   DataGridRefType,
 } from '@toy-box/meta-components'
-import { IObjectMeta } from '@toy-box/meta-schema'
+import { IFieldMeta } from '@toy-box/meta-schema'
 import { ToolBar } from '@toy-box/toybox-ui'
-import { IColumnVisible } from '@toy-box/meta-components/es/components/meta-table/interface'
+import {
+  IColumnVisible,
+  RowData,
+} from '@toy-box/meta-components/es/components/meta-table/interface'
 import { SchemaOption } from '../types'
 import { useMeta } from '../hooks'
 
@@ -73,14 +76,30 @@ const useDataGridColumnSource = () => {
 export const DataGrid: ComposedDataGrid = observer(
   ({ className, style, metaOption, filterFields }) => {
     const field = useField()
-    const form = useForm()
     const ref = React.useRef<DataGridRefType>()
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
-    const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>(undefined)
+    const [objectMeta, setObjectMeta] = React.useState<IFieldMeta>(undefined)
     const visibleColumns = useDataGridColumnSource()
     const leftToolbarSchema = useLeftToolbarSource()
-    const [selectedRows, setSelectedRows] = React.useState([])
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState([])
+
+    const selectedRows = field.data?.selectedRows || []
+    const selectedRowKeys = field.data?.selectedRowKeys || []
+
+    const setSelectedRows = (selectedRows: RowData[]) => {
+      if (field.data != null) {
+        field.data.selectedRows = selectedRows
+      } else {
+        field.data = { selectedRows }
+      }
+    }
+
+    const setSelectedRowKeys = (selectedRowKeys: string[]) => {
+      if (field.data != null) {
+        field.data.selectedRowKeys = selectedRowKeys
+      } else {
+        field.data = { selectedRowKeys }
+      }
+    }
 
     React.useEffect(() => {
       loadMetaSchema &&
@@ -110,6 +129,7 @@ export const DataGrid: ComposedDataGrid = observer(
     return objectMeta ? (
       <ToyboxDataGrid
         ref={ref}
+        defaultSelectionType="checkbox"
         objectMeta={objectMeta}
         visibleColumns={visibleColumns}
         style={style}

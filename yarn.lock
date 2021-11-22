@@ -2569,36 +2569,20 @@
     qs "^6.10.1"
     react-resizable "^3.0.4"
 
-"@toy-box/meta-schema@^2.0.0", "@toy-box/meta-schema@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.3.tgz#a6e1f2a501ce69e3444ffeb40b4ebb87702be053"
-  integrity sha512-luQAI8BhiD6nISeaIq/fDEU+JEB8Az6YR2Rkc86QBxuiWub8GaBzhntz3MfkuPsa3ydfbrbPjYwtoqJSzvi8gw==
-
 "@toy-box/meta-schema@^2.0.15":
   version "2.0.15"
   resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.15.tgz#f756e18207717d5e927a3969ecaff29b2b450fa0"
   integrity sha512-LpFBCNhrUFeAG96twneDs1nY+MAIbSZ4SExXiflyFa8VpCex07BzWjeKzVwZGcRQH8rtMfrx5qJT4bvU41+WVA==
 
-"@toy-box/toybox-shared@^2.0.0":
+"@toy-box/meta-schema@^2.0.3":
   version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.3.tgz#26a3fe80966280bdfdd5a7a948c8fa1bd00c251b"
-  integrity sha512-gueVS50djgxd9PomomN1mMpvnp+5AUlnG3mYKlg/AV1yYwXNbstlmT0hV47nqXlQf5UNtxI9z3CnyOJkRXZtMQ==
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.3.tgz#a6e1f2a501ce69e3444ffeb40b4ebb87702be053"
+  integrity sha512-luQAI8BhiD6nISeaIq/fDEU+JEB8Az6YR2Rkc86QBxuiWub8GaBzhntz3MfkuPsa3ydfbrbPjYwtoqJSzvi8gw==
 
 "@toy-box/toybox-shared@^2.0.15":
   version "2.0.15"
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.15.tgz#9981cce3d7c8a07506a9d8fc5a5b966008358f3b"
   integrity sha512-lO63VfWqNCNlaHyElCY3qNUuyMY5h3wJ2xVsc0jaxly2vDNdYGabSPy5D6XhqzxFdB9tr02kInoHdp6fGrVQ7A==
-
-"@toy-box/toybox-ui@^2.0.12":
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.12.tgz#c4d04aec41f19b9dc042c0b7f6615e6fcbe3ef5b"
-  integrity sha512-iyiguJGcMChWVWzipknTgqu1+2suosrOjAnBSd0rwYYUJ73jIchWi3uvo4vddnUmIKXbcIfMhcOKH9J2YP335Q==
-  dependencies:
-    "@types/react-beautiful-dnd" "^13.0.0"
-    lodash.debounce "^4.0.8"
-    lodash.intersection "^4.4.0"
-    react-beautiful-dnd "^13.1.0"
-    react-grid-layout "^1.2.5"
 
 "@toy-box/toybox-ui@^2.0.15":
   version "2.0.15"
@@ -2849,13 +2833,6 @@
   version "6.9.7"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.7.tgz#63bb7d067db107cc1e457c303bc25d511febf6cb"
   integrity sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==
-
-"@types/react-beautiful-dnd@^13.0.0":
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/@types/react-beautiful-dnd/-/react-beautiful-dnd-13.1.2.tgz#510405abb09f493afdfd898bf83995dc6385c130"
-  integrity sha512-+OvPkB8CdE/bGdXKyIhc/Lm2U7UAYCCJgsqmopFmh9gbAudmslkI8eOrPDjg4JhwSE6wytz4a3/wRjKtovHVJg==
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-dom@^16.9.8", "@types/react-dom@^17.0.0":
   version "17.0.9"

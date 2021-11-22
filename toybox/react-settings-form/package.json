@@ -16,14 +16,14 @@
   },
   "peerDependencies": {
     "@airclass/icons": "^4.3.4",
-    "@toy-box/toybox-shared": "^2.0.0",
-    "@toy-box/toybox-ui": "^2.0.12",
+    "@toy-box/toybox-shared": "^2.0.15",
+    "@toy-box/toybox-ui": "^2.0.15",
     "antd": "^4.0.0"
   },
   "devDependencies": {
     "@airclass/icons": "^4.3.4",
-    "@toy-box/toybox-shared": "^2.0.0",
-    "@toy-box/toybox-ui": "^2.0.12",
+    "@toy-box/toybox-shared": "^2.0.15",
+    "@toy-box/toybox-ui": "^2.0.15",
     "antd": "^4.15.5"
   },
   "dependencies": {
