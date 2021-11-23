@@ -145,6 +145,7 @@ export const Button: ISchema = {
     type: {
       type: 'string',
       enum: ['default', 'primary', 'ghost', 'dashed', 'link', 'text'],
+      default: 'default',
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },

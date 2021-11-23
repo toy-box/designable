@@ -25,7 +25,6 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
         items: {
           type: 'array',
           'x-component': 'ArrayItems',
-          'x-decorator': 'FormItem',
           'x-decorator-props': {
             layout: 'vertical',
             wrapperAlign: 'left',
@@ -35,7 +34,6 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
           properties: {
             addition: {
               type: 'void',
-              title: '添加条目',
               'x-component': 'ArrayItems.Addition',
             },
           },
@@ -57,7 +55,6 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
         },
       },
       'x-component': 'Container',
-      'x-decorator': 'FormItem',
       'x-decorator-props': {
         layout: 'vertical',
         wrapperAlign: 'left',

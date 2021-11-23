@@ -7,6 +7,13 @@ export const MetaTable = {
       'x-component-props': {
         columns: '表格列',
         isOperation: '行操作',
+        operate: {
+          items: {
+            ...Button['zh-CN'].settings['x-component-props'],
+            addition: '添加按钮',
+          },
+          max: '最大显示数',
+        },
       },
     },
   },
@@ -16,6 +23,12 @@ export const MetaTable = {
       'x-component-props': {
         columns: 'Columns',
         isOperation: 'Row Operation',
+        operate: {
+          items: {
+            ...Button['en-US'].settings['x-component-props'],
+          },
+          max: 'Max Display',
+        },
       },
     },
   },

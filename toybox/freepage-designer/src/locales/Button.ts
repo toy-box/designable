@@ -52,7 +52,14 @@ export const Button = {
         },
         danger: '危险色',
         disabled: '禁用',
-        size: '尺寸',
+        size: {
+          title: '尺寸',
+          dataSource: [
+            { label: '大', value: 'large' },
+            { label: '中', value: 'middle' },
+            { label: '小', value: 'small' },
+          ],
+        },
         block: '块',
         shape: {
           title: '形状',
@@ -117,7 +124,14 @@ export const Button = {
         },
         danger: 'Danger',
         disabled: 'Disable',
-        size: 'Size',
+        size: {
+          title: 'Size',
+          dataSource: [
+            { label: 'Large', value: 'large' },
+            { label: 'Middle', value: 'middle' },
+            { label: 'Small', value: 'small' },
+          ],
+        },
         block: 'Block',
         shape: {
           title: 'Shape',
