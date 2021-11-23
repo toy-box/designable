@@ -15,19 +15,19 @@
     "build:umd": "rollup --config"
   },
   "devDependencies": {
-    "@formily/reactive": "^2.0.0-rc.12",
-    "@formily/reactive-react": "^2.0.0-rc.12"
+    "@formily/reactive": "^2.0.0-rc.19",
+    "@formily/reactive-react": "^2.0.0-rc.19"
   },
   "peerDependencies": {
-    "@formily/reactive": "^2.0.0-rc.12",
-    "@formily/reactive-react": "^2.0.0-rc.12",
+    "@formily/reactive": "^2.0.0-rc.19",
+    "@formily/reactive-react": "^2.0.0-rc.19",
     "antd": "^4.15.4",
     "react": "16.x || 17.x",
     "@toy-box/toybox-ui": "^2.0.15"
   },
   "dependencies": {
-    "@designable/core": "1.0.0-beta.12",
-    "@designable/shared": "1.0.0-beta.12",
+    "@designable/core": "1.0.0-beta.34",
+    "@designable/shared": "1.0.0-beta.34",
     "@juggle/resize-observer": "^3.3.1",
     "dateformat": "^4.5.1"
   },

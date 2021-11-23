@@ -54,7 +54,14 @@ export const Button = {
         disabled: '禁用',
         size: '尺寸',
         block: '块',
-        shape: '形状',
+        shape: {
+          title: '形状',
+          dataSource: [
+            { label: '默认', value: 'default' },
+            { label: '圆形', value: 'circle' },
+            { label: '圆角', value: 'round' },
+          ],
+        },
         ghost: '反色',
       },
     },
@@ -112,7 +119,14 @@ export const Button = {
         disabled: 'Disable',
         size: 'Size',
         block: 'Block',
-        shape: 'Shape',
+        shape: {
+          title: 'Shape',
+          dataSource: [
+            { label: 'Default', value: 'default' },
+            { label: 'Circle', value: 'circle' },
+            { label: 'Round', value: 'round' },
+          ],
+        },
         ghost: 'Ghost',
       },
     },
