@@ -12,14 +12,14 @@ import {
   DataGrid as ToyboxDataGrid,
   DataGridRefType,
 } from '@toy-box/meta-components'
-import { IFieldMeta } from '@toy-box/meta-schema'
+import { IObjectMeta } from '@toy-box/meta-schema'
 import { ToolBar } from '@toy-box/toybox-ui'
 import {
   IColumnVisible,
   RowData,
 } from '@toy-box/meta-components/es/components/meta-table/interface'
-import { SchemaOption } from '../types'
-import { useMeta } from '../hooks'
+import { Action, ActionType, ParamBind, SchemaOption } from '../types'
+import { useMeta, useActions } from '../hooks'
 
 export type DataGridProps = {
   className?: string
@@ -73,14 +73,54 @@ const useDataGridColumnSource = () => {
   return metaTableSchema ? parseSources(metaTableSchema) : []
 }
 
+const useOperate = () => {
+  const field = useField()
+  const actions = useActions()
+  const schema = useFieldSchema()
+  const metaTableSchema = schema
+    .mapProperties((itemSchema) => itemSchema)
+    .find((itemSchema) => isMetaTableComponent(itemSchema))
+  const operate = metaTableSchema?.['x-component-props'].operate
+  return operate
+    ? {
+        items: operate.items.map((item) => ({
+          text: item.caption,
+          type: item.type,
+          danger: item.danger,
+          size: item.size,
+          disabled: item.disabled,
+          callback: (text, record, index) => {
+            const { action } = item
+            switch (action.type) {
+              case ActionType.Link:
+                actions.handleLinkAction(action.linkAction)
+                break
+              case ActionType.Page:
+                actions.handlePageAction(action.pageAction)
+                break
+              case ActionType.Autoflow:
+                actions.handleAutoflowAction(action.autoflowAction)
+                break
+              default:
+                break
+            }
+          },
+        })),
+        max: operate.max,
+        group: operate.group,
+      }
+    : undefined
+}
+
 export const DataGrid: ComposedDataGrid = observer(
   ({ className, style, metaOption, filterFields }) => {
     const field = useField()
     const ref = React.useRef<DataGridRefType>()
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
-    const [objectMeta, setObjectMeta] = React.useState<IFieldMeta>(undefined)
+    const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>()
     const visibleColumns = useDataGridColumnSource()
     const leftToolbarSchema = useLeftToolbarSource()
+    const tableOperate = useOperate()
 
     const selectedRows = field.data?.selectedRows || []
     const selectedRowKeys = field.data?.selectedRowKeys || []
@@ -139,6 +179,7 @@ export const DataGrid: ComposedDataGrid = observer(
         setSelectedRows={setSelectedRows}
         selectedRowKeys={selectedRowKeys}
         setSelectedRowKeys={setSelectedRowKeys}
+        tableOperate={tableOperate}
       >
         <ToolBar>
           <ToyboxDataGrid.FilterPanel fieldMetas={fieldMetas} />

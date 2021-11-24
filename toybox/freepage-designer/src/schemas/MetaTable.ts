@@ -16,6 +16,7 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
     },
     isOperation: {
       type: 'boolean',
+      default: false,
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
@@ -60,6 +61,17 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
         wrapperAlign: 'left',
         wrapperWidth: '100%',
       },
+      'x-reactions': [
+        {
+          dependencies: ['.isOperation'],
+          fulfill: {
+            state: {
+              value: undefined,
+              visible: '{{$deps[0]}}',
+            },
+          },
+        },
+      ],
     },
   },
 }

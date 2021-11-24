@@ -12,10 +12,12 @@ import './styles.less'
 export const MetaTable: DnFC = observer((props) => {
   const node = useTreeNode()
   const nodeId = useNodeIdProps()
+  const { isOperate, operate } = node.props['x-component-props']
   const columns = queryNodesByComponentPath(node, [
     'MetaTable',
     'MetaTable.Column',
   ])
+
   return (
     <Table
       {...nodeId}

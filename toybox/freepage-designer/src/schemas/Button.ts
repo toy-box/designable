@@ -4,6 +4,11 @@ import { ActionType, LinkTarget } from '@toy-box/freepage-components'
 export const Button: ISchema = {
   type: 'object',
   properties: {
+    caption: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
+    },
     action: {
       type: 'object',
       properties: {
@@ -136,11 +141,6 @@ export const Button: ISchema = {
           ],
         },
       },
-    },
-    caption: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
     },
     type: {
       type: 'string',
