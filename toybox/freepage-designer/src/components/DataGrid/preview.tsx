@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableProps } from 'antd'
+import { TableProps } from 'antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   useTreeNode,

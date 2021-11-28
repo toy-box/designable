@@ -1,3 +1,4 @@
+import { Field } from '@formily/core'
 import { MetaValueType } from '@toy-box/meta-schema'
 
 export enum ActionType {
@@ -34,7 +35,7 @@ export type ParamValueType = MetaValueType
 
 export type ParamBind = {
   key?: string
-  path?: string
+  expression?: string
 }
 
 export interface PageAction {
@@ -56,3 +57,5 @@ export interface MetaRepositoryAction {
 }
 
 export type MetaRepositoryOP = 'save' | 'delete'
+
+export type ExpressionParse = (expression: string) => any

@@ -19,7 +19,7 @@ import {
   RowData,
 } from '@toy-box/meta-components/es/components/meta-table/interface'
 import { Action, ActionType, ParamBind, SchemaOption } from '../types'
-import { useMeta, useActions } from '../hooks'
+import { useMeta, useFieldActions } from '../hooks'
 
 export type DataGridProps = {
   className?: string
@@ -75,7 +75,7 @@ const useDataGridColumnSource = () => {
 
 const useOperate = () => {
   const field = useField()
-  const actions = useActions()
+  const actions = useFieldActions()
   const schema = useFieldSchema()
   const metaTableSchema = schema
     .mapProperties((itemSchema) => itemSchema)
