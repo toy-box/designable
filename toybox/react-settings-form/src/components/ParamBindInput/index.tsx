@@ -1,12 +1,14 @@
 import React, { useCallback } from 'react'
 import { Input, Select } from 'antd'
 import { usePrefix, IconWidget } from '@toy-box/designable-react'
+import { MetaValueType } from '@toy-box/meta-schema'
 import cls from 'classnames'
+import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
 
 export type ParamBindValue = {
   key?: string
-  path?: string
+  expression?: string
 }
 
 export type ParamBindInputProps = {
@@ -52,11 +54,14 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
           onChange={handleKeyChange}
           style={{ width: '40%' }}
         />
-        <Select
-          value={value.path}
-          options={paths}
+        <ExpressionInput
+          value={value.expression}
           onChange={handlePathChange}
-          style={{ width: '60%' }}
+          valueType={MetaValueType.NUMBER}
+          variableMap={{
+            globalVariables: {},
+            localVariables: {},
+          }}
         />
       </Input.Group>
       <IconWidget

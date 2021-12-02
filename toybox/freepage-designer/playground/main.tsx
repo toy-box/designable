@@ -26,6 +26,7 @@ import {
   Shortcut,
   KeyCode,
 } from '@designable/core'
+import { MetaContext } from '@toy-box/freepage-components'
 import {
   LogoWidget,
   ActionsWidget,
@@ -33,7 +34,6 @@ import {
   SchemaEditorWidget,
   MarkupSchemaWidget,
 } from './widgets'
-import { MetaContext } from '@toy-box/freepage-components'
 import {
   saveSchema,
   loadMetaRepoList,

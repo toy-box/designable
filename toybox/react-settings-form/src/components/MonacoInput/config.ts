@@ -1,4 +1,4 @@
-import { loader } from '@monaco-editor/react'
+import loader from '@monaco-editor/loader'
 import chromeTheme from './themes/chrome'
 import monokaiTheme from './themes/monokai'
 import { format } from './format'

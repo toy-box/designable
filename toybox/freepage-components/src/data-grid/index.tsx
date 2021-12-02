@@ -18,6 +18,7 @@ import {
   IColumnVisible,
   RowData,
 } from '@toy-box/meta-components/es/components/meta-table/interface'
+import { OperateColumn } from './components'
 import { Action, ActionType, ParamBind, SchemaOption } from '../types'
 import { useMeta, useFieldActions } from '../hooks'
 
@@ -50,6 +51,8 @@ const useLeftToolbarSource = () => {
 }
 
 const useDataGridColumnSource = () => {
+  const field = useField()
+  console.log('field', field)
   const schema = useFieldSchema()
   const parseSources = (schema: Schema) => {
     if (isMetaTableComponent(schema)) {
@@ -89,22 +92,7 @@ const useOperate = () => {
           danger: item.danger,
           size: item.size,
           disabled: item.disabled,
-          callback: (text, record, index) => {
-            const { action } = item
-            switch (action.type) {
-              case ActionType.Link:
-                actions.handleLinkAction(action.linkAction)
-                break
-              case ActionType.Page:
-                actions.handlePageAction(action.pageAction)
-                break
-              case ActionType.Autoflow:
-                actions.handleAutoflowAction(action.autoflowAction)
-                break
-              default:
-                break
-            }
-          },
+          action: item.action,
         })),
         max: operate.max,
         group: operate.group,
@@ -115,6 +103,7 @@ const useOperate = () => {
 export const DataGrid: ComposedDataGrid = observer(
   ({ className, style, metaOption, filterFields }) => {
     const field = useField()
+    console.log('the field', field)
     const ref = React.useRef<DataGridRefType>()
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
     const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>()
@@ -180,6 +169,7 @@ export const DataGrid: ComposedDataGrid = observer(
         selectedRowKeys={selectedRowKeys}
         setSelectedRowKeys={setSelectedRowKeys}
         tableOperate={tableOperate}
+        tableOption={{ operateColumn: OperateColumn }}
       >
         <ToolBar>
           <ToyboxDataGrid.FilterPanel fieldMetas={fieldMetas} />

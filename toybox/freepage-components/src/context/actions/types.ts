@@ -1,10 +1,15 @@
-import { Field } from '@formily/core'
+import { GeneralField } from '@formily/core'
 import {
   LinkAction,
   PageAction,
   AutoflowAction,
   MetaRepositoryAction,
 } from '../../types'
+
+export interface IActionFieldData {
+  field: GeneralField
+  index?: number
+}
 
 export interface IActionContext {
   handleLinkAction: (linkAction: LinkAction) => void
@@ -14,14 +19,14 @@ export interface IActionContext {
 }
 
 export interface IFieldActionContext {
-  handleLinkAction: (LinkAction: LinkAction, field: Field) => void
-  handlePageAction: (pageAction: PageAction, field: Field) => void
+  handleLinkAction: (LinkAction: LinkAction, fieldData: IActionFieldData) => void
+  handlePageAction: (pageAction: PageAction, fieldData: IActionFieldData) => void
   handleAutoflowAction: (
     autoflowAction: AutoflowAction,
-    field: Field
+    fieldData: IActionFieldData
   ) => Promise<any>
   handleMetaRepositoryAction: (
     metaAction: MetaRepositoryAction,
-    field: Field
+    fieldData: IActionFieldData
   ) => Promise<any>
 }

@@ -1,5 +1,3 @@
-import { Field } from '@formily/core'
-import { useField } from '@formily/react'
 import React from 'react'
 import {
   ExpressionParse,
@@ -7,6 +5,7 @@ import {
   PageAction,
   AutoflowAction,
 } from '../types'
+import { IActionFieldData } from '../context/actions/'
 import { ActionContext } from '../context/actions'
 
 export const useActions = () => {
@@ -17,12 +16,11 @@ export const useFieldActions = (
   expParse: ExpressionParse = () => undefined
 ) => {
   const actions = useActions()
-  const field = useField()
   return {
-    handleLinkAction: (linkAction: LinkAction) => {
+    handleLinkAction: (linkAction: LinkAction, data: IActionFieldData) => {
       actions.handleLinkAction(linkAction)
     },
-    handlePageAction: (pageAction: PageAction) => {
+    handlePageAction: (pageAction: PageAction, data: IActionFieldData) => {
       const expPageAction = {
         ...pageAction,
         params: pageAction.params.map((param) => ({
@@ -32,7 +30,7 @@ export const useFieldActions = (
       }
       actions.handlePageAction(pageAction)
     },
-    handleAutoflowAction: (autoflowAction: AutoflowAction) => {
+    handleAutoflowAction: (autoflowAction: AutoflowAction, data: IActionFieldData) => {
       actions.handleAutoflowAction(autoflowAction)
     },
   }
