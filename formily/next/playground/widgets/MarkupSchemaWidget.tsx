@@ -10,7 +10,11 @@ export interface IMarkupSchemaWidgetProps {
 const transformToMarkupSchemaCode = (tree: TreeNode) => {
   const printAttribute = (node: TreeNode) => {
     if (!node) return ''
-    return `${Object.keys({ ...node.props, name: node.props.name || node.id })
+    const props = { ...node.props }
+    if (node.depth !== 0) {
+      props.name = node.props.name || node.id
+    }
+    return `${Object.keys(props)
       .map((key) => {
         if (
           key === 'x-designable-id' ||
@@ -91,11 +95,12 @@ import {
 import { Card, Range, Rating } from '@alifd/next'
 
 const Text: React.FC<{
+  value?: string
   content?: string
   mode?: 'normal' | 'h1' | 'h2' | 'h3' | 'p'
-}> = ({ mode, content, ...props }) => {
+}> = ({ value, mode, content, ...props }) => {
   const tagName = mode === 'normal' || !mode ? 'div' : mode
-  return React.createElement(tagName, props, content)
+  return React.createElement(tagName, props, value || content)
 }
 
 const SchemaField = createSchemaField({

@@ -1,6 +1,6 @@
 {
   "name": "@designable/formily-transformer",
-  "version": "1.0.0-beta.34",
+  "version": "1.0.0-beta.37",
   "license": "MIT",
   "main": "lib",
   "engines": {
@@ -25,16 +25,16 @@
     "access": "public"
   },
   "devDependencies": {
-    "@formily/core": "^2.0.0-rc.19",
-    "@formily/json-schema": "^2.0.0-rc.19"
+    "@formily/core": "^2.0.2",
+    "@formily/json-schema": "^2.0.2"
   },
   "peerDependencies": {
-    "@formily/core": "^2.0.0-rc.19",
-    "@formily/json-schema": "^2.0.0-rc.19"
+    "@formily/core": "^2.0.2",
+    "@formily/json-schema": "^2.0.2"
   },
   "dependencies": {
-    "@designable/core": "1.0.0-beta.34",
-    "@designable/shared": "1.0.0-beta.34"
+    "@designable/core": "1.0.0-beta.37",
+    "@designable/shared": "1.0.0-beta.37"
   },
   "gitHead": "bda070c137ba0003cc4451b2208e089d2e326b23"
 }

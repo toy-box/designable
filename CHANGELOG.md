@@ -1,5 +1,47 @@
 # Changelog
 
+## v1.0.0-beta.36(2021-11-26)
+
+### :beetle: Bug Fixes
+
+1. [fix(react-settings-form): fix typings](https://github.com/alibaba/designable/commit/2a837fe) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
+
+### :blush: Other Changes
+
+1. [chore: update formily to 2.0.2](https://github.com/alibaba/designable/commit/89a1725) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
+
+## v1.0.0-beta.35(2021-11-26)
+
+### :tada: Enhancements
+
+1. [feat(react-settings-form): add exclude inherit in BoxStyleSetter/BoxShadowStyleSetter (#133)](https://github.com/alibaba/designable/commit/d717ebe) :point_right: ( [programmerwy](https://github.com/programmerwy) )
+
+1. [feat(react-settings-form): update sizeinput (#131)](https://github.com/alibaba/designable/commit/a66bace) :point_right: ( [programmerwy](https://github.com/programmerwy) )
+
+1. [feat(language): add Korean translation (#129)](https://github.com/alibaba/designable/commit/9f5cec9) :point_right: ( [2jun0](https://github.com/2jun0) )
+
+### :beetle: Bug Fixes
+
+1. [fix: fix createVoidSchema](https://github.com/alibaba/designable/commit/b3ada9f) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
+
+1. [fix(formily-setters): fix duplicate key warn in ReactionSetter (#132)](https://github.com/alibaba/designable/commit/0f316ea) :point_right: ( [vimvinter](https://github.com/vimvinter) )
+
+### :blush: Other Changes
+
+1. [chore: improve playground code](https://github.com/alibaba/designable/commit/6df7210) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
+
+## v1.0.0-beta.34(2021-11-13)
+
+### :tada: Enhancements
+
+1. [feat(react): support config css variables](https://github.com/alibaba/designable/commit/e954d86) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
+
+### :beetle: Bug Fixes
+
+1. [fix(formily): fix reactionSetters and playground](https://github.com/alibaba/designable/commit/87971f4) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
+
+1. [fix(react): fix missing record props in ArrayBase.Item (#125)](https://github.com/alibaba/designable/commit/c041167) :point_right: ( [haloworld](https://github.com/haloworld) )
+
 ## v1.0.0-beta.33(2021-11-09)
 
 ### :tada: Enhancements
@@ -271,25 +313,3 @@
 ### :beetle: Bug Fixes
 
 1. [fix(react): fix can not take component locales](https://github.com/alibaba/designable/commit/cd39398) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
-
-## v0.5.25(2021-08-31)
-
-### :beetle: Bug Fixes
-
-1. [fix(react): use NodeTitleWidget for OutlineWidget](https://github.com/alibaba/designable/commit/9590a2d) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
-
-## v0.5.24(2021-08-31)
-
-### :tada: Enhancements
-
-1. [feat(react): support NodeTitleWidget](https://github.com/alibaba/designable/commit/8242a50) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
-
-## v0.5.23(2021-08-31)
-
-### :tada: Enhancements
-
-1. [feat(core): support createLocales](https://github.com/alibaba/designable/commit/db71be3) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )
-
-### :beetle: Bug Fixes
-
-1. [fix(core): remove unused this optional chain (#52)](https://github.com/alibaba/designable/commit/bbafcb8) :point_right: ( [Yanlin Jiang](https://github.com/Yanlin Jiang) )
