@@ -57,5 +57,3 @@ export interface MetaRepositoryAction {
 }
 
 export type MetaRepositoryOP = 'save' | 'delete'
-
-export type ExpressionParse = (expression: string) => any

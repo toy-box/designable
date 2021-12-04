@@ -1,8 +1,8 @@
 import React from 'react'
+import { useField } from '@formily/react'
 import { Button as OrgButton, IButtonProps } from '@toy-box/toybox-ui'
 import { Action, ActionType, ParamBind } from '../types'
 import { useFieldActions, useDataView } from '../hooks'
-import { useField } from '@formily/react'
 
 export type ButtonProps = Pick<IButtonProps, 'onClick'> & {
   caption: React.ReactNode
@@ -37,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
   const getParams = (action: Action) => {
     const params = [] as ParamBind[]
     ;(action.pageAction.params || []).forEach((param) => {
-      params.push(dataView.dataValue[param.path])
+      params.push(dataView.dataValue[param.expression])
     })
     return params
   }

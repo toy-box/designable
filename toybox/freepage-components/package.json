@@ -48,6 +48,7 @@
   "dependencies": {
     "@airclass/icons": "^4.0.0",
     "@ant-design/icons": "^4.0.0",
+    "@toy-box/formula": "^1.0.22",
     "classnames": "^2.2.6",
     "qs": "^6.10.1"
   },

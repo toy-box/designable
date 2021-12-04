@@ -51,8 +51,6 @@ const useLeftToolbarSource = () => {
 }
 
 const useDataGridColumnSource = () => {
-  const field = useField()
-  console.log('field', field)
   const schema = useFieldSchema()
   const parseSources = (schema: Schema) => {
     if (isMetaTableComponent(schema)) {
@@ -103,7 +101,6 @@ const useOperate = () => {
 export const DataGrid: ComposedDataGrid = observer(
   ({ className, style, metaOption, filterFields }) => {
     const field = useField()
-    console.log('the field', field)
     const ref = React.useRef<DataGridRefType>()
     const { loadMetaDataPageable, loadMetaSchema } = useMeta()
     const [objectMeta, setObjectMeta] = React.useState<IObjectMeta>()
@@ -144,6 +141,11 @@ export const DataGrid: ComposedDataGrid = observer(
           pageable,
           filter
         )
+        if (field.data) {
+          field.data.rows = data.list
+        } else {
+          field.data = { rows: data.list }
+        }
         return data
       },
       [objectMeta?.key]

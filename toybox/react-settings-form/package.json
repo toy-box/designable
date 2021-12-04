@@ -38,7 +38,6 @@
     "@formily/shared": "^2.0.2",
     "@monaco-editor/react": "^4.2.1",
     "@toy-box/designable-react": "1.0.0",
-    "@toy-box/formula-editor": "^1.0.10",
     "@toy-box/freepage-components": "^1.0.0",
     "ahooks": "^2.10.9",
     "monaco-editor": "^0.25.2",
