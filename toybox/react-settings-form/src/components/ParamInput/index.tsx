@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { Input, Select } from 'antd'
 import { MetaValueType } from '@toy-box/meta-schema'
+import { IBaseParameter } from '@toy-box/freepage-components'
 import { usePrefix, IconWidget } from '@toy-box/designable-react'
 import cls from 'classnames'
 import './styles.less'
@@ -20,11 +21,7 @@ const typeOptions = () => {
 
 export type ParamValueType = MetaValueType
 
-export type ParamValue = {
-  key?: string
-  name?: string
-  type?: ParamValueType
-}
+export type ParamValue = IBaseParameter
 
 export type ParamInputProps = {
   className?: string

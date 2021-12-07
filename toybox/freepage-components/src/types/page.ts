@@ -6,22 +6,23 @@ export enum PageParameterPattern {
   MetaObject = 'MetaObject',
 }
 
-export interface PageParameter {
-  paramKey: string
+export interface IBaseParameter {
+  key: string
+  type: string
   name?: string
-  pattern: PageParameterPattern
-  baseType?: string
-  metaSchema?: IFieldMeta
-  metaObject?: string
 }
+
+export type PageParameter = IBaseParameter
 
 export interface IPage {
   id: string
   name: string
-  params: PageParameter[]
+  parameters: PageParameter[]
 }
+
 export interface IPageOption {
   loadPageList: (name?: string) => Promise<IPage[]>
   loadPage: (pageId: string) => Promise<IPage>
   loadPageByValue: (ids: string[]) => Promise<IPage[]>
+  loadPageParameters: (pageId: string) => Promise<PageParameter[]>
 }

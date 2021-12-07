@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button } from 'antd'
-import { observer, useField } from '@formily/react'
-import { IFieldMeta } from '@toy-box/meta-schema'
+import { observer } from '@formily/react'
+import { useMeta } from '@toy-box/freepage-components'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
 import cls from 'classnames'
 import { ParamBindInput, ParamBindValue } from '../ParamBindInput'
+import { ParamValue } from '../ParamInput'
 import { useAttributes } from '../../hooks'
 import './styles.less'
 
@@ -13,17 +14,21 @@ export type ParamsBindSetterProps = {
   className?: string
   value?: ParamBindValue[]
   onChange?: (value?: ParamBindValue[]) => void
-  paramsSchema?: IFieldMeta
+  remoteId?: string
 }
 
 export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
-  ({ value = [], onChange, style, className, paramsSchema }) => {
-    const attributes = useAttributes()
+  ({ value = [], onChange, style, className, remoteId }) => {
     const prefix = usePrefix('params-bind-setter')
-    const paramKeys = React.useMemo(
-      () => Object.keys(paramsSchema?.properties || {}),
-      []
-    )
+    const { loadPageParameters } = useMeta()
+    const [parameters, setParameters] = React.useState<ParamValue[]>([])
+    const attributes = useAttributes()
+
+    React.useEffect(() => {
+      loadPageParameters &&
+        loadPageParameters(remoteId).then((data) => setParameters(data))
+    }, [remoteId, loadPageParameters])
+
     const handleParamChange = React.useCallback(
       (param: ParamBindValue, index: number) => {
         value[index] = param
@@ -48,8 +53,10 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
     return (
       <div className={cls(prefix, className)} style={style}>
         {value.map((param, index) => {
-          const keys = paramKeys.filter(
-            (key) => !value.some((v) => v.key === key) || param === key
+          const keys = parameters.filter(
+            (parameter) =>
+              !value.some((v) => v.key === parameter.key) ||
+              param === parameter.key
           )
           return (
             <ParamBindInput

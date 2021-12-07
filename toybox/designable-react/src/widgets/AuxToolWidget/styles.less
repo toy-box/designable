@@ -158,6 +158,7 @@
       align-items: center;
       padding: 0 3px;
       height: 20px;
+      border-radius: 4px;
     }
 
     & > * {
@@ -246,10 +247,9 @@
     }
   }
   &-parent-node {
-    transition: max-width 1s ease;
     max-width: 0;
+    transition: max-width 0.5s ease;
     &.expand {
-      transition: max-width 1s ease;
       max-width: 500px;
     }
   }

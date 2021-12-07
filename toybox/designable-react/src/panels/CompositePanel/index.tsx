@@ -57,6 +57,7 @@ export const CompositePanel: React.FC<CompositePanelProps> & {
             }
             return (
               <Button.Icon
+                size={'large'}
                 tooltip={<TextWidget token={item.title} />}
                 placement="bottom"
                 icon={<IconWidget infer={item.icon} />}

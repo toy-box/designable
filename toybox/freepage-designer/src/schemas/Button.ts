@@ -46,6 +46,14 @@ export const Button: ISchema = {
               'x-decorator-props': {
                 layout: 'vertical',
               },
+              'x-reactions': {
+                dependencies: ['.page'],
+                fulfill: {
+                  state: {
+                    componentProps: '{{{ pageId: $deps.page }}}',
+                  },
+                },
+              },
             },
           },
           'x-reactions': [

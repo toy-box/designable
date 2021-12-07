@@ -1,4 +1,4 @@
-import { IPageResult } from '@toy-box/meta-components/es/components/index-view/types'
+import { IPageResult } from '@toy-box/meta-components/es/components/data-grid/types'
 
 const repolist = [
   {
