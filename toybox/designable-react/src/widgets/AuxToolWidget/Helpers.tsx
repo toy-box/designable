@@ -3,7 +3,7 @@ import { TreeNode } from '@designable/core'
 import { reaction } from '@formily/reactive'
 import cls from 'classnames'
 import { useDesigner, usePrefix, useViewport } from '../../hooks'
-import { Selector } from './Selector'
+import { NodeSelector } from './NodeSelector'
 import { Copy } from './Copy'
 import { Delete } from './Delete'
 import { DragHandler } from './DragHandler'
@@ -109,7 +109,7 @@ export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
       ref={ref}
     >
       <div className={cls(prefix + '-content')}>
-        <Selector node={node} />
+        <NodeSelector node={node} />
         {node?.allowClone() === false ? null : <Copy node={node} />}
         {node?.allowDrag() === false ? null : <DragHandler node={node} />}
         {node?.allowDelete() === false ? null : <Delete node={node} />}
