@@ -49,7 +49,9 @@ export const ParamsSetter: React.FC<ParamsSetterProps> = observer(
           />
         ))}
         <Button type="dashed" onClick={addParam} block>
-          <TextWidget>Add Param</TextWidget>
+          <TextWidget>
+            SettingComponents.ParamsBindSetter.addParameter
+          </TextWidget>
         </Button>
       </div>
     )

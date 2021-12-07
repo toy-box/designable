@@ -37,6 +37,14 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
       onChange(value)
     }, [value])
 
+    const removeItem = React.useCallback(
+      (index: number) => {
+        value.splice(index, 1)
+        onChange(value)
+      },
+      [value, onChange]
+    )
+
     return (
       <div className={cls(prefix, className)} style={style}>
         {value.map((param, index) => {
@@ -50,11 +58,14 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
               value={param}
               paths={attributes}
               onChange={(param) => handleParamChange(param, index)}
+              remove={() => removeItem(index)}
             />
           )
         })}
         <Button type="dashed" onClick={addParam} block>
-          <TextWidget>Add Param</TextWidget>
+          <TextWidget>
+            SettingComponents.ParamsBindSetter.addParameter
+          </TextWidget>
         </Button>
       </div>
     )

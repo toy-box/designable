@@ -16,15 +16,19 @@
   },
   "peerDependencies": {
     "@airclass/icons": "^4.3.4",
+    "@monaco-editor/react": "^4.2.1",
     "@toy-box/toybox-shared": "^2.0.15",
     "@toy-box/toybox-ui": "^2.0.20",
-    "antd": "^4.0.0"
+    "antd": "^4.0.0",
+    "monaco-editor": "^0.30.1"
   },
   "devDependencies": {
     "@airclass/icons": "^4.3.4",
+    "@monaco-editor/react": "^4.2.1",
     "@toy-box/toybox-shared": "^2.0.15",
     "@toy-box/toybox-ui": "^2.0.20",
-    "antd": "^4.15.5"
+    "antd": "^4.15.5",
+    "monaco-editor": "^0.30.1"
   },
   "dependencies": {
     "@babel/parser": "^7.14.7",
@@ -36,11 +40,10 @@
     "@formily/reactive": "^2.0.2",
     "@formily/reactive-react": "^2.0.2",
     "@formily/shared": "^2.0.2",
-    "@monaco-editor/react": "^4.2.1",
     "@toy-box/designable-react": "1.0.0",
+    "@toy-box/expression-editor": "^1.0.2",
     "@toy-box/freepage-components": "^1.0.0",
     "ahooks": "^2.10.9",
-    "monaco-editor": "^0.25.2",
     "prettier": "^2.3.2",
     "react-color": "^2.19.3",
     "react-tiny-popover": "^6.0.5"

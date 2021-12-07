@@ -7,6 +7,15 @@ export default {
       MonacoInput: {
         helpDocument: 'Help Documents',
       },
+      Expression: {
+        configureExpression: 'Expression',
+      },
+      ParamsBindSetter: {
+        addParameter: 'Add Parameter',
+      },
+      ParamsSetter: {
+        addParameter: 'Add Parameter',
+      },
     },
   },
 }

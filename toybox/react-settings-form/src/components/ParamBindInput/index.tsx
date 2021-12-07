@@ -54,15 +54,14 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
           onChange={handleKeyChange}
           style={{ width: '40%' }}
         />
-        <ExpressionInput
-          value={value.expression}
-          onChange={handlePathChange}
-          valueType={MetaValueType.NUMBER}
-          variableMap={{
-            globalVariables: {},
-            localVariables: {},
-          }}
-        />
+        <div style={{ width: '60%' }}>
+          <ExpressionInput
+            value={value.expression}
+            onChange={handlePathChange}
+            valueType={MetaValueType.NUMBER}
+            variableMap={{}}
+          />
+        </div>
       </Input.Group>
       <IconWidget
         className={`${prefix}__remove`}

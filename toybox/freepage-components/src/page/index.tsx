@@ -3,6 +3,7 @@ import { Form, FormProps } from '@formily/antd'
 import { PageContext } from './context'
 import { useStateParams } from './hooks/useStateParams'
 import { useQueryParams } from './hooks/useQueryParams'
+import { formulaResultType } from '@toy-box/formula'
 
 export type PageProps = {
   title: string

@@ -1,10 +1,35 @@
 import React from 'react'
 import { parseResult } from '@toy-box/formula'
+import { isNum, FormPath } from '@formily/shared'
 import { LinkAction, PageAction, AutoflowAction } from '../types'
 import { IActionFieldData } from '../context/actions/'
 import { ActionContext } from '../context/actions'
-import { useGetFieldValue } from './useGetFieldValue'
-import { useField } from '@formily/react'
+
+const DATA_GRID = 'DataGrid'
+const DATA_LIST = 'DataList'
+const DATA_VIEW = 'DataView'
+
+export const getFieldValue = (actionFieldData: IActionFieldData) => {
+  const { field, index } = actionFieldData
+  const { form } = field
+  if ([DATA_GRID, DATA_LIST].includes(field.component[0]) && isNum(index)) {
+    return {
+      $Record: field.data.rows[index],
+      $SelectedRows: field.data.selectedRows,
+      $SelectedRowKeys: field.data.selectedRowKeys,
+      $PageParams: field.form.getValuesIn('$PagePararms'),
+    }
+  } else if (field.component[0] === DATA_VIEW) {
+    return {
+      $PageParams: form.getValuesIn('$PagePararms'),
+      ...form.getValuesIn(field.path),
+    }
+  } else {
+    return {
+      $PageParams: form.getValuesIn('$PagePararms'),
+    }
+  }
+}
 
 export const useActions = () => {
   return React.useContext(ActionContext)
@@ -17,11 +42,14 @@ export const useFieldActions = () => {
       actions.handleLinkAction(linkAction)
     },
     handlePageAction: (pageAction: PageAction, data: IActionFieldData) => {
+      const variableMap = getFieldValue(data)
       const expPageAction = {
         ...pageAction,
         params: pageAction.params.map((param) => ({
           key: param.key,
-          value: parseResult(param.expression, () => 0),
+          value: parseResult('1 + 1', (path: string) =>
+            FormPath.getIn(variableMap, path)
+          ),
         })),
       }
       actions.handlePageAction(pageAction)
