@@ -71,6 +71,7 @@
     padding-bottom: 8px;
     margin-bottom: 8px;
     margin-top: 8px;
+    padding: 0 20px;
     * {
       font-size: 13px;
     }
@@ -103,8 +104,6 @@
 }
 
 .dn-settings-form {
-  padding: 0 20px;
-
   &-empty {
     display: flex;
     align-items: center;
@@ -112,5 +111,21 @@
     justify-content: center;
     height: 100%;
     color: #888;
+  }
+  .@{ant-prefix}-tabs-top {
+    > .@{ant-prefix}-tabs-nav {
+      margin-bottom: 0;
+      border-bottom: 1px solid @border-color-base;
+    }
+  }
+  .@{ant-prefix}-tabs-nav-list {
+    width: 100%;
+    .@{ant-prefix}-tabs-tab {
+      width: 100%;
+      justify-content: center;
+      > .@{ant-prefix}-tabs-tab-btn {
+        display: flex;
+      }
+    }
   }
 }

@@ -48,6 +48,7 @@ export const NodeSelector: React.FC<INodeSelectorProps> = observer(
     const ref = useRef<HTMLDivElement>(null)
     const selection = useSelection()
     const prefix = usePrefix('aux-node-selector')
+    const parents = node.getParents()
     const renderIcon = (node: TreeNode) => {
       const icon = node.designerProps.icon
       if (icon) {
@@ -62,7 +63,6 @@ export const NodeSelector: React.FC<INodeSelectorProps> = observer(
     }
 
     const renderParents = () => {
-      const parents = node.getParents()
       return (
         <React.Fragment>
           {parents
@@ -92,6 +92,17 @@ export const NodeSelector: React.FC<INodeSelectorProps> = observer(
       )
     }
 
+    const renderArrow = () => {
+      if (parents.length > 0) {
+        return expand ? (
+          <IconWidget infer="RightDropArrow" />
+        ) : (
+          <IconWidget infer="LeftDropArrow" />
+        )
+      }
+      return null
+    }
+
     useMouseHover(
       ref,
       () => {
@@ -111,11 +122,7 @@ export const NodeSelector: React.FC<INodeSelectorProps> = observer(
             hover.setHover(node)
           }}
         >
-          {expand ? (
-            <IconWidget infer="RightDropArrow" />
-          ) : (
-            <IconWidget infer="LeftDropArrow" />
-          )}
+          {renderArrow()}
           <span>
             <NodeTitleWidget node={node} />
           </span>
