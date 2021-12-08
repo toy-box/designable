@@ -15,7 +15,6 @@ export type ParamBindInputProps = {
   className?: string
   style?: React.CSSProperties
   dataSource?: string[]
-  paths?: { label: string; value: string }[]
   value?: ParamBindValue
   onChange?: (value?: ParamBindValue) => void
   remove?: () => void
@@ -23,7 +22,6 @@ export type ParamBindInputProps = {
 
 export const ParamBindInput: React.FC<ParamBindInputProps> = ({
   dataSource = [],
-  paths = [],
   value = {},
   style,
   className,

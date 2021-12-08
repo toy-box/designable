@@ -50,7 +50,7 @@ export const Button: ISchema = {
                 dependencies: ['.page'],
                 fulfill: {
                   state: {
-                    componentProps: '{{{ pageId: $deps.page }}}',
+                    componentProps: '{{{ remoteId: $deps[0] }}}',
                   },
                 },
               },

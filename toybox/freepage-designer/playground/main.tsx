@@ -40,6 +40,7 @@ import {
   loadMetaRepoListByValue,
   loadMetaSchema,
   loadPageList,
+  loadPageParameters,
 } from './service'
 import {
   Button,
@@ -257,6 +258,7 @@ const App = () => {
                     loadMetaRepoListByValue,
                     loadMetaSchema,
                     loadPageList,
+                    loadPageParameters,
                   }}
                 >
                   <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />

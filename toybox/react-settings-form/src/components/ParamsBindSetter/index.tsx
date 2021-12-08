@@ -1,9 +1,9 @@
 import React from 'react'
+import cls from 'classnames'
 import { Button } from 'antd'
 import { observer } from '@formily/react'
 import { useMeta } from '@toy-box/freepage-components'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
-import cls from 'classnames'
 import { ParamBindInput, ParamBindValue } from '../ParamBindInput'
 import { ParamValue } from '../ParamInput'
 import { useAttributes } from '../../hooks'
@@ -26,7 +26,9 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
 
     React.useEffect(() => {
       loadPageParameters &&
-        loadPageParameters(remoteId).then((data) => setParameters(data))
+        loadPageParameters(remoteId).then((data) => {
+          setParameters(data || [])
+        })
     }, [remoteId, loadPageParameters])
 
     const handleParamChange = React.useCallback(
@@ -53,17 +55,16 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
     return (
       <div className={cls(prefix, className)} style={style}>
         {value.map((param, index) => {
-          const keys = parameters.filter(
-            (parameter) =>
-              !value.some((v) => v.key === parameter.key) ||
-              param === parameter.key
-          )
           return (
             <ParamBindInput
               key={index}
-              dataSource={keys}
+              dataSource={parameters
+                .map((p) => p.key)
+                .filter(
+                  (key) =>
+                    !value.some((v) => v.key === key) || key === param.key
+                )}
               value={param}
-              paths={attributes}
               onChange={(param) => handleParamChange(param, index)}
               remove={() => removeItem(index)}
             />
