@@ -43,16 +43,13 @@ export const useFieldActions = () => {
     },
     handlePageAction: (pageAction: PageAction, data: IActionFieldData) => {
       const variableMap = getFieldValue(data)
-      const expPageAction = {
-        ...pageAction,
-        params: pageAction.params.map((param) => ({
-          key: param.key,
-          value: parseResult('1 + 1', (path: string) =>
-            FormPath.getIn(variableMap, path)
-          ),
-        })),
-      }
-      actions.handlePageAction(pageAction)
+      const parameters = pageAction.parameters.map((parameter) => ({
+        key: parameter.key,
+        value: parseResult(parameter.expression, (path: string) =>
+          FormPath.getIn(variableMap, path)
+        ),
+      }))
+      actions.handlePageAction({ pageId: pageAction.pageId, parameters })
     },
     handleAutoflowAction: (
       autoflowAction: AutoflowAction,

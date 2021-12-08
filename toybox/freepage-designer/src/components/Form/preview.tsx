@@ -19,12 +19,7 @@ export const Form: DnFC<React.ComponentProps<typeof FormilyForm>> = observer(
       []
     )
     return (
-      <FormilyForm
-        {...props}
-        style={{ ...props.style }}
-        className={prefix}
-        form={form}
-      >
+      <FormilyForm {...props} className={prefix} form={form}>
         {props.children}
       </FormilyForm>
     )

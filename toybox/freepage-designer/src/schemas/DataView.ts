@@ -87,10 +87,10 @@ export const DataView: ISchema = {
             layout: 'vertical',
           },
         },
-        path: {
+        parameterKey: {
           type: 'string',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'ParameterSelector',
         },
       },
     },

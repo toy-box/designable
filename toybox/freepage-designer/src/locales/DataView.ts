@@ -25,11 +25,11 @@ export const DataView = {
           type: {
             title: '数据来源类型',
             dataSource: [
-              { label: '页面参数ID', value: 'paramId' },
-              { label: '页面参数值', value: 'paramValue' },
+              { label: '通过ID获取数据', value: 'paramId' },
+              { label: '直接获取数据', value: 'paramValue' },
             ],
           },
-          path: '数据来源',
+          parameterKey: '关联页面参数',
         },
       },
     },
@@ -60,11 +60,11 @@ export const DataView = {
           type: {
             title: 'DataSource Type',
             dataSource: [
-              { label: 'Page Param ID', value: 'paramId' },
-              { label: 'Page Param Value', value: 'paramValue' },
+              { label: 'Object ID', value: 'paramId' },
+              { label: 'Object Value', value: 'paramValue' },
             ],
           },
-          path: 'DataSource',
+          parameterKey: 'Parameter Key',
         },
       },
     },

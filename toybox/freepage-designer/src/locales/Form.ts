@@ -6,7 +6,7 @@ export const Form = createLocales(Component, {
     title: '页面',
     settings: {
       title: '标题',
-      params: '参数',
+      parameters: '参数',
       labelCol: '标签网格宽度',
       wrapperCol: '组件网格宽度',
       colon: '是否有冒号',
@@ -42,7 +42,7 @@ export const Form = createLocales(Component, {
     title: 'Page',
     settings: {
       title: 'Page',
-      params: 'Params',
+      parameters: 'Parameters',
       labelCol: 'Label Col',
       wrapperCol: 'Wrapper Col',
       colon: 'Colon',

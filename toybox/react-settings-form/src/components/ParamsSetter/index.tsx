@@ -4,6 +4,7 @@ import { observer } from '@formily/react'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
 import cls from 'classnames'
 import { ParamInput, ParamValue } from '../ParamInput'
+import { usePageParameters } from '../../hooks'
 import './styles.less'
 
 export type ParamsSetterProps = {
@@ -16,7 +17,7 @@ export type ParamsSetterProps = {
 export const ParamsSetter: React.FC<ParamsSetterProps> = observer(
   ({ value = [], onChange, style, className }) => {
     const prefix = usePrefix('params-setter')
-
+    const parameters = usePageParameters()
     const handleParamChange = React.useCallback(
       (param: ParamValue, index: number) => {
         value[index] = param

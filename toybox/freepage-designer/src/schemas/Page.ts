@@ -10,8 +10,8 @@ export const Page: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
-    params: {
-      type: 'array<param>',
+    parameters: {
+      type: 'array',
       'x-decorator': 'FormItem',
       'x-component': 'ParamsSetter',
       'x-decorator-props': {

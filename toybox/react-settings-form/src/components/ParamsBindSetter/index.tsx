@@ -6,7 +6,6 @@ import { useMeta } from '@toy-box/freepage-components'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
 import { ParamBindInput, ParamBindValue } from '../ParamBindInput'
 import { ParamValue } from '../ParamInput'
-import { useAttributes } from '../../hooks'
 import './styles.less'
 
 export type ParamsBindSetterProps = {
@@ -22,13 +21,10 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
     const prefix = usePrefix('params-bind-setter')
     const { loadPageParameters } = useMeta()
     const [parameters, setParameters] = React.useState<ParamValue[]>([])
-    const attributes = useAttributes()
 
     React.useEffect(() => {
       loadPageParameters &&
-        loadPageParameters(remoteId).then((data) => {
-          setParameters(data || [])
-        })
+        loadPageParameters(remoteId).then((data) => setParameters(data || []))
     }, [remoteId, loadPageParameters])
 
     const handleParamChange = React.useCallback(

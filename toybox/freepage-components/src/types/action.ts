@@ -33,27 +33,45 @@ export interface Action {
 
 export type ParamValueType = MetaValueType
 
+export type ParamVaule = {
+  key: string
+  value: any
+}
+
 export type ParamBind = {
   key?: string
   expression?: string
 }
 
-export interface PageAction {
+export type PageAction = {
   pageId: string
-  params: ParamBind[]
+  parameters?: ParamBind[]
 }
 
-export interface LinkAction {
+export type LinkAction = {
   url: string
   target: LinkTarget
 }
 
-export interface AutoflowAction {
+export type AutoflowAction = {
   autoflowId: string
+  parameters?: ParamBind[]
 }
 
-export interface MetaRepositoryAction {
+export type MetaRepositoryAction = {
   operation: MetaRepositoryOP
+}
+
+export type PageActionImpl = {
+  pageId: string
+  parameters?: ParamVaule[]
+}
+
+export type LinkActionImpl = LinkAction
+
+export type AutoflowActionImpl = {
+  autoflowId: string
+  parameters?: ParamVaule[]
 }
 
 export type MetaRepositoryOP = 'save' | 'delete'
