@@ -1,6 +1,5 @@
 import { ISchema } from '@formily/react'
 import { FormLayout } from './FormLayout'
-import { CSSStyle } from './CSSStyle'
 
 export const Page: ISchema = {
   type: 'object',
@@ -21,6 +20,5 @@ export const Page: ISchema = {
       },
     },
     ...(FormLayout.properties as any),
-    style: CSSStyle,
   },
 }

@@ -29,7 +29,6 @@ export const Page: React.FC<PageProps> = ({
   React.useEffect(() => {
     form.setValuesIn('$PageParams', params)
   }, [params])
-
   return (
     <PageContext.Provider value={{ title, name, layout }}>
       <Form {...formProps} />

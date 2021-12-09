@@ -17,7 +17,7 @@ export const Text: ISchema = {
     },
     color: {
       type: 'string',
-      enum: ['primary', 'success', 'warning', 'danger', 'secondary'],
+      enum: ['primary', 'success', 'warning', 'secondary', 'danger'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },

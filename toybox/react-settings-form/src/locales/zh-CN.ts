@@ -16,6 +16,9 @@ export default {
       ParamsSetter: {
         addParameter: '添加参数',
       },
+      Profile: '配置',
+      Component: '组件',
+      Style: '样式',
     },
   },
 }

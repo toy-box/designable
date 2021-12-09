@@ -16,6 +16,9 @@ export default {
       ParamsSetter: {
         addParameter: 'Add Parameter',
       },
+      Profile: 'Profile',
+      Component: 'Component',
+      Style: 'Style',
     },
   },
 }

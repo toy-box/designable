@@ -63,7 +63,7 @@
 
   .dn-settings-form-content {
     flex-grow: 1;
-    overflow: overlay;
+    overflow: hidden;
   }
 
   .@{ant-prefix}-formily-item {
@@ -104,6 +104,7 @@
 }
 
 .dn-settings-form {
+  height: 100%;
   &-empty {
     display: flex;
     align-items: center;
@@ -111,6 +112,18 @@
     justify-content: center;
     height: 100%;
     color: #888;
+  }
+  .@{ant-prefix}-formily-layout {
+    height: 100%;
+    > form {
+      height: 100%;
+    }
+    .@{ant-prefix}-tabs {
+      height: 100%;
+    }
+    .@{ant-prefix}-tabs-content-holder {
+      overflow: overlay;
+    }
   }
   .@{ant-prefix}-tabs-top {
     > .@{ant-prefix}-tabs-nav {

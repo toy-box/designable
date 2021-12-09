@@ -3,12 +3,12 @@ import { ISchema } from '@formily/json-schema'
 import { IconWidget, TextWidget } from '@toy-box/designable-react'
 import * as AllSchemas from '../../schemas'
 
-const makeIconTabPane = (icon: string, text?: string) => {
+export const makeIconTabPane = (icon: string, text?: string) => {
   const tooltip = text ? <TextWidget token={text} /> : null
   return <IconWidget infer={icon} size={20} tooltip={tooltip} />
 }
 
-export const createStyleSchema = (component: ISchema, decorator: ISchema) => {
+export const createStyleSchema = (component?: ISchema, decorator?: ISchema) => {
   return {
     'component-style-group': component && {
       type: 'void',
@@ -98,7 +98,7 @@ export const createFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Layout', 'Layout'),
+              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
             },
             properties: {
               'field-group': {
@@ -164,7 +164,7 @@ export const createFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Flashlight', 'Component'),
+              tab: makeIconTabPane('Flashlight', 'SettingComponents.Component'),
             },
             properties: {
               ...createComponentSchema(component, decorator),
@@ -174,7 +174,7 @@ export const createFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Brush', 'Style'),
+              tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
             },
             properties: {
               ...createStyleSchema(component, decorator),
@@ -204,14 +204,17 @@ export const createVoidFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Layout', 'Layout'),
+              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
             },
             properties: {
               'field-component': {
                 type: 'void',
                 'x-component': 'FormTab.TabPane',
                 'x-component-props': {
-                  tab: makeIconTabPane('Flashlight', 'Component'),
+                  tab: makeIconTabPane(
+                    'Flashlight',
+                    'SettingComponents.Component'
+                  ),
                 },
                 properties: {
                   ...createComponentSchema(component, decorator),
@@ -291,7 +294,7 @@ export const createDataShourceSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Layout', 'Layout'),
+              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
             },
             properties: {
               'field-group': {
@@ -310,16 +313,54 @@ export const createDataShourceSchema = (
               },
             },
           },
-          // 'field-styles': {
-          //   type: 'void',
-          //   'x-component': 'FormTab.TabPane',
-          //   'x-component-props': {
-          //     tab: makeIconTabPane('Brush', 'Style')
-          //   },
-          //   properties: {
-          //     ...createStyleSchema(component, decorator),
-          //   }
-          // }
+        },
+      },
+    },
+  }
+}
+
+export const createPageFieldSchema = (component: ISchema) => {
+  return {
+    type: 'object',
+    properties: {
+      'field-tabs': {
+        type: 'void',
+        'x-component': 'FormTab',
+        'x-component-props': {
+          centered: true,
+        },
+        properties: {
+          'field-attribute': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
+            },
+            properties: {
+              'field-group': {
+                type: 'void',
+                properties: component.properties,
+              },
+            },
+          },
+          'field-component': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane('Flashlight', 'SettingComponents.Component'),
+            },
+            properties: AllSchemas.FormLayout.properties,
+          },
+          'field-styles': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
+            },
+            properties: {
+              style: AllSchemas.CSSStyle,
+            },
+          },
         },
       },
     },

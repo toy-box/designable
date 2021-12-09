@@ -4,6 +4,7 @@ import { createForm } from '@formily/core'
 import { observer } from '@formily/react'
 import { Form as FormilyForm } from '@formily/antd'
 import { usePrefix, DnFC } from '@toy-box/designable-react'
+import { createPageFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 import './styles.less'
@@ -35,13 +36,7 @@ Form.Behavior = createBehavior({
       cloneable: !node.isRoot,
       deletable: !node.isRoot,
       droppable: true,
-      propsSchema: {
-        type: 'object',
-        properties: {
-          ...(AllSchemas.Page.properties as any),
-          style: AllSchemas.CSSStyle,
-        },
-      },
+      propsSchema: createPageFieldSchema(AllSchemas.Form),
       defaultProps: {
         labelCol: 6,
         wrapperCol: 12,

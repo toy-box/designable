@@ -1,6 +1,4 @@
 import { ISchema } from '@formily/react'
-import { FormLayout } from './FormLayout'
-import { CSSStyle } from './CSSStyle'
 
 export const Form: ISchema = {
   type: 'object',
@@ -10,7 +8,15 @@ export const Form: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
-    ...(FormLayout.properties as any),
-    style: CSSStyle,
+    parameters: {
+      type: 'array',
+      'x-decorator': 'FormItem',
+      'x-component': 'ParamsSetter',
+      'x-decorator-props': {
+        layout: 'vertical',
+        wrapperAlign: 'left',
+        wrapperWidth: '100%',
+      },
+    },
   },
 }
