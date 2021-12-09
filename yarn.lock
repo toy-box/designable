@@ -2567,17 +2567,17 @@
     dayjs "^1.10.7"
     lodash.uniq "^4.5.0"
 
-"@toy-box/meta-components@^2.0.21":
-  version "2.0.21"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.21.tgz#fe5a671a13a3326fecd8f6121bd28c67623a9e4c"
-  integrity sha512-BnK8vgxZYAs3V1/Ns2R9J4EOxy9xQKA4FjXv5fM4YuAslrMwmVofyYNybLTG/gVxlC/esXM9raL4pGt+X1O2Uw==
+"@toy-box/meta-components@^2.0.22":
+  version "2.0.22"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.22.tgz#d429fd78ddba990c199e1895358933e8350f2a45"
+  integrity sha512-8zskp30EzVuIB4n/EpQzMT997WL/nxTlTfLLA+tgxnyH8sHSJWBuGBcCZUTk3bQJgDm2TA2HsvFlQe+8U9vE4Q==
   dependencies:
     "@ahooksjs/antd-table" "^0.2.3"
     "@ahooksjs/use-request" "^2.8.13"
     "@airclass/icons" "^4.3.4"
     "@toy-box/meta-schema" "^2.0.15"
     "@toy-box/toybox-shared" "^2.0.15"
-    "@toy-box/toybox-ui" "^2.0.20"
+    "@toy-box/toybox-ui" "^2.0.22"
     ahooks "^2.10.6"
     antd "^4.15.5"
     hoist-non-react-statics "^3.3.1"
@@ -2598,10 +2598,10 @@
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.15.tgz#9981cce3d7c8a07506a9d8fc5a5b966008358f3b"
   integrity sha512-lO63VfWqNCNlaHyElCY3qNUuyMY5h3wJ2xVsc0jaxly2vDNdYGabSPy5D6XhqzxFdB9tr02kInoHdp6fGrVQ7A==
 
-"@toy-box/toybox-ui@^2.0.20":
-  version "2.0.20"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.20.tgz#5340ed1faed97336d659514b3c87f5e9a6018b74"
-  integrity sha512-HYLBvr8ixXUONgntLPIOy/RljJnIhoXNw5IL8wJ4eqY7Iq96DUT6F8B1on52t2O96QLcL/T1w7gYnYkFfgubAQ==
+"@toy-box/toybox-ui@^2.0.22":
+  version "2.0.22"
+  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.22.tgz#f471ab90e51488d229528d73ce26a058b01b4788"
+  integrity sha512-7ir2zWxZ0X97f7LT5lRcqROL0rU5fxBzxu3lbxzYD56LWfbBrkH+no8OVOyMl2b5rTjYFxXm5HKesz9bh5CzfA==
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.intersection "^4.4.0"

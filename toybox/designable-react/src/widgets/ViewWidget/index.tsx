@@ -27,6 +27,7 @@ export const ViewWidget: React.FC<ViewWidgetProps> = observer(
             onClick={() => {
               workbench.type = 'DESIGNABLE'
             }}
+            size={'huge'}
             icon={<IconWidget infer="Design" />}
           />
         )}
@@ -36,6 +37,7 @@ export const ViewWidget: React.FC<ViewWidgetProps> = observer(
             onClick={() => {
               workbench.type = 'JSONTREE'
             }}
+            size={'huge'}
             icon={<IconWidget infer="JSON" />}
           />
         )}
@@ -45,6 +47,7 @@ export const ViewWidget: React.FC<ViewWidgetProps> = observer(
             onClick={() => {
               workbench.type = 'MARKUP'
             }}
+            size={'huge'}
             icon={<IconWidget infer="Code" />}
           />
         )}
@@ -54,6 +57,7 @@ export const ViewWidget: React.FC<ViewWidgetProps> = observer(
             onClick={() => {
               workbench.type = 'PREVIEW'
             }}
+            size={'huge'}
             icon={<IconWidget infer="Play" />}
           />
         )}

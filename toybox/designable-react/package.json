@@ -23,7 +23,7 @@
     "@formily/reactive-react": "^2.0.2",
     "antd": "^4.15.4",
     "react": "16.x || 17.x",
-    "@toy-box/toybox-ui": "^2.0.20"
+    "@toy-box/toybox-ui": "^2.0.22"
   },
   "dependencies": {
     "@designable/core": "1.0.0-beta.37",

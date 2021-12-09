@@ -40,6 +40,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
             onClick={() => {
               history.undo()
             }}
+            size="huge"
             icon={<IconWidget infer="Undo" />}
           />
           <Button.Icon
@@ -47,6 +48,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
             onClick={() => {
               history.redo()
             }}
+            size="huge"
             icon={<IconWidget infer="Redo" />}
           />
         </div>
@@ -63,6 +65,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
             onClick={() => {
               cursor.setType(CursorType.Move)
             }}
+            size="huge"
             icon={<IconWidget infer="Move" />}
           />
           <Button.Icon
@@ -70,6 +73,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
             onClick={() => {
               cursor.setType(CursorType.Selection)
             }}
+            size="huge"
             icon={<IconWidget infer="Selection" />}
           />
         </div>
@@ -117,6 +121,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
               onClick={() => {
                 screen.resetSize()
               }}
+              size="huge"
               icon={<IconWidget infer="Recover" />}
             />
           )}
@@ -138,6 +143,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
                 screen.setType(ScreenType.PC)
               }}
               pure
+              size="huge"
               icon={<IconWidget infer="PC" />}
             />
           </div>
@@ -150,6 +156,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
               onClick={() => {
                 screen.setType(ScreenType.Mobile)
               }}
+              size="huge"
               pure
               icon={<IconWidget infer="Mobile" />}
             />
@@ -160,6 +167,7 @@ export const DesignerWidget: React.FC<DesignerWidgetProps> = observer(
                 screen.setType(ScreenType.Responsive)
               }}
               pure
+              size="huge"
               icon={<IconWidget infer="Responsive" />}
             />
           </div> */}
