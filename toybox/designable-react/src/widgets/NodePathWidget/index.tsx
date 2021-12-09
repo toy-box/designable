@@ -25,13 +25,13 @@ export const NodePathWidget: React.FC<INodePathWidgetProps> = observer(
       .reverse()
       .concat(selected)
     return (
-      <Breadcrumb className={prefix}>
+      <Breadcrumb
+        className={prefix}
+        separator={<IconWidget infer="RightDropArrow" />}
+      >
         {nodes.map((node, key) => {
           return (
             <Breadcrumb.Item key={key}>
-              {key === 0 && (
-                <IconWidget infer="Position" style={{ marginRight: 3 }} />
-              )}
               <a
                 href=""
                 onMouseEnter={() => {
