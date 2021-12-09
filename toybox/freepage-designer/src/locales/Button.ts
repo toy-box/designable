@@ -13,7 +13,7 @@ export const Button = {
               { label: '无', value: ActionType.Nothing },
               { label: '页面', value: ActionType.Page },
               { label: '链接', value: ActionType.Link },
-              { label: '自动流', value: ActionType.Autoflow },
+              { label: '流程', value: ActionType.Autoflow },
             ],
           },
           pageAction: {

@@ -16,8 +16,11 @@ export default {
       ParamsSetter: {
         addParameter: 'Add Parameter',
       },
-      Profile: 'Profile',
-      Component: 'Component',
+      TableColumnSetter: {
+        addColumn: 'Add Column',
+      },
+      Properties: 'Properties',
+      Layout: 'Layout',
       Style: 'Style',
     },
   },

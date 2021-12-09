@@ -5,7 +5,7 @@ import { FormItem } from '@formily/antd'
 import { Switch } from 'antd'
 import { usePrefix } from '@toy-box/designable-react'
 import cls from 'classnames'
-import { FormulaInput } from '../FormulaInput'
+import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
 
 export interface IEditablilitySetterProps {
@@ -17,7 +17,7 @@ export interface IEditablilitySetterProps {
 
 export const EditabilitySetter: React.FC<IEditablilitySetterProps> = observer(
   (props) => {
-    const field = useField<Formily.Core.Models.Field>()
+    const field = useField<Field>()
     const prefix = usePrefix('editablility-setter')
     const [active, setActive] = useState(false)
 
@@ -25,8 +25,8 @@ export const EditabilitySetter: React.FC<IEditablilitySetterProps> = observer(
       (active: boolean) => {
         if (active) {
           props.onChange?.({
-            type: 'formula',
-            formula: '',
+            type: 'expression',
+            expression: '',
           })
         } else {
           props.onChange?.(undefined)
@@ -52,13 +52,13 @@ export const EditabilitySetter: React.FC<IEditablilitySetterProps> = observer(
           <Switch checked={active} onChange={handleActive} />
         </FormItem.BaseItem>
         <FieldWrap
-          name="formula"
+          name="expression"
           basePath={field.address}
           visible={active}
           reactions={(field) => {
-            field.visible = (field.parent as Field).value?.type === 'formula'
+            field.visible = (field.parent as Field).value?.type === 'expression'
           }}
-          component={[FormulaInput]}
+          component={[ExpressionInput]}
         />
       </>
     )

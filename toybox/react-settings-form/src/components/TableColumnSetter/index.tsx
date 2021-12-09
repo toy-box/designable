@@ -92,7 +92,7 @@ export const TableColumnSetter: React.FC<TableColumnSetterProps> = observer(
           idKey="id"
         />
         <Button type="dashed" onClick={addColumn} block>
-          <TextWidget>Add Column</TextWidget>
+          <TextWidget>SettingComponents.TableColumnSetter.addColumn</TextWidget>
         </Button>
       </div>
     )

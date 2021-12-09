@@ -1,6 +1,6 @@
 export const DataGrid = {
   'zh-CN': {
-    title: '业务表格',
+    title: '网格数据',
     settings: {
       'x-component-props': {
         name: '名称',

@@ -98,7 +98,10 @@ export const createFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
+              tab: makeIconTabPane(
+                'Flashlight',
+                'SettingComponents.Properties'
+              ),
             },
             properties: {
               'field-group': {
@@ -164,7 +167,7 @@ export const createFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Flashlight', 'SettingComponents.Component'),
+              tab: makeIconTabPane('Layout', 'SettingComponents.Layout'),
             },
             properties: {
               ...createComponentSchema(component, decorator),
@@ -204,7 +207,10 @@ export const createVoidFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
+              tab: makeIconTabPane(
+                'Flashlight',
+                'SettingComponents.Properties'
+              ),
             },
             properties: {
               'field-component': {
@@ -254,7 +260,7 @@ export const createVoidFieldSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Brush', 'Style'),
+              tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
             },
             properties: {
               ...createStyleSchema(component, decorator),
@@ -284,7 +290,7 @@ export const createDataShourceSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Flashlight', 'Component'),
+              tab: makeIconTabPane('Layout', 'SettingComponents.Layout'),
             },
             properties: {
               ...createComponentSchema(component, decorator),
@@ -294,7 +300,10 @@ export const createDataShourceSchema = (
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
+              tab: makeIconTabPane(
+                'Flashlight',
+                'SettingComponents.Properties'
+              ),
             },
             properties: {
               'field-group': {
@@ -334,7 +343,10 @@ export const createPageFieldSchema = (component: ISchema) => {
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Profile', 'SettingComponents.Profile'),
+              tab: makeIconTabPane(
+                'Flashlight',
+                'SettingComponents.Properties'
+              ),
             },
             properties: {
               'field-group': {
@@ -347,7 +359,7 @@ export const createPageFieldSchema = (component: ISchema) => {
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Flashlight', 'SettingComponents.Component'),
+              tab: makeIconTabPane('Layout', 'SettingComponents.Layout'),
             },
             properties: AllSchemas.FormLayout.properties,
           },

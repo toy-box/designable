@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useField, observer, Field } from '@formily/react'
+import { Field } from '@formily/core'
+import { Field as FieldComponent, useField, observer } from '@formily/react'
 import { FormItem } from '@formily/antd'
 import { Switch } from 'antd'
 import { usePrefix } from '@toy-box/designable-react'
 import cls from 'classnames'
-import { FormulaInput } from '../FormulaInput'
+import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
 
 export interface IVisibilitySetterProps {
@@ -16,7 +17,7 @@ export interface IVisibilitySetterProps {
 
 export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
   (props) => {
-    const field = useField<Formily.Core.Models.Field>()
+    const field = useField<Field>()
     const prefix = usePrefix('visibility-setter')
     const [active, setActive] = useState(false)
 
@@ -24,8 +25,8 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
       (active: boolean) => {
         if (active) {
           props.onChange?.({
-            type: 'formula',
-            formula: '',
+            type: 'expression',
+            expression: '',
           })
         } else {
           props.onChange?.(undefined)
@@ -50,15 +51,18 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
         >
           <Switch checked={active} onChange={handleActive} />
         </FormItem.BaseItem>
-        <Field
-          name="formula"
-          basePath={field.address}
-          visible={active}
-          reactions={(field) => {
-            field.visible = field.parent.value?.type === 'formula'
-          }}
-          component={[FormulaInput]}
-        />
+        <FormItem.BaseItem className={cls(prefix, props.className)}>
+          <FieldComponent
+            name="expression"
+            basePath={field.address}
+            visible={active}
+            reactions={(field) => {
+              field.visible =
+                (field.parent as Field).value?.type === 'expression'
+            }}
+            component={[ExpressionInput]}
+          />
+        </FormItem.BaseItem>
       </>
     )
   }

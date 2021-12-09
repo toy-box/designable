@@ -37,8 +37,8 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
     [onChange, value]
   )
   const handlePathChange = useCallback(
-    (path: string) => {
-      onChange && onChange(Object.assign(value, { path }))
+    (expression: string) => {
+      onChange && onChange(Object.assign(value, { expression }))
     },
     [onChange, value]
   )

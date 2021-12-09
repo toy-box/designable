@@ -2,7 +2,12 @@ import React, { Fragment, useState } from 'react'
 import { Modal, Button } from 'antd'
 import { observer, useField } from '@formily/react'
 import { MetaValueType, IFieldMeta } from '@toy-box/meta-schema'
-import { TextWidget, usePrefix, useTreeNode } from '@toy-box/designable-react'
+import {
+  TextWidget,
+  IconWidget,
+  usePrefix,
+  useTreeNode,
+} from '@toy-box/designable-react'
 import { ExpressionEditor } from '@toy-box/expression-editor'
 import cls from 'classnames'
 import './styles.less'
@@ -36,8 +41,18 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
 
     return (
       <Fragment>
-        <Button block onClick={openModal}>
-          <TextWidget token="SettingComponents.Expression.configureExpression" />
+        <Button block onClick={openModal} className={prefix}>
+          <div className={prefix + '-icon'}>=</div>
+          {value.length > 0 ? (
+            <div className={prefix + '-code'}>{value}</div>
+          ) : (
+            <div className={prefix + '-placeholder'}>
+              {
+                <TextWidget token="SettingComponents.Expression.configureExpression" />
+              }
+            </div>
+          )}
+          {/* <IconWidget infer="Expression" /> */}
         </Button>
         <Modal
           title={

@@ -16,8 +16,11 @@ export default {
       ParamsSetter: {
         addParameter: '添加参数',
       },
-      Profile: '配置',
-      Component: '组件',
+      TableColumnSetter: {
+        addColumn: '添加数据列',
+      },
+      Properties: '属性',
+      Layout: '布局',
       Style: '样式',
     },
   },
