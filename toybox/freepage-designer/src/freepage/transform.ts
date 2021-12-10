@@ -1,10 +1,14 @@
 import { ISchema, Schema } from '@formily/json-schema'
 import { ITreeNode, TreeNode } from '@designable/core'
-import { clone, uid, omit } from '@toy-box/toybox-shared'
+import { clone, uid, omit, isObj } from '@toy-box/toybox-shared'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import { IMetaSchemaOption } from '@toy-box/freepage-components'
 import { ItemEditability, ItemVisibility } from './types'
 
+const PAGE_SCHEMA = {
+  type: 'void',
+  properties: {},
+}
 export interface ITransformerOptions {
   designableFieldName?: string
   designableFormName?: string
@@ -26,19 +30,21 @@ const createOptions = (options: ITransformerOptions): ITransformerOptions => {
 export const transformToSchema = async (
   node: TreeNode,
   options?: ITransformerOptions,
-  metaSchemaOption?: IMetaSchemaOption
+  metaSchemaOption?: IMetaSchemaOption,
+  addonProperties?: Record<string, ISchema>
 ): Promise<IFormilySchema> => {
   const { loadMetaSchema } = metaSchemaOption
   const realOptions = createOptions(options)
   const root = node.find((child) => {
     return child.componentName === realOptions.designableFormName
   })
-  const schema = {
-    type: 'object',
-    properties: {},
-  }
+  const schema = PAGE_SCHEMA
   if (!root) return { schema }
-  const createSchema = async (node: TreeNode, schema: ISchema = {}) => {
+  const createSchema = async (
+    node: TreeNode,
+    schema: ISchema = {},
+    addonProperties?: Record<string, ISchema>
+  ) => {
     const field = node.props.field
     if (node !== root) {
       Object.assign(
@@ -71,34 +77,6 @@ export const transformToSchema = async (
         schema.properties = schema.properties || {}
         schema.properties[key] = await createSchema(child)
         schema.properties[key]['x-index'] = index
-        if (child.props.visibility) {
-          const visibilityReaction = transformVisibility(child.props.visibility)
-          const reactions = schema['x-reactions']
-          if (visibilityReaction) {
-            if (reactions == null) {
-              schema['x-reactions'] = [visibilityReaction]
-            } else {
-              schema['x-reactions'] = Array.isArray(schema['x-reactions'])
-                ? [...schema['x-reactions'], visibilityReaction]
-                : [schema['x-reactions'], visibilityReaction]
-            }
-          }
-        }
-        if (child.props.editability) {
-          const editabilityReaction = transformEditability(
-            child.props.editability
-          )
-          const reactions = schema['x-reactions']
-          if (editabilityReaction) {
-            if (reactions == null) {
-              schema['x-reactions'] = [editabilityReaction]
-            } else {
-              schema['x-reactions'] = Array.isArray(schema['x-reactions'])
-                ? [...schema['x-reactions'], editabilityReaction]
-                : [schema['x-reactions'], editabilityReaction]
-            }
-          }
-        }
       }
     }
     const dataView = node
@@ -127,9 +105,41 @@ export const transformToSchema = async (
       schema['x-component-props'] = schema['x-component-props'] || {}
       schema['x-component-props'].field = {}
     }
+    if (node.props.visibility) {
+      const visibilityReaction = transformVisibility(node.props.visibility)
+      const reactions = schema['x-reactions']
+      if (visibilityReaction) {
+        if (reactions == null) {
+          schema['x-reactions'] = [visibilityReaction]
+        } else {
+          schema['x-reactions'] = Array.isArray(schema['x-reactions'])
+            ? [...schema['x-reactions'], visibilityReaction]
+            : [schema['x-reactions'], visibilityReaction]
+        }
+      }
+    }
+    if (node.props.editability) {
+      const editabilityReaction = transformEditability(node.props.editability)
+      const reactions = schema['x-reactions']
+      if (editabilityReaction) {
+        if (reactions == null) {
+          schema['x-reactions'] = [editabilityReaction]
+        } else {
+          schema['x-reactions'] = Array.isArray(schema['x-reactions'])
+            ? [...schema['x-reactions'], editabilityReaction]
+            : [schema['x-reactions'], editabilityReaction]
+        }
+      }
+    }
+    if (isObj(addonProperties)) {
+      Object.assign(schema.properties, addonProperties)
+    }
     return schema
   }
-  return { form: clone(root.props), schema: await createSchema(root, schema) }
+  return {
+    form: clone(root.props),
+    schema: await createSchema(root, schema, addonProperties),
+  }
 }
 
 export const fetchMeta = (path: string[], meta: IFieldMeta) => {
@@ -191,16 +201,16 @@ export const transformToTreeNode = (
 
 export const transformEditability = (editability: ItemEditability) => {
   switch (editability.type) {
-    case 'formula':
+    case 'expression':
       return {
-        type: 'formula',
-        state: 'editable',
-        formula: editability.formula,
+        type: 'expression',
+        state: 'editability',
+        expression: editability.expression,
       }
     case 'conditional':
       return {
         type: 'conditional',
-        state: 'editable',
+        state: 'editability',
         conditional: editability.conditional,
       }
     default:
@@ -210,16 +220,16 @@ export const transformEditability = (editability: ItemEditability) => {
 
 export const transformVisibility = (visibility: ItemVisibility) => {
   switch (visibility.type) {
-    case 'formula':
+    case 'expression':
       return {
-        type: 'formula',
-        state: 'visible',
-        formula: visibility.formula,
+        type: 'expression',
+        state: 'visibility',
+        expression: visibility.expression,
       }
     case 'conditional':
       return {
         type: 'conditional',
-        state: 'visible',
+        state: 'visibility',
         conditional: visibility.conditional,
       }
     default:

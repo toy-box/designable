@@ -1,51 +1,65 @@
 import { Field } from '@formily/core/esm/models/Field'
-import { isArrayField } from '@formily/core'
-import { isArr } from '@formily/shared'
-import { formulaParse } from '@toy-box/formula'
+import { GeneralField } from '@formily/core'
+import { FormPath, isArr } from '@formily/shared'
+import { parseResult } from '@toy-box/formula'
+import { ISchema } from '@formily/json-schema'
+import { SchemaProperties } from '@formily/react'
 
-export function reactionPatches(reactions: any | any[]) {
-  if (isArr(reactions)) {
-    return reactions.map((reaction) => formulaReactionPatch(reaction))
+export function schemaPatch(schema: ISchema) {
+  const { ['x-reactions']: reactions, properties } = schema
+  let newSchema: ISchema = { ...schema }
+  if (properties) {
+    newSchema = Object.assign(schema, {
+      properties:
+        typeof properties === 'object'
+          ? propertiesPatch(properties)
+          : properties,
+    })
   }
-  return formulaReactionPatch(reactions)
+  if (reactions) {
+    newSchema = Object.assign(schema, {
+      'x-reactions': reactionsPatch(reactions),
+    })
+  }
+  return newSchema
 }
 
-export function formulaReactionPatch(reaction: any) {
-  if (reaction.type === 'formula') {
+function propertiesPatch(
+  properties: SchemaProperties<any, any, any, any, any, any, any, any>
+) {
+  const propertiesPatched: SchemaProperties<
+    any,
+    any,
+    any,
+    any,
+    any,
+    any,
+    any,
+    any
+  > = {}
+  Object.keys(properties).forEach((key) => {
+    propertiesPatched[key] = schemaPatch(properties[key])
+  })
+  return propertiesPatched
+}
+
+function reactionsPatch(reactions: any | any[]) {
+  if (isArr(reactions)) {
+    return reactions.map((reaction) => reactionPatch(reaction))
+  }
+  return reactionPatch(reactions)
+}
+
+function reactionPatch(reaction: any) {
+  if (reaction.state === 'visibility' && reaction.type === 'expression') {
     return (field: Field) => {
       if (field.form.initialized) {
-        const result = formulaParse(reaction.formula, (pattern: string) => {
-          const path = pattern.substr(2, pattern.length - 3)
-          const query = field.form.query(getParentPath(path))
-          const takenField = query.take()
-          const fieldValue = field.form.getValuesIn(path)
-          const brotherAddress = `${getParentPath(path)}.${getIndex(
-            field
-          )}.${getFieldKey(path)}`
-          const brotherValue = field.form.getValuesIn(brotherAddress)
-          const arrayValue = field.form.getValuesIn(takenField?.path)
-          if (isArrayField(field.parent) && isBrother(field, path)) {
-            return brotherValue
-          }
-          if (takenField && isArrayField(takenField)) {
-            return arrayValue.map(
-              (item: Record<string, any>) => item[getFieldKey(path)]
-            )
-          }
-          return fieldValue
+        const result = parseResult(reaction.expression, (path: string) => {
+          const values = getValues(field)
+          return FormPath.getIn(values, path)
         })
-
         if (result.success) {
-          switch (reaction.state) {
-            case 'value':
-              field.form.setValuesIn(field.path, result.result)
-            case 'visible':
-              field.visible = result.result
-            case 'editable':
-              field.editable = result.result
-            default:
-              break
-          }
+          field.visible = result.result
         }
       }
     }
@@ -53,26 +67,10 @@ export function formulaReactionPatch(reaction: any) {
   return reaction
 }
 
-function getParentPath(path: string) {
-  const pathArr = path.split('.')
-  pathArr.splice(pathArr.length - 1, 1)
-  return pathArr.join('.')
-}
-
-function isBrother(field: Field, path: string) {
-  return field.parent.path.toString() === getParentPath(path)
-}
-
-function getIndex(field: Field) {
-  const pathArr = field.path.toArr()
-  return pathArr[pathArr.length - 2]
-}
-
-function getFieldKey(field: Field | string) {
-  if (typeof field == 'string') {
-    const pathArr = field.split('.')
-    return pathArr[pathArr.length - 1]
+function getValues(field: GeneralField) {
+  const { form } = field
+  return {
+    $PageParams: form.getValuesIn('$PagePararms'),
+    ...form.getValuesIn(field.path),
   }
-  const pathArr = field.path.toArr()
-  return pathArr[pathArr.length - 1]
 }

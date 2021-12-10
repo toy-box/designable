@@ -16,18 +16,18 @@ export interface IDataViewSchema {
   ['x-decorator-props']?: any
 }
 
-export type ItemVisibleType = 'formula' | 'conditional'
+export type ItemVisibleType = 'expression' | 'conditional'
 
 export type ItemVisibility = {
   type: ItemVisibleType
-  formula?: string
+  expression?: string
   conditional?: ILogicFilter
 }
 
-export type ItemEditabilityType = 'formula' | 'conditional'
+export type ItemEditabilityType = 'expression' | 'conditional'
 
 export type ItemEditability = {
   type: ItemEditabilityType
-  formula?: string
+  expression?: string
   conditional?: ILogicFilter
 }

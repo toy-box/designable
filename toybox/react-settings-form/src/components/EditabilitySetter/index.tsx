@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useField, observer, Field as FieldWrap } from '@formily/react'
+import { useField, observer, Field as FieldComponent } from '@formily/react'
 import { Field } from '@formily/core'
 import { FormItem } from '@formily/antd'
 import { Switch } from 'antd'
 import { usePrefix } from '@toy-box/designable-react'
 import cls from 'classnames'
+import { MetaValueType } from '@toy-box/meta-schema'
 import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
 
@@ -51,14 +52,15 @@ export const EditabilitySetter: React.FC<IEditablilitySetterProps> = observer(
         >
           <Switch checked={active} onChange={handleActive} />
         </FormItem.BaseItem>
-        <FieldWrap
+        <FieldComponent
           name="expression"
           basePath={field.address}
           visible={active}
           reactions={(field) => {
             field.visible = (field.parent as Field).value?.type === 'expression'
           }}
-          component={[ExpressionInput]}
+          component={[ExpressionInput, { valueType: MetaValueType.BOOLEAN }]}
+          decorator={[FormItem.BaseItem]}
         />
       </>
     )

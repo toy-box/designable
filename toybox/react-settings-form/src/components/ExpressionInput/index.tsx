@@ -1,13 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import { Modal, Button } from 'antd'
-import { observer, useField } from '@formily/react'
+import { observer } from '@formily/react'
 import { MetaValueType, IFieldMeta } from '@toy-box/meta-schema'
-import {
-  TextWidget,
-  IconWidget,
-  usePrefix,
-  useTreeNode,
-} from '@toy-box/designable-react'
+import { TextWidget, usePrefix } from '@toy-box/designable-react'
 import { ExpressionEditor } from '@toy-box/expression-editor'
 import cls from 'classnames'
 import './styles.less'
@@ -31,8 +26,6 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
       valueType,
       variableMap = {},
     } = props
-    const node = useTreeNode()
-    const field = useField()
     const prefix = usePrefix('expression-input')
     const [modalVisible, setModalVisible] = useState(false)
     const openModal = () => setModalVisible(true)

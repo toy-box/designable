@@ -4,10 +4,27 @@ import { Field as FieldComponent, useField, observer } from '@formily/react'
 import { FormItem } from '@formily/antd'
 import { Switch } from 'antd'
 import { usePrefix } from '@toy-box/designable-react'
+import { PageParameter } from '@toy-box/freepage-components'
 import cls from 'classnames'
+import { MetaValueType } from '@toy-box/meta-schema'
 import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
+import { usePageParameters } from '../../hooks'
 
+const transformParametersToFieldMeta = (
+  key: string,
+  parameters: PageParameter[]
+) => {
+  const properties = {}
+  parameters.forEach((parameter) => {
+    properties[parameter.key] = parameter
+  })
+  return {
+    key,
+    type: MetaValueType.OBJECT,
+    properties,
+  }
+}
 export interface IVisibilitySetterProps {
   className?: string
   style?: React.CSSProperties
@@ -20,6 +37,17 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
     const field = useField<Field>()
     const prefix = usePrefix('visibility-setter')
     const [active, setActive] = useState(false)
+    const pageParameters = usePageParameters()
+
+    const variableMap = React.useMemo(
+      () => ({
+        $PageParams: transformParametersToFieldMeta(
+          '$PageParams',
+          pageParameters
+        ),
+      }),
+      []
+    )
 
     const handleActive = useCallback(
       (active: boolean) => {
@@ -51,18 +79,19 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
         >
           <Switch checked={active} onChange={handleActive} />
         </FormItem.BaseItem>
-        <FormItem.BaseItem className={cls(prefix, props.className)}>
-          <FieldComponent
-            name="expression"
-            basePath={field.address}
-            visible={active}
-            reactions={(field) => {
-              field.visible =
-                (field.parent as Field).value?.type === 'expression'
-            }}
-            component={[ExpressionInput]}
-          />
-        </FormItem.BaseItem>
+        <FieldComponent
+          name="expression"
+          basePath={field.address}
+          visible={active}
+          reactions={(field) => {
+            field.visible = (field.parent as Field).value?.type === 'expression'
+          }}
+          component={[
+            ExpressionInput,
+            { variableMap, valueType: MetaValueType.BOOLEAN },
+          ]}
+          decorator={[FormItem.BaseItem]}
+        />
       </>
     )
   }

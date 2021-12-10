@@ -41,10 +41,11 @@ import {
   FieldBoolean as Switch,
   FieldPercent as Percent,
   FieldSelect as Select,
+  PageParams,
 } from '@toy-box/freepage-components'
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
-import { transformToSchema, reactionPatches } from '../../src'
+import { transformToSchema, schemaPatch } from '../../src'
 import {
   loadMetaRepoList,
   loadMetaRepoListByValue,
@@ -95,8 +96,13 @@ const SchemaField = createSchemaField({
     Divider,
     Container,
     MetaTable: DataGrid.MetaTable,
+    PageParams,
   },
 })
+
+const $PageParams = {
+  type: 'object',
+}
 
 export interface IPreviewWidgetProps {
   tree: TreeNode
@@ -106,9 +112,9 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const form = useMemo(() => createForm(), [])
   const [formProps, setFormProps] = React.useState<any>()
   const [schema, setSchema] = React.useState<any>()
-  Schema.registerPatches(reactionPatches)
+  Schema.registerPatches(schemaPatch)
   React.useEffect(() => {
-    transformToSchema(props.tree, {}, { loadMetaSchema }).then(
+    transformToSchema(props.tree, {}, { loadMetaSchema }, { $PageParams }).then(
       ({ form: formProps, schema }) => {
         setFormProps(formProps)
         setSchema(schema)
