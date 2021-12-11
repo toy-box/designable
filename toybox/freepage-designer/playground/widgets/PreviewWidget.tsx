@@ -102,6 +102,7 @@ const SchemaField = createSchemaField({
 
 const $PageParams = {
   type: 'object',
+  'x-component': 'PageParams',
 }
 
 export interface IPreviewWidgetProps {

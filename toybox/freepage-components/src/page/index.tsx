@@ -1,23 +1,24 @@
 import React from 'react'
 import { Form, FormProps } from '@formily/antd'
 import { PageContext } from './context'
+import { PageParameter } from '../types'
 
 export type PageProps = {
   title: string
   name: string
   layout: string
-  pageParams?: Record<string, any>
+  parameters?: PageParameter[]
 } & FormProps
 
 export const Page: React.FC<PageProps> = ({
   title,
   name,
   layout,
-  pageParams,
+  parameters,
   ...formProps
 }) => {
   return (
-    <PageContext.Provider value={{ title, name, layout }}>
+    <PageContext.Provider value={{ title, name, layout, parameters }}>
       <Form {...formProps} />
     </PageContext.Provider>
   )

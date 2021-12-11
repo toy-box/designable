@@ -6,6 +6,7 @@ import { loadMetaSchema } from '../service'
 
 const $PageParams = {
   type: 'object',
+  'x-component': 'PageParams',
 }
 
 export interface ISchemaEditorWidgetProps {

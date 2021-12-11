@@ -1,16 +1,13 @@
 import React from 'react'
-import { useStateParams, useQueryParams } from './hooks'
-import { PageParameter } from '../types'
+import { useStateParams, useQueryParams, usePageParameters } from './hooks'
 
 export type PageParamsProps = {
-  pageParameters: PageParameter[]
   onChange: (value: Record<string, any>) => void
+  value: Record<string, any>
 }
 
-export const PageParams: React.FC<PageParamsProps> = ({
-  pageParameters,
-  onChange,
-}) => {
+export const PageParams: React.FC<PageParamsProps> = ({ onChange, value }) => {
+  const pageParameters = usePageParameters()
   const queryParams = useQueryParams()
   const stateParams = useStateParams()
   const pageParams = React.useMemo(
@@ -23,9 +20,10 @@ export const PageParams: React.FC<PageParamsProps> = ({
       data[param.key] = pageParams[param.key]
     })
     return data
-  }, [queryParams, stateParams])
+  }, [pageParams])
+
   React.useEffect(() => {
-    onChange(params)
+    onChange(Object.assign(value, params))
   }, [params])
 
   return <React.Fragment />

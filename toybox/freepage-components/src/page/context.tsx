@@ -5,7 +5,7 @@ export type PageContextProp = {
   name: string
   allowRoles?: string[]
   layout?: string
-  params?: Record<string, any>
+  parameters?: Record<string, any>
 }
 
 export const PageContext = React.createContext<PageContextProp>(null)
