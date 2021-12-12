@@ -54,12 +54,7 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
           return (
             <ParamBindInput
               key={index}
-              dataSource={parameters
-                .map((p) => p.key)
-                .filter(
-                  (key) =>
-                    !value.some((v) => v.key === key) || key === param.key
-                )}
+              dataSource={parameters}
               value={param}
               onChange={(param) => handleParamChange(param, index)}
               remove={() => removeItem(index)}

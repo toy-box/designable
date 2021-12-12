@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Input, Select } from 'antd'
 import { usePrefix, IconWidget } from '@toy-box/designable-react'
-import { MetaValueType } from '@toy-box/meta-schema'
 import cls from 'classnames'
+import { useVariableMap } from './hooks'
 import { ExpressionInput } from '../ExpressionInput'
+import { ParamValue } from '../ParamInput'
 import './styles.less'
 
 export type ParamBindValue = {
@@ -14,7 +15,7 @@ export type ParamBindValue = {
 export type ParamBindInputProps = {
   className?: string
   style?: React.CSSProperties
-  dataSource?: string[]
+  dataSource?: ParamValue[]
   value?: ParamBindValue
   onChange?: (value?: ParamBindValue) => void
   remove?: () => void
@@ -29,18 +30,32 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
   remove,
 }) => {
   const prefix = usePrefix('param-bind-input')
-
+  const variableMap = useVariableMap()
   const handleKeyChange = useCallback(
     (key: string) => {
-      onChange && onChange(Object.assign(value, { key }))
+      onChange &&
+        onChange({
+          ...value,
+          key,
+        })
     },
     [onChange, value]
   )
+
   const handlePathChange = useCallback(
     (expression: string) => {
-      onChange && onChange(Object.assign(value, { expression }))
+      onChange &&
+        onChange({
+          ...value,
+          expression,
+        })
     },
     [onChange, value]
+  )
+
+  const bindParam = useMemo(
+    () => dataSource.find((param) => param.key === value),
+    []
   )
 
   return (
@@ -48,7 +63,10 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
       <Input.Group compact>
         <Select
           value={value.key}
-          options={dataSource.map((key) => ({ label: key, value: key }))}
+          options={dataSource.map((param) => ({
+            label: param.key,
+            value: param.key,
+          }))}
           onChange={handleKeyChange}
           style={{ width: '40%' }}
         />
@@ -56,8 +74,8 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
           <ExpressionInput
             value={value.expression}
             onChange={handlePathChange}
-            valueType={MetaValueType.NUMBER}
-            variableMap={{}}
+            valueType={bindParam?.type}
+            variableMap={variableMap}
           />
         </div>
       </Input.Group>
