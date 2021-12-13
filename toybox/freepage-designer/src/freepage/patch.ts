@@ -70,7 +70,7 @@ function reactionPatch(reaction: any) {
 function getValues(field: GeneralField) {
   const { form } = field
   return {
-    $PageParams: form.getValuesIn('$PagePararms'),
+    $PageParams: form.getValuesIn('$PageParams'),
     ...form.getValuesIn(field.path),
   }
 }

@@ -1,12 +1,9 @@
+import { useField } from '@formily/react'
 import React from 'react'
 import { useStateParams, useQueryParams, usePageParameters } from './hooks'
 
-export type PageParamsProps = {
-  onChange: (value: Record<string, any>) => void
-  value: Record<string, any>
-}
-
-export const PageParams: React.FC<PageParamsProps> = ({ onChange, value }) => {
+export const PageParams: React.FC = () => {
+  const field = useField()
   const pageParameters = usePageParameters()
   const queryParams = useQueryParams()
   const stateParams = useStateParams()
@@ -23,8 +20,8 @@ export const PageParams: React.FC<PageParamsProps> = ({ onChange, value }) => {
   }, [pageParams])
 
   React.useEffect(() => {
-    onChange(Object.assign(value, params))
-  }, [params])
+    field.form.setValuesIn('$PageParams', params)
+  }, [params, field])
 
   return <React.Fragment />
 }

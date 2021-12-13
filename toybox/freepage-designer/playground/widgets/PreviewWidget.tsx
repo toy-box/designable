@@ -103,7 +103,7 @@ const SchemaField = createSchemaField({
 })
 
 const $PageParams = {
-  type: 'object',
+  type: 'void',
   'x-component': 'PageParams',
 }
 
