@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 import { Input, Select } from 'antd'
 import { usePrefix, IconWidget } from '@toy-box/designable-react'
 import cls from 'classnames'
-import { useVariableMap } from './hooks'
+import { useVariableMap } from '../../hooks'
 import { ExpressionInput } from '../ExpressionInput'
 import { ParamValue } from '../ParamInput'
 import './styles.less'
@@ -31,6 +31,7 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
 }) => {
   const prefix = usePrefix('param-bind-input')
   const variableMap = useVariableMap()
+
   const handleKeyChange = useCallback(
     (key: string) => {
       onChange &&
