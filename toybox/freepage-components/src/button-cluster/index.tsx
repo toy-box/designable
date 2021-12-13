@@ -5,8 +5,8 @@ import {
   IButtonItem,
 } from '@toy-box/toybox-ui'
 import { useField, useFieldSchema } from '@formily/react'
-import { Action, ActionType, ParamBind } from '../types'
-import { useMetaColumn, useFieldActions, useDataView } from '../hooks'
+import { Action, ActionType } from '../types'
+import { useMetaColumn, useFieldActions } from '../hooks'
 
 export type ButtonItemType = Omit<IButtonItem, 'callback'> & {
   action?: Action

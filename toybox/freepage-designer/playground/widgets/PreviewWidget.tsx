@@ -54,6 +54,8 @@ import {
   loadMetaDataList,
   loadMetaDataPageable,
   handleLinkAction,
+  handlePageAction,
+  handleAutoflowAction,
 } from '../service'
 
 const SchemaField = createSchemaField({
@@ -127,6 +129,8 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
       <ActionContext.Provider
         value={{
           handleLinkAction,
+          handlePageAction,
+          handleAutoflowAction,
         }}
       >
         <MetaContext.Provider

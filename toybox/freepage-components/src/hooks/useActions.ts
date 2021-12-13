@@ -47,7 +47,7 @@ export const useFieldActions = () => {
         key: parameter.key,
         value: parseResult(parameter.expression, (path: string) =>
           FormPath.getIn(variableMap, path)
-        ),
+        ).result,
       }))
       actions.handlePageAction({ pageId: pageAction.pageId, parameters })
     },
