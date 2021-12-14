@@ -5,7 +5,7 @@ import { transformToSchema, transformToTreeNode } from '../../src'
 import { loadMetaSchema } from '../service'
 
 const $PageParams = {
-  type: 'object',
+  type: 'void',
   'x-component': 'PageParams',
 }
 

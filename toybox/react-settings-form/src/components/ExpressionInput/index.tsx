@@ -45,7 +45,6 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
               }
             </div>
           )}
-          {/* <IconWidget infer="Expression" /> */}
         </Button>
         <Modal
           title={

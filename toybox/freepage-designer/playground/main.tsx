@@ -65,6 +65,7 @@ import {
   ObjectContainer,
   DataGrid,
   MetaTable,
+  ShadowData,
 } from '../src'
 
 GlobalRegistry.registerDesignerLocales({
@@ -111,6 +112,7 @@ const designeComponents = {
   Text,
   DataGrid,
   MetaTable,
+  PageParams: ShadowData,
 }
 
 const App = () => {

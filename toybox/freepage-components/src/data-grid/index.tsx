@@ -19,7 +19,7 @@ import {
   RowData,
 } from '@toy-box/meta-components/es/components/meta-table/interface'
 import { OperateColumn } from './components'
-import { Action, ActionType, ParamBind, SchemaOption } from '../types'
+import { SchemaOption } from '../types'
 import { useMeta, useFieldActions } from '../hooks'
 
 export type DataGridProps = {
@@ -75,8 +75,6 @@ const useDataGridColumnSource = () => {
 }
 
 const useOperate = () => {
-  const field = useField()
-  const actions = useFieldActions()
   const schema = useFieldSchema()
   const metaTableSchema = schema
     .mapProperties((itemSchema) => itemSchema)
@@ -112,19 +110,24 @@ export const DataGrid: ComposedDataGrid = observer(
     const selectedRowKeys = field.data?.selectedRowKeys || []
 
     const setSelectedRows = (selectedRows: RowData[]) => {
-      if (field.data != null) {
-        field.data.selectedRows = selectedRows
-      } else {
-        field.data = { selectedRows }
-      }
+      // if (field.data != null) {
+      //   field.data.selectedRows = selectedRows
+      // } else {
+      //   field.data = { selectedRows }
+      // }
+      field.form.setValuesIn(`${field.address}.selectedRows`, selectedRows)
     }
 
     const setSelectedRowKeys = (selectedRowKeys: string[]) => {
-      if (field.data != null) {
-        field.data.selectedRowKeys = selectedRowKeys
-      } else {
-        field.data = { selectedRowKeys }
-      }
+      // if (field.data != null) {
+      //   field.data.selectedRowKeys = selectedRowKeys
+      // } else {
+      //   field.data = { selectedRowKeys }
+      // }
+      field.form.setValuesIn(
+        `${field.address}.selectedRowKeys`,
+        selectedRowKeys
+      )
     }
 
     React.useEffect(() => {
@@ -141,11 +144,13 @@ export const DataGrid: ComposedDataGrid = observer(
           pageable,
           filter
         )
-        if (field.data) {
-          field.data.rows = data.list
-        } else {
-          field.data = { rows: data.list }
-        }
+        field.form.setValuesIn(`${field.address}.rows`, data.list)
+        // if (field.data) {
+        //   field
+        //   field.data.rows = data.list
+        // } else {
+        //   field.data = { rows: data.list }
+        // }
         return data
       },
       [objectMeta?.key]
