@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { Spin } from 'antd'
 import {
   useFieldSchema,
   observer,
   RecursionField,
   useField,
-  useForm,
 } from '@formily/react'
 import { Schema } from '@formily/json-schema'
 import {
@@ -106,38 +105,32 @@ export const DataGrid: ComposedDataGrid = observer(
     const leftToolbarSchema = useLeftToolbarSource()
     const tableOperate = useOperate()
 
-    const selectedRows = field.data?.selectedRows || []
-    const selectedRowKeys = field.data?.selectedRowKeys || []
+    const selectedRows = field.form.getValuesIn(
+      `${field.address}`
+    )?.selectedRows
+    const selectedRowKeys = field.form.getValuesIn(
+      `${field.address}`
+    )?.selectedRowKeys
 
     const setSelectedRows = (selectedRows: RowData[]) => {
-      // if (field.data != null) {
-      //   field.data.selectedRows = selectedRows
-      // } else {
-      //   field.data = { selectedRows }
-      // }
       field.form.setValuesIn(`${field.address}.selectedRows`, selectedRows)
     }
 
     const setSelectedRowKeys = (selectedRowKeys: string[]) => {
-      // if (field.data != null) {
-      //   field.data.selectedRowKeys = selectedRowKeys
-      // } else {
-      //   field.data = { selectedRowKeys }
-      // }
       field.form.setValuesIn(
         `${field.address}.selectedRowKeys`,
         selectedRowKeys
       )
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
       loadMetaSchema &&
         loadMetaSchema(metaOption.repository).then((data) => {
           setObjectMeta(data)
         })
     }, [metaOption])
 
-    const loadData = React.useCallback(
+    const loadData = useCallback(
       async (pageable, filter) => {
         const data = await loadMetaDataPageable(
           objectMeta?.key,
@@ -145,18 +138,12 @@ export const DataGrid: ComposedDataGrid = observer(
           filter
         )
         field.form.setValuesIn(`${field.address}.rows`, data.list)
-        // if (field.data) {
-        //   field
-        //   field.data.rows = data.list
-        // } else {
-        //   field.data = { rows: data.list }
-        // }
         return data
       },
       [objectMeta?.key]
     )
 
-    const fieldMetas = React.useMemo(() => {
+    const fieldMetas = useMemo(() => {
       return (filterFields || []).map((fieldKey) => ({
         ...objectMeta?.properties[fieldKey],
       }))

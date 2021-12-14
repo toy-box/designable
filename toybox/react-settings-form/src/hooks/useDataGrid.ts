@@ -1,8 +1,38 @@
 import { useEffect, useMemo, useState } from 'react'
-import { IFieldMeta } from '@toy-box/meta-schema'
+import { IFieldMeta, MetaValueType } from '@toy-box/meta-schema'
 import { useMeta } from '@toy-box/freepage-components'
 import { TreeNode } from '@designable/core'
 import { useNode } from './useNode'
+
+const makeDataGridSchema = (dataSchema: IFieldMeta): IFieldMeta => {
+  return {
+    key: '$DataGrid',
+    name: '$DataGrid',
+    type: MetaValueType.OBJECT,
+    properties: {
+      selectedRows: {
+        key: 'selectedRows',
+        type: MetaValueType.ARRAY,
+        name: 'selectedRows',
+        items: dataSchema,
+      },
+      selectedRowKeys: {
+        key: 'selectedRowKeys',
+        type: MetaValueType.ARRAY,
+        name: 'selectedRowKeys',
+        items: {
+          type: MetaValueType.STRING,
+        },
+      },
+      rows: {
+        key: 'rows',
+        name: 'rows',
+        type: MetaValueType.ARRAY,
+        items: dataSchema,
+      },
+    },
+  }
+}
 
 export const useDataGrid = (dataGridNode?: TreeNode) => {
   const node = useNode()
@@ -24,10 +54,10 @@ export const useDataGrid = (dataGridNode?: TreeNode) => {
       setSchema(null)
     }
     if (metaOption?.type == 'schema') {
-      setSchema(metaOption.schema)
+      setSchema(makeDataGridSchema(metaOption.schema))
     } else if (metaOption?.type == 'repository') {
       meta.loadMetaSchema(metaOption.repository).then((objectMeta) => {
-        setSchema(objectMeta)
+        setSchema(makeDataGridSchema(objectMeta))
       })
     } else {
       setSchema(undefined)
@@ -38,8 +68,9 @@ export const useDataGrid = (dataGridNode?: TreeNode) => {
     if (schema == null) {
       return []
     }
-    return Object.keys(schema.properties || {})
-      .map((key) => schema.properties[key])
+    const dataProperties = schema?.properties?.rows?.items?.properties || {}
+    return Object.keys(dataProperties)
+      .map((key) => dataProperties[key])
       .map((field) => ({
         value: field.key,
         label: field.name,

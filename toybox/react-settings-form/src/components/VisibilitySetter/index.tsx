@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useMemo, useEffect, useState } from 'react'
 import { Field } from '@formily/core'
 import { Field as FieldComponent, useField, observer } from '@formily/react'
 import { FormItem } from '@formily/antd'
@@ -9,22 +9,8 @@ import cls from 'classnames'
 import { MetaValueType } from '@toy-box/meta-schema'
 import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
-import { usePageParameters } from '../../hooks'
+import { usePageParameters, useVariableMap } from '../../hooks'
 
-const transformParametersToFieldMeta = (
-  key: string,
-  parameters: PageParameter[]
-) => {
-  const properties = {}
-  parameters.forEach((parameter) => {
-    properties[parameter.key] = parameter
-  })
-  return {
-    key,
-    type: MetaValueType.OBJECT,
-    properties,
-  }
-}
 export interface IVisibilitySetterProps {
   className?: string
   style?: React.CSSProperties
@@ -34,20 +20,10 @@ export interface IVisibilitySetterProps {
 
 export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
   (props) => {
-    const field = useField<Field>()
     const prefix = usePrefix('visibility-setter')
+    const { variableMap } = useVariableMap()
+    const field = useField<Field>()
     const [active, setActive] = useState(false)
-    const pageParameters = usePageParameters()
-
-    const variableMap = React.useMemo(
-      () => ({
-        $PageParams: transformParametersToFieldMeta(
-          '$PageParams',
-          pageParameters
-        ),
-      }),
-      []
-    )
 
     const handleActive = useCallback(
       (active: boolean) => {
@@ -62,6 +38,18 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
         setActive(active)
       },
       [setActive]
+    )
+
+    const handleExpression = useCallback(
+      (expression: string) => {
+        if (active) {
+          props.onChange?.({
+            type: 'expression',
+            expression,
+          })
+        }
+      },
+      [active]
     )
 
     useEffect(() => {
@@ -79,19 +67,16 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
         >
           <Switch checked={active} onChange={handleActive} />
         </FormItem.BaseItem>
-        <FieldComponent
-          name="expression"
-          basePath={field.address}
-          visible={active}
-          reactions={(field) => {
-            field.visible = (field.parent as Field).value?.type === 'expression'
-          }}
-          component={[
-            ExpressionInput,
-            { variableMap, valueType: MetaValueType.BOOLEAN },
-          ]}
-          decorator={[FormItem.BaseItem]}
-        />
+        {active && (
+          <FormItem.BaseItem layout={'vertical'}>
+            <ExpressionInput
+              value={props.value.expression}
+              onChange={handleExpression}
+              valueType={MetaValueType.BOOLEAN}
+              variableMap={variableMap}
+            />
+          </FormItem.BaseItem>
+        )}
       </>
     )
   }

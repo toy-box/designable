@@ -124,16 +124,8 @@ export const createFieldSchema = (
                     'x-component': 'FieldBindSetter',
                   },
                   visibility: {
-                    'x-component': 'VisibilitySetter',
-                  },
-                  'x-display': {
                     type: 'string',
-                    enum: ['visible', 'hidden', 'none', ''],
-                    'x-decorator': 'FormItem',
-                    'x-component': 'Select',
-                    'x-component-props': {
-                      defaultValue: 'visible',
-                    },
+                    'x-component': 'VisibilitySetter',
                   },
                   'x-pattern': {
                     type: 'string',
@@ -224,36 +216,40 @@ export const createVoidFieldSchema = (
                 },
                 properties: {
                   ...createComponentSchema(component, decorator),
-                },
-              },
-              'field-group': {
-                type: 'void',
-                'x-component': 'CollapseItem',
-                properties: {
-                  title: {
+                  visibility: {
                     type: 'string',
-                    'x-decorator': 'FormItem',
-                    'x-component': 'Input',
-                    'x-reactions': {
-                      fulfill: {
-                        state: {
-                          visible:
-                            '{{$form.values["x-decorator"] === "FormItem"}}',
-                        },
-                      },
-                    },
-                  },
-                  'x-display': {
-                    type: 'string',
-                    enum: ['visible', 'hidden', 'none', ''],
-                    'x-decorator': 'FormItem',
-                    'x-component': 'Select',
-                    'x-component-props': {
-                      defaultValue: 'visible',
-                    },
+                    'x-component': 'VisibilitySetter',
                   },
                 },
               },
+              // 'field-group': {
+              //   type: 'void',
+              //   'x-component': 'CollapseItem',
+              //   properties: {
+              //     title: {
+              //       type: 'string',
+              //       'x-decorator': 'FormItem',
+              //       'x-component': 'Input',
+              //       'x-reactions': {
+              //         fulfill: {
+              //           state: {
+              //             visible:
+              //               '{{$form.values["x-decorator"] === "FormItem"}}',
+              //           },
+              //         },
+              //       },
+              //     },
+              //     'x-display': {
+              //       type: 'string',
+              //       enum: ['visible', 'hidden', 'none', ''],
+              //       'x-decorator': 'FormItem',
+              //       'x-component': 'Select',
+              //       'x-component-props': {
+              //         defaultValue: 'visible',
+              //       },
+              //     },
+              //   },
+              // },
             },
           },
           'field-styles': {
@@ -316,6 +312,7 @@ export const createDataShourceSchema = (
                     'x-component': 'Input',
                   },
                   visibility: {
+                    type: 'string',
                     'x-component': 'VisibilitySetter',
                   },
                 },

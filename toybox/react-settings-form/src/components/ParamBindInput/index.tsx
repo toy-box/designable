@@ -30,7 +30,7 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
   remove,
 }) => {
   const prefix = usePrefix('param-bind-input')
-  const variableMap = useVariableMap()
+  const { variableMap } = useVariableMap()
 
   const handleKeyChange = useCallback(
     (key: string) => {

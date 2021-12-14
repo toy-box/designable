@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
+import { useDataGrid } from './useDataGrid'
 import { usePageParameters } from './usePage'
 import { useRecord } from './useRecord'
 
 export const useVariableMap = () => {
   const parameters = usePageParameters()
   const $Record = useRecord()
+  const { dataGrid, schema: $DataGrid } = useDataGrid()
   const $PageParams = useMemo(() => {
     const params = {
       key: '$PageParams',
@@ -17,9 +19,18 @@ export const useVariableMap = () => {
     })
     return params
   }, [parameters])
-
-  return {
-    $PageParams,
-    $Record,
-  }
+  const variableMap = useMemo(() => {
+    const innerMap = {}
+    if ($PageParams) {
+      innerMap['$PageParams'] = $PageParams
+    }
+    if ($Record) {
+      innerMap['$Record'] = $Record
+    }
+    if ($DataGrid) {
+      innerMap['$DataGrid'] = $DataGrid
+    }
+    return innerMap
+  }, [$PageParams, $Record, $DataGrid])
+  return { variableMap }
 }
