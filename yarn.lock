@@ -2546,28 +2546,31 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@toy-box/expression-editor@^1.0.3":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@toy-box/expression-editor/-/expression-editor-1.0.4.tgz#673b09501d53e6fa0ec9aff7be325946429c72df"
-  integrity sha512-o5txEW7vsT8oMN3Eb7Pj/T+7GpipSN5OjKn0fD0pNMSRt79NvJ/ELN9FEh+aQuVm58EHbsG/B6HxMeTyyMJuZQ==
+"@toy-box/expression-editor@^1.0.3", "@toy-box/expression-editor@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@toy-box/expression-editor/-/expression-editor-1.0.7.tgz#7c79b41ca66f72a2d914cefe4b5e896e13f356f5"
+  integrity sha512-QfhKTEmWniu/c2+/7s/di+OnLJCUNvk2CcG8PR6OBThXvQAqWqmCJ2FrXXSUifYreIteVT2SP+Fiu8HIouAovA==
   dependencies:
     "@toy-box/expression-editor" "^1.0.3"
-    "@toy-box/formula" "^1.0.22"
-    "@toy-box/meta-schema" "^2.0.15"
-
-"@toy-box/expression-editor@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@toy-box/expression-editor/-/expression-editor-1.0.6.tgz#c6e2e6a6e5a6aadd00f00683a117053a10bebd5c"
-  integrity sha512-MRxiWAgfzzlKwX0rjerXfR+R6dqibrHngtNvKjGUxZHI7/+KoXgcyuWhPENTD5TXbZHiFYjSJwlDe5fmwkPTJQ==
-  dependencies:
-    "@toy-box/expression-editor" "^1.0.3"
-    "@toy-box/formula" "^1.0.22"
+    "@toy-box/formula" "^1.0.23"
     "@toy-box/meta-schema" "^2.0.15"
 
 "@toy-box/formula@^1.0.12", "@toy-box/formula@^1.0.22":
   version "1.0.22"
   resolved "https://registry.yarnpkg.com/@toy-box/formula/-/formula-1.0.22.tgz#68bdf5f3d76dc7ff788c81b144c57ad8c69cd081"
   integrity sha512-pFh53Ypbc+jrCr9tfbDYP69EmHt/KsKAFkrZPofC/9N757092QUnSxAywzYTuIpS+yZDU3BzPqYmHkDSJLY9PQ==
+  dependencies:
+    "@formulajs/formulajs" "^2.6.9"
+    "@toy-box/meta-schema" "^2.0.3"
+    "@types/lodash.uniq" "^4.5.6"
+    antlr4ts "^0.5.0-alpha.4"
+    dayjs "^1.10.7"
+    lodash.uniq "^4.5.0"
+
+"@toy-box/formula@^1.0.23":
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@toy-box/formula/-/formula-1.0.23.tgz#a3c927d5df3c7feee55c8890afabd6649dcb8a24"
+  integrity sha512-ZDaz28EpOjpRXBMy2kem9d3lvtX0JW+rNMWDFyuZRCs/B0hkym8rFI56CstuwsX7f1jimchGDaJBIIHdo+SYIQ==
   dependencies:
     "@formulajs/formulajs" "^2.6.9"
     "@toy-box/meta-schema" "^2.0.3"

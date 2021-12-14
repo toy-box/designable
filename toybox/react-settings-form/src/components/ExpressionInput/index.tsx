@@ -28,10 +28,13 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
     } = props
     const prefix = usePrefix('expression-input')
     const [modalVisible, setModalVisible] = useState(false)
+    const [innerValue, setInnerValue] = React.useState(value)
     const openModal = () => setModalVisible(true)
     const closeModal = () => setModalVisible(false)
-    const [innerValue, setInnerValue] = React.useState(value)
-
+    const cancelModal = () => {
+      setInnerValue(value)
+      setModalVisible(false)
+    }
     return (
       <Fragment>
         <Button block onClick={openModal} className={prefix}>
@@ -55,7 +58,7 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
           transitionName=""
           maskTransitionName=""
           visible={modalVisible}
-          onCancel={closeModal}
+          onCancel={cancelModal}
           onOk={() => {
             onChange(innerValue)
             closeModal()

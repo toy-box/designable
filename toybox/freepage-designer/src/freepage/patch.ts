@@ -69,8 +69,22 @@ function reactionPatch(reaction: any) {
 
 function getValues(field: GeneralField) {
   const { form } = field
+  const dataGrid = getParentByName(field, 'DataGrid')
+  const $DataGrid = form.getValuesIn(dataGrid.address)
   return {
     $PageParams: form.getValuesIn('$PageParams'),
-    ...form.getValuesIn(field.path),
+    $DataGrid,
   }
+}
+
+function getFieldParents(field: GeneralField): GeneralField[] {
+  if (field.parent) {
+    return [field.parent, ...getFieldParents(field.parent)]
+  }
+  return []
+}
+
+function getParentByName(field: GeneralField, name: string) {
+  const parents = getFieldParents(field)
+  return parents.find((parent) => parent.componentType === name)
 }

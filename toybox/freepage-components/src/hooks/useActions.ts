@@ -1,5 +1,6 @@
 import React from 'react'
 import { parseResult } from '@toy-box/formula'
+import { GeneralField } from '@formily/core'
 import { isNum, FormPath } from '@formily/shared'
 import { LinkAction, PageAction, AutoflowAction } from '../types'
 import { IActionFieldData } from '../context/actions/'
@@ -9,24 +10,37 @@ const DATA_GRID = 'DataGrid'
 const DATA_LIST = 'DataList'
 const DATA_VIEW = 'DataView'
 
+function getFieldParents(field: GeneralField): GeneralField[] {
+  if (field.parent) {
+    return [field.parent, ...getFieldParents(field.parent)]
+  }
+  return []
+}
+
+function getParentByName(field: GeneralField, name: string) {
+  const parents = getFieldParents(field)
+  return parents.find((parent) => parent.componentType === name)
+}
+
 export const getFieldValue = (actionFieldData: IActionFieldData) => {
   const { field, index } = actionFieldData
   const { form } = field
-  if ([DATA_GRID, DATA_LIST].includes(field.component[0]) && isNum(index)) {
+  if ([DATA_GRID].includes(field.component[0]) && isNum(index)) {
     return {
-      $Record: field.data.rows[index],
-      $SelectedRows: field.data.selectedRows,
-      $SelectedRowKeys: field.data.selectedRowKeys,
-      $PageParams: field.form.getValuesIn('$PagePararms'),
+      $Record: field.form.getValuesIn(field.address).rows[index],
+      $PageParams: field.form.getValuesIn('$PageParams'),
+      $DataGrid: field.form.getValuesIn(field.address),
     }
   } else if (field.component[0] === DATA_VIEW) {
     return {
-      $PageParams: form.getValuesIn('$PagePararms'),
-      ...form.getValuesIn(field.path),
+      $PageParams: form.getValuesIn('$PageParams'),
+      $DataView: form.getValuesIn(field.path),
     }
   } else {
+    const dataGrid = getParentByName(field, 'DataGrid')
     return {
-      $PageParams: form.getValuesIn('$PagePararms'),
+      $PageParams: form.getValuesIn('$PageParams'),
+      $DataGrid: dataGrid ? form.getValuesIn(dataGrid.address) : undefined,
     }
   }
 }
