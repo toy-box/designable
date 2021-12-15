@@ -36,6 +36,8 @@ export const Form = createLocales(Component, {
         title: '提示布局',
         dataSource: ['图标', '文本', '继承'],
       },
+      'component-group': '组件属性',
+      'component-style-group': '组件样式',
     },
   },
   'en-US': {
@@ -78,6 +80,8 @@ export const Form = createLocales(Component, {
         title: 'Tooltip Layout',
         dataSource: ['Icon', 'Text', 'Inherit'],
       },
+      'component-group': 'Component Properties',
+      'component-style-group': 'Component Style',
     },
   },
 })

@@ -11,7 +11,7 @@ import {
 import { observer } from '@formily/react'
 import { ToolBar } from '@toy-box/toybox-ui'
 import { DataGrid as ToyboxDataGrid } from '@toy-box/meta-components'
-import { createDataShourceSchema } from '../Field'
+import { createDataSourceSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 import { matchComponent } from '../../shared'
@@ -77,7 +77,7 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
     }, [node.props?.dataSource?.repository])
 
     return (
-      <div {...nodeId}>
+      <div {...nodeId} {...node.props['x-component-props']}>
         <ToolBar>
           <ToyboxDataGrid.FilterPanel />
           {spaceNode &&
@@ -111,7 +111,7 @@ DataGrid.Behavior = createBehavior({
   designerProps: {
     droppable: true,
     inlineChildrenLayout: true,
-    propsSchema: createDataShourceSchema(AllSchemas.DataGrid),
+    propsSchema: createDataSourceSchema(AllSchemas.DataGrid),
   },
   designerLocales: AllLocales.DataGrid,
 })

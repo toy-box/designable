@@ -127,21 +127,6 @@ export const createFieldSchema = (
                     type: 'string',
                     'x-component': 'VisibilitySetter',
                   },
-                  'x-pattern': {
-                    type: 'string',
-                    enum: [
-                      'editable',
-                      'disabled',
-                      'readOnly',
-                      'readPretty',
-                      '',
-                    ],
-                    'x-decorator': 'FormItem',
-                    'x-component': 'Select',
-                    'x-component-props': {
-                      defaultValue: 'editable',
-                    },
-                  },
                   default: {
                     'x-decorator': 'FormItem',
                     'x-component': 'ValueInput',
@@ -153,16 +138,62 @@ export const createFieldSchema = (
                   },
                 },
               },
+              ...createComponentSchema(component, decorator),
             },
           },
-          'field-component': {
+          'field-styles': {
             type: 'void',
             'x-component': 'FormTab.TabPane',
             'x-component-props': {
-              tab: makeIconTabPane('Layout', 'SettingComponents.Layout'),
+              tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
             },
             properties: {
-              ...createComponentSchema(component, decorator),
+              ...createStyleSchema(component, decorator),
+            },
+          },
+        },
+      },
+    },
+  }
+}
+
+export const createInnerSchema = (
+  component?: ISchema,
+  decorator: ISchema = AllSchemas.FormItem
+) => {
+  return {
+    type: 'object',
+    properties: {
+      'field-tabs': {
+        type: 'void',
+        'x-component': 'FormTab',
+        'x-component-props': {
+          centered: true,
+        },
+        properties: {
+          'field-attribute': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane(
+                'Flashlight',
+                'SettingComponents.Properties'
+              ),
+            },
+            properties: {
+              'field-component': {
+                type: 'void',
+                'x-component': 'FormTab.TabPane',
+                'x-component-props': {
+                  tab: makeIconTabPane(
+                    'Flashlight',
+                    'SettingComponents.Component'
+                  ),
+                },
+                properties: {
+                  ...createComponentSchema(component, decorator),
+                },
+              },
             },
           },
           'field-styles': {
@@ -222,34 +253,6 @@ export const createVoidFieldSchema = (
                   },
                 },
               },
-              // 'field-group': {
-              //   type: 'void',
-              //   'x-component': 'CollapseItem',
-              //   properties: {
-              //     title: {
-              //       type: 'string',
-              //       'x-decorator': 'FormItem',
-              //       'x-component': 'Input',
-              //       'x-reactions': {
-              //         fulfill: {
-              //           state: {
-              //             visible:
-              //               '{{$form.values["x-decorator"] === "FormItem"}}',
-              //           },
-              //         },
-              //       },
-              //     },
-              //     'x-display': {
-              //       type: 'string',
-              //       enum: ['visible', 'hidden', 'none', ''],
-              //       'x-decorator': 'FormItem',
-              //       'x-component': 'Select',
-              //       'x-component-props': {
-              //         defaultValue: 'visible',
-              //       },
-              //     },
-              //   },
-              // },
             },
           },
           'field-styles': {
@@ -268,7 +271,7 @@ export const createVoidFieldSchema = (
   }
 }
 
-export const createDataShourceSchema = (
+export const createDataSourceSchema = (
   component?: ISchema,
   decorator: ISchema = AllSchemas.FormItem
 ): ISchema => {
@@ -290,33 +293,31 @@ export const createDataShourceSchema = (
             },
             properties: {
               ...createComponentSchema(component, decorator),
-            },
-          },
-          'field-attribute': {
-            type: 'void',
-            'x-component': 'FormTab.TabPane',
-            'x-component-props': {
-              tab: makeIconTabPane(
-                'Flashlight',
-                'SettingComponents.Properties'
-              ),
-            },
-            properties: {
               'field-group': {
                 type: 'void',
                 'x-component': 'CollapseItem',
                 properties: {
-                  name: {
-                    type: 'string',
-                    'x-decorator': 'FormItem',
-                    'x-component': 'Input',
-                  },
+                  // name: {
+                  //   type: 'string',
+                  //   'x-decorator': 'FormItem',
+                  //   'x-component': 'Input',
+                  // },
                   visibility: {
                     type: 'string',
                     'x-component': 'VisibilitySetter',
                   },
                 },
               },
+            },
+          },
+          'field-styles': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
+            },
+            properties: {
+              ...createStyleSchema(component, decorator),
             },
           },
         },
@@ -346,19 +347,12 @@ export const createPageFieldSchema = (component: ISchema) => {
               ),
             },
             properties: {
-              'field-group': {
+              'component-group': {
                 type: 'void',
+                'x-component': 'CollapseItem',
                 properties: component.properties,
               },
             },
-          },
-          'field-component': {
-            type: 'void',
-            'x-component': 'FormTab.TabPane',
-            'x-component-props': {
-              tab: makeIconTabPane('Layout', 'SettingComponents.Layout'),
-            },
-            properties: AllSchemas.FormLayout.properties,
           },
           'field-styles': {
             type: 'void',
@@ -367,7 +361,13 @@ export const createPageFieldSchema = (component: ISchema) => {
               tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
             },
             properties: {
-              style: AllSchemas.CSSStyle,
+              'component-style-group': {
+                type: 'void',
+                'x-component': 'CollapseItem',
+                properties: {
+                  style: AllSchemas.CSSStyle,
+                },
+              },
             },
           },
         },

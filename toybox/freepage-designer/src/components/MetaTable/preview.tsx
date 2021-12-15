@@ -3,7 +3,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { Table } from 'antd'
 import { useTreeNode, useNodeIdProps, DnFC } from '@toy-box/designable-react'
 import { observer } from '@formily/reactive-react'
-import { createVoidFieldSchema } from '../Field'
+import { createInnerSchema } from '../Field'
 import { queryNodesByComponentPath } from '../../shared'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
@@ -88,7 +88,7 @@ MetaTable.Behavior = createBehavior(
         draggable: false,
         cloneable: false,
         deletable: false,
-        propsSchema: createVoidFieldSchema(AllSchemas.MetaTable),
+        propsSchema: createInnerSchema(AllSchemas.MetaTable),
       }
     },
     designerLocales: AllLocales.MetaTable,
@@ -99,7 +99,7 @@ MetaTable.Behavior = createBehavior(
     designerProps(node) {
       return {
         draggable: false,
-        propsSchema: createVoidFieldSchema(AllSchemas.MetaTable.Column),
+        propsSchema: createInnerSchema(AllSchemas.MetaTable.Column),
       }
     },
     designerLocales: AllLocales.MetaTableColumn,

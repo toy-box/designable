@@ -5,7 +5,6 @@ import cls from 'classnames'
 import { useHover, useSelection, usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
-import Icon from '@ant-design/icons/lib/components/Icon'
 
 const useMouseHover = <T extends { current: HTMLElement }>(
   ref: T,
@@ -124,7 +123,7 @@ export const NodeSelector: React.FC<INodeSelectorProps> = observer(
         >
           {renderArrow()}
           <span>
-            <NodeTitleWidget node={node} />
+            <NodeTitleWidget node={node} showId />
           </span>
         </span>
       </div>
