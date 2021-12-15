@@ -15,9 +15,8 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@designable/*": [
-        "./packages/*/src"
-      ]
+      "@designable/*": ["./packages/*/src"],
+      "@toy-box/*": ["./toybox/*/src"]
     }
   }
 }

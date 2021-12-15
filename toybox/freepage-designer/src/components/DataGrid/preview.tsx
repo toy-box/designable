@@ -77,7 +77,11 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
     }, [node.props?.dataSource?.repository])
 
     return (
-      <div {...nodeId} {...node.props['x-component-props']}>
+      <div
+        {...nodeId}
+        {...node.props['x-component-props']}
+        style={{ ...node.props['x-component-props'].style }}
+      >
         <ToolBar>
           <ToyboxDataGrid.FilterPanel />
           {spaceNode &&

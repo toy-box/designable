@@ -36,6 +36,9 @@ const presets = () => {
     '@designable/react': 'Designable.React',
     '@designable/react-sandbox': 'Designable.ReactSandbox',
     '@designable/react-settings-form': 'Designable.ReactSettingsForm',
+    '@toy-box/designable-react': 'Toybox.Designable.React',
+    '@toy-box/designable-react-settings-form':
+      'Toybox.Designable.ReactSettingsForm',
   }
   return [
     typescript({

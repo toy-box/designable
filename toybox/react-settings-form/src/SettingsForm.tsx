@@ -35,6 +35,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
     const selected = useSelected(currentWorkspaceId)
     const prefix = usePrefix('settings-form')
     const schema = node?.designerProps?.propsSchema
+
     const isEmpty = !(
       node &&
       node.designerProps?.propsSchema &&
@@ -42,6 +43,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
     )
     const form = useMemo(() => {
       return createForm({
+        initialValues: node?.designerProps?.defaultProps,
         values: node?.props,
         effects(form) {
           useLocales(node)
@@ -72,7 +74,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
                 <SchemaField
                   schema={schema}
                   components={props.components}
-                  scope={{ node }}
+                  scope={{ $node: node, ...props.scope }}
                 />
               </Form>
             </SettingsFormContext.Provider>

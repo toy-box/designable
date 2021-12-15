@@ -57,7 +57,7 @@ export type TableColumnSetterProps = {
 export const TableColumnSetter: React.FC<TableColumnSetterProps> = observer(
   (props) => {
     const prefix = usePrefix('tabs-pane-setter')
-    const node: TreeNode = useScope().node
+    const node: TreeNode = useCurrentNode()
 
     const sortPanes = useCallback(
       (columns) => {
@@ -87,7 +87,7 @@ export const TableColumnSetter: React.FC<TableColumnSetterProps> = observer(
       <div className={cls(prefix, props.className)} style={props.style}>
         <SortableList
           onChange={sortPanes}
-          dataSource={node.children || []}
+          dataSource={node?.children || []}
           itemRender={columnItem}
           idKey="id"
         />

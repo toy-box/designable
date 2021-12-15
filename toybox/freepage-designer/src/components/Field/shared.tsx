@@ -202,9 +202,9 @@ export const createInnerSchema = (
             'x-component-props': {
               tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
             },
-            properties: {
-              ...createStyleSchema(component, decorator),
-            },
+            // properties: {
+            //   ...createStyleSchema(component, decorator),
+            // },
           },
         },
       },
@@ -297,11 +297,6 @@ export const createDataSourceSchema = (
                 type: 'void',
                 'x-component': 'CollapseItem',
                 properties: {
-                  // name: {
-                  //   type: 'string',
-                  //   'x-decorator': 'FormItem',
-                  //   'x-component': 'Input',
-                  // },
                   visibility: {
                     type: 'string',
                     'x-component': 'VisibilitySetter',

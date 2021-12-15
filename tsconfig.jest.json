@@ -3,8 +3,14 @@
   "compilerOptions": {
     "jsx": "react",
     "paths": {
-      "@designable/*": ["./packages/*/src"]
+      "@designable/*": ["./packages/*/src"],
+      "@toy-box/*": ["./toybox/*/src"]
     }
   },
-  "exclude": ["./packages/*/esm", "./packages/*/lib"]
+  "exclude": [
+    "./packages/*/esm",
+    "./packages/*/lib",
+    "./toybox/*/esm",
+    "./toybox/*/lib"
+  ]
 }
