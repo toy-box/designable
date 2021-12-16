@@ -1,4 +1,4 @@
-import { IFieldMeta } from '@toy-box/meta-schema'
+import { MetaValueType } from '@toy-box/meta-schema'
 
 export enum PageParameterPattern {
   BaseType = 'baseType',
@@ -8,7 +8,7 @@ export enum PageParameterPattern {
 
 export interface IBaseParameter {
   key: string
-  type: string
+  type: MetaValueType
   name?: string
 }
 

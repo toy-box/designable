@@ -31,7 +31,6 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
 }) => {
   const prefix = usePrefix('param-bind-input')
   const { variableMap } = useVariableMap()
-
   const handleKeyChange = useCallback(
     (key: string) => {
       onChange &&
@@ -55,15 +54,15 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
   )
 
   const bindParam = useMemo(
-    () => dataSource.find((param) => param.key === value),
-    []
+    () => dataSource.find((param) => param.key === value?.key),
+    [dataSource, value?.key]
   )
 
   return (
     <div className={cls(prefix, className)} style={style}>
       <Input.Group compact>
         <Select
-          value={value.key}
+          value={value?.key}
           options={dataSource.map((param) => ({
             label: param.key,
             value: param.key,
@@ -73,7 +72,7 @@ export const ParamBindInput: React.FC<ParamBindInputProps> = ({
         />
         <div style={{ width: '60%' }}>
           <ExpressionInput
-            value={value.expression}
+            value={value?.expression}
             onChange={handlePathChange}
             valueType={bindParam?.type}
             variableMap={variableMap}

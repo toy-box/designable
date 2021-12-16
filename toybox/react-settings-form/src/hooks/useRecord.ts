@@ -7,7 +7,7 @@ export const useRecord = () => {
   const { dataGrid, schema: dataGridSchema } = useDataGrid()
   const { dataView, schema: dataViewSchema } = useDataView()
   if (node.props['x-component'] === 'MetaTable' && dataGridSchema) {
-    return dataGridSchema
+    return dataGridSchema?.properties?.rows?.items
   } else if (node.props['x-component'] === 'DataView' && dataViewSchema) {
     return dataViewSchema
   }
