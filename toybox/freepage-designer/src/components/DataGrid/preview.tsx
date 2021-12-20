@@ -80,7 +80,7 @@ export const DataGrid: DnFC<TableProps<Record<string, any>>> = observer(
       <div
         {...nodeId}
         {...node.props['x-component-props']}
-        style={{ ...node.props['x-component-props'].style }}
+        style={{ ...node.props['x-component-props']?.style }}
       >
         <ToolBar>
           <ToyboxDataGrid.FilterPanel />

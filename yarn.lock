@@ -2565,10 +2565,19 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@toy-box/expression-editor@^1.0.3", "@toy-box/expression-editor@^1.0.7":
+"@toy-box/expression-editor@^1.0.3":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@toy-box/expression-editor/-/expression-editor-1.0.7.tgz#7c79b41ca66f72a2d914cefe4b5e896e13f356f5"
   integrity sha512-QfhKTEmWniu/c2+/7s/di+OnLJCUNvk2CcG8PR6OBThXvQAqWqmCJ2FrXXSUifYreIteVT2SP+Fiu8HIouAovA==
+  dependencies:
+    "@toy-box/expression-editor" "^1.0.3"
+    "@toy-box/formula" "^1.0.23"
+    "@toy-box/meta-schema" "^2.0.15"
+
+"@toy-box/expression-editor@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@toy-box/expression-editor/-/expression-editor-1.0.9.tgz#336508419100986499464d289fc162da7abcac0e"
+  integrity sha512-q1HB2k5EjVsuD/Iacp9i+90yU5dt2a0bMRlI3YTfIV3NpnUYf2KpNmJrfhgWgyct2aDvDFBdldYsuQOOhSTjeQ==
   dependencies:
     "@toy-box/expression-editor" "^1.0.3"
     "@toy-box/formula" "^1.0.23"

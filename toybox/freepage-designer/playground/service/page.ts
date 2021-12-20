@@ -16,6 +16,10 @@ const pageList = [
         key: 'type',
         type: 'string',
       },
+      {
+        key: 'limit',
+        type: 'number',
+      },
     ],
   },
   {

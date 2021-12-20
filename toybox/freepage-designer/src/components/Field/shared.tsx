@@ -44,8 +44,8 @@ export const createStyleSchema = (component?: ISchema, decorator?: ISchema) => {
 }
 
 export const createComponentSchema = (
-  component: ISchema,
-  decorator: ISchema
+  component?: ISchema,
+  decorator?: ISchema
 ) => {
   return {
     'component-group': component && {
@@ -158,7 +158,7 @@ export const createFieldSchema = (
 }
 
 export const createInnerSchema = (
-  component?: ISchema,
+  component: ISchema,
   decorator: ISchema = AllSchemas.FormItem
 ) => {
   return {
@@ -202,9 +202,41 @@ export const createInnerSchema = (
             'x-component-props': {
               tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
             },
-            // properties: {
-            //   ...createStyleSchema(component, decorator),
-            // },
+          },
+        },
+      },
+    },
+  }
+}
+
+export const createMetaTableSchema = (component: ISchema) => {
+  return {
+    type: 'object',
+    properties: {
+      'field-tabs': {
+        type: 'void',
+        'x-component': 'FormTab',
+        'x-component-props': {
+          centered: true,
+        },
+        properties: {
+          'field-attribute': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane(
+                'Flashlight',
+                'SettingComponents.Properties'
+              ),
+            },
+            properties: component.properties,
+          },
+          'field-styles': {
+            type: 'void',
+            'x-component': 'FormTab.TabPane',
+            'x-component-props': {
+              tab: makeIconTabPane('Brush', 'SettingComponents.Style'),
+            },
           },
         },
       },

@@ -41,7 +41,7 @@
     "@formily/reactive-react": "^2.0.2",
     "@formily/shared": "^2.0.2",
     "@toy-box/designable-react": "1.0.0",
-    "@toy-box/expression-editor": "^1.0.7",
+    "@toy-box/expression-editor": "^1.0.9",
     "@toy-box/freepage-components": "^1.0.0",
     "ahooks": "^2.10.9",
     "prettier": "^2.3.2",

@@ -65,6 +65,7 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
           }}
         >
           <div className={cls(prefix, className)} style={style}>
+            {valueType}
             <ExpressionEditor
               width="100%"
               height={400}

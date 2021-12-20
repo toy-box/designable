@@ -5,8 +5,11 @@ export const MetaTable = {
     title: '元数据表格',
     settings: {
       'x-component-props': {
-        columns: '表格列',
-        isOperation: '行操作',
+        'column-group': '表格数据列',
+        'operate-group': '行操作',
+        isOperation: {
+          title: '启用行操作',
+        },
         operate: {
           items: {
             ...Button['zh-CN'].settings['x-component-props'],
@@ -22,13 +25,15 @@ export const MetaTable = {
     title: 'MetaTable',
     settings: {
       'x-component-props': {
-        columns: 'Columns',
-        isOperation: 'Row Operation',
+        'column-group': 'Colums',
+        'operate-group': 'Row Operation',
+        isOperation: 'Enable Operation',
         operate: {
           items: {
             ...Button['en-US'].settings['x-component-props'],
+            addition: 'Add Button',
           },
-          max: 'Max Display',
+          max: 'Max',
           group: 'Group',
         },
       },
