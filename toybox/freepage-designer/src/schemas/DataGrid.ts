@@ -71,7 +71,7 @@ export const DataGrid: ISchema = {
       },
     },
     filterFields: {
-      type: 'array<string>',
+      type: 'array',
       'x-decorator': 'FormItem',
       'x-component': 'FieldPickSetter',
       'x-decorator-props': {

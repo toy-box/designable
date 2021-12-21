@@ -13,7 +13,6 @@ import {
 } from '@toy-box/designable-react'
 import cls from 'classnames'
 import { HandleIcon } from '../HandleIcon'
-import { useScope } from '../../hooks'
 
 import './styles.less'
 
@@ -56,7 +55,7 @@ export type TableColumnSetterProps = {
 
 export const TableColumnSetter: React.FC<TableColumnSetterProps> = observer(
   (props) => {
-    const prefix = usePrefix('tabs-pane-setter')
+    const prefix = usePrefix('table-column-setter')
     const node: TreeNode = useCurrentNode()
 
     const sortPanes = useCallback(
