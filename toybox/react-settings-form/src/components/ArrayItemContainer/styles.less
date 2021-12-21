@@ -1,0 +1,26 @@
+@import '~antd/lib/style/themes/default.less';
+
+.dn-array-item-continer {
+  display: flex;
+  flex-direction: column;
+  &-top-border,
+  &-bottom-border {
+    background-color: @border-color-base;
+    margin: 0 20px;
+    height: 1px;
+  }
+  &-bottom-border {
+    display: none;
+  }
+}
+
+.@{ant-prefix}-formily-array-items-item {
+  &:last-child {
+    .dn-array-item-continer {
+      &-bottom-border {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

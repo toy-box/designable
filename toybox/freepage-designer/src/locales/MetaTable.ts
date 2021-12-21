@@ -13,6 +13,7 @@ export const MetaTable = {
         operate: {
           items: {
             ...Button['zh-CN'].settings['x-component-props'],
+            remove: '移除',
             addition: '添加按钮',
           },
           max: '最大显示数',
@@ -31,6 +32,7 @@ export const MetaTable = {
         operate: {
           items: {
             ...Button['en-US'].settings['x-component-props'],
+            remove: 'Remove',
             addition: 'Add Button',
           },
           max: 'Max',

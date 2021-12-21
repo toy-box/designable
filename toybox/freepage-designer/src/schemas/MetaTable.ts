@@ -49,11 +49,35 @@ export const MetaTable: ISchema & { Column?: ISchema } = {
                     addition: {
                       type: 'void',
                       'x-component': 'ArrayItems.Addition',
+                      'x-component-props': {
+                        type: 'primary',
+                      },
                     },
                   },
                   items: {
                     type: 'object',
-                    properties: Button.properties,
+                    properties: {
+                      itemContainer: {
+                        type: 'void',
+                        'x-component': 'ArrayItemContiner',
+                        properties: {
+                          ...(Button.properties as Record<string, any>),
+                          remove: {
+                            type: 'void',
+                            'x-component': 'ArrayItemRemove',
+                            'x-component-props': {
+                              danger: true,
+                              type: 'dashed',
+                              style: {
+                                margin: '0 20px',
+                                width: 'calc(100% - 40px)',
+                                marginBottom: '8px',
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
                   },
                 },
                 max: {

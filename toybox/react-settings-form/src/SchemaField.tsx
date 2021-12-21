@@ -51,6 +51,8 @@ import {
   ParamsBindSetter,
   PageInput,
   ParameterSelector,
+  ArrayItemContiner,
+  ArrayItemRemove,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -104,5 +106,7 @@ export const SchemaField = createSchemaField({
     ParamsBindSetter,
     PageInput,
     ParameterSelector,
+    ArrayItemContiner,
+    ArrayItemRemove,
   },
 })

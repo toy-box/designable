@@ -6,7 +6,9 @@ import { createVoidFieldSchema } from '../Field'
 import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 
-export const Button: DnFC<React.ComponentProps<typeof OrgButton>> = (props) => {
+export const Button: DnFC<
+  React.ComponentProps<typeof OrgButton> & { caption: string }
+> = (props) => {
   const { caption, ...otherProps } = props
   const node = useTreeNode()
 
