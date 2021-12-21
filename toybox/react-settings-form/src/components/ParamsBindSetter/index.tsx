@@ -61,11 +61,18 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
             />
           )
         })}
-        <Button type="dashed" onClick={addParam} block>
-          <TextWidget>
-            SettingComponents.ParamsBindSetter.addParameter
-          </TextWidget>
-        </Button>
+        <Button.Group>
+          <Button type="dashed" onClick={addParam} block>
+            <TextWidget>
+              SettingComponents.ParamsBindSetter.addParameter
+            </TextWidget>
+          </Button>
+          <Button type="primary">
+            <TextWidget>
+              SettingComponents.ParamsBindSetter.smartBind
+            </TextWidget>
+          </Button>
+        </Button.Group>
       </div>
     )
   }

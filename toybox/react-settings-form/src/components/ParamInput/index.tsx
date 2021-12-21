@@ -12,16 +12,18 @@ const typeOptions = () => {
     MetaValueType.STRING,
     MetaValueType.BOOLEAN,
     MetaValueType.DATETIME,
+    MetaValueType.OBJECT,
+    MetaValueType.ARRAY,
   ]
   return baseTypes.map((type) => ({
-    label: type,
+    label: `${type.substr(0, 1).toLowerCase()}${type.substring(1)}`,
     value: type,
   }))
 }
 
 export type ParamValueType = MetaValueType
 
-export type ParamValue = IBaseParameter
+export type ParamValue = Partial<IBaseParameter>
 
 export type ParamInputProps = {
   className?: string

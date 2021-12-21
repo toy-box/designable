@@ -12,6 +12,7 @@ export default {
       },
       ParamsBindSetter: {
         addParameter: 'Add Parameter',
+        smartBind: 'Smart',
       },
       ParamsSetter: {
         addParameter: 'Add Parameter',

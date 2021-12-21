@@ -12,6 +12,7 @@ export default {
       },
       ParamsBindSetter: {
         addParameter: '添加参数',
+        smartBind: '智能绑定',
       },
       ParamsSetter: {
         addParameter: '添加参数',

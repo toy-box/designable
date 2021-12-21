@@ -51,7 +51,11 @@ function reactionsPatch(reactions: any | any[]) {
 }
 
 function reactionPatch(reaction: any) {
-  if (reaction.state === 'visibility' && reaction.type === 'expression') {
+  if (
+    reaction &&
+    reaction.state === 'visibility' &&
+    reaction.type === 'expression'
+  ) {
     return (field: Field) => {
       if (field.form.initialized) {
         const result = parseResult(reaction.expression, (path: string) => {
