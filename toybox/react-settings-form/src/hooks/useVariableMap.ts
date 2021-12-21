@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { IFieldMeta, IFieldItems } from '@toy-box/meta-schema'
 import { useDataGrid } from './useDataGrid'
 import { usePageParameters } from './usePage'
 import { useRecord } from './useRecord'
@@ -20,7 +21,7 @@ export const useVariableMap = () => {
     return params
   }, [parameters])
   const variableMap = useMemo(() => {
-    const innerMap = {}
+    const innerMap: Record<string, IFieldMeta | IFieldItems<IFieldMeta>> = {}
     if ($PageParams) {
       innerMap['$PageParams'] = $PageParams
     }

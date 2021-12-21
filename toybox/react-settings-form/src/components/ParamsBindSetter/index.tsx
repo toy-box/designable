@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import cls from 'classnames'
 import { Button } from 'antd'
 import { observer } from '@formily/react'
@@ -6,6 +6,7 @@ import { useMeta } from '@toy-box/freepage-components'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
 import { ParamBindInput, ParamBindValue } from '../ParamBindInput'
 import { ParamValue } from '../ParamInput'
+import { useVariableMap } from '../../hooks'
 import './styles.less'
 
 export type ParamsBindSetterProps = {
@@ -19,15 +20,16 @@ export type ParamsBindSetterProps = {
 export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
   ({ value = [], onChange, style, className, remoteId }) => {
     const prefix = usePrefix('params-bind-setter')
+    const { variableMap } = useVariableMap()
     const { loadPageParameters } = useMeta()
     const [parameters, setParameters] = React.useState<ParamValue[]>([])
 
-    React.useEffect(() => {
+    useEffect(() => {
       loadPageParameters &&
         loadPageParameters(remoteId).then((data) => setParameters(data || []))
     }, [remoteId, loadPageParameters])
 
-    const handleParamChange = React.useCallback(
+    const handleParamChange = useCallback(
       (param: ParamBindValue, index: number) => {
         value[index] = param
         onChange && onChange(value)
@@ -35,10 +37,27 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
       [value, onChange]
     )
 
-    const addParam = React.useCallback(() => {
+    const addParam = useCallback(() => {
       value.push({})
-      onChange(value)
+      onChange && onChange(value)
     }, [value])
+
+    const smartBind = useCallback(() => {
+      const innerValue = []
+      parameters.forEach((parameter) => {
+        // TODO: type 匹配需要改进
+        if (
+          variableMap.$Record.properties[parameter.key] &&
+          variableMap.$Record.properties[parameter.key].type === parameter.type
+        ) {
+          innerValue.push({
+            key: parameter.key,
+            expression: `$Record.${parameter.key}`,
+          })
+        }
+      })
+      onChange && onChange(innerValue)
+    }, [parameters])
 
     const removeItem = React.useCallback(
       (index: number) => {
@@ -67,7 +86,7 @@ export const ParamsBindSetter: React.FC<ParamsBindSetterProps> = observer(
               SettingComponents.ParamsBindSetter.addParameter
             </TextWidget>
           </Button>
-          <Button type="primary">
+          <Button type="primary" onClick={smartBind}>
             <TextWidget>
               SettingComponents.ParamsBindSetter.smartBind
             </TextWidget>
