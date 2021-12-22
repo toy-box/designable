@@ -20,7 +20,7 @@ export interface IShadowSVGProps {
 }
 export interface IIconWidgetProps extends React.HTMLAttributes<HTMLElement> {
   tooltip?: React.ReactNode | TooltipProps
-  infer: React.ReactNode
+  infer: React.ReactNode | { shadow: string }
   size?: number | string
 }
 
@@ -71,17 +71,21 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
             {infer}
           </svg>
         )
-      } else if (infer.type === IconWidget.ShadowSVG) {
-        return React.cloneElement(infer, {
-          height,
-          width,
-        })
       }
       return infer
     } else if (isPlainObj(infer)) {
       if (infer[theme]) {
         return takeIcon(infer[theme])
+      } else if (infer['shadow']) {
+        return (
+          <IconWidget.ShadowSVG
+            width={width}
+            height={height}
+            content={infer['shadow']}
+          />
+        )
       }
+      return null
     }
   }
   const renderTooltips = (children: React.ReactElement): React.ReactElement => {
@@ -132,12 +136,6 @@ IconWidget.ShadowSVG = (props) => {
         mode: 'open',
       })
       root.innerHTML = `<svg viewBox="0 0 1024 1024" style="width:${width};height:${height}">${props.content}</svg>`
-    }
-    return () => {
-      if (!ref.current) return
-      ref.current.attachShadow({
-        mode: 'closed',
-      })
     }
   }, [])
   return <div ref={ref}></div>

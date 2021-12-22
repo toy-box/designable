@@ -11,9 +11,10 @@ export const useSelectionEffect = (engine: Engine) => {
       *[${engine.props.outlineNodeIdAttrName}]
     `)
     const isHelpers = target?.closest?.(
-      `*[${engine.props.nodeHelpersIdAttrName}]`
+      `*[${engine.props.nodeSelectionIdAttrName}]`
     )
-    const currentWorkspace = engine.workbench.activeWorkspace
+    const currentWorkspace =
+      event.context.workspace ?? engine.workbench.activeWorkspace
     if (!currentWorkspace) return
     if (!el?.getAttribute) {
       const point = new Point(event.data.topClientX, event.data.topClientY)
