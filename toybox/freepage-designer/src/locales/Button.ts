@@ -6,6 +6,8 @@ export const Button = {
     settings: {
       'x-component-props': {
         caption: '标题',
+        enableConfirm: '启用二次确认',
+        confirmMessage: '确认提示消息',
         action: {
           type: {
             title: '点击操作',
@@ -78,6 +80,8 @@ export const Button = {
     settings: {
       'x-component-props': {
         caption: 'Caption',
+        enableConfirm: 'Enable Confirm',
+        confirmMessage: 'Confirm Message',
         action: {
           type: {
             title: 'Click Action',

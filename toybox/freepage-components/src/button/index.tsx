@@ -1,24 +1,30 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useField } from '@formily/react'
+import { Modal } from 'antd'
 import { Button as OrgButton, IButtonProps } from '@toy-box/toybox-ui'
 import { Action, ActionType } from '../types'
 import { useFieldActions, useDataView } from '../hooks'
 
 export type ButtonProps = Pick<IButtonProps, 'onClick'> & {
   caption: React.ReactNode
+  enableConfirm?: boolean
+  confirmMessage?: string
   action?: Action
 }
 
 export const Button: React.FC<ButtonProps> = ({
   caption,
   action,
+  enableConfirm,
+  confirmMessage,
   ...otherProps
 }) => {
   const field = useField()
   const dataView = useDataView()
   const actions = useFieldActions()
+  const [modal, contextHolder] = Modal.useModal()
 
-  const handleClick = () => {
+  const handleAction = () => {
     switch (action?.type) {
       case ActionType.Link:
         actions.handleLinkAction(action.linkAction, { field })
@@ -34,9 +40,23 @@ export const Button: React.FC<ButtonProps> = ({
     }
   }
 
+  const handleClick = useCallback(() => {
+    if (enableConfirm) {
+      modal.confirm({
+        title: confirmMessage,
+        onOk: handleAction,
+      })
+    } else {
+      handleAction()
+    }
+  }, [modal, handleAction])
+
   return (
-    <OrgButton onClick={handleClick} {...otherProps}>
-      {caption}
-    </OrgButton>
+    <React.Fragment>
+      <OrgButton onClick={handleClick} {...otherProps}>
+        {caption}
+      </OrgButton>
+      {contextHolder}
+    </React.Fragment>
   )
 }

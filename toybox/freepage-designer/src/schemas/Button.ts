@@ -9,6 +9,28 @@ export const Button: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
+    enableConfirm: {
+      type: 'boolean',
+      default: false,
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    confirmMessage: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Input.TextArea',
+      'x-decorator-props': {
+        layout: 'vertical',
+      },
+      'x-reactions': {
+        dependencies: ['.enableConfirm'],
+        fulfill: {
+          state: {
+            visible: '{{ $deps[0] }}',
+          },
+        },
+      },
+    },
     action: {
       type: 'object',
       properties: {
