@@ -5,6 +5,8 @@ import { Button as OrgButton, IButtonProps } from '@toy-box/toybox-ui'
 import { Action, ActionType } from '../types'
 import { useFieldActions, useDataView } from '../hooks'
 
+const { confirm } = Modal
+
 export type ButtonProps = Pick<IButtonProps, 'onClick'> & {
   caption: React.ReactNode
   enableConfirm?: boolean
@@ -22,19 +24,15 @@ export const Button: React.FC<ButtonProps> = ({
   const field = useField()
   const dataView = useDataView()
   const actions = useFieldActions()
-  const [modal, contextHolder] = Modal.useModal()
 
   const handleAction = () => {
     switch (action?.type) {
       case ActionType.Link:
-        actions.handleLinkAction(action.linkAction, { field })
-        break
+        return actions.handleLinkAction(action.linkAction, { field })
       case ActionType.Page:
-        actions.handlePageAction(action.pageAction, { field })
-        break
+        return actions.handlePageAction(action.pageAction, { field })
       case ActionType.Autoflow:
-        actions.handleAutoflowAction(action.autoflowAction, { field })
-        break
+        return actions.handleAutoflowAction(action.autoflowAction, { field })
       default:
         break
     }
@@ -42,21 +40,20 @@ export const Button: React.FC<ButtonProps> = ({
 
   const handleClick = useCallback(() => {
     if (enableConfirm) {
-      modal.confirm({
+      confirm({
         title: confirmMessage,
         onOk: handleAction,
       })
     } else {
       handleAction()
     }
-  }, [modal, handleAction])
+  }, [handleAction])
 
   return (
     <React.Fragment>
       <OrgButton onClick={handleClick} {...otherProps}>
         {caption}
       </OrgButton>
-      {contextHolder}
     </React.Fragment>
   )
 }
