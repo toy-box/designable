@@ -1,28 +1,32 @@
-import React, { createContext, useContext } from 'react'
-import { GlobalRegistry } from '@designable/core'
-import { isStr, isFn, isPlainObj } from '@designable/shared'
+import React, { createContext, useContext, useEffect, useRef } from 'react'
+import { isStr, isFn, isObj, isPlainObj } from '@designable/shared'
 import { observer } from '@formily/reactive-react'
-import { Tooltip } from 'antd'
-import cls from 'classnames'
-import * as icons from '../../icons'
+import { Tooltip, TooltipProps } from 'antd'
 import { usePrefix, useRegistry, useTheme } from '../../hooks'
+import cls from 'classnames'
 import './styles.less'
-
-GlobalRegistry.registerDesignerIcons(icons)
 
 const IconContext = createContext<IconProviderProps>(null)
 
+const isNumSize = (val: any) => /^[\d.]+$/.test(val)
 export interface IconProviderProps {
   tooltip?: boolean
 }
+
+export interface IShadowSVGProps {
+  content?: string
+  width?: number | string
+  height?: number | string
+}
 export interface IIconWidgetProps extends React.HTMLAttributes<HTMLElement> {
-  tooltip?: React.ReactNode
-  infer: React.ReactNode
+  tooltip?: React.ReactNode | TooltipProps
+  infer: React.ReactNode | { shadow: string }
   size?: number | string
 }
 
 export const IconWidget: React.FC<IIconWidgetProps> & {
   Provider?: React.FC<IconProviderProps>
+  ShadowSVG?: React.FC<IShadowSVGProps>
 } = observer((props: React.PropsWithChildren<IIconWidgetProps>) => {
   const theme = useTheme()
   const context = useContext(IconContext)
@@ -72,19 +76,42 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
     } else if (isPlainObj(infer)) {
       if (infer[theme]) {
         return takeIcon(infer[theme])
+      } else if (infer['shadow']) {
+        return (
+          <IconWidget.ShadowSVG
+            width={width}
+            height={height}
+            content={infer['shadow']}
+          />
+        )
       }
+      return null
     }
   }
   const renderTooltips = (children: React.ReactElement): React.ReactElement => {
-    if (!context) return children
     if (!isStr(props.infer) && context.tooltip) return children as any
     const tooltip =
       props.tooltip || registry.getDesignerMessage(`icons.${props.infer}`)
     if (tooltip) {
-      return <Tooltip title={tooltip}>{children}</Tooltip>
+      const title =
+        React.isValidElement(tooltip) || isStr(tooltip)
+          ? tooltip
+          : tooltip.title
+      const props =
+        React.isValidElement(tooltip) || isStr(tooltip)
+          ? {}
+          : isObj(tooltip)
+          ? tooltip
+          : {}
+      return (
+        <Tooltip {...props} title={title}>
+          {children}
+        </Tooltip>
+      )
     }
     return children
   }
+  if (!props.infer) return null
   return renderTooltips(
     <span
       {...props}
@@ -98,6 +125,21 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
     </span>
   )
 })
+
+IconWidget.ShadowSVG = (props) => {
+  const ref = useRef<HTMLDivElement>()
+  const width = isNumSize(props.width) ? `${props.width}px` : props.width
+  const height = isNumSize(props.height) ? `${props.height}px` : props.height
+  useEffect(() => {
+    if (ref.current) {
+      const root = ref.current.attachShadow({
+        mode: 'open',
+      })
+      root.innerHTML = `<svg viewBox="0 0 1024 1024" style="width:${width};height:${height}">${props.content}</svg>`
+    }
+  }, [])
+  return <div ref={ref}></div>
+}
 
 IconWidget.Provider = (props) => {
   return (

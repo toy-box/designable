@@ -19,7 +19,10 @@ import {
   CompositePanel,
   CompositePanelContent,
 } from '@toy-box/designable-react'
-import { SettingsForm } from '@toy-box/designable-react-settings-form'
+import {
+  SettingsForm,
+  setNpmCDNRegistry,
+} from '@toy-box/designable-react-settings-form'
 import {
   createDesigner,
   GlobalRegistry,
@@ -67,6 +70,8 @@ import {
   MetaTable,
   ShadowData,
 } from '../src'
+
+setNpmCDNRegistry('//unpkg.com')
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {

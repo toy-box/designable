@@ -16,6 +16,7 @@
     "build": "rimraf -rf packages/*/{lib,esm} && lerna run build",
     "build:docs": "dumi build",
     "start": "dumi dev",
+    "start:toybox": "cd toybox/freepage-designer && npm run start",
     "start:playground": "npm run start:basic",
     "start:basic": "yarn workspace @designable/basic-example start",
     "start:sandbox": "yarn workspace @designable/sandbox-example start",

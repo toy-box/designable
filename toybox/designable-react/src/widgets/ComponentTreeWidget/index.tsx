@@ -30,13 +30,16 @@ export const TreeNodeWidget: React.FC<ITreeNodeWidgetProps> = observer(
       })
     }
     const renderProps = (extendsProps: any = {}) => {
-      if (node?.designerProps?.getComponentProps) {
-        return {
-          ...extendsProps,
-          ...node.designerProps.getComponentProps(node),
-        }
+      const props = {
+        ...node.designerProps?.defaultProps,
+        ...extendsProps,
+        ...node.props,
+        ...node.designerProps?.getComponentProps?.(node),
       }
-      return { ...extendsProps, ...node.props }
+      if (node.depth === 0) {
+        delete props.style
+      }
+      return props
     }
     const renderComponent = () => {
       const componentName = node.componentName
@@ -82,7 +85,7 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
     }, [])
     return (
       <div
-        style={props.style}
+        style={{ ...props.style, ...tree?.props?.style }}
         className={cls(prefix, props.className)}
         {...dataId}
       >
