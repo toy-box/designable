@@ -98,7 +98,7 @@ export type FreePageProps = {
   meta: MetaContextProps
 }
 
-export const Freepage: React.FC<FreePageProps> = (props) => {
+export const FreePage: React.FC<FreePageProps> = (props) => {
   const { pageProps, schema, action, meta } = props
   const form = useMemo(() => createForm(), [])
   Schema.registerPatches(schemaPatch)

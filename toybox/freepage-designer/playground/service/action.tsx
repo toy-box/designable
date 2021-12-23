@@ -5,6 +5,16 @@ import {
   AutoflowActionImpl,
 } from '@toy-box/freepage-components'
 import { Modal, Button } from '@toy-box/toybox-ui'
+import { FreePage } from '../../src'
+import {
+  loadMetaRepoList,
+  loadMetaRepoListByValue,
+  loadMetaSchema,
+  loadMetaData,
+  loadMetaDataList,
+  loadMetaDataPageable,
+} from './meta'
+
 const { dialog } = Modal
 
 export const handleLinkAction = (linkAction: LinkActionImpl) => {
@@ -16,9 +26,40 @@ export const handlePageAction = (pageAction: PageActionImpl) => {
     title: 'Open Page In Dialog',
     content: ({ close }) => {
       return (
-        <div>
-          <Button onClick={close}>Close</Button>
-        </div>
+        <FreePage
+          pageProps={{
+            labelCol: 6,
+            wrapperCol: 12,
+          }}
+          schema={{
+            type: 'object',
+            properties: {
+              s5akie22akv: {
+                type: 'string',
+                title: 'Input',
+                'x-decorator': 'FormItem',
+                'x-component': 'Input',
+                'x-validator': [],
+                'x-component-props': {},
+                'x-decorator-props': {},
+                'x-index': 0,
+              },
+            },
+          }}
+          meta={{
+            loadMetaRepoList,
+            loadMetaRepoListByValue,
+            loadMetaSchema,
+            loadMetaData,
+            loadMetaDataList,
+            loadMetaDataPageable,
+          }}
+          action={{
+            handleLinkAction,
+            handlePageAction,
+            handleAutoflowAction,
+          }}
+        />
       )
     },
   })
