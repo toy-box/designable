@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { createForm } from '@formily/core'
-import { createSchemaField, Schema } from '@formily/react'
+import { createSchemaField, ISchema, Schema } from '@formily/react'
 import {
   Space,
   FormGrid,
@@ -25,9 +25,11 @@ import {
 } from '@formily/antd'
 import {
   ActionContext,
+  IActionContextProps,
+  MetaContext,
+  MetaContextProps,
   Button,
   Container,
-  MetaContext,
   Page,
   Text,
   Image,
@@ -44,19 +46,7 @@ import {
   PageParams,
 } from '@toy-box/freepage-components'
 import { Card, Slider, Rate } from 'antd'
-import { TreeNode } from '@designable/core'
-import { transformToSchema, schemaPatch } from '../../src'
-import {
-  loadMetaRepoList,
-  loadMetaRepoListByValue,
-  loadMetaSchema,
-  loadMetaData,
-  loadMetaDataList,
-  loadMetaDataPageable,
-  handleLinkAction,
-  handlePageAction,
-  handleAutoflowAction,
-} from '../service'
+import { schemaPatch } from '.'
 
 const SchemaField = createSchemaField({
   components: {
@@ -101,47 +91,22 @@ const SchemaField = createSchemaField({
   },
 })
 
-const $PageParams = {
-  type: 'void',
-  'x-component': 'PageParams',
+export type FreePageProps = {
+  pageProps: any
+  schema: ISchema
+  action: IActionContextProps
+  meta: MetaContextProps
 }
 
-export interface IPreviewWidgetProps {
-  tree: TreeNode
-}
-
-export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
+export const Freepage: React.FC<FreePageProps> = (props) => {
+  const { pageProps, schema, action, meta } = props
   const form = useMemo(() => createForm(), [])
-  const [formProps, setFormProps] = React.useState<any>()
-  const [schema, setSchema] = React.useState<any>()
   Schema.registerPatches(schemaPatch)
-  React.useEffect(() => {
-    transformToSchema(props.tree, {}, { loadMetaSchema }, { $PageParams }).then(
-      ({ form: formProps, schema }) => {
-        setFormProps(formProps)
-        setSchema(schema)
-      }
-    )
-  }, [props.tree])
+
   return (
-    <Page {...formProps} form={form}>
-      <ActionContext.Provider
-        value={{
-          handleLinkAction,
-          handlePageAction,
-          handleAutoflowAction,
-        }}
-      >
-        <MetaContext.Provider
-          value={{
-            loadMetaRepoList,
-            loadMetaRepoListByValue,
-            loadMetaSchema,
-            loadMetaData,
-            loadMetaDataList,
-            loadMetaDataPageable,
-          }}
-        >
+    <Page {...pageProps} form={form}>
+      <ActionContext.Provider value={action}>
+        <MetaContext.Provider value={meta}>
           <SchemaField schema={schema} />
         </MetaContext.Provider>
       </ActionContext.Provider>

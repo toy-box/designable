@@ -2595,17 +2595,17 @@
     dayjs "^1.10.7"
     lodash.uniq "^4.5.0"
 
-"@toy-box/meta-components@^2.0.22":
-  version "2.0.23"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.23.tgz#857eb8c04295dc4fc148c39b77a4385c95d06994"
-  integrity sha512-cOIELogiOl0hVlJTkfTFdfYixrus+pSKe/qKu71EFk9aznYFAOgTS1BiG2f6nu4xGhAuN2ek5laaMIV6p9H2fQ==
+"@toy-box/meta-components@^2.0.24":
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.24.tgz#d1174921a55c66cf956e0c9551d426e0a66050ae"
+  integrity sha512-LvnsmlGkBOcUVrosn2lBHeI8XfdpODH6PoJZcY+qVraZmJRCQXiusJo5sWLJrROFA2lLr4uMktNxse8ftnBu6g==
   dependencies:
     "@ahooksjs/antd-table" "^0.2.3"
     "@ahooksjs/use-request" "^2.8.13"
     "@airclass/icons" "^4.3.4"
-    "@toy-box/meta-schema" "^2.0.15"
+    "@toy-box/meta-schema" "^2.0.24"
     "@toy-box/toybox-shared" "^2.0.15"
-    "@toy-box/toybox-ui" "^2.0.22"
+    "@toy-box/toybox-ui" "^2.0.24"
     ahooks "^2.10.6"
     antd "^4.15.5"
     hoist-non-react-statics "^3.3.1"
@@ -2621,15 +2621,20 @@
   resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.15.tgz#f756e18207717d5e927a3969ecaff29b2b450fa0"
   integrity sha512-LpFBCNhrUFeAG96twneDs1nY+MAIbSZ4SExXiflyFa8VpCex07BzWjeKzVwZGcRQH8rtMfrx5qJT4bvU41+WVA==
 
+"@toy-box/meta-schema@^2.0.24":
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.24.tgz#8a61f8a685d9e5bc4e4a7a371e3110ec655d04b7"
+  integrity sha512-5hgOWDfx1fS+Ptkd9hDl3vWfWDyivm7A16oUM2zjgJU1IdXBQmF1BEISXLnF6LRjsfHKqil96N1CRr2CaabGtg==
+
 "@toy-box/toybox-shared@^2.0.15":
   version "2.0.15"
   resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.15.tgz#9981cce3d7c8a07506a9d8fc5a5b966008358f3b"
   integrity sha512-lO63VfWqNCNlaHyElCY3qNUuyMY5h3wJ2xVsc0jaxly2vDNdYGabSPy5D6XhqzxFdB9tr02kInoHdp6fGrVQ7A==
 
-"@toy-box/toybox-ui@^2.0.22":
-  version "2.0.22"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.22.tgz#f471ab90e51488d229528d73ce26a058b01b4788"
-  integrity sha512-7ir2zWxZ0X97f7LT5lRcqROL0rU5fxBzxu3lbxzYD56LWfbBrkH+no8OVOyMl2b5rTjYFxXm5HKesz9bh5CzfA==
+"@toy-box/toybox-ui@^2.0.24":
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/@toy-box/toybox-ui/-/toybox-ui-2.0.24.tgz#0420dde1113050a4b8a85260c68fd30407c349a0"
+  integrity sha512-Ojy2q1xft+POOjde7U1XhtPnEaMMInxUMTgiTdFCpLe6AjxY6whJonSj9Bc6zEElyI2LVB8v/SAhGDLH1qv5ag==
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.intersection "^4.4.0"

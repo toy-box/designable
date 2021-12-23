@@ -19,7 +19,7 @@ import {
 } from '@toy-box/meta-components/es/components/meta-table/interface'
 import { OperateColumn } from './components'
 import { SchemaOption } from '../types'
-import { useMeta, useFieldActions } from '../hooks'
+import { useMeta } from '../hooks'
 
 export type DataGridProps = {
   className?: string

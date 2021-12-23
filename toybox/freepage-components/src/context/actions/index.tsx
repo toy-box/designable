@@ -1,5 +1,5 @@
 import React from 'react'
-import { IActionContext } from './types'
+import { IActionContextProps } from './types'
 
 export * from './types'
-export const ActionContext = React.createContext<IActionContext>(null)
+export const ActionContext = React.createContext<IActionContextProps>(null)

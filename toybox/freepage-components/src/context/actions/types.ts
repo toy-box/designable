@@ -13,7 +13,7 @@ export interface IActionFieldData {
   index?: number
 }
 
-export interface IActionContext {
+export interface IActionContextProps {
   handleLinkAction: (linkAction: LinkActionImpl) => void
   handlePageAction: (pageAction: PageActionImpl) => void
   handleAutoflowAction: (autoflowAction: AutoflowAction) => Promise<any>
