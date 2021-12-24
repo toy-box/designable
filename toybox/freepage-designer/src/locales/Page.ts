@@ -1,7 +1,7 @@
 import { createLocales } from '@designable/core'
 import { Component } from './Component'
 
-export const Form = createLocales(Component, {
+export const Page = createLocales(Component, {
   'zh-CN': {
     title: '页面',
     settings: {

@@ -22,7 +22,7 @@ export interface IFormilySchema {
 const createOptions = (options: ITransformerOptions): ITransformerOptions => {
   return {
     designableFieldName: 'Field',
-    designableFormName: 'Form',
+    designableFormName: 'Page',
     ...options,
   }
 }

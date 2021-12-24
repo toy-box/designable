@@ -50,7 +50,7 @@ import {
   Card,
   DataView,
   Divider,
-  Form,
+  Page,
   FormCollapse,
   Field,
   Image,
@@ -100,7 +100,7 @@ const designeComponents = {
   DataView,
   DatePicker,
   Divider,
-  Form,
+  Page,
   FormCollapse,
   Field,
   Image,
@@ -140,10 +140,11 @@ const App = () => {
             },
           }),
         ],
-        rootComponentName: 'Form',
+        rootComponentName: 'Page',
       }),
     []
   )
+  // console.log('engine', engine)
   return (
     <Router>
       <Designer engine={engine}>

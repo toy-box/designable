@@ -19,6 +19,5 @@ export const Page: ISchema = {
         wrapperWidth: '100%',
       },
     },
-    ...(FormLayout.properties as any),
   },
 }

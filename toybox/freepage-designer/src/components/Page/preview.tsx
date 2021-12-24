@@ -9,7 +9,7 @@ import * as AllSchemas from '../../schemas'
 import * as AllLocales from '../../locales'
 import './styles.less'
 
-export const Form: DnFC<React.ComponentProps<typeof FormilyForm>> = observer(
+export const Page: DnFC<React.ComponentProps<typeof FormilyForm>> = observer(
   (props) => {
     const prefix = usePrefix('designable-form')
     const form = useMemo(
@@ -32,34 +32,34 @@ export const Form: DnFC<React.ComponentProps<typeof FormilyForm>> = observer(
   }
 )
 
-Form.Behavior = createBehavior({
-  name: 'Form',
-  selector: (node) => node.componentName === 'Form',
+Page.Behavior = createBehavior({
+  name: 'Page',
+  selector: (node) => node.componentName === 'Page',
   designerProps(node) {
     return {
       draggable: !node.isRoot,
       cloneable: !node.isRoot,
       deletable: !node.isRoot,
       droppable: true,
-      propsSchema: createPageFieldSchema(AllSchemas.Form),
+      propsSchema: createPageFieldSchema(AllSchemas.Page),
       defaultProps: {
         labelCol: 6,
         wrapperCol: 12,
       },
     }
   },
-  designerLocales: AllLocales.Form,
+  designerLocales: AllLocales.Page,
 })
 
-Form.Resource = createResource({
-  title: { 'zh-CN': '表单', 'en-US': 'Form' },
+Page.Resource = createResource({
+  title: { 'zh-CN': '页面', 'en-US': 'Page' },
   icon: 'FormLayoutSource',
   elements: [
     {
       componentName: 'Field',
       props: {
         type: 'object',
-        'x-component': 'Form',
+        'x-component': 'Page',
       },
     },
   ],

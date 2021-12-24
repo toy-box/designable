@@ -1,49 +1,5 @@
-import React, { useMemo } from 'react'
-import { createForm } from '@formily/core'
-import { createSchemaField, Schema } from '@formily/react'
-import {
-  Space,
-  FormGrid,
-  FormLayout,
-  FormCollapse,
-  FormTab as Tabs,
-  ArrayTable,
-  ArrayCards,
-  FormItem,
-  Checkbox,
-  Cascader,
-  Editable,
-  Password,
-  PreviewText,
-  Radio,
-  Reset,
-  Submit,
-  TimePicker,
-  Transfer,
-  TreeSelect,
-  Upload,
-} from '@formily/antd'
-import {
-  ActionContext,
-  Button,
-  Container,
-  MetaContext,
-  Page,
-  Text,
-  Image,
-  DataView,
-  DataGrid,
-  Divider,
-  FieldString as Input,
-  FieldText as TextArea,
-  FieldNumber as NumberPicker,
-  FieldDate as DatePicker,
-  FieldBoolean as Switch,
-  FieldPercent as Percent,
-  FieldSelect as Select,
-  PageParams,
-} from '@toy-box/freepage-components'
-import { Card, Slider, Rate } from 'antd'
+import React from 'react'
+import { Schema } from '@formily/react'
 import { TreeNode } from '@designable/core'
 import { transformToSchema, schemaPatch, FreePage } from '../../src'
 import {
@@ -57,49 +13,6 @@ import {
   handlePageAction,
   handleAutoflowAction,
 } from '../service'
-
-const SchemaField = createSchemaField({
-  components: {
-    Space,
-    FormGrid,
-    FormLayout,
-    Tabs,
-    FormCollapse,
-    ArrayTable,
-    ArrayCards,
-    FormItem,
-    Checkbox,
-    Cascader,
-    Editable,
-    Password,
-    PreviewText,
-    Radio,
-    Reset,
-    Submit,
-    TimePicker,
-    Transfer,
-    TreeSelect,
-    Upload,
-    Card,
-    Slider,
-    Rate,
-    Button,
-    Text,
-    Image,
-    DataView,
-    DataGrid,
-    Input,
-    TextArea,
-    NumberPicker,
-    DatePicker,
-    Switch,
-    Percent,
-    Select,
-    Divider,
-    Container,
-    PageParams,
-  },
-})
 
 const $PageParams = {
   type: 'void',
