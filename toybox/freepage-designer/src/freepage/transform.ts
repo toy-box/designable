@@ -14,9 +14,9 @@ export interface ITransformerOptions {
   designableFormName?: string
 }
 
-export interface IFormilySchema {
+export interface IPageSchema {
   schema?: ISchema
-  form?: Record<string, any>
+  page?: Record<string, any>
 }
 
 const createOptions = (options: ITransformerOptions): ITransformerOptions => {
@@ -32,7 +32,7 @@ export const transformToSchema = async (
   options?: ITransformerOptions,
   metaSchemaOption?: IMetaSchemaOption,
   addonProperties?: Record<string, ISchema>
-): Promise<IFormilySchema> => {
+): Promise<IPageSchema> => {
   const { loadMetaSchema } = metaSchemaOption
   const realOptions = createOptions(options)
   const root = node.find((child) => {
@@ -137,7 +137,7 @@ export const transformToSchema = async (
     return schema
   }
   return {
-    form: clone(root.props),
+    page: clone(root.props),
     schema: await createSchema(root, schema, addonProperties),
   }
 }
@@ -157,13 +157,13 @@ export const fetchMeta = (path: string[], meta: IFieldMeta) => {
 }
 
 export const transformToTreeNode = (
-  formily: IFormilySchema = {},
+  formily: IPageSchema = {},
   options?: ITransformerOptions
 ) => {
   const realOptions = createOptions(options)
   const root: ITreeNode = {
     componentName: realOptions.designableFormName,
-    props: formily.form,
+    props: formily.page,
     children: [],
   }
   const schema = new Schema(formily.schema)
