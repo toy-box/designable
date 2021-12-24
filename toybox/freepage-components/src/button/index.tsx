@@ -50,10 +50,8 @@ export const Button: React.FC<ButtonProps> = ({
   }, [handleAction])
 
   return (
-    <React.Fragment>
-      <OrgButton onClick={handleClick} {...otherProps}>
-        {caption}
-      </OrgButton>
-    </React.Fragment>
+    <OrgButton onClick={handleClick} {...otherProps}>
+      {caption}
+    </OrgButton>
   )
 }

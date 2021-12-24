@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
 import { TreeNodeContext, DesignerComponentsContext } from '../../context'
-import { IDesignerComponents } from '../../types'
+import { IDesignerComponents, PageLayouts } from '../../types'
 import { TreeNode, GlobalRegistry } from '@designable/core'
 import { observer } from '@formily/reactive-react'
 import cls from 'classnames'
@@ -10,6 +10,7 @@ import './styles.less'
 export interface IComponentTreeWidgetProps {
   style?: React.CSSProperties
   className?: string
+  layouts?: PageLayouts
   components: IDesignerComponents
 }
 
@@ -80,7 +81,11 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
     useEffect(() => {
       GlobalRegistry.registerDesignerBehaviors(props.components)
     }, [])
+    const { layout } = tree.props
+    const LayoutComponent = props.layouts?.[layout] || React.Fragment
+
     return (
+      // <LayoutComponent>
       <div
         style={{ ...props.style }}
         className={cls(prefix, props.className)}
@@ -90,6 +95,7 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
           <TreeNodeWidget node={tree} />
         </DesignerComponentsContext.Provider>
       </div>
+      // </LayoutComponent>
     )
   })
 

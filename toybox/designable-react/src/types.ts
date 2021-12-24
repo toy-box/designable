@@ -36,3 +36,5 @@ export type DnComponent<P = {}> = React.ComponentType<P> & {
   Resource?: IResource[]
   Behavior?: IBehavior[]
 }
+
+export type PageLayouts = Record<string, React.FC>

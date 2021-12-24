@@ -29,7 +29,7 @@ import {
   Shortcut,
   KeyCode,
 } from '@designable/core'
-import { MetaContext } from '@toy-box/freepage-components'
+import { MetaContext, Dialog } from '@toy-box/freepage-components'
 import {
   LogoWidget,
   ActionsWidget,
@@ -94,7 +94,7 @@ GlobalRegistry.registerDesignerLocales({
   },
 })
 
-const designeComponents = {
+const designerComponents = {
   Button,
   Card,
   DataView,
@@ -118,6 +118,10 @@ const designeComponents = {
   DataGrid,
   MetaTable,
   PageParams: ShadowData,
+}
+
+const designerLayouts = {
+  Dialog,
 }
 
 const App = () => {
@@ -231,7 +235,10 @@ const App = () => {
                 <ViewportPanel>
                   <ViewPanel type="DESIGNABLE">
                     {() => (
-                      <ComponentTreeWidget components={designeComponents} />
+                      <ComponentTreeWidget
+                        components={designerComponents}
+                        layouts={designerLayouts}
+                      />
                     )}
                   </ViewPanel>
                   <ViewPanel type="JSONTREE" scrollable={false}>
