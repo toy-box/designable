@@ -36,9 +36,6 @@ export const TreeNodeWidget: React.FC<ITreeNodeWidgetProps> = observer(
         ...node.props,
         ...node.designerProps?.getComponentProps?.(node),
       }
-      if (node.depth === 0) {
-        delete props.style
-      }
       return props
     }
     const renderComponent = () => {
@@ -85,7 +82,7 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
     }, [])
     return (
       <div
-        style={{ ...props.style, ...tree?.props?.style }}
+        style={{ ...props.style }}
         className={cls(prefix, props.className)}
         {...dataId}
       >

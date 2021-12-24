@@ -45,7 +45,7 @@ import {
 } from '@toy-box/freepage-components'
 import { Card, Slider, Rate } from 'antd'
 import { TreeNode } from '@designable/core'
-import { transformToSchema, schemaPatch } from '../../src'
+import { transformToSchema, schemaPatch, FreePage } from '../../src'
 import {
   loadMetaRepoList,
   loadMetaRepoListByValue,
@@ -111,7 +111,6 @@ export interface IPreviewWidgetProps {
 }
 
 export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
-  const form = useMemo(() => createForm(), [])
   const [formProps, setFormProps] = React.useState<any>()
   const [schema, setSchema] = React.useState<any>()
   Schema.registerPatches(schemaPatch)
@@ -124,27 +123,22 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     )
   }, [props.tree])
   return (
-    <Page {...formProps} form={form}>
-      <ActionContext.Provider
-        value={{
-          handleLinkAction,
-          handlePageAction,
-          handleAutoflowAction,
-        }}
-      >
-        <MetaContext.Provider
-          value={{
-            loadMetaRepoList,
-            loadMetaRepoListByValue,
-            loadMetaSchema,
-            loadMetaData,
-            loadMetaDataList,
-            loadMetaDataPageable,
-          }}
-        >
-          <SchemaField schema={schema} />
-        </MetaContext.Provider>
-      </ActionContext.Provider>
-    </Page>
+    <FreePage
+      pageProps={formProps}
+      schema={schema}
+      action={{
+        handleLinkAction,
+        handlePageAction,
+        handleAutoflowAction,
+      }}
+      meta={{
+        loadMetaRepoList,
+        loadMetaRepoListByValue,
+        loadMetaSchema,
+        loadMetaData,
+        loadMetaDataList,
+        loadMetaDataPageable,
+      }}
+    />
   )
 }
