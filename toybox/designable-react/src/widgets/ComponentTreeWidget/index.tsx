@@ -5,6 +5,7 @@ import { IDesignerComponents, PageLayouts } from '../../types'
 import { TreeNode, GlobalRegistry } from '@designable/core'
 import { observer } from '@formily/reactive-react'
 import cls from 'classnames'
+import { Dialog } from '@toy-box/freepage-components'
 import './styles.less'
 
 export interface IComponentTreeWidgetProps {
@@ -83,19 +84,18 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
     }, [])
     const { layout } = tree.props
     const LayoutComponent = props.layouts?.[layout] || React.Fragment
-
     return (
-      // <LayoutComponent>
-      <div
-        style={{ ...props.style }}
-        className={cls(prefix, props.className)}
-        {...dataId}
-      >
-        <DesignerComponentsContext.Provider value={props.components}>
-          <TreeNodeWidget node={tree} />
-        </DesignerComponentsContext.Provider>
-      </div>
-      // </LayoutComponent>
+      <Dialog>
+        <div
+          style={{ ...props.style }}
+          className={cls(prefix, props.className)}
+          {...dataId}
+        >
+          <DesignerComponentsContext.Provider value={props.components}>
+            <TreeNodeWidget node={tree} />
+          </DesignerComponentsContext.Provider>
+        </div>
+      </Dialog>
     )
   })
 

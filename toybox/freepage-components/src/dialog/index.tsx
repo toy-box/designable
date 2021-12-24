@@ -1,5 +1,6 @@
 import React from 'react'
 import cls from 'classnames'
+import { Button } from 'antd'
 import { ConfigContext } from 'antd/es/config-provider'
 import { CloseOutlined } from '@ant-design/icons'
 
@@ -13,27 +14,17 @@ export const Dialog: React.FC<IDialog> = (props) => {
   const { getPrefixCls, direction } = React.useContext(ConfigContext)
   const prefixCls = getPrefixCls('modal')
 
-  const headerNode = (
-    <div className={`${prefixCls}-header`}>
-      <div className={`${prefixCls}-title`}>{title}</div>
-    </div>
-  )
-
-  const closer = (
-    <button type="button" aria-label="Close" className={`${prefixCls}-close`}>
-      {CloseOutlined}
-    </button>
-  )
-
-  const content = (
-    <div className={`${prefixCls}-content`}>
-      {closer}
-      {headerNode}
-      <div className={`${prefixCls}-body`}>{children}</div>
-    </div>
-  )
-
   return (
-    <div className={cls(`${prefixCls}-wrap`, wrapClassName)}>{content}</div>
+    <div
+      className={cls(`${prefixCls}-wrap`, wrapClassName)}
+      style={{ position: 'relative', zIndex: 0 }}
+    >
+      <div className={`${prefixCls}-content`}>
+        <div className={`${prefixCls}-header`}>
+          <div className={`${prefixCls}-title`}>{'title'}</div>
+        </div>
+        <div className={`${prefixCls}-body`}>{children}</div>
+      </div>
+    </div>
   )
 }
