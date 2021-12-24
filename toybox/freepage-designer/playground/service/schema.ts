@@ -1,16 +1,23 @@
 import { Engine } from '@designable/core'
-import {
-  transformToSchema,
-  transformToTreeNode,
-} from '@designable/formily-transformer'
 import { message } from 'antd'
+import { transformToSchema, transformToTreeNode } from '../../src'
+import { loadMetaSchema } from './meta'
+
+const $PageParams = {
+  type: 'void',
+  'x-component': 'PageParams',
+}
 
 export const saveSchema = (designer: Engine) => {
-  localStorage.setItem(
-    'formily-schema',
-    JSON.stringify(transformToSchema(designer.getCurrentTree()))
-  )
-  message.success('Save Success')
+  transformToSchema(
+    designer.getCurrentTree(),
+    {},
+    { loadMetaSchema },
+    { $PageParams }
+  ).then(({ page, schema }) => {
+    localStorage.setItem('formily-schema', JSON.stringify({ page, schema }))
+    message.success('Save Success')
+  })
 }
 
 export const loadInitialSchema = (designer: Engine) => {
