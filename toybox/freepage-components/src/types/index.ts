@@ -1,3 +1,1 @@
-export * from './action'
-export * from './page'
-export * from './meta'
+export * from '@toy-box/freepage-core'

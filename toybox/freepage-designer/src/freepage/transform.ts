@@ -2,8 +2,11 @@ import { ISchema, Schema } from '@formily/json-schema'
 import { ITreeNode, TreeNode } from '@designable/core'
 import { clone, uid, omit, isObj } from '@toy-box/toybox-shared'
 import { IFieldMeta } from '@toy-box/meta-schema'
-import { IMetaSchemaOption } from '@toy-box/freepage-components'
-import { ItemEditability, ItemVisibility } from './types'
+import {
+  IMetaSchemaOption,
+  ItemEditability,
+  ItemVisibility,
+} from '@toy-box/freepage-components'
 
 const PAGE_SCHEMA = {
   type: 'void',
@@ -140,6 +143,10 @@ export const transformToSchema = async (
     page: clone(root.props),
     schema: await createSchema(root, schema, addonProperties),
   }
+}
+
+export const transformRootToSchema = (props: Record<string, any>) => {
+  return
 }
 
 export const fetchMeta = (path: string[], meta: IFieldMeta) => {

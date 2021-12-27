@@ -1,4 +1,4 @@
-import { ActionType, LinkTarget } from '@toy-box/freepage-components'
+import { ActionType, LinkTarget } from '@toy-box/freepage-core'
 
 export const Button = {
   'zh-CN': {

@@ -7,6 +7,7 @@ import { Selector } from './Selector'
 import { Copy } from './Copy'
 import { Delete } from './Delete'
 import { DragHandler } from './DragHandler'
+import { NodeSelector } from './NodeSelector'
 
 const HELPER_DEBOUNCE_TIMEOUT = 100
 
@@ -105,7 +106,7 @@ export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
       ref={ref}
     >
       <div className={cls(prefix + '-content')}>
-        <Selector node={node} />
+        <NodeSelector node={node} />
         {node?.allowClone() === false ? null : <Copy node={node} />}
         {node?.allowDrag() === false ? null : <DragHandler node={node} />}
         {node?.allowDelete() === false ? null : <Delete node={node} />}

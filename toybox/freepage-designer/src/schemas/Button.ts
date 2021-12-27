@@ -1,5 +1,5 @@
 import { ISchema } from '@formily/react'
-import { ActionType, LinkTarget } from '@toy-box/freepage-components'
+import { ActionType, LinkTarget } from '@toy-box/freepage-core'
 
 export const Button: ISchema = {
   type: 'object',
