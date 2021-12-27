@@ -118,6 +118,7 @@ const designerComponents = {
   DataGrid,
   MetaTable,
   PageParams: ShadowData,
+  PageStates: ShadowData,
 }
 
 const designerLayouts = {
@@ -126,9 +127,9 @@ const designerLayouts = {
 
 const App = () => {
   const [leftVisible, setLeftVisible] = React.useState(false)
-  const [leftActiveKey, setLeftActiveKey] = React.useState()
+  const [leftActiveKey, setLeftActiveKey] = React.useState<number>()
   const [rightVisible, setRightVisible] = React.useState(false)
-  const [rightActiveKey, setRightActiveKey] = React.useState()
+  const [rightActiveKey, setRightActiveKey] = React.useState<number>()
 
   const engine = useMemo(
     () =>

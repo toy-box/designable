@@ -15,17 +15,20 @@ export interface IBaseParameter {
 export type PageParameter = IBaseParameter
 
 export interface IPageBase {
-  id: string
-  name: string
   title: string
   parameters: PageParameter[]
   states: IBaseParameter[]
 }
 
+export interface IPage extends IPageBase {
+  id: string
+  name: string
+}
+
 export interface IPageOption {
-  loadPageList: (name?: string) => Promise<IPageBase[]>
-  loadPage: (pageId: string) => Promise<IPageBase>
-  loadPageByValue: (ids: string[]) => Promise<IPageBase[]>
+  loadPageList: (name?: string) => Promise<IPage[]>
+  loadPage: (pageId: string) => Promise<IPage>
+  loadPageByValue: (ids: string[]) => Promise<IPage[]>
   loadPageParameters: (pageId: string) => Promise<PageParameter[]>
 }
 

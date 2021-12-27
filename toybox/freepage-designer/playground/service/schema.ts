@@ -8,12 +8,17 @@ const $PageParams = {
   'x-component': 'PageParams',
 }
 
+const $PageStates = {
+  type: 'void',
+  'x-component': 'PageParams',
+}
+
 export const saveSchema = (designer: Engine) => {
   transformToSchema(
     designer.getCurrentTree(),
     {},
     { loadMetaSchema },
-    { $PageParams }
+    { $PageParams, $PageStates }
   ).then(({ page, schema }) => {
     localStorage.setItem('formily-schema', JSON.stringify({ page, schema }))
     message.success('Save Success')

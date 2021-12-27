@@ -19,6 +19,11 @@ const $PageParams = {
   'x-component': 'PageParams',
 }
 
+const $PageStates = {
+  type: 'void',
+  'x-component': 'PageStates',
+}
+
 export interface IPreviewWidgetProps {
   tree: TreeNode
 }
@@ -28,12 +33,15 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const [schema, setSchema] = React.useState<any>()
   Schema.registerPatches(schemaPatch)
   React.useEffect(() => {
-    transformToSchema(props.tree, {}, { loadMetaSchema }, { $PageParams }).then(
-      ({ form: formProps, schema }) => {
-        setFormProps(formProps)
-        setSchema(schema)
-      }
-    )
+    transformToSchema(
+      props.tree,
+      {},
+      { loadMetaSchema },
+      { $PageParams, $PageStates }
+    ).then(({ page: formProps, schema }) => {
+      setFormProps(formProps)
+      setSchema(schema)
+    })
   }, [props.tree])
   return (
     <FreePage

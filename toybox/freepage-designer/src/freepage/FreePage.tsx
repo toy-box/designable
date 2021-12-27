@@ -44,6 +44,7 @@ import {
   FieldPercent as Percent,
   FieldSelect as Select,
   PageParams,
+  PageStates,
 } from '@toy-box/freepage-components'
 import { Card, Slider, Rate } from 'antd'
 import { schemaPatch } from '.'
@@ -88,6 +89,7 @@ const SchemaField = createSchemaField({
     Divider,
     Container,
     PageParams,
+    PageStates,
   },
 })
 

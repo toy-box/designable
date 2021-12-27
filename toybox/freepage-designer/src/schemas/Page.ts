@@ -19,5 +19,15 @@ export const Page: ISchema = {
         wrapperWidth: '100%',
       },
     },
+    states: {
+      type: 'array',
+      'x-decorator': 'FormItem',
+      'x-component': 'ParamsSetter',
+      'x-decorator-props': {
+        layout: 'vertical',
+        wrapperAlign: 'left',
+        wrapperWidth: '100%',
+      },
+    },
   },
 }

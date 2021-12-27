@@ -3,10 +3,11 @@ import { ITreeNode, TreeNode } from '@designable/core'
 import { clone, uid, omit, isObj } from '@toy-box/toybox-shared'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import {
+  IPageBase,
   IMetaSchemaOption,
   ItemEditability,
   ItemVisibility,
-} from '@toy-box/freepage-components'
+} from '@toy-box/freepage-core'
 
 const PAGE_SCHEMA = {
   type: 'void',
@@ -19,7 +20,7 @@ export interface ITransformerOptions {
 
 export interface IPageSchema {
   schema?: ISchema
-  page?: Record<string, any>
+  page?: IPageBase
 }
 
 const createOptions = (options: ITransformerOptions): ITransformerOptions => {
@@ -164,16 +165,16 @@ export const fetchMeta = (path: string[], meta: IFieldMeta) => {
 }
 
 export const transformToTreeNode = (
-  formily: IPageSchema = {},
+  page: IPageSchema = {},
   options?: ITransformerOptions
 ) => {
   const realOptions = createOptions(options)
   const root: ITreeNode = {
     componentName: realOptions.designableFormName,
-    props: formily.page,
+    props: page.page,
     children: [],
   }
-  const schema = new Schema(formily.schema)
+  const schema = new Schema(page.schema)
   const cleanProps = (props: any) => {
     if (props['name'] === props['x-designable-id']) {
       delete props.name

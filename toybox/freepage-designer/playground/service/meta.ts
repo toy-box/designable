@@ -1,4 +1,5 @@
 import { IPageResult } from '@toy-box/meta-components/es/components/data-grid/types'
+import { IFieldMeta, IObjectMeta } from '@toy-box/meta-schema'
 
 const repolist = [
   {
@@ -118,7 +119,7 @@ export const loadMetaRepoListByValue = (ids: string[] | string = []) => {
   })
 }
 
-export const loadMetaSchema = (key: string) => {
+export const loadMetaSchema = (key: string): Promise<IObjectMeta> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(schemas[key])
