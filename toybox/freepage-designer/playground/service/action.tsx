@@ -4,7 +4,7 @@ import {
   PageActionImpl,
   AutoflowActionImpl,
 } from '@toy-box/freepage-components'
-import { Modal, Button } from '@toy-box/toybox-ui'
+import { Modal } from '@toy-box/toybox-ui'
 import { FreePage } from '../../src'
 import {
   loadMetaRepoList,

@@ -4,6 +4,7 @@ import { observer } from '@formily/react'
 import { MetaValueType, IFieldMeta } from '@toy-box/meta-schema'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
 import { ExpressionEditor } from '@toy-box/expression-editor'
+import { PowerFxFormulaEditor } from '@toy-box/powerfx-editor'
 import cls from 'classnames'
 import './styles.less'
 
@@ -65,18 +66,11 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
           }}
         >
           <div className={cls(prefix, className)} style={style}>
-            <ExpressionEditor
-              width="100%"
-              height={400}
-              value={innerValue}
+            <PowerFxFormulaEditor
+              defaultValue={innerValue}
               onChange={setInnerValue}
-              valueType={valueType}
-              variableMap={variableMap}
-              options={{
-                lineNumbers: 'off',
-                minimap: { enabled: false },
-                fontSize: 14,
-              }}
+              minLineCount={1}
+              maxLineCount={6}
             />
           </div>
         </Modal>

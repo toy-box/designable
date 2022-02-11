@@ -28,8 +28,10 @@ const Empty = () => {
     </div>
   )
 }
-
-export const EmptyWidget: React.FC = observer((props) => {
+export type EmptyWidgetProps = {
+  dragTipsDirection: 'left' | 'right'
+}
+export const EmptyWidget: React.FC<EmptyWidgetProps> = observer((props) => {
   const tree = useTree()
   const prefix = usePrefix('empty')
   if (!tree?.children?.length) {

@@ -47,7 +47,7 @@ import {
   PageStates,
 } from '@toy-box/freepage-components'
 import { Card, Slider, Rate } from 'antd'
-import { schemaPatch } from '.'
+import { schemaPatch } from './patch'
 
 const SchemaField = createSchemaField({
   components: {
