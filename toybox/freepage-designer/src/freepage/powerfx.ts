@@ -2,7 +2,11 @@ import { Field } from '@formily/core/esm/models/Field'
 import { FormPath, isArr } from '@formily/shared'
 import { ISchema } from '@formily/json-schema'
 import { SchemaProperties } from '@formily/react'
-import { RecalcEngine, BooleanValue } from '@toy-box/power-fx'
+import {
+  RecalcEngine,
+  BooleanValue,
+  FormulaValueStatic,
+} from '@toy-box/power-fx'
 import { GeneralField } from '@formily/core'
 
 const engine = new RecalcEngine()
@@ -78,6 +82,14 @@ function reactionPatchPowerFX(reaction: any) {
           field.value = value.toObject()
         }
       )
+    }
+  } else if (reaction.state === 'dataSource') {
+    return (field: Field) => {
+      const { form } = field
+      const formulaValue = FormulaValueStatic.FromJson(
+        form.getValuesIn(field.path)
+      )
+      engine.updateVariable(field.path.toString(), formulaValue)
     }
   }
   return reaction

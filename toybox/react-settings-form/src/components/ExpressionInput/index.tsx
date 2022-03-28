@@ -3,7 +3,6 @@ import { Modal, Button } from 'antd'
 import { observer } from '@formily/react'
 import { MetaValueType, IFieldMeta } from '@toy-box/meta-schema'
 import { TextWidget, usePrefix } from '@toy-box/designable-react'
-import { ExpressionEditor } from '@toy-box/expression-editor'
 import { PowerFxFormulaEditor } from '@toy-box/powerfx-editor'
 import cls from 'classnames'
 import './styles.less'
@@ -65,14 +64,14 @@ export const ExpressionInput: React.FC<IExpressionInputProps> = observer(
             closeModal()
           }}
         >
-          <div className={cls(prefix, className)} style={style}>
-            <PowerFxFormulaEditor
-              defaultValue={innerValue}
-              onChange={setInnerValue}
-              minLineCount={1}
-              maxLineCount={6}
-            />
-          </div>
+          <PowerFxFormulaEditor
+            className={cls(prefix, className)}
+            style={style}
+            defaultValue={innerValue}
+            onChange={setInnerValue}
+            minLineCount={20}
+            maxLineCount={100}
+          />
         </Modal>
       </Fragment>
     )

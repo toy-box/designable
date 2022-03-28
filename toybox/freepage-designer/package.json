@@ -62,6 +62,7 @@
     "@toy-box/designable-react": "^1.0.0",
     "@toy-box/designable-react-settings-form": "^1.0.0",
     "@toy-box/formula": "^1.0.12",
+    "@toy-box/meta-powerfx": "^2.0.34",
     "@toy-box/freepage-components": "^1.0.0",
     "@toy-box/meta-components": "^2.0.24",
     "@toy-box/meta-schema": "^2.0.24",

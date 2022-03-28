@@ -43,7 +43,7 @@
     "@toy-box/designable-react": "1.0.0",
     "@toy-box/expression-editor": "^1.0.9",
     "@toy-box/freepage-components": "^1.0.0",
-    "@toy-box/powerfx-editor": "^0.1.0-alpha",
+    "@toy-box/powerfx-editor": "^0.1.2-alpha",
     "ahooks": "^2.10.9",
     "prettier": "^2.3.2",
     "react-color": "^2.19.3",

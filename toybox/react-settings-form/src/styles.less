@@ -134,15 +134,18 @@
       margin-bottom: 0;
       border-bottom: 1px solid @border-color-base;
     }
-  }
-  .@{ant-prefix}-tabs-nav-list {
-    width: 100%;
-    .@{ant-prefix}-tabs-tab {
+    .@{ant-prefix}-tabs-nav-list {
       width: 100%;
-      justify-content: center;
-      > .@{ant-prefix}-tabs-tab-btn {
-        display: flex;
+      .@{ant-prefix}-tabs-tab {
+        width: 100%;
+        justify-content: center;
+        > .@{ant-prefix}-tabs-tab-btn {
+          display: flex;
+        }
       }
+    }
+    .@{ant-prefix}-tabs-nav-operations {
+      display: none;
     }
   }
   .@{ant-prefix}-formily-array-base-addition {

@@ -1,11 +1,10 @@
 import React, { useCallback, useMemo, useEffect, useState } from 'react'
+import cls from 'classnames'
 import { Field } from '@formily/core'
 import { Field as FieldComponent, useField, observer } from '@formily/react'
 import { FormItem } from '@formily/antd'
 import { Switch } from 'antd'
 import { usePrefix } from '@toy-box/designable-react'
-import { PageParameter } from '@toy-box/freepage-components'
-import cls from 'classnames'
 import { MetaValueType } from '@toy-box/meta-schema'
 import { ExpressionInput } from '../ExpressionInput'
 import './styles.less'
@@ -70,10 +69,9 @@ export const VisibilitySetter: React.FC<IVisibilitySetterProps> = observer(
         {active && (
           <FormItem.BaseItem layout={'vertical'}>
             <ExpressionInput
-              value={props.value.expression}
+              value={props.value?.expression}
               onChange={handleExpression}
               valueType={MetaValueType.BOOLEAN}
-              variableMap={variableMap}
             />
           </FormItem.BaseItem>
         )}
