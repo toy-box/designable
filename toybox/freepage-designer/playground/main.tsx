@@ -69,6 +69,8 @@ import {
   DataGrid,
   MetaTable,
   ShadowData,
+  Container,
+  Upload,
 } from '../src'
 
 setNpmCDNRegistry('//unpkg.com')
@@ -117,6 +119,8 @@ const designerComponents = {
   Text,
   DataGrid,
   MetaTable,
+  Container,
+  Upload,
   PageParams: ShadowData,
   PageStates: ShadowData,
 }
@@ -197,7 +201,7 @@ const App = () => {
               <CompositePanelContent.Item title="panels.Component" icon="Add">
                 <ResourceWidget
                   title="sources.DataContainers"
-                  sources={[DataView, DataGrid]}
+                  sources={[DataView, DataGrid, Container]}
                 />
                 <ResourceWidget
                   title="sources.Inputs"
@@ -214,7 +218,7 @@ const App = () => {
                 />
                 <ResourceWidget
                   title="sources.Displays"
-                  sources={[Text, Image, Button, Divider]}
+                  sources={[Text, Image, Button, Divider, Upload]}
                 />
                 <ResourceWidget
                   title="sources.Layouts"
