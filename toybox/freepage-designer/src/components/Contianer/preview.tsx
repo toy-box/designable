@@ -42,7 +42,6 @@ Container.ContainerColumn = observer((props) => {
       style={{
         ...props['style'],
         gridColumnStart: `span ${props.gridSpan || 1}`,
-        'grid-column': `span ${props.gridSpan || 1}`,
       }}
     >
       {props.children}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useFieldSchema, observer } from '@formily/react'
-import { connect, mapProps, mapReadPretty } from '@formily/react'
 import { FormGrid as FormilyGird } from '@formily/antd'
 import cls from 'classnames'
 
@@ -9,39 +8,42 @@ export type ContainerProps = {
   style?: React.CSSProperties
 }
 
-export const Container: React.FC<ContainerProps> = observer((props) => {
+type formilyGrid = typeof FormilyGird
+
+export const Container: React.FC<ContainerProps> & {
+  ContainerColumn?: React.FC<React.ComponentProps<formilyGrid['GridColumn']>>
+} = (props) => {
   const schema = useFieldSchema()
   const totalColumns = schema
-    .mapProperties((itemSchema) => itemSchema)
+    ?.mapProperties((itemSchema) => itemSchema)
     .reduce(
       (buf, itemSchema: any) =>
         buf + (itemSchema?.['x-component-props']?.gridSpan ?? 1),
       0
     )
-  // debugger
   return (
     <div className="dn-grid">
       <FormilyGird {...props} key={totalColumns}>
-        {schema.mapProperties((itemSchema) => (
-          <FormilyGird.GridColumn {...itemSchema}>
-            {itemSchema?.properties && props.children}
-          </FormilyGird.GridColumn>
-        ))}
+        {props.children}
       </FormilyGird>
     </div>
   )
-})
+}
 
-FormilyGird.GridColumn = observer((props: any) => {
+Container.ContainerColumn = observer((props) => {
   return (
     <div
       {...props}
-      className={cls(props['className'], {})}
-      data-span={props?.['x-component-props'].gridSpan}
+      className={cls(props['className'], {
+        'dn-grid-column': !props.children,
+      })}
+      data-span={props.gridSpan}
       style={{
         ...props['style'],
-        gridColumnStart: `span ${props?.['x-component-props'].gridSpan || 1}`,
+        gridColumnStart: `span ${props.gridSpan || 1}`,
       }}
-    ></div>
+    >
+      {props.children}
+    </div>
   )
 })

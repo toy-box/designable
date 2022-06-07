@@ -71,6 +71,7 @@ import {
   ShadowData,
   Container,
   Upload,
+  SlotContainer,
 } from '../src'
 
 setNpmCDNRegistry('//unpkg.com')
@@ -121,6 +122,7 @@ const designerComponents = {
   MetaTable,
   Container,
   Upload,
+  SlotContainer,
   PageParams: ShadowData,
   PageStates: ShadowData,
 }
@@ -201,7 +203,7 @@ const App = () => {
               <CompositePanelContent.Item title="panels.Component" icon="Add">
                 <ResourceWidget
                   title="sources.DataContainers"
-                  sources={[DataView, DataGrid, Container]}
+                  sources={[DataView, DataGrid, Container, SlotContainer]}
                 />
                 <ResourceWidget
                   title="sources.Inputs"

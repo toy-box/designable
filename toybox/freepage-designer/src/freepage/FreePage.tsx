@@ -45,6 +45,7 @@ import {
   FieldSelect as Select,
   PageParams,
   PageStates,
+  SlotContainer,
 } from '@toy-box/freepage-components'
 import { Card, Slider, Rate } from 'antd'
 import { schemaPatch } from './patch'
@@ -90,6 +91,7 @@ const SchemaField = createSchemaField({
     Container,
     PageParams,
     PageStates,
+    SlotContainer,
   },
 })
 
