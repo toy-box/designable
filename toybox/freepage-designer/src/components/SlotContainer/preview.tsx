@@ -13,11 +13,11 @@ export interface SlotContainerProps {
   style?: React.CSSProperties
 }
 
-export const SlotContainer: DnFC<SlotContainerProps> = observer((props) => {
+export const SlotContainer: DnFC<SlotContainerProps> = (props) => {
   const node: TreeNode = useTreeNode()
   const nodeId = useNodeIdProps()
   useEffect(() => {
-    if (props?.metaSchema) {
+    if (props?.metaSchema && node?.children?.length === 0) {
       const keys = Object.keys(props?.metaSchema?.properties)
       keys.forEach((key) => {
         node.append(
@@ -38,7 +38,7 @@ export const SlotContainer: DnFC<SlotContainerProps> = observer((props) => {
       {props.children}
     </OrgSlotContainer>
   )
-})
+}
 
 SlotContainer.Behavior = createBehavior({
   name: 'SlotContainer',
@@ -63,6 +63,27 @@ SlotContainer.Resource = createResource({
         'x-component-props': {
           style: {
             height: '200px',
+          },
+          metaSchema: {
+            type: 'object',
+            properties: {
+              btn: {
+                type: 'void',
+                'x-component': 'Button',
+                'x-component-props': {
+                  caption: 'Button',
+                  type: 'default',
+                },
+              },
+              btn1: {
+                type: 'void',
+                'x-component': 'Button',
+                'x-component-props': {
+                  caption: 'Button1',
+                  type: 'default',
+                },
+              },
+            },
           },
         },
       },
