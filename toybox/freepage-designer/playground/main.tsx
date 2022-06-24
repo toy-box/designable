@@ -155,32 +155,40 @@ const App = () => {
       <Designer engine={engine}>
         <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
           <TopbarPanel>
-            <CompositePanel
-              visible={leftVisible}
-              setVisible={setLeftVisible}
-              activeKey={leftActiveKey}
-              setActiveKey={setLeftActiveKey}
-            >
-              <CompositePanel.Item title="panels.Component" icon="Add" />
-              <CompositePanel.Item title="panels.OutlinedTree" icon="Layer" />
-              <CompositePanel.Item title="panels.History" icon="History" />
-            </CompositePanel>
-            <DesignerWidget />
-            <ViewWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
-            <CompositePanel
-              direction="right"
-              visible={rightVisible}
-              setVisible={setRightVisible}
-              activeKey={rightActiveKey}
-              setActiveKey={setRightActiveKey}
-            >
-              <CompositePanel.Item
-                title="panels.PropertySettings"
-                icon="Setting"
+            <TopbarPanel.Region position="left">
+              <CompositePanel
+                visible={leftVisible}
+                setVisible={setLeftVisible}
+                activeKey={leftActiveKey}
+                setActiveKey={setLeftActiveKey}
               >
-                <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-              </CompositePanel.Item>
-            </CompositePanel>
+                <CompositePanel.Item title="panels.Component" icon="Add" />
+                <CompositePanel.Item title="panels.OutlinedTree" icon="Layer" />
+                <CompositePanel.Item title="panels.History" icon="History" />
+              </CompositePanel>
+            </TopbarPanel.Region>
+            <TopbarPanel.Region position="center">
+              <DesignerWidget />
+            </TopbarPanel.Region>
+            <TopbarPanel.Region position="right">
+              <ViewWidget
+                use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']}
+              />
+              <CompositePanel
+                direction="right"
+                visible={rightVisible}
+                setVisible={setRightVisible}
+                activeKey={rightActiveKey}
+                setActiveKey={setRightActiveKey}
+              >
+                <CompositePanel.Item
+                  title="panels.PropertySettings"
+                  icon="Setting"
+                >
+                  <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+                </CompositePanel.Item>
+              </CompositePanel>
+            </TopbarPanel.Region>
           </TopbarPanel>
           <div
             style={{

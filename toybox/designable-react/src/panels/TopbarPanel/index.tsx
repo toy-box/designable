@@ -8,11 +8,13 @@ export type TopbarPanelProps = {
   className?: string
 }
 
-export const TopbarPanel: React.FC<TopbarPanelProps> = ({
-  style,
-  className,
-  children,
-}) => {
+export type TopbarPanelRegionProps = {
+  style?: React.CSSProperties
+  className?: string
+  position: 'left' | 'center' | 'right'
+}
+
+export const TopbarPanel = ({ style, className, children }) => {
   const prefix = usePrefix('topbar-panel')
   return (
     <div style={style} className={cls(prefix, className)}>
@@ -20,3 +22,19 @@ export const TopbarPanel: React.FC<TopbarPanelProps> = ({
     </div>
   )
 }
+
+const Region: React.FC<React.PropsWithChildren<TopbarPanelRegionProps>> = ({
+  style,
+  position,
+  className,
+  children,
+}) => {
+  const prefix = `${usePrefix('topbar-panel')}-${position}`
+  return (
+    <div style={style} className={cls(prefix, className)}>
+      {children}
+    </div>
+  )
+}
+
+TopbarPanel.Region = Region

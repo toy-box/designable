@@ -12,6 +12,34 @@
       margin-left: 8px;
     }
   }
+  &-left,
+  &-right,
+  &-center {
+    height: 100%;
+    display: flex;
+  }
+  &-left {
+    width: 27%;
+    padding-left: 4px;
+    justify-content: flex-start;
+  }
+  &-right {
+    width: 27%;
+    padding-right: 4px;
+    justify-content: flex-end;
+  }
+  &-center {
+    width: 73%;
+    justify-content: center;
+    > div {
+      &:first-child {
+        border-left: 1px solid var(--dn-panel-border-color);
+      }
+      &:last-child {
+        border-right: 1px solid var(--dn-panel-border-color);
+      }
+    }
+  }
   .@{prefix-cls}-panel-box {
     display: flex;
     align-items: center;
