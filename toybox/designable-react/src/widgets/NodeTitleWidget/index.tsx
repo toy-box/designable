@@ -3,7 +3,6 @@ import { observer } from '@formily/reactive-react'
 import { TreeNode } from '@designable/core'
 export interface INodeTitleWidgetProps {
   node: TreeNode
-  showId?: boolean
 }
 
 export const NodeTitleWidget: React.FC<INodeTitleWidgetProps> = observer(
@@ -16,11 +15,6 @@ export const NodeTitleWidget: React.FC<INodeTitleWidgetProps> = observer(
       return node
     }
     const node = takeNode()
-    return (
-      <Fragment>
-        {node.getMessage('title') || node.componentName}
-        {props.showId ? ` #${node.id}` : null}
-      </Fragment>
-    )
+    return <Fragment>{node.getMessage('title') || node.componentName}</Fragment>
   }
 )

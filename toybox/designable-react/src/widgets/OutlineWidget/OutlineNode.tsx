@@ -12,7 +12,7 @@ import {
   usePrefix,
   useCursor,
   useSelection,
-  useOutlineDragon,
+  useMoveHelper,
   useDesigner,
 } from '../../hooks'
 import { IconWidget } from '../IconWidget'
@@ -36,12 +36,12 @@ export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
     const request = useRef(null)
     const cursor = useCursor()
     const selection = useSelection(workspaceId)
-    const outlineDragon = useOutlineDragon(workspaceId)
+    const moveHelper = useMoveHelper(workspaceId)
 
     useEffect(() => {
       return engine.subscribeTo(DragMoveEvent, () => {
-        const closestNodeId = outlineDragon?.closestNode?.id
-        const closestDirection = outlineDragon?.closestDirection
+        const closestNodeId = moveHelper?.closestNode?.id
+        const closestDirection = moveHelper?.outlineClosestDirection
         const id = node.id
         if (!ref.current) return
         if (
@@ -70,7 +70,7 @@ export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
           }
         }
       })
-    }, [node, outlineDragon, cursor])
+    }, [node, moveHelper, cursor])
 
     useEffect(() => {
       return autorun(() => {
@@ -86,13 +86,16 @@ export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
             ref.current.classList.remove('selected')
           }
         }
-        if (cursor.status === CursorStatus.Dragging) {
+        if (
+          cursor.status === CursorStatus.Dragging &&
+          moveHelper?.dragNodes?.length
+        ) {
           if (ref.current.classList.contains('selected')) {
             ref.current.classList.remove('selected')
           }
         }
       })
-    }, [node, selection])
+    }, [node, selection, moveHelper])
 
     if (!node) return null
 

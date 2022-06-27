@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import {
   Designer,
-  DesignerWidget,
-  ViewWidget,
+  DesignerToolsWidget,
+  ViewToolsWidget,
   Workspace,
   OutlineTreeWidget,
   ResourceWidget,
@@ -174,10 +174,10 @@ const App = () => {
               </CompositePanel>
             </TopbarPanel.Region>
             <TopbarPanel.Region position="center">
-              <DesignerWidget />
+              <DesignerToolsWidget />
             </TopbarPanel.Region>
             <TopbarPanel.Region position="right">
-              <ViewWidget
+              <ViewToolsWidget
                 use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']}
               />
               <CompositePanel

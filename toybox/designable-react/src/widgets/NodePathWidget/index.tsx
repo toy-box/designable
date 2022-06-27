@@ -1,9 +1,9 @@
 import React from 'react'
 import { Breadcrumb } from 'antd'
-import { useCurrentNode, useSelection, usePrefix, useHover } from '../../hooks'
+import { useSelectedNode, useSelection, usePrefix, useHover } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
-import { observer } from '@formily/react'
+import { observer } from '@formily/reactive-react'
 import './styles.less'
 
 export interface INodePathWidgetProps {
@@ -13,7 +13,7 @@ export interface INodePathWidgetProps {
 
 export const NodePathWidget: React.FC<INodePathWidgetProps> = observer(
   (props) => {
-    const selected = useCurrentNode(props.workspaceId)
+    const selected = useSelectedNode(props.workspaceId)
     const selection = useSelection(props.workspaceId)
     const hover = useHover(props.workspaceId)
     const prefix = usePrefix('node-path')
@@ -25,13 +25,13 @@ export const NodePathWidget: React.FC<INodePathWidgetProps> = observer(
       .reverse()
       .concat(selected)
     return (
-      <Breadcrumb
-        className={prefix}
-        separator={<IconWidget infer="RightDropArrow" />}
-      >
+      <Breadcrumb className={prefix}>
         {nodes.map((node, key) => {
           return (
             <Breadcrumb.Item key={key}>
+              {key === 0 && (
+                <IconWidget infer="Position" style={{ marginRight: 3 }} />
+              )}
               <a
                 href=""
                 onMouseEnter={() => {

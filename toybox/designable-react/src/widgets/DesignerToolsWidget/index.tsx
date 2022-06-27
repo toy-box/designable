@@ -1,5 +1,6 @@
 import React, { Fragment, useRef } from 'react'
-import { Button, InputNumber } from 'antd'
+import { InputNumber } from 'antd'
+import { Button } from '@toy-box/toybox-ui'
 import { observer } from '@formily/reactive-react'
 import { CursorType, ScreenType } from '@designable/core'
 import {
@@ -28,28 +29,29 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
     const workbench = useWorkbench()
     const history = useHistory()
     const sizeRef = useRef<{ width?: any; height?: any }>({})
-    const prefix = usePrefix('designer-tools')
+    const panelBoxCls = usePrefix('panel-box')
+
     const renderHistoryController = () => {
       if (!props.use.includes('HISTORY')) return null
       return (
-        <Button.Group style={{ marginRight: 20 }}>
-          <Button
+        <div className={cls(panelBoxCls, props.className)}>
+          <Button.Icon
             disabled={!history?.allowUndo}
             onClick={() => {
               history.undo()
             }}
-          >
-            <IconWidget infer="Undo" />
-          </Button>
-          <Button
+            size="huge"
+            icon={<IconWidget infer="Undo" />}
+          />
+          <Button.Icon
             disabled={!history?.allowRedo}
             onClick={() => {
               history.redo()
             }}
-          >
-            <IconWidget infer="Redo" />
-          </Button>
-        </Button.Group>
+            size="huge"
+            icon={<IconWidget infer="Redo" />}
+          />
+        </div>
       )
     }
 
@@ -57,24 +59,24 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
       if (workbench.type !== 'DESIGNABLE') return null
       if (!props.use.includes('CURSOR')) return null
       return (
-        <Button.Group style={{ marginRight: 20 }}>
-          <Button
-            disabled={cursor.type === CursorType.Move}
+        <div className={cls(panelBoxCls, props.className)}>
+          <Button.Icon
+            disabled={cursor.type === CursorType.Normal}
             onClick={() => {
-              cursor.setType(CursorType.Move)
+              cursor.setType(CursorType.Normal)
             }}
-          >
-            <IconWidget infer="Move" />
-          </Button>
-          <Button
+            size="huge"
+            icon={<IconWidget infer="Move" />}
+          />
+          <Button.Icon
             disabled={cursor.type === CursorType.Selection}
             onClick={() => {
               cursor.setType(CursorType.Selection)
             }}
-          >
-            <IconWidget infer="Selection" />
-          </Button>
-        </Button.Group>
+            size="huge"
+            icon={<IconWidget infer="Selection" />}
+          />
+        </div>
       )
     }
 
@@ -82,7 +84,7 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
       if (!props.use.includes('SCREEN_TYPE')) return null
       if (screen.type !== ScreenType.Responsive) return null
       return (
-        <Fragment>
+        <div className={cls(panelBoxCls, props.className)}>
           <InputNumber
             size="small"
             value={screen.width}
@@ -115,82 +117,71 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
             }}
           />
           {(screen.width !== '100%' || screen.height !== '100%') && (
-            <Button
-              size="small"
-              style={{ marginRight: 20 }}
+            <Button.Icon
               onClick={() => {
                 screen.resetSize()
               }}
-            >
-              <IconWidget infer="Recover" />
-            </Button>
+              size="huge"
+              icon={<IconWidget infer="Recover" />}
+            />
           )}
-        </Fragment>
+        </div>
       )
     }
 
     const renderScreenTypeController = () => {
       if (!props.use.includes('SCREEN_TYPE')) return null
       return (
-        <Button.Group style={{ marginRight: 20 }}>
-          <Button
-            disabled={screen.type === ScreenType.PC}
-            onClick={() => {
-              screen.setType(ScreenType.PC)
-            }}
+        <div className={cls(panelBoxCls, props.className)}>
+          <div
+            className={cls(`${panelBoxCls}-item`, {
+              active: screen.type === ScreenType.PC,
+            })}
           >
-            <IconWidget infer="PC" />
-          </Button>
-          <Button
-            disabled={screen.type === ScreenType.Mobile}
-            onClick={() => {
-              screen.setType(ScreenType.Mobile)
-            }}
+            <Button.Icon
+              onClick={() => {
+                screen.setType(ScreenType.PC)
+              }}
+              pure
+              size="huge"
+              icon={<IconWidget infer="PC" />}
+            />
+          </div>
+          <div
+            className={cls(`${panelBoxCls}-item`, {
+              active: screen.type === ScreenType.Mobile,
+            })}
           >
-            <IconWidget infer="Mobile" />
-          </Button>
-          <Button
-            disabled={screen.type === ScreenType.Responsive}
-            onClick={() => {
-              screen.setType(ScreenType.Responsive)
-            }}
-          >
-            <IconWidget infer="Responsive" />
-          </Button>
-        </Button.Group>
-      )
-    }
-
-    const renderMobileController = () => {
-      if (!props.use.includes('SCREEN_TYPE')) return null
-      if (screen.type !== ScreenType.Mobile) return
-      return (
-        <Button
-          size="small"
-          style={{ marginRight: 20 }}
-          onClick={() => {
-            screen.setFlip(!screen.flip)
-          }}
-        >
-          <IconWidget
-            infer="Flip"
-            style={{
-              transition: 'all .15s ease-in',
-              transform: screen.flip ? 'rotate(-90deg)' : '',
-            }}
-          />
-        </Button>
+            <Button.Icon
+              onClick={() => {
+                screen.setType(ScreenType.Mobile)
+              }}
+              size="huge"
+              pure
+              icon={<IconWidget infer="Mobile" />}
+            />
+          </div>
+          {/* <div className={cls(`${panelBoxCls}-item`, { active: screen.type === ScreenType.Responsive })}>
+            <Button.Icon
+              onClick={() => {
+                screen.setType(ScreenType.Responsive)
+              }}
+              pure
+              size="huge"
+              icon={<IconWidget infer="Responsive" />}
+            />
+          </div> */}
+        </div>
       )
     }
 
     return (
-      <div style={props.style} className={cls(prefix, props.className)}>
-        {renderHistoryController()}
-        {renderCursorController()}
+      <React.Fragment>
         {renderScreenTypeController()}
-        {renderMobileController()}
         {renderResponsiveController()}
-      </div>
+        {renderCursorController()}
+        {renderHistoryController()}
+      </React.Fragment>
     )
   })
 

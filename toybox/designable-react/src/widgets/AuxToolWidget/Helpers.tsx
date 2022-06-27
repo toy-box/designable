@@ -2,8 +2,7 @@ import React, { useRef, useState, useLayoutEffect } from 'react'
 import { TreeNode } from '@designable/core'
 import { reaction } from '@formily/reactive'
 import cls from 'classnames'
-import { useDesigner, usePrefix, useViewport } from '../../hooks'
-import { Selector } from './Selector'
+import { usePrefix, useViewport } from '../../hooks'
 import { Copy } from './Copy'
 import { Delete } from './Delete'
 import { DragHandler } from './DragHandler'
@@ -26,7 +25,6 @@ export interface IViewportState {
 
 export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
   const prefix = usePrefix('aux-helpers')
-  const designer = useDesigner()
   const viewport = useViewport()
   const unmountRef = useRef(false)
   const ref = useRef<HTMLDivElement>()
@@ -106,7 +104,7 @@ export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
       ref={ref}
     >
       <div className={cls(prefix + '-content')}>
-        <NodeSelector node={node} />
+        {/* <NodeSelector node={node} /> */}
         {node?.allowClone() === false ? null : <Copy node={node} />}
         {node?.allowDrag() === false ? null : <DragHandler node={node} />}
         {node?.allowDelete() === false ? null : <Delete node={node} />}

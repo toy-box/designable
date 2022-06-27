@@ -1,17 +1,15 @@
 import React, { Fragment, useEffect } from 'react'
 import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
 import { TreeNodeContext, DesignerComponentsContext } from '../../context'
-import { IDesignerComponents, PageLayouts } from '../../types'
+import { IDesignerComponents } from '../../types'
 import { TreeNode, GlobalRegistry } from '@designable/core'
 import { observer } from '@formily/reactive-react'
 import cls from 'classnames'
-import { Dialog } from '@toy-box/freepage-components'
 import './styles.less'
 
 export interface IComponentTreeWidgetProps {
   style?: React.CSSProperties
   className?: string
-  layouts?: PageLayouts
   components: IDesignerComponents
 }
 
@@ -37,6 +35,9 @@ export const TreeNodeWidget: React.FC<ITreeNodeWidgetProps> = observer(
         ...extendsProps,
         ...node.props,
         ...node.designerProps?.getComponentProps?.(node),
+      }
+      if (node.depth === 0) {
+        delete props.style
       }
       return props
     }
@@ -82,20 +83,16 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
     useEffect(() => {
       GlobalRegistry.registerDesignerBehaviors(props.components)
     }, [])
-    const { layout } = tree.props
-    const LayoutComponent = props.layouts?.[layout] || React.Fragment
     return (
-      <Dialog>
-        <div
-          style={{ ...props.style }}
-          className={cls(prefix, props.className)}
-          {...dataId}
-        >
-          <DesignerComponentsContext.Provider value={props.components}>
-            <TreeNodeWidget node={tree} />
-          </DesignerComponentsContext.Provider>
-        </div>
-      </Dialog>
+      <div
+        style={{ ...props.style, ...tree?.props?.style }}
+        className={cls(prefix, props.className)}
+        {...dataId}
+      >
+        <DesignerComponentsContext.Provider value={props.components}>
+          <TreeNodeWidget node={tree} />
+        </DesignerComponentsContext.Provider>
+      </div>
     )
   })
 
